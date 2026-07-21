@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Minimalistička znanstvena publikacija posvećena fizici, umjetnoj inteligenciji, singularnosti i biomedicini.">
+  <title>Keeping up with the singularity - Scientific Insights &amp; Physics Journal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 1. FIKSNA NAVIGACIJSKA TRAKA -->
+  <header>
+    <nav class="navbar" aria-label="Glavna navigacija">
+      <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+          <span class="brand-symbol">&psi;</span>
+          <span class="brand-title">Keeping up with the singularity</span>
+          <span class="brand-subtitle">PHYSICS &amp; TECH JOURNAL</span>
+        </a>
+
+        <!-- Hamburger Toggle za mobilne uređaje -->
+        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Otvori navigacijski izbornik" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <!-- Navigacijski Linkovi -->
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="#pocetna" class="nav-link active" id="nav-pocetna">Početna</a></li>
+          <li><a href="#ai-singularnost" class="nav-link" id="nav-ai">AI &amp; Singularnost</a></li>
+          <li><a href="#biomedicina" class="nav-link" id="nav-biomedicina">Biomedicina</a></li>
+          <li><a href="about.html" class="nav-link" id="nav-autor">O autoru</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 2. GLAVNI SPREMNIK (MAIN CONTAINER) -->
+  <main class="main-container" id="main-content">
+    
+    <!-- Publication Header Section -->
+    <header class="publication-header">
+      <span class="pub-meta-tag">Vol. IV &bull; Istraživanja i publikacije</span>
+      <h1 class="publication-title">Granice fizike, umjetne inteligencije i biologije</h1>
+      <p class="publication-description">
+        Kratki sažeci radova, analize teorijskih fizikalnih modela te pregled najnovije stručne literature u područjima kvantnog računanja, biotehnologije i umjetne opće inteligencije.
+      </p>
+    </header>
+
+    <!-- Articles Grid Section -->
+    <section aria-labelledby="section-heading">
+      <div class="articles-section-header">
+        <h2 id="section-heading" class="section-label">Objavljeni sažeci radova</h2>
+        <span id="articles-count" class="articles-count">Učitavanje...</span>
+      </div>
+
+      <!-- CSS Grid spremnik za dinamički prikaz kartica -->
+      <div id="articles-grid" class="articles-grid" role="region" aria-live="polite">
+        <!-- Kartice članaka učitavaju se dinamički putem js/main.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 3. PODNOŽJE (FOOTER) -->
+  <footer class="footer">
+    <div class="footer-container">
+      
+      <!-- Brand & Contact -->
+      <div class="footer-brand">
+        <div class="footer-logo">Keeping up with the singularity</div>
+        <p class="footer-desc">
+          Minimalistička platforma inspirirana principima otvorene znanosti i arXiv.org pretpisa.
+        </p>
+        <p class="footer-desc" id="contact-info">
+          Kontakt: <code>editor@techhorizons-journal.org</code>
+        </p>
+      </div>
+
+      <!-- External Science Resources -->
+      <div class="footer-column">
+        <h3 class="footer-heading">Izvori i arhive</h3>
+        <ul class="footer-links">
+          <li><a href="https://arxiv.org" target="_blank" rel="noopener noreferrer" id="link-arxiv">arXiv.org Physics Archive</a></li>
+          <li><a href="https://www.nature.com/nphys/" target="_blank" rel="noopener noreferrer" id="link-nature">Nature Physics Journal</a></li>
+          <li><a href="https://phys.org" target="_blank" rel="noopener noreferrer" id="link-physorg">Phys.org Research News</a></li>
+          <li><a href="https://www.quantamagazine.org" target="_blank" rel="noopener noreferrer" id="link-quanta">Quanta Magazine</a></li>
+        </ul>
+      </div>
+
+      <!-- Relevant Podcasts -->
+      <div class="footer-column">
+        <h3 class="footer-heading">Podcasti &amp; Mediji</h3>
+        <ul class="footer-links">
+          <li><a href="https://www.quantamagazine.org/tag/podcast/" target="_blank" rel="noopener noreferrer" id="link-quanta-podcast">Quanta Science Podcast</a></li>
+          <li><a href="https://lexfridman.com/podcast/" target="_blank" rel="noopener noreferrer" id="link-lex-podcast">Lex Fridman Science &amp; AI</a></li>
+          <li><a href="https://mindscapepodcast.com" target="_blank" rel="noopener noreferrer" id="link-mindscape">Sean Carroll's Mindscape</a></li>
+          <li><a href="https://hubermanlab.com" target="_blank" rel="noopener noreferrer" id="link-huberman">Huberman Lab Neuroscience</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Keeping up with the singularity. Sva prava pridržana.</span>
+      <span>Arhitektura: Vanilla HTML5 / CSS3 Grid / Vanilla JS</span>
+    </div>
+  </footer>
+
+  <!-- Vanilla JavaScript Logic -->
+  <script src="js/main.js"></script>
+</body>
+</html>
