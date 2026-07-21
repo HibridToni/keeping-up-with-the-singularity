@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap');
 
 :root {
-  /* Color Palette - Deep Scientific Greys & Precision Accents */
+  /* Color Palette - Dark Theme (Default) */
   --bg-primary: #0a0c0e;
   --bg-secondary: #111418;
   --bg-card: #151920;
@@ -36,6 +36,28 @@
   --container-max-width: 1200px;
   --card-border-radius: 6px;
   --transition-fast: 0.2s ease;
+}
+
+:root.light-theme {
+  /* Color Palette - Light Theme */
+  --bg-primary: #f4f4f5;
+  --bg-secondary: #e4e4e7;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fafafa;
+  --bg-nav: rgba(244, 244, 245, 0.85);
+
+  --border-color: #d4d4d8;
+  --border-color-hover: rgba(56, 189, 248, 0.6);
+  --border-focus: #38bdf8;
+
+  --text-primary: #18181b;
+  --text-secondary: #3f3f46;
+  --text-muted: #71717a;
+
+  --accent-cyan: #38bdf8;
+  --accent-cyan-glow: rgba(56, 189, 248, 0.2);
+  --accent-indigo: #6366f1;
+  --accent-code: #4f46e5;
 }
 
 /* Reset & Global Base Styles */
@@ -167,6 +189,28 @@ a {
   width: 100%;
   height: 2px;
   background-color: var(--accent-cyan);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--accent-cyan);
+  background-color: var(--bg-secondary);
+  transform: scale(1.05);
 }
 
 /* Hamburger Toggle Button (Skrivena na Desktopu) */
@@ -462,7 +506,7 @@ a {
 
 .back-link:hover {
   transform: translateX(-4px);
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .reader-header {
@@ -499,12 +543,13 @@ a {
 .reader-body {
   font-size: 1.05rem;
   line-height: 1.8;
-  color: #e2e8f0;
+  color: var(--text-primary);
 }
 
 .reader-body p {
   margin-bottom: 20px;
   letter-spacing: 0.01em;
+  color: var(--text-primary);
 }
 
 .reader-body h2 {
@@ -526,7 +571,7 @@ a {
 
 .reader-body ul, .reader-body ol {
   margin: 16px 0 24px 24px;
-  color: #cbd5e1;
+  color: var(--text-secondary);
 }
 
 .reader-body li {
@@ -535,13 +580,57 @@ a {
 }
 
 .reader-body strong {
-  color: #ffffff;
-  font-weight: 600;
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
 .reader-body em {
   color: var(--accent-cyan);
   font-style: italic;
+}
+
+/* Citati i istaknuti blokovi u radovima (Blockquotes) */
+.reader-body blockquote, blockquote {
+  margin: 28px 0;
+  padding: 20px 24px;
+  background-color: var(--bg-secondary);
+  border-left: 4px solid var(--accent-cyan);
+  border-radius: 0 var(--card-border-radius) var(--card-border-radius) 0;
+  color: var(--text-primary);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.reader-body blockquote p, blockquote p {
+  margin-bottom: 0;
+  color: var(--text-primary);
+}
+
+.reader-body code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--accent-cyan);
+  background-color: var(--bg-secondary);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border-color);
+}
+
+.reader-body pre {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-border-radius);
+  padding: 16px 20px;
+  overflow-x: auto;
+  margin: 24px 0;
+}
+
+.reader-body pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text-primary);
 }
 
 .reader-footer {
@@ -808,7 +897,7 @@ a {
     left: 0;
     width: 100%;
     height: calc(100vh - var(--nav-height));
-    background-color: rgba(10, 12, 14, 0.96);
+    background-color: var(--bg-primary);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     flex-direction: column;
