@@ -132,16 +132,18 @@ a {
   max-width: calc(100% - 60px);
 }
 
-.brand-symbol {
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--accent-cyan);
-  border: 1px solid var(--border-color);
-  padding: 2px 6px;
-  border-radius: 2px;
-  background: var(--bg-secondary);
+.site-logo {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
   flex-shrink: 0;
+  border-radius: 6px;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.nav-brand:hover .site-logo {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.4));
 }
 
 .brand-title {
@@ -868,6 +870,10 @@ a {
 }
 
 @media (max-width: 768px) {
+  .site-logo {
+    height: 32px;
+  }
+
   /* Prilagodba dugačkog naziva 'Keeping up with the singularity' na mobilnim uređajima */
   .nav-brand {
     max-width: calc(100% - 40px);
@@ -964,6 +970,10 @@ a {
 }
 
 @media (max-width: 480px) {
+  .site-logo {
+    height: 28px;
+  }
+
   .brand-title {
     font-size: 0.8125rem;
   }
