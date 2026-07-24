@@ -1,78 +1,100 @@
 /**
- * TechHorizons Blog - Main Application Logic
- * Modular Vanilla JavaScript for fetching and dynamically rendering articles.
+ * TechHorizons Blog - Category Filtering Script
+ * Reads 'cat' parameter from URL, filters articles from articles.json, and renders matching cards or empty state.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initApp();
+  initCategoryPage();
   setupResponsiveNav();
   if (typeof updateActiveNavLink === 'function') {
     updateActiveNavLink();
   }
 });
 
-/**
- * Initializes the application
- */
-async function initApp() {
+const CATEGORY_MAP = {
+  'ai-tehnologija': {
+    title: 'AI i tehnologija',
+    description: 'Pregled stručnih radova, analiza i publikacija iz područja umjetne inteligencije, strojnog učenja i tehnoloških inovacija.'
+  },
+  'longevity': {
+    title: 'Longevity',
+    description: 'Najnovija istraživanja i teorijski radovi u području dugovječnosti, regenerativne medicine i biomedicinskih inovacija.'
+  }
+};
+
+async function initCategoryPage() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const catSlug = urlParams.get('cat') ? urlParams.get('cat').toLowerCase().trim() : '';
+
+  const catMeta = CATEGORY_MAP[catSlug] || {
+    title: catSlug ? (catSlug.charAt(0).toUpperCase() + catSlug.slice(1)) : 'Kategorija',
+    description: 'Pregled objavljenih sažetaka radova i analiza iz odabrane tematske kategorije.'
+  };
+
+  // Update DOM elements for category details
+  document.title = `${catMeta.title} - Keeping up with the singularity`;
+  
+  const titleEl = document.getElementById('category-title');
+  if (titleEl) titleEl.textContent = catMeta.title;
+
+  const descEl = document.getElementById('category-description');
+  if (descEl) descEl.textContent = catMeta.description;
+
+  const metaTagEl = document.getElementById('category-meta-tag');
+  if (metaTagEl) metaTagEl.textContent = `Kategorija \u2022 ${catMeta.title}`;
+
+  // Fetch articles and filter
   const articles = await fetchArticles('articles.json');
-  renderArticles(articles);
-  setupNavigation();
+  const filteredArticles = articles.filter(art => {
+    const slug = art.categorySlug ? art.categorySlug.toLowerCase().trim() : '';
+    const catName = art.category ? art.category.toLowerCase().trim() : '';
+    return slug === catSlug || catName === catMeta.title.toLowerCase();
+  });
+
+  renderCategoryArticles(filteredArticles, catMeta.title);
 }
 
-/**
- * Asynchronously fetches article data from JSON file
- * @param {string} url - Path to articles JSON file
- * @returns {Promise<Array>} List of article objects
- */
 async function fetchArticles(url) {
   const container = document.getElementById('articles-grid');
-  if (!container) return []; // Guard for pages without articles grid
-
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Mrežna pogreška pri učitavanju: ${response.status} ${response.statusText}`);
+      throw new Error(`Mrežna pogreška pri učitavanju: ${response.status}`);
     }
     const data = await response.json();
     return Array.isArray(data) ? data : [];
   } catch (error) {
     console.error('Pogreška pri učitavanju članaka:', error);
     if (container) {
-      renderErrorState(container, 'Nije moguće učitati podatke iz "articles.json". Provjerite poslužitelj i datoteku.');
+      container.innerHTML = `<div class="error-state"><h3>Pogreška pri učitavanju</h3><p>Nije moguće učitati podatke iz JSON datoteke.</p></div>`;
     }
     return [];
   }
 }
 
-/**
- * Dynamically renders article cards into the CSS Grid container
- * @param {Array} articles - Array of article objects
- */
-function renderArticles(articles) {
+function renderCategoryArticles(articles, categoryTitle) {
   const container = document.getElementById('articles-grid');
   const countBadge = document.getElementById('articles-count');
-
   if (!container) return;
 
-  // Clear existing static/loading content
   container.innerHTML = '';
 
-  // Handle empty state
   if (!articles || articles.length === 0) {
     if (countBadge) countBadge.textContent = '0 Radova';
-    renderEmptyState(container);
+    container.innerHTML = `
+      <div class="empty-state">
+        <h3>U ovoj kategoriji trenutno nema objavljenih članaka</h3>
+        <p>U kategoriji "${escapeHTML(categoryTitle)}" trenutno nema objavljenih članaka. Pratite nas uskoro za nove sadržaje.</p>
+      </div>
+    `;
     return;
   }
 
-  // Update article counter badge
   if (countBadge) {
     countBadge.textContent = `${articles.length} ${articles.length === 1 ? 'Sažetak' : 'Sažetka'}`;
   }
 
-  // Create document fragment for optimal performance
   const fragment = document.createDocumentFragment();
-
   articles.forEach(article => {
     const cardElement = createArticleCard(article);
     fragment.appendChild(cardElement);
@@ -81,11 +103,6 @@ function renderArticles(articles) {
   container.appendChild(fragment);
 }
 
-/**
- * Creates a single DOM element card for an article
- * @param {Object} article - Data object representing an article
- * @returns {HTMLElement} Article DOM node
- */
 function createArticleCard(article) {
   const card = document.createElement('article');
   card.className = 'article-card';
@@ -147,46 +164,6 @@ function createArticleCard(article) {
   return card;
 }
 
-/**
- * Displays empty state message if JSON array is empty
- */
-function renderEmptyState(container) {
-  container.innerHTML = `
-    <div class="empty-state">
-      <h3>Trenutačno nema objavljenih radova</h3>
-      <p>Datoteka "articles.json" ne sadrži niti jedan sažetak. Dodajte nove objave u JSON datoteku.</p>
-    </div>
-  `;
-}
-
-/**
- * Displays error state message if fetching fails
- */
-function renderErrorState(container, message) {
-  container.innerHTML = `
-    <div class="error-state">
-      <h3>Pogreška pri učitavanju</h3>
-      <p>${escapeHTML(message)}</p>
-    </div>
-  `;
-}
-
-/**
- * Handles navigation active state link switching
- */
-function setupNavigation() {
-  const links = document.querySelectorAll('.nav-link');
-  links.forEach(link => {
-    link.addEventListener('click', (e) => {
-      links.forEach(l => l.classList.remove('active'));
-      e.currentTarget.classList.add('active');
-    });
-  });
-}
-
-/**
- * Responsive Hamburger Menu Handler for Mobile Devices
- */
 function setupResponsiveNav() {
   const toggleBtn = document.getElementById('hamburger-toggle');
   const navMenu = document.getElementById('nav-menu');
@@ -201,7 +178,6 @@ function setupResponsiveNav() {
     }
   });
 
-  // Close menu when clicking any navigation link
   const navLinks = navMenu.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -209,7 +185,6 @@ function setupResponsiveNav() {
     });
   });
 
-  // Close menu when pressing ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeMenu();
   });
@@ -229,9 +204,6 @@ function setupResponsiveNav() {
   }
 }
 
-/**
- * Helper to escape HTML characters and guard against XSS
- */
 function escapeHTML(str) {
   if (typeof str !== 'string') return str;
   return str.replace(/[&<>"']/g, (tag) => {
