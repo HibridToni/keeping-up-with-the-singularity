@@ -95,37 +95,49 @@ function createArticleCard(article) {
   const readTime = article.readTime || '3 min čitanja';
   const doi = article.doi || '';
   const articleUrl = `article.html?id=${article.id}`;
+  const image = article.image || '';
+
+  const mediaHTML = image ? `
+    <div class="article-card-media">
+      <a href="${articleUrl}" tabindex="-1" aria-hidden="true">
+        <img src="${escapeHTML(image)}" alt="${escapeHTML(title)}" class="article-card-thumb" onerror="this.closest('.article-card-media').style.display='none'">
+      </a>
+    </div>
+  ` : '';
 
   card.innerHTML = `
-    <div class="card-body">
-      <div class="card-header">
-        <div class="card-meta">
-          <span class="card-category">${escapeHTML(category)}</span>
-          <time class="card-date" datetime="${escapeHTML(date)}">${escapeHTML(date)}</time>
+    ${mediaHTML}
+    <div class="article-card-content">
+      <div class="card-body">
+        <div class="card-header">
+          <div class="card-meta">
+            <span class="card-category">${escapeHTML(category)}</span>
+            <time class="card-date" datetime="${escapeHTML(date)}">${escapeHTML(date)}</time>
+          </div>
+          <h3 class="card-title">
+            <a href="${articleUrl}">${escapeHTML(title)}</a>
+          </h3>
         </div>
-        <h3 class="card-title">
-          <a href="${articleUrl}">${escapeHTML(title)}</a>
-        </h3>
-      </div>
-      
-      <p class="card-excerpt">${escapeHTML(excerpt)}</p>
-    </div>
-
-    <div class="card-footer">
-      <div class="card-info">
-        <span class="card-read-time">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-          ${escapeHTML(readTime)}
-        </span>
-        ${doi ? `<span class="card-doi">${escapeHTML(doi)}</span>` : ''}
+        
+        <p class="card-excerpt">${escapeHTML(excerpt)}</p>
       </div>
 
-      <a href="${articleUrl}" class="btn-read-article" aria-label="Pročitaj rad: ${escapeHTML(title)}">
-        Pročitaj rad &rarr;
-      </a>
+      <div class="card-footer">
+        <div class="card-info">
+          <span class="card-read-time">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            ${escapeHTML(readTime)}
+          </span>
+          ${doi ? `<span class="card-doi">${escapeHTML(doi)}</span>` : ''}
+        </div>
+
+        <a href="${articleUrl}" class="btn-read-article" aria-label="Pročitaj rad: ${escapeHTML(title)}">
+          Pročitaj rad &rarr;
+        </a>
+      </div>
     </div>
   `;
 

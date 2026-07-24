@@ -56,7 +56,14 @@ function renderArticleContent(container, article) {
   const date = article.date || 'Nepoznat datum';
   const readTime = article.readTime || '5 min čitanja';
   const doi = article.doi || '';
+  const image = article.image || '';
   const contentHTML = article.content || `<p>${escapeHTML(article.excerpt || article.summary || 'Sadržaj rada nije dostupan.')}</p>`;
+
+  const coverHeroHTML = image ? `
+    <div class="article-cover-wrapper">
+      <img src="${escapeHTML(image)}" alt="${escapeHTML(article.title)}" class="article-cover-hero" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+    </div>
+  ` : '';
 
   container.innerHTML = `
     <!-- Link za povratak -->
@@ -81,6 +88,8 @@ function renderArticleContent(container, article) {
         </span>
         ${doi ? `<span class="card-doi">${escapeHTML(doi)}</span>` : ''}
       </div>
+
+      ${coverHeroHTML}
     </header>
 
     <!-- Puni HTML Sadržaj Članka -->

@@ -332,10 +332,9 @@ a {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--card-border-radius);
-  padding: 24px;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
   transition: border-color var(--transition-fast), 
               box-shadow var(--transition-fast), 
@@ -351,6 +350,42 @@ a {
   background-color: var(--bg-card-hover);
   box-shadow: 0 0 25px var(--accent-cyan-glow), 0 8px 24px rgba(0, 0, 0, 0.4);
   transform: translateY(-2px);
+}
+
+.article-card-media {
+  width: 100%;
+  height: 200px;
+  flex: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.article-card-media a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.article-card-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+  transition: transform 0.3s ease;
+}
+
+.article-card:hover .article-card-thumb {
+  transform: scale(1.05);
+}
+
+.article-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  min-width: 0;
 }
 
 .card-body {
@@ -540,6 +575,23 @@ a {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   color: var(--text-muted);
+}
+
+.article-cover-wrapper {
+  margin-top: 24px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+}
+
+.article-cover-hero {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
 }
 
 .reader-body {
@@ -956,6 +1008,24 @@ a {
 
   .articles-grid {
     grid-template-columns: 1fr;
+  }
+
+  .article-card {
+    flex-direction: column;
+  }
+
+  .article-card-media {
+    flex: none;
+    width: 100%;
+    height: 180px;
+  }
+
+  .article-card-thumb {
+    border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+  }
+
+  .article-cover-hero {
+    max-height: 260px;
   }
 
   .card-footer {
