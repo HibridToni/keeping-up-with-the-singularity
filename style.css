@@ -623,6 +623,13 @@ a {
   color: var(--accent-cyan);
 }
 
+.reader-body h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 22px 0 10px;
+  color: var(--text-primary);
+}
+
 .reader-body ul, .reader-body ol {
   margin: 16px 0 24px 24px;
   color: var(--text-secondary);

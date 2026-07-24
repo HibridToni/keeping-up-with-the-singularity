@@ -18,7 +18,7 @@ const CATEGORY_MAP = {
   },
   'longevity': {
     title: 'Longevity',
-    description: 'Najnovija istraživanja i teorijski radovi u području dugovječnosti, regenerativne medicine i biomedicinskih inovacija.'
+    description: 'Najnovija istraživanja i teorijski radovi u području dugovječnosti, regenerativne medicine i inovacija na području longevityja.'
   }
 };
 

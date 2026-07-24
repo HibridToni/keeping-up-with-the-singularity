@@ -48,8 +48,8 @@ function updateActiveNavLink() {
       if (hrefClean.includes('category.html') && currentCat && hrefClean.includes(`cat=${currentCat}`)) {
         link.classList.add('active');
       }
-    } else if (currentPath.includes('about.html')) {
-      if (hrefClean.includes('about.html')) {
+    } else if (currentPath.includes('o-autoru.html') || currentPath.includes('about.html')) {
+      if (hrefClean.includes('o-autoru.html') || hrefClean.includes('about.html')) {
         link.classList.add('active');
       }
     } else if (currentPath.includes('index.html') || currentPath === '/' || currentPath.endsWith('/')) {
