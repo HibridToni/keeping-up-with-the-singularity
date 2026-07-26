@@ -3,55 +3,88 @@
  * Reads 'cat' parameter from URL, filters articles from articles.json, and renders matching cards or empty state.
  */
 
+let cachedCategoryArticles = [];
+let currentCategoryTitle = '';
+
 document.addEventListener('DOMContentLoaded', () => {
   initCategoryPage();
   setupResponsiveNav();
   if (typeof updateActiveNavLink === 'function') {
     updateActiveNavLink();
   }
+
+  window.addEventListener('languageChanged', () => {
+    initCategoryPage();
+  });
 });
 
 const CATEGORY_MAP = {
   'ai-tehnologija': {
-    title: 'AI i tehnologija',
-    description: 'Pregled stručnih radova, analiza i publikacija iz područja umjetne inteligencije, strojnog učenja i tehnoloških inovacija.'
+    title: { hr: 'AI i tehnologija', en: 'AI & Tech' },
+    description: {
+      hr: 'Pregled stručnih radova, analiza i publikacija iz područja umjetne inteligencije, strojnog učenja i tehnoloških inovacija.',
+      en: 'Overview of research papers, analyses, and publications in artificial intelligence, machine learning, and technological innovations.'
+    }
   },
   'longevity': {
-    title: 'Longevity',
-    description: 'Najnovija istraživanja i teorijski radovi u području dugovječnosti, regenerativne medicine i inovacija na području longevityja.'
+    title: { hr: 'Longevity', en: 'Longevity' },
+    description: {
+      hr: 'Najnovija istraživanja i teorijski radovi u području dugovječnosti, regenerativne medicine i inovacija na području longevityja.',
+      en: 'Latest research and theoretical papers in longevity, regenerative medicine, and longevity innovations.'
+    }
   }
 };
 
 async function initCategoryPage() {
   const urlParams = new URLSearchParams(window.location.search);
   const catSlug = urlParams.get('cat') ? urlParams.get('cat').toLowerCase().trim() : '';
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
 
-  const catMeta = CATEGORY_MAP[catSlug] || {
-    title: catSlug ? (catSlug.charAt(0).toUpperCase() + catSlug.slice(1)) : 'Kategorija',
-    description: 'Pregled objavljenih sažetaka radova i analiza iz odabrane tematske kategorije.'
-  };
+  const mappedCat = CATEGORY_MAP[catSlug];
+  let catTitle = '';
+  let catDesc = '';
+
+  if (mappedCat) {
+    catTitle = mappedCat.title[currentLang] || mappedCat.title.hr;
+    catDesc = mappedCat.description[currentLang] || mappedCat.description.hr;
+  } else {
+    catTitle = catSlug ? (catSlug.charAt(0).toUpperCase() + catSlug.slice(1)) : (currentLang === 'en' ? 'Category' : 'Kategorija');
+    catDesc = currentLang === 'en' 
+      ? 'An overview of published research summaries and analyses from the selected thematic category.'
+      : 'Pregled objavljenih sažetaka radova i analiza iz odabrane tematske kategorije.';
+  }
+
+  currentCategoryTitle = catTitle;
 
   // Update DOM elements for category details
-  document.title = `${catMeta.title} - Keeping up with the singularity`;
+  document.title = `${catTitle} - Keeping up with the singularity`;
   
   const titleEl = document.getElementById('category-title');
-  if (titleEl) titleEl.textContent = catMeta.title;
+  if (titleEl) titleEl.textContent = catTitle;
 
   const descEl = document.getElementById('category-description');
-  if (descEl) descEl.textContent = catMeta.description;
+  if (descEl) descEl.textContent = catDesc;
 
   const metaTagEl = document.getElementById('category-meta-tag');
-  if (metaTagEl) metaTagEl.textContent = `Kategorija \u2022 ${catMeta.title}`;
+  if (metaTagEl) {
+    const metaPrefix = currentLang === 'en' ? 'Category \u2022 ' : 'Kategorija \u2022 ';
+    metaTagEl.textContent = `${metaPrefix}${catTitle}`;
+  }
 
   // Fetch articles and filter
   const articles = await fetchArticles('articles.json');
   const filteredArticles = articles.filter(art => {
     const slug = art.categorySlug ? art.categorySlug.toLowerCase().trim() : '';
-    const catName = art.category ? art.category.toLowerCase().trim() : '';
-    return slug === catSlug || catName === catMeta.title.toLowerCase();
+    const catNameHR = (art.category || '').toLowerCase().trim();
+    const catNameEN = (art.category_en || '').toLowerCase().trim();
+    const mapTitleHR = mappedCat ? mappedCat.title.hr.toLowerCase() : '';
+    const mapTitleEN = mappedCat ? mappedCat.title.en.toLowerCase() : '';
+    
+    return slug === catSlug || catNameHR === mapTitleHR || catNameEN === mapTitleEN || catNameHR === catTitle.toLowerCase();
   });
 
-  renderCategoryArticles(filteredArticles, catMeta.title);
+  cachedCategoryArticles = filteredArticles;
+  renderCategoryArticles(filteredArticles, catTitle);
 }
 
 async function fetchArticles(url) {
@@ -66,7 +99,9 @@ async function fetchArticles(url) {
   } catch (error) {
     console.error('Pogreška pri učitavanju članaka:', error);
     if (container) {
-      container.innerHTML = `<div class="error-state"><h3>Pogreška pri učitavanju</h3><p>Nije moguće učitati podatke iz JSON datoteke.</p></div>`;
+      const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+      const errorMsg = currentLang === 'en' ? 'Failed to load JSON data.' : 'Nije moguće učitati podatke iz JSON datoteke.';
+      container.innerHTML = `<div class="error-state"><h3>Pogreška / Error</h3><p>${errorMsg}</p></div>`;
     }
     return [];
   }
@@ -79,19 +114,35 @@ function renderCategoryArticles(articles, categoryTitle) {
 
   container.innerHTML = '';
 
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+
   if (!articles || articles.length === 0) {
-    if (countBadge) countBadge.textContent = '0 Radova';
-    container.innerHTML = `
-      <div class="empty-state">
-        <h3>U ovoj kategoriji trenutno nema objavljenih članaka</h3>
-        <p>U kategoriji "${escapeHTML(categoryTitle)}" trenutno nema objavljenih članaka. Pratite nas uskoro za nove sadržaje.</p>
-      </div>
-    `;
+    if (countBadge) {
+      countBadge.textContent = currentLang === 'en' ? '0 Papers' : '0 Radova';
+    }
+    if (currentLang === 'en') {
+      container.innerHTML = `
+        <div class="empty-state">
+          <h3>No published articles in this category currently</h3>
+          <p>There are currently no published articles in "${escapeHTML(categoryTitle)}". Stay tuned for upcoming content.</p>
+        </div>
+      `;
+    } else {
+      container.innerHTML = `
+        <div class="empty-state">
+          <h3>U ovoj kategoriji trenutno nema objavljenih članaka</h3>
+          <p>U kategoriji "${escapeHTML(categoryTitle)}" trenutno nema objavljenih članaka. Pratite nas uskoro za nove sadržaje.</p>
+        </div>
+      `;
+    }
     return;
   }
 
   if (countBadge) {
-    countBadge.textContent = `${articles.length} ${articles.length === 1 ? 'Sažetak' : 'Sažetka'}`;
+    const summaryLabel = currentLang === 'en' 
+      ? (articles.length === 1 ? 'Summary' : 'Summaries')
+      : (articles.length === 1 ? 'Sažetak' : 'Sažetka');
+    countBadge.textContent = `${articles.length} ${summaryLabel}`;
   }
 
   const fragment = document.createDocumentFragment();
@@ -108,14 +159,26 @@ function createArticleCard(article) {
   card.className = 'article-card';
   card.id = `card-${article.id}`;
 
-  const title = article.title || 'Naslov rada nedostupan';
-  const category = article.category || 'Općenito';
-  const excerpt = article.excerpt || article.summary || 'Kratki uvod i sažetak rada trenutačno nisu dostupni.';
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+
+  const title = (currentLang === 'en' && article.title_en) ? article.title_en : (article.title || 'Naslov rada nedostupan');
+  const category = (currentLang === 'en' && article.category_en) ? article.category_en : (article.category || 'Općenito');
+  const excerpt = (currentLang === 'en' && (article.excerpt_en || article.summary_en)) 
+    ? (article.excerpt_en || article.summary_en) 
+    : (article.excerpt || article.summary || 'Kratki uvod i sažetak rada trenutačno nisu dostupni.');
+  
   const date = article.date || 'Nepoznat datum';
-  const readTime = article.readTime || '3 min čitanja';
+  
+  let readTime = article.readTime || '3 min čitanja';
+  if (currentLang === 'en') {
+    readTime = article.readTime_en || readTime.replace('min čitanja', 'min read');
+  }
+
   const doi = article.doi || '';
   const articleUrl = `article.html?id=${article.id}`;
   const image = article.image || '';
+  const readBtnText = currentLang === 'en' ? 'Read article &rarr;' : 'Pročitaj rad &rarr;';
+  const readBtnAria = currentLang === 'en' ? `Read article: ${title}` : `Pročitaj rad: ${title}`;
 
   const mediaHTML = image ? `
     <div class="article-card-media">
@@ -154,8 +217,8 @@ function createArticleCard(article) {
           ${doi ? `<span class="card-doi">${escapeHTML(doi)}</span>` : ''}
         </div>
 
-        <a href="${articleUrl}" class="btn-read-article" aria-label="Pročitaj rad: ${escapeHTML(title)}">
-          Pročitaj rad &rarr;
+        <a href="${articleUrl}" class="btn-read-article" aria-label="${escapeHTML(readBtnAria)}">
+          ${readBtnText}
         </a>
       </div>
     </div>
@@ -163,6 +226,7 @@ function createArticleCard(article) {
 
   return card;
 }
+
 
 function setupResponsiveNav() {
   const toggleBtn = document.getElementById('hamburger-toggle');

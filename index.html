@@ -10,6 +10,7 @@
   <title>Keeping up with the singularity - Scientific Insights &amp; Physics Journal</title>
   <link rel="stylesheet" href="style.css">
   <script src="js/theme.js"></script>
+  <script src="js/lang.js"></script>
 </head>
 <body>
 
@@ -32,10 +33,11 @@
 
         <!-- Navigacijski Linkovi -->
         <ul class="nav-links" id="nav-menu">
-          <li><a href="index.html" class="nav-link active" id="nav-pocetna">Početna</a></li>
-          <li><a href="category.html?cat=ai-tehnologija" class="nav-link" id="nav-ai">AI i tehnologija</a></li>
-          <li><a href="category.html?cat=longevity" class="nav-link" id="nav-longevity">Longevity</a></li>
-          <!-- <li><a href="o-autoru.html" class="nav-link" id="nav-autor">O autoru</a></li> -->
+          <li><a href="index.html" class="nav-link active" id="nav-pocetna" data-i18n="nav.home">Početna</a></li>
+          <li><a href="category.html?cat=ai-tehnologija" class="nav-link" id="nav-ai" data-i18n="nav.ai">AI i tehnologija</a></li>
+          <li><a href="category.html?cat=longevity" class="nav-link" id="nav-longevity" data-i18n="nav.longevity">Longevity</a></li>
+          <!-- <li><a href="o-autoru.html" class="nav-link" id="nav-autor" data-i18n="nav.author">O autoru</a></li> -->
+          <li><button id="lang-toggle" class="lang-btn" aria-label="Promijeni jezik">ENG</button></li>
           <li><button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">🌓</button></li>
         </ul>
       </div>
@@ -47,9 +49,9 @@
     
     <!-- Publication Header Section -->
     <header class="publication-header">
-      <span class="pub-meta-tag">Istraživanja i publikacije</span>
-      <h1 class="publication-title">Granice fizike, umjetne inteligencije i biologije</h1>
-      <p class="publication-description">
+      <span class="pub-meta-tag" data-i18n="hero.overline">Istraživanja i publikacije</span>
+      <h1 class="publication-title" data-i18n="hero.title">Granice fizike, umjetne inteligencije i biologije</h1>
+      <p class="publication-description" data-i18n="hero.description">
         Pregled aktualnih događanja, istraživanja i napredaka na polju tehnologije, znanosti i longevitija.
       </p>
     </header>
@@ -57,7 +59,7 @@
     <!-- Articles Grid Section -->
     <section aria-labelledby="section-heading">
       <div class="articles-section-header">
-        <h2 id="section-heading" class="section-label">Kratki tekstovi</h2>
+        <h2 id="section-heading" class="section-label" data-i18n="section.short_texts">Kratki tekstovi</h2>
         <span id="articles-count" class="articles-count">Učitavanje...</span>
       </div>
 
@@ -76,17 +78,17 @@
       <!-- Brand & Contact -->
       <div class="footer-brand">
         <div class="footer-logo">Keeping up with the singularity</div>
-        <p class="footer-desc">
+        <p class="footer-desc" data-i18n="footer.desc">
           Minimalistička platforma inspirirana principima otvorene znanosti i arXiv.org pretpisa.
         </p>
         <p class="footer-desc" id="contact-info">
-          Kontakt: <code>editor@techhorizons-journal.org</code>
+          <span data-i18n="footer.contact">Kontakt:</span> <code>editor@techhorizons-journal.org</code>
         </p>
       </div>
 
       <!-- External Science Resources -->
       <div class="footer-column">
-        <h3 class="footer-heading">Izvori i arhive</h3>
+        <h3 class="footer-heading" data-i18n="footer.sources">Izvori i arhive</h3>
         <ul class="footer-links">
           <li><a href="https://arxiv.org" target="_blank" rel="noopener noreferrer" id="link-arxiv">arXiv.org Physics Archive</a></li>
           <li><a href="https://www.nature.com/nphys/" target="_blank" rel="noopener noreferrer" id="link-nature">Nature Physics Journal</a></li>
@@ -97,7 +99,7 @@
 
       <!-- Relevant Podcasts -->
       <div class="footer-column">
-        <h3 class="footer-heading">Podcasti &amp; Mediji</h3>
+        <h3 class="footer-heading" data-i18n="footer.podcasts">Podcasti &amp; Mediji</h3>
         <ul class="footer-links">
           <li><a href="https://www.quantamagazine.org/tag/podcast/" target="_blank" rel="noopener noreferrer" id="link-quanta-podcast">Quanta Science Podcast</a></li>
           <li><a href="https://lexfridman.com/podcast/" target="_blank" rel="noopener noreferrer" id="link-lex-podcast">Lex Fridman Science &amp; AI</a></li>
@@ -109,8 +111,8 @@
     </div>
 
     <div class="footer-bottom">
-      <span>&copy; 2026 Keeping up with the singularity. Sva prava pridržana.</span>
-      <span>Arhitektura: Vanilla HTML5 / CSS3 Grid / Vanilla JS</span>
+      <span data-i18n="footer.rights">&copy; 2026 Keeping up with the singularity. Sva prava pridržana.</span>
+      <span data-i18n="footer.arch">Arhitektura: Vanilla HTML5 / CSS3 Grid / Vanilla JS</span>
     </div>
   </footer>
 

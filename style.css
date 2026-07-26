@@ -215,6 +215,31 @@ a {
   transform: scale(1.05);
 }
 
+/* Language Toggle Button */
+.lang-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.lang-btn:hover {
+  border-color: var(--accent-cyan);
+  background-color: var(--bg-secondary);
+  transform: scale(1.05);
+}
+
 /* Hamburger Toggle Button (Skrivena na Desktopu) */
 .hamburger-toggle {
   display: none;

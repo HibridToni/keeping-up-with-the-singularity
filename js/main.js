@@ -3,20 +3,28 @@
  * Modular Vanilla JavaScript for fetching and dynamically rendering articles.
  */
 
+let cachedArticles = [];
+
 document.addEventListener('DOMContentLoaded', () => {
   initApp();
   setupResponsiveNav();
   if (typeof updateActiveNavLink === 'function') {
     updateActiveNavLink();
   }
+
+  window.addEventListener('languageChanged', () => {
+    if (cachedArticles && cachedArticles.length > 0) {
+      renderArticles(cachedArticles);
+    }
+  });
 });
 
 /**
  * Initializes the application
  */
 async function initApp() {
-  const articles = await fetchArticles('articles.json');
-  renderArticles(articles);
+  cachedArticles = await fetchArticles('articles.json');
+  renderArticles(cachedArticles);
   setupNavigation();
 }
 
@@ -58,16 +66,23 @@ function renderArticles(articles) {
   // Clear existing static/loading content
   container.innerHTML = '';
 
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+
   // Handle empty state
   if (!articles || articles.length === 0) {
-    if (countBadge) countBadge.textContent = '0 Radova';
+    if (countBadge) {
+      countBadge.textContent = currentLang === 'en' ? '0 Papers' : '0 Radova';
+    }
     renderEmptyState(container);
     return;
   }
 
   // Update article counter badge
   if (countBadge) {
-    countBadge.textContent = `${articles.length} ${articles.length === 1 ? 'Sažetak' : 'Sažetka'}`;
+    const summaryLabel = currentLang === 'en' 
+      ? (articles.length === 1 ? 'Summary' : 'Summaries')
+      : (articles.length === 1 ? 'Sažetak' : 'Sažetka');
+    countBadge.textContent = `${articles.length} ${summaryLabel}`;
   }
 
   // Create document fragment for optimal performance
@@ -91,14 +106,27 @@ function createArticleCard(article) {
   card.className = 'article-card';
   card.id = `card-${article.id}`;
 
-  const title = article.title || 'Naslov rada nedostupan';
-  const category = article.category || 'Općenito';
-  const excerpt = article.excerpt || article.summary || 'Kratki uvod i sažetak rada trenutačno nisu dostupni.';
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+
+  // Pragmatic language fallback logic
+  const title = (currentLang === 'en' && article.title_en) ? article.title_en : (article.title || 'Naslov rada nedostupan');
+  const category = (currentLang === 'en' && article.category_en) ? article.category_en : (article.category || 'Općenito');
+  const excerpt = (currentLang === 'en' && (article.excerpt_en || article.summary_en)) 
+    ? (article.excerpt_en || article.summary_en) 
+    : (article.excerpt || article.summary || 'Kratki uvod i sažetak rada trenutačno nisu dostupni.');
+  
   const date = article.date || 'Nepoznat datum';
-  const readTime = article.readTime || '3 min čitanja';
+  
+  let readTime = article.readTime || '3 min čitanja';
+  if (currentLang === 'en') {
+    readTime = article.readTime_en || readTime.replace('min čitanja', 'min read');
+  }
+
   const doi = article.doi || '';
   const articleUrl = `article.html?id=${article.id}`;
   const image = article.image || '';
+  const readBtnText = currentLang === 'en' ? 'Read article &rarr;' : 'Pročitaj rad &rarr;';
+  const readBtnAria = currentLang === 'en' ? `Read article: ${title}` : `Pročitaj rad: ${title}`;
 
   const mediaHTML = image ? `
     <div class="article-card-media">
@@ -137,8 +165,8 @@ function createArticleCard(article) {
           ${doi ? `<span class="card-doi">${escapeHTML(doi)}</span>` : ''}
         </div>
 
-        <a href="${articleUrl}" class="btn-read-article" aria-label="Pročitaj rad: ${escapeHTML(title)}">
-          Pročitaj rad &rarr;
+        <a href="${articleUrl}" class="btn-read-article" aria-label="${escapeHTML(readBtnAria)}">
+          ${readBtnText}
         </a>
       </div>
     </div>
@@ -151,13 +179,24 @@ function createArticleCard(article) {
  * Displays empty state message if JSON array is empty
  */
 function renderEmptyState(container) {
-  container.innerHTML = `
-    <div class="empty-state">
-      <h3>Trenutačno nema objavljenih radova</h3>
-      <p>Datoteka "articles.json" ne sadrži niti jedan sažetak. Dodajte nove objave u JSON datoteku.</p>
-    </div>
-  `;
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+  if (currentLang === 'en') {
+    container.innerHTML = `
+      <div class="empty-state">
+        <h3>Currently no published articles</h3>
+        <p>The "articles.json" file does not contain any summaries. Add new entries to the JSON file.</p>
+      </div>
+    `;
+  } else {
+    container.innerHTML = `
+      <div class="empty-state">
+        <h3>Trenutačno nema objavljenih radova</h3>
+        <p>Datoteka "articles.json" ne sadrži niti jedan sažetak. Dodajte nove objave u JSON datoteku.</p>
+      </div>
+    `;
+  }
 }
+
 
 /**
  * Displays error state message if fetching fails

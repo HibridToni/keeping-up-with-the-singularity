@@ -10,6 +10,7 @@
   <title id="page-title">Članak - Keeping up with the singularity</title>
   <link rel="stylesheet" href="style.css">
   <script src="js/theme.js"></script>
+  <script src="js/lang.js"></script>
 </head>
 <body>
 
@@ -31,10 +32,11 @@
         </button>
 
         <ul class="nav-links" id="nav-menu">
-          <li><a href="index.html" class="nav-link" id="nav-pocetna">Početna</a></li>
-          <li><a href="category.html?cat=ai-tehnologija" class="nav-link" id="nav-ai">AI i tehnologija</a></li>
-          <li><a href="category.html?cat=longevity" class="nav-link" id="nav-longevity">Longevity</a></li>
-          <!-- <li><a href="o-autoru.html" class="nav-link" id="nav-autor">O autoru</a></li> -->
+          <li><a href="index.html" class="nav-link" id="nav-pocetna" data-i18n="nav.home">Početna</a></li>
+          <li><a href="category.html?cat=ai-tehnologija" class="nav-link" id="nav-ai" data-i18n="nav.ai">AI i tehnologija</a></li>
+          <li><a href="category.html?cat=longevity" class="nav-link" id="nav-longevity" data-i18n="nav.longevity">Longevity</a></li>
+          <!-- <li><a href="o-autoru.html" class="nav-link" id="nav-autor" data-i18n="nav.author">O autoru</a></li> -->
+          <li><button id="lang-toggle" class="lang-btn" aria-label="Promijeni jezik">ENG</button></li>
           <li><button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">🌓</button></li>
         </ul>
       </div>
@@ -45,7 +47,7 @@
   <main class="main-container">
     <div class="article-reader-container" id="article-reader-container">
       <div class="loading-state">
-        <p>Učitavanje sadržaja rada...</p>
+        <p data-i18n="article.loading">Učitavanje sadržaja rada...</p>
       </div>
     </div>
   </main>
@@ -55,16 +57,16 @@
     <div class="footer-container">
       <div class="footer-brand">
         <div class="footer-logo">Keeping up with the singularity</div>
-        <p class="footer-desc">
+        <p class="footer-desc" data-i18n="footer.desc">
           Minimalistička platforma inspirirana principima otvorene znanosti i arXiv.org pretpisa.
         </p>
         <p class="footer-desc">
-          Kontakt: <code>editor@techhorizons-journal.org</code>
+          <span data-i18n="footer.contact">Kontakt:</span> <code>editor@techhorizons-journal.org</code>
         </p>
       </div>
 
       <div class="footer-column">
-        <h3 class="footer-heading">Izvori i arhive</h3>
+        <h3 class="footer-heading" data-i18n="footer.sources">Izvori i arhive</h3>
         <ul class="footer-links">
           <li><a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org Physics Archive</a></li>
           <li><a href="https://www.nature.com/nphys/" target="_blank" rel="noopener noreferrer">Nature Physics Journal</a></li>
@@ -74,7 +76,7 @@
       </div>
 
       <div class="footer-column">
-        <h3 class="footer-heading">Podcasti &amp; Mediji</h3>
+        <h3 class="footer-heading" data-i18n="footer.podcasts">Podcasti &amp; Mediji</h3>
         <ul class="footer-links">
           <li><a href="https://www.quantamagazine.org/tag/podcast/" target="_blank" rel="noopener noreferrer">Quanta Science Podcast</a></li>
           <li><a href="https://lexfridman.com/podcast/" target="_blank" rel="noopener noreferrer">Lex Fridman Science &amp; AI</a></li>
@@ -85,8 +87,8 @@
     </div>
 
     <div class="footer-bottom">
-      <span>&copy; 2026 Keeping up with the singularity. Sva prava pridržana.</span>
-      <span>Arhitektura: Vanilla HTML5 / CSS3 / Vanilla JS</span>
+      <span data-i18n="footer.rights">&copy; 2026 Keeping up with the singularity. Sva prava pridržana.</span>
+      <span data-i18n="footer.arch">Arhitektura: Vanilla HTML5 / CSS3 / Vanilla JS</span>
     </div>
   </footer>
 

@@ -3,9 +3,20 @@
  * Reads the article ID from the URL, fetches articles.json, and renders full content.
  */
 
+let cachedArticle = null;
+
 document.addEventListener('DOMContentLoaded', () => {
   loadArticleDetail();
   setupResponsiveNav();
+
+  window.addEventListener('languageChanged', () => {
+    if (cachedArticle) {
+      const container = document.getElementById('article-reader-container');
+      if (container) {
+        renderArticleContent(container, cachedArticle);
+      }
+    }
+  });
 });
 
 /**
@@ -18,8 +29,11 @@ async function loadArticleDetail() {
   const urlParams = new URLSearchParams(window.location.search);
   const articleId = urlParams.get('id');
 
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+
   if (!articleId) {
-    renderNotFound(container, 'Nije naveden identifikator rada u URL adresi.');
+    const msg = currentLang === 'en' ? 'No article identifier provided in URL.' : 'Nije naveden identifikator rada u URL adresi.';
+    renderNotFound(container, msg);
     return;
   }
 
@@ -33,14 +47,17 @@ async function loadArticleDetail() {
     const article = articles.find(item => String(item.id) === String(articleId));
 
     if (!article) {
-      renderNotFound(container, `Članak s ID oznakom "${articleId}" nije pronađen.`);
+      const msg = currentLang === 'en' ? `Article with ID "${articleId}" was not found.` : `Članak s ID oznakom "${articleId}" nije pronađen.`;
+      renderNotFound(container, msg);
       return;
     }
 
+    cachedArticle = article;
     renderArticleContent(container, article);
   } catch (error) {
     console.error('Pogreška pri dohvaćanju članka:', error);
-    renderNotFound(container, 'Nije moguće učitati podatke rada. Provjerite datoteku "articles.json".');
+    const msg = currentLang === 'en' ? 'Unable to load article data. Please check "articles.json".' : 'Nije moguće učitati podatke rada. Provjerite datoteku "articles.json".';
+    renderNotFound(container, msg);
   }
 }
 
@@ -50,24 +67,40 @@ async function loadArticleDetail() {
  * @param {Object} article - Article data object
  */
 function renderArticleContent(container, article) {
-  document.title = `${article.title} - Keeping up with the singularity`;
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
 
-  const category = article.category || 'Općenito';
+  // Pragmatic language fallback logic
+  const title = (currentLang === 'en' && article.title_en) ? article.title_en : (article.title || 'Naslov rada nedostupan');
+  const category = (currentLang === 'en' && article.category_en) ? article.category_en : (article.category || 'Općenito');
   const date = article.date || 'Nepoznat datum';
-  const readTime = article.readTime || '5 min čitanja';
+  
+  let readTime = article.readTime || '5 min čitanja';
+  if (currentLang === 'en') {
+    readTime = article.readTime_en || readTime.replace('min čitanja', 'min read');
+  }
+
   const doi = article.doi || '';
   const image = article.image || '';
-  const contentHTML = article.content || `<p>${escapeHTML(article.excerpt || article.summary || 'Sadržaj rada nije dostupan.')}</p>`;
+
+  let contentHTML = article.content || `<p>${escapeHTML(article.excerpt || article.summary || 'Sadržaj rada nije dostupan.')}</p>`;
+  if (currentLang === 'en' && article.content_en) {
+    contentHTML = article.content_en;
+  }
+
+  const backLinkText = currentLang === 'en' ? '&larr; Back to all articles' : '&larr; Natrag na sve radove';
+  const bottomBtnText = currentLang === 'en' ? '&larr; Back to summary list' : '&larr; Povratak na popis sažetaka';
+
+  document.title = `${title} - Keeping up with the singularity`;
 
   const coverHeroHTML = image ? `
     <div class="article-cover-wrapper">
-      <img src="${escapeHTML(image)}" alt="${escapeHTML(article.title)}" class="article-cover-hero" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+      <img src="${escapeHTML(image)}" alt="${escapeHTML(title)}" class="article-cover-hero" onerror="this.closest('.article-cover-wrapper').style.display='none'">
     </div>
   ` : '';
 
   container.innerHTML = `
     <!-- Link za povratak -->
-    <a href="index.html" class="back-link">&larr; Natrag na sve radove</a>
+    <a href="index.html" class="back-link">${backLinkText}</a>
 
     <!-- Zaglavlje rada -->
     <header class="reader-header">
@@ -76,7 +109,7 @@ function renderArticleContent(container, article) {
         <time class="card-date" datetime="${escapeHTML(date)}">${escapeHTML(date)}</time>
       </div>
 
-      <h1 class="reader-title">${escapeHTML(article.title)}</h1>
+      <h1 class="reader-title">${escapeHTML(title)}</h1>
 
       <div class="reader-submeta">
         <span class="card-read-time">
@@ -99,7 +132,7 @@ function renderArticleContent(container, article) {
 
     <!-- Fusnota i povratak -->
     <footer class="reader-footer">
-      <a href="index.html" class="btn-read-article">&larr; Povratak na popis sažetaka</a>
+      <a href="index.html" class="btn-read-article">${bottomBtnText}</a>
     </footer>
   `;
 }
@@ -108,14 +141,19 @@ function renderArticleContent(container, article) {
  * Displays fall-back message when article is not found
  */
 function renderNotFound(container, message) {
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+  const backLinkText = currentLang === 'en' ? '&larr; Back to all articles' : '&larr; Natrag na sve radove';
+  const headingText = currentLang === 'en' ? 'Article not found' : 'Rad nije pronađen';
+
   container.innerHTML = `
-    <a href="index.html" class="back-link">&larr; Natrag na sve radove</a>
+    <a href="index.html" class="back-link">${backLinkText}</a>
     <div class="error-state" style="margin-top: 24px;">
-      <h3>Rad nije pronađen</h3>
+      <h3>${headingText}</h3>
       <p>${escapeHTML(message)}</p>
     </div>
   `;
 }
+
 
 /**
  * Responsive Hamburger Menu Handler for Mobile Devices
