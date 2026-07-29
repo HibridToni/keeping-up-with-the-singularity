@@ -49,6 +49,10 @@ const translations = {
     "footer.contact": "Kontakt:",
     "footer.sources": "Izvori i arhive",
     "footer.podcasts": "Podcasti & Mediji",
+    "footer.podcast_moonshot": "Moonshot Podcast",
+    "footer.podcast_allin": "All-In Podcast",
+    "footer.podcast_twominute": "Two Minute Papers",
+    "footer.podcast_kantrowitz": "Alex Kantrowitz",
     "footer.rights": "© 2026 Keeping up with the singularity. Sva prava pridržana.",
     "footer.arch": "Arhitektura: Vanilla HTML5 / CSS3 Grid / Vanilla JS",
 
@@ -111,6 +115,10 @@ const translations = {
     "footer.contact": "Contact:",
     "footer.sources": "Sources & Archives",
     "footer.podcasts": "Podcasts & Media",
+    "footer.podcast_moonshot": "Moonshot Podcast",
+    "footer.podcast_allin": "All-In Podcast",
+    "footer.podcast_twominute": "Two Minute Papers",
+    "footer.podcast_kantrowitz": "Alex Kantrowitz",
     "footer.rights": "© 2026 Keeping up with the singularity. All rights reserved.",
     "footer.arch": "Architecture: Vanilla HTML5 / CSS3 Grid / Vanilla JS",
 
