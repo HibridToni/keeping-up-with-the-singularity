@@ -53,6 +53,8 @@ const translations = {
     "footer.podcast_allin": "All-In Podcast",
     "footer.podcast_twominute": "Two Minute Papers",
     "footer.podcast_kantrowitz": "Alex Kantrowitz",
+    "footer.newsletters": "NEWSLETTERI",
+    "footer.newsletter_innermostloop": "The Innermost Loop",
     "footer.rights": "© 2026 Keeping up with the singularity. Sva prava pridržana.",
     "footer.arch": "Arhitektura: Vanilla HTML5 / CSS3 Grid / Vanilla JS",
 
@@ -119,6 +121,8 @@ const translations = {
     "footer.podcast_allin": "All-In Podcast",
     "footer.podcast_twominute": "Two Minute Papers",
     "footer.podcast_kantrowitz": "Alex Kantrowitz",
+    "footer.newsletters": "NEWSLETTERS",
+    "footer.newsletter_innermostloop": "The Innermost Loop",
     "footer.rights": "© 2026 Keeping up with the singularity. All rights reserved.",
     "footer.arch": "Architecture: Vanilla HTML5 / CSS3 Grid / Vanilla JS",
 
