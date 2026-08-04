@@ -45,7 +45,7 @@ const translations = {
     "count.summary_plural": "Sažetka",
 
     // Footer
-    "footer.desc": "Minimalistička platforma inspirirana principima otvorene znanosti i arXiv.org pretpisa.",
+    "footer.desc": "Platforma inspirirana tehnološkim napretkom i eksponencijalnim tehnologijama, u pokušaju držanja koraka za istim",
     "footer.contact": "Kontakt:",
     "footer.sources": "Izvori i arhive",
     "footer.podcasts": "Podcasti & Mediji",
@@ -113,7 +113,7 @@ const translations = {
     "count.summary_plural": "Summaries",
 
     // Footer
-    "footer.desc": "A minimalist platform inspired by open science principles and arXiv.org preprints.",
+    "footer.desc": "A platform inspired by technological progress and exponential technologies, in an attempt to keep up with them",
     "footer.contact": "Contact:",
     "footer.sources": "Sources & Archives",
     "footer.podcasts": "Podcasts & Media",
