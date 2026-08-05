@@ -4,12 +4,16 @@
  */
 
 let cachedArticle = null;
+let currentUtterance = null;
+let ttsSpeed = 1.0;
+let ttsState = 'stopped'; // 'stopped' | 'speaking' | 'paused'
 
 document.addEventListener('DOMContentLoaded', () => {
   loadArticleDetail();
   setupResponsiveNav();
 
   window.addEventListener('languageChanged', () => {
+    stopSpeechSynthesis();
     if (cachedArticle) {
       const container = document.getElementById('article-reader-container');
       if (container) {
@@ -17,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  window.addEventListener('beforeunload', () => stopSpeechSynthesis());
+  window.addEventListener('pagehide', () => stopSpeechSynthesis());
 });
 
 /**
@@ -160,6 +167,40 @@ function renderArticleContent(container, article) {
       ${coverHeroHTML}
     </header>
 
+    <!-- Audio Player Bar (Preslušavanje članka) -->
+    <div class="audio-player-bar" id="audio-player-bar" aria-label="${getTTSTranslation('tts.listen', 'Slušaj članak')}">
+      <div class="audio-controls-left">
+        <button id="tts-play-btn" class="audio-btn audio-btn-play" aria-label="${getTTSTranslation('tts.play', 'Pokreni čitanje')}" title="${getTTSTranslation('tts.play', 'Pokreni čitanje')}">
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+        </button>
+        <button id="tts-stop-btn" class="audio-btn audio-btn-stop" aria-label="${getTTSTranslation('tts.stop', 'Zaustavi čitanje')}" title="${getTTSTranslation('tts.stop', 'Zaustavi čitanje')}" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="audio-status-container">
+        <span class="audio-status-pulse" id="tts-status-pulse"></span>
+        <span id="tts-status-text" class="audio-status-text">${getTTSTranslation('tts.listen', 'Slušaj članak')}</span>
+      </div>
+
+      <div class="audio-speed-controls">
+        <span class="speed-label">${getTTSTranslation('tts.speed', 'Brzina:')}</span>
+        <div class="speed-options">
+          <button class="speed-btn ${ttsSpeed === 1.0 ? 'active' : ''}" data-speed="1.0">1x</button>
+          <button class="speed-btn ${ttsSpeed === 1.25 ? 'active' : ''}" data-speed="1.25">1.25x</button>
+          <button class="speed-btn ${ttsSpeed === 1.5 ? 'active' : ''}" data-speed="1.5">1.5x</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Puni HTML Sadržaj Članka -->
     <article class="reader-body">
       ${contentHTML}
@@ -170,6 +211,9 @@ function renderArticleContent(container, article) {
       <a href="index.html" class="btn-read-article">${bottomBtnText}</a>
     </footer>
   `;
+
+  // Attach Audio Controller events
+  setupTTSController(article, currentLang);
 }
 
 /**
@@ -282,4 +326,229 @@ function setMetaTag(attrName, attrValue, content) {
     document.head.appendChild(element);
   }
   element.setAttribute('content', content || '');
+}
+
+/* ==========================================================================
+   Text-to-Speech (TTS) Controller Functions
+   ========================================================================== */
+
+/**
+ * Strips HTML tags and Markdown formatting to produce clean text for SpeechSynthesis.
+ * @param {string} title - Article title
+ * @param {string} rawContent - Raw HTML/Markdown content of the article
+ * @returns {string} Clean plain text suitable for TTS
+ */
+function cleanArticleText(title, rawContent) {
+  let text = rawContent || '';
+
+  // 1. Create a temporary element to strip HTML tags
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = text;
+  text = tempDiv.textContent || tempDiv.innerText || '';
+
+  // 2. Strip common Markdown syntax markers
+  text = text
+    .replace(/^#+\s+/gm, '')                  // Headings (# Heading)
+    .replace(/(\*\*|__)(.*?)\1/g, '$2')      // Bold
+    .replace(/(\*|_)(.*?)\1/g, '$2')         // Italics
+    .replace(/~~(.*?)~~/g, '$1')             // Strikethrough
+    .replace(/```[\s\S]*?```/g, '')          // Multi-line code blocks
+    .replace(/`([^`]+)`/g, '$1')             // Inline code
+    .replace(/^[\s]*[-\*\+]\s+/gm, '')        // Unordered list items
+    .replace(/^[\s]*\d+\.\s+/gm, '')         // Ordered list items
+    .replace(/^>\s+/gm, '')                  // Blockquotes
+    .replace(/^[-*_]{3,}\s*$/gm, '');        // Horizontal rules
+
+  // 3. Normalize whitespace
+  text = text.replace(/\s+/g, ' ').trim();
+
+  // Combine title and article body text
+  return title ? `${title}. ${text}` : text;
+}
+
+/**
+ * Retrieves localized text for TTS UI strings
+ */
+function getTTSTranslation(key, fallback) {
+  const lang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+  if (typeof translations !== 'undefined' && translations[lang] && translations[lang][key]) {
+    return translations[lang][key];
+  }
+  return fallback;
+}
+
+/**
+ * Initializes listeners for Audio Player Bar buttons and controls
+ */
+function setupTTSController(article, currentLang) {
+  const playBtn = document.getElementById('tts-play-btn');
+  const stopBtn = document.getElementById('tts-stop-btn');
+  const statusText = document.getElementById('tts-status-text');
+  const speedBtns = document.querySelectorAll('.speed-btn');
+
+  if (!playBtn || !stopBtn) return;
+
+  if (!('speechSynthesis' in window)) {
+    if (statusText) statusText.textContent = getTTSTranslation('tts.unsupported', 'Govorna sinteza nije podržana');
+    playBtn.disabled = true;
+    return;
+  }
+
+  updateTTSUIState(ttsState);
+
+  playBtn.addEventListener('click', () => {
+    if (ttsState === 'speaking') {
+      window.speechSynthesis.pause();
+      ttsState = 'paused';
+      updateTTSUIState('paused');
+    } else if (ttsState === 'paused') {
+      window.speechSynthesis.resume();
+      ttsState = 'speaking';
+      updateTTSUIState('speaking');
+    } else {
+      startSpeechSynthesis(article, currentLang);
+    }
+  });
+
+  stopBtn.addEventListener('click', () => {
+    stopSpeechSynthesis();
+  });
+
+  speedBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const newSpeed = parseFloat(e.currentTarget.dataset.speed);
+      if (isNaN(newSpeed)) return;
+
+      ttsSpeed = newSpeed;
+      speedBtns.forEach(b => b.classList.toggle('active', parseFloat(b.dataset.speed) === ttsSpeed));
+
+      if (ttsState === 'speaking' || ttsState === 'paused') {
+        window.speechSynthesis.cancel();
+        startSpeechSynthesis(article, currentLang);
+      }
+    });
+  });
+}
+
+/**
+ * Starts SpeechSynthesis with clean article text in specified language
+ */
+function startSpeechSynthesis(article, currentLang) {
+  if (!('speechSynthesis' in window)) return;
+
+  window.speechSynthesis.cancel();
+
+  const title = (currentLang === 'en' && article.title_en) ? article.title_en : (article.title || '');
+  let rawContent = article.content || article.excerpt || article.summary || '';
+  if (currentLang === 'en' && article.content_en) {
+    rawContent = article.content_en;
+  }
+
+  const cleanText = cleanArticleText(title, rawContent);
+  if (!cleanText) return;
+
+  const utterance = new SpeechSynthesisUtterance(cleanText);
+  utterance.lang = currentLang === 'en' ? 'en-US' : 'hr-HR';
+  utterance.rate = ttsSpeed;
+
+  const voices = window.speechSynthesis.getVoices();
+  if (voices && voices.length > 0) {
+    const targetPrefix = currentLang === 'en' ? 'en' : 'hr';
+    const matchingVoice = voices.find(v => v.lang.toLowerCase().startsWith(targetPrefix));
+    if (matchingVoice) {
+      utterance.voice = matchingVoice;
+    }
+  }
+
+  utterance.onstart = () => {
+    ttsState = 'speaking';
+    updateTTSUIState('speaking');
+  };
+
+  utterance.onpause = () => {
+    ttsState = 'paused';
+    updateTTSUIState('paused');
+  };
+
+  utterance.onresume = () => {
+    ttsState = 'speaking';
+    updateTTSUIState('speaking');
+  };
+
+  utterance.onend = () => {
+    ttsState = 'stopped';
+    currentUtterance = null;
+    updateTTSUIState('stopped');
+  };
+
+  utterance.onerror = (e) => {
+    console.warn('SpeechSynthesis event error:', e);
+    ttsState = 'stopped';
+    currentUtterance = null;
+    updateTTSUIState('stopped');
+  };
+
+  currentUtterance = utterance;
+  window.speechSynthesis.speak(utterance);
+}
+
+/**
+ * Cancels active SpeechSynthesis and resets state
+ */
+function stopSpeechSynthesis() {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+  ttsState = 'stopped';
+  currentUtterance = null;
+  updateTTSUIState('stopped');
+}
+
+/**
+ * Updates UI elements in player bar based on current playback state
+ */
+function updateTTSUIState(state) {
+  const playBtn = document.getElementById('tts-play-btn');
+  const stopBtn = document.getElementById('tts-stop-btn');
+  const statusText = document.getElementById('tts-status-text');
+  const pulseDot = document.getElementById('tts-status-pulse');
+
+  if (!playBtn || !stopBtn) return;
+
+  const playIcon = playBtn.querySelector('.icon-play');
+  const pauseIcon = playBtn.querySelector('.icon-pause');
+
+  if (state === 'speaking') {
+    if (playIcon) playIcon.style.display = 'none';
+    if (pauseIcon) pauseIcon.style.display = 'block';
+    stopBtn.disabled = false;
+    if (statusText) statusText.textContent = getTTSTranslation('tts.reading', 'Čitanje u tijeku...');
+    if (pulseDot) {
+      pulseDot.classList.add('active');
+      pulseDot.classList.remove('paused');
+    }
+    playBtn.setAttribute('aria-label', getTTSTranslation('tts.pause', 'Pauziraj čitanje'));
+    playBtn.setAttribute('title', getTTSTranslation('tts.pause', 'Pauziraj čitanje'));
+  } else if (state === 'paused') {
+    if (playIcon) playIcon.style.display = 'block';
+    if (pauseIcon) pauseIcon.style.display = 'none';
+    stopBtn.disabled = false;
+    if (statusText) statusText.textContent = getTTSTranslation('tts.paused', 'Pauzirano');
+    if (pulseDot) {
+      pulseDot.classList.add('active', 'paused');
+    }
+    playBtn.setAttribute('aria-label', getTTSTranslation('tts.play', 'Pokreni čitanje'));
+    playBtn.setAttribute('title', getTTSTranslation('tts.play', 'Pokreni čitanje'));
+  } else {
+    // stopped
+    if (playIcon) playIcon.style.display = 'block';
+    if (pauseIcon) pauseIcon.style.display = 'none';
+    stopBtn.disabled = true;
+    if (statusText) statusText.textContent = getTTSTranslation('tts.listen', 'Slušaj članak');
+    if (pulseDot) {
+      pulseDot.classList.remove('active', 'paused');
+    }
+    playBtn.setAttribute('aria-label', getTTSTranslation('tts.play', 'Pokreni čitanje'));
+    playBtn.setAttribute('title', getTTSTranslation('tts.play', 'Pokreni čitanje'));
+  }
 }

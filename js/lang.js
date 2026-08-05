@@ -39,6 +39,15 @@ const translations = {
     "article.category_empty_desc": "U kategoriji trenutno nema objavljenih članaka. Pratite nas uskoro za nove sadržaje.",
     "article.read_time_default": "3 min čitanja",
 
+    // Text to Speech
+    "tts.listen": "Slušaj članak",
+    "tts.reading": "Čitanje u tijeku...",
+    "tts.paused": "Pauzirano",
+    "tts.speed": "Brzina:",
+    "tts.play": "Pokreni čitanje",
+    "tts.pause": "Pauziraj čitanje",
+    "tts.stop": "Zaustavi čitanje",
+
     // Count Badges
     "count.papers_zero": "0 Radova",
     "count.summary_single": "Sažetak",
@@ -106,6 +115,15 @@ const translations = {
     "article.category_empty_title": "No articles currently published in this category",
     "article.category_empty_desc": "There are currently no published articles in this category. Check back soon for new content.",
     "article.read_time_default": "3 min read",
+
+    // Text to Speech
+    "tts.listen": "Listen to article",
+    "tts.reading": "Reading in progress...",
+    "tts.paused": "Paused",
+    "tts.speed": "Speed:",
+    "tts.play": "Play reading",
+    "tts.pause": "Pause reading",
+    "tts.stop": "Stop reading",
 
     // Count Badges
     "count.papers_zero": "0 Papers",
