@@ -1367,3 +1367,52 @@ a {
   outline: none;
 }
 
+/* Fullscreen mode: Prikaži cijeli video bez izrezivanja */
+.article-video-container video:fullscreen,
+video:fullscreen {
+  object-fit: contain !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  border-radius: 0 !important;
+}
+
+.article-video-container video:-webkit-full-screen,
+video:-webkit-full-screen {
+  object-fit: contain !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  border-radius: 0 !important;
+}
+
+.article-video-container video:-moz-full-screen,
+video:-moz-full-screen {
+  object-fit: contain !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  border-radius: 0 !important;
+}
+
+.article-video-container:fullscreen,
+.article-video-container:-webkit-full-screen,
+.article-video-container:-moz-full-screen {
+  max-width: none !important;
+  aspect-ratio: auto !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.article-video-container:fullscreen video,
+.article-video-container:-webkit-full-screen video,
+.article-video-container:-moz-full-screen video {
+  object-fit: contain !important;
+  border-radius: 0 !important;
+}
+
