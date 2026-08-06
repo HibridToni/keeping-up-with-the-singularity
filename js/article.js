@@ -120,6 +120,23 @@ function renderArticleContent(container, article) {
     </div>
   ` : '';
 
+  const videoHTML = (article.video && article.video.trim()) ? `
+    <div class="article-video-container">
+      <video controls preload="metadata">
+        <source src="${escapeHTML(article.video.trim())}" type="video/mp4">
+        Vaš preglednik ne podržava HTML5 video element.
+      </video>
+    </div>
+  ` : '';
+
+  if (videoHTML) {
+    if (contentHTML.includes('</p>')) {
+      contentHTML = contentHTML.replace('</p>', `</p>${videoHTML}`);
+    } else {
+      contentHTML += videoHTML;
+    }
+  }
+
   container.innerHTML = `
     <!-- Link za povratak -->
     <a href="index.html" class="back-link">${backLinkText}</a>

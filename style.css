@@ -1333,3 +1333,37 @@ a {
     border-top: 1px dashed var(--border-color);
   }
 }
+
+/* ==========================================================================
+   Article Video Container Styles
+   ========================================================================== */
+
+.article-video-container {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 32px;
+  border-radius: var(--card-border-radius, 8px);
+  overflow: hidden;
+  background-color: #000000;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-video-container:hover {
+  border-color: var(--border-color-hover);
+}
+
+.article-video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--card-border-radius, 8px);
+  outline: none;
+}
+
