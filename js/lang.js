@@ -43,6 +43,20 @@ const translations = {
     "search.no_results_desc": "Niti jedan rad ne odgovara vašem upitu \"{query}\". Pokušajte s drugim ključnim riječima.",
     "search.reset_btn": "Prikaži sve radove",
 
+    // Share & Social
+    "share.copy_link": "Kopiraj poveznicu",
+    "share.copied": "Poveznica kopirana!",
+    "share.share_article": "Podijeli ovaj rad",
+    "share.fb_aria": "Podijeli na Facebooku",
+    "share.x_aria": "Podijeli na X-u (Twitter)",
+    "share.linkedin_aria": "Podijeli na LinkedInu",
+
+    // Related Articles
+    "related.overline": "PREPORUČENO ČITANJE",
+    "related.title": "Povezani radovi i publikacije",
+    "related.read_more": "Pročitaj rad →",
+    "related.empty": "Nema drugih radova u ovoj kategoriji.",
+
     // Article Meta & States
     "article.loading": "Učitavanje sadržaja rada...",
     "article.not_found": "Rad nije pronađen",
@@ -132,6 +146,20 @@ const translations = {
     "search.no_results_title": "No matching papers found",
     "search.no_results_desc": "No papers match your search for \"{query}\". Try using different keywords.",
     "search.reset_btn": "Show all papers",
+
+    // Share & Social
+    "share.copy_link": "Copy link",
+    "share.copied": "Link copied!",
+    "share.share_article": "Share this paper",
+    "share.fb_aria": "Share on Facebook",
+    "share.x_aria": "Share on X (Twitter)",
+    "share.linkedin_aria": "Share on LinkedIn",
+
+    // Related Articles
+    "related.overline": "RECOMMENDED READING",
+    "related.title": "Related Papers & Publications",
+    "related.read_more": "Read article →",
+    "related.empty": "No other articles in this category.",
 
     // Article Meta & States
     "article.loading": "Loading article content...",

@@ -194,6 +194,22 @@ function setupPagination() {
 }
 
 /**
+ * Calculates estimated reading time based on actual content word count
+ * @param {string} content
+ * @param {string} lang
+ * @returns {string} Formatted reading time string
+ */
+function calculateReadingTime(content, lang = 'hr') {
+  if (!content || typeof content !== 'string') {
+    return lang === 'en' ? '⏱ 3 min read' : '⏱ 3 min čitanja';
+  }
+  const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const wordCount = plainText ? plainText.split(/\s+/).length : 0;
+  const minutes = Math.max(1, Math.ceil(wordCount / 200));
+  return lang === 'en' ? `⏱ ${minutes} min read` : `⏱ ${minutes} min čitanja`;
+}
+
+/**
  * Creates a single DOM element card for an article
  * @param {Object} article - Data object representing an article
  * @returns {HTMLElement} Article DOM node
@@ -214,10 +230,8 @@ function createArticleCard(article) {
   
   const date = article.date || 'Nepoznat datum';
   
-  let readTime = article.readTime || '3 min čitanja';
-  if (currentLang === 'en') {
-    readTime = article.readTime_en || readTime.replace('min čitanja', 'min read');
-  }
+  const rawContent = (currentLang === 'en' && article.content_en) ? article.content_en : (article.content || excerpt);
+  const readTime = calculateReadingTime(rawContent, currentLang);
 
   const doi = article.doi || '';
   const articleUrl = `article.html?id=${article.id}`;

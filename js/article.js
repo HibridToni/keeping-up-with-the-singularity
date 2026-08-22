@@ -4,6 +4,7 @@
  */
 
 let cachedArticle = null;
+let cachedAllArticles = [];
 let currentUtterance = null;
 let ttsSpeed = 1.0;
 let ttsState = 'stopped'; // 'stopped' | 'speaking' | 'paused'
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cachedArticle) {
       const container = document.getElementById('article-reader-container');
       if (container) {
-        renderArticleContent(container, cachedArticle);
+        renderArticleContent(container, cachedArticle, cachedAllArticles);
       }
     }
   });
@@ -25,6 +26,23 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('beforeunload', () => stopSpeechSynthesis());
   window.addEventListener('pagehide', () => stopSpeechSynthesis());
 });
+
+/**
+ * Calculates estimated reading time based on actual content word count
+ * (standard 200 words per minute for scientific/technical articles)
+ * @param {string} content
+ * @param {string} lang
+ * @returns {string} Formatted reading time string
+ */
+function calculateReadingTime(content, lang = 'hr') {
+  if (!content || typeof content !== 'string') {
+    return lang === 'en' ? '⏱ 3 min read' : '⏱ 3 min čitanja';
+  }
+  const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const wordCount = plainText ? plainText.split(/\s+/).length : 0;
+  const minutes = Math.max(1, Math.ceil(wordCount / 200));
+  return lang === 'en' ? `⏱ ${minutes} min read` : `⏱ ${minutes} min čitanja`;
+}
 
 /**
  * Main function to load and render article details
@@ -59,8 +77,9 @@ async function loadArticleDetail() {
       return;
     }
 
+    cachedAllArticles = articles;
     cachedArticle = article;
-    renderArticleContent(container, article);
+    renderArticleContent(container, article, articles);
   } catch (error) {
     console.error('Pogreška pri dohvaćanju članka:', error);
     const msg = currentLang === 'en' ? 'Unable to load article data. Please check "articles.json".' : 'Nije moguće učitati podatke rada. Provjerite datoteku "articles.json".';
@@ -72,8 +91,9 @@ async function loadArticleDetail() {
  * Renders the full article details into the reading container
  * @param {HTMLElement} container - Target DOM node
  * @param {Object} article - Article data object
+ * @param {Array} [allArticles=[]] - All available articles for related recommendations
  */
-function renderArticleContent(container, article) {
+function renderArticleContent(container, article, allArticles = []) {
   const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
 
   // Pragmatic language fallback logic
@@ -81,18 +101,15 @@ function renderArticleContent(container, article) {
   const category = (currentLang === 'en' && article.category_en) ? article.category_en : (article.category || 'Općenito');
   const date = article.date || 'Nepoznat datum';
   
-  let readTime = article.readTime || '5 min čitanja';
-  if (currentLang === 'en') {
-    readTime = article.readTime_en || readTime.replace('min čitanja', 'min read');
-  }
-
-  const doi = article.doi || '';
-  const image = article.image || '';
-
   let contentHTML = article.content || `<p>${escapeHTML(article.excerpt || article.summary || 'Sadržaj rada nije dostupan.')}</p>`;
   if (currentLang === 'en' && article.content_en) {
     contentHTML = article.content_en;
   }
+
+  // Dynamic calculated reading time based on full content
+  const readTime = calculateReadingTime(contentHTML, currentLang);
+  const doi = article.doi || '';
+  const image = article.image || '';
 
   const backLinkText = currentLang === 'en' ? '&larr; Back to all articles' : '&larr; Natrag na sve radove';
   const bottomBtnText = currentLang === 'en' ? '&larr; Back to summary list' : '&larr; Povratak na popis sažetaka';
@@ -103,8 +120,12 @@ function renderArticleContent(container, article) {
 
   const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${shareTitle}`;
   const xShareUrl = `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`;
-  const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${shareTitle}&summary=${shareTitle}`;
+  const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
 
+  const copyAria = currentLang === 'en' ? 'Copy article link' : 'Kopiraj poveznicu na rad';
+  const copyTooltipText = currentLang === 'en' ? 'Link copied!' : 'Poveznica kopirana!';
+  const copyBtnLabel = currentLang === 'en' ? 'Copy link' : 'Kopiraj poveznicu';
+  const shareBoxLabel = currentLang === 'en' ? 'Share this paper:' : 'Podijeli ovaj rad:';
   const fbAria = currentLang === 'en' ? 'Share on Facebook' : 'Podijeli na Facebooku';
   const xAria = currentLang === 'en' ? 'Share on X (Twitter)' : 'Podijeli na X-u (Twitter)';
   const linkedinAria = currentLang === 'en' ? 'Share on LinkedIn' : 'Podijeli na LinkedInu';
@@ -137,6 +158,9 @@ function renderArticleContent(container, article) {
     }
   }
 
+  // Related articles section HTML
+  const relatedArticlesHTML = renderRelatedArticles(article, allArticles.length > 0 ? allArticles : cachedAllArticles, currentLang);
+
   container.innerHTML = `
     <!-- Link za povratak -->
     <a href="index.html" class="back-link">${backLinkText}</a>
@@ -163,11 +187,16 @@ function renderArticleContent(container, article) {
         </div>
 
         <div class="share-buttons">
-          <a href="${fbShareUrl}" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="${escapeHTML(fbAria)}" title="${escapeHTML(fbAria)}">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          <button type="button" class="share-btn share-copy btn-trigger-copy" aria-label="${escapeHTML(copyAria)}" title="${escapeHTML(copyAria)}">
+            <span class="copy-tooltip">${escapeHTML(copyTooltipText)}</span>
+            <svg class="icon-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
             </svg>
-          </a>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
           <a href="${xShareUrl}" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="${escapeHTML(xAria)}" title="${escapeHTML(xAria)}">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -176,6 +205,11 @@ function renderArticleContent(container, article) {
           <a href="${linkedinShareUrl}" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="${escapeHTML(linkedinAria)}" title="${escapeHTML(linkedinAria)}">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a href="${fbShareUrl}" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="${escapeHTML(fbAria)}" title="${escapeHTML(fbAria)}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
             </svg>
           </a>
         </div>
@@ -223,14 +257,167 @@ function renderArticleContent(container, article) {
       ${contentHTML}
     </article>
 
+    <!-- Donji Share Blok -->
+    <div class="reader-share-box">
+      <div class="reader-share-info">
+        <span class="reader-share-label">${escapeHTML(shareBoxLabel)}</span>
+      </div>
+      <div class="reader-share-actions">
+        <button type="button" class="btn-copy-link btn-trigger-copy" aria-label="${escapeHTML(copyAria)}">
+          <span class="copy-tooltip">${escapeHTML(copyTooltipText)}</span>
+          <svg class="icon-link" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="copy-btn-text">${escapeHTML(copyBtnLabel)}</span>
+        </button>
+        <a href="${xShareUrl}" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="${escapeHTML(xAria)}" title="${escapeHTML(xAria)}">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="${linkedinShareUrl}" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="${escapeHTML(linkedinAria)}" title="${escapeHTML(linkedinAria)}">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="${fbShareUrl}" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="${escapeHTML(fbAria)}" title="${escapeHTML(fbAria)}">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Povezani članci sekcija -->
+    ${relatedArticlesHTML}
+
     <!-- Fusnota i povratak -->
     <footer class="reader-footer">
       <a href="index.html" class="btn-read-article">${bottomBtnText}</a>
     </footer>
   `;
 
-  // Attach Audio Controller events
+  // Attach Audio Controller events & Copy link listeners
   setupTTSController(article, currentLang);
+  setupCopyLinkListeners(currentLang);
+}
+
+/**
+ * Generates HTML for related articles recommendation section
+ * @param {Object} currentArticle
+ * @param {Array} allArticles
+ * @param {string} currentLang
+ * @returns {string}
+ */
+function renderRelatedArticles(currentArticle, allArticles, currentLang) {
+  if (!allArticles || allArticles.length <= 1) return '';
+
+  const currentCatSlug = (currentArticle.categorySlug || '').toLowerCase().trim();
+  const currentCat = (currentArticle.category || '').toLowerCase().trim();
+
+  // Filter out current article
+  const otherArticles = allArticles.filter(item => String(item.id) !== String(currentArticle.id));
+
+  // Prioritize articles from the same category
+  const sameCategory = otherArticles.filter(item => {
+    const slug = (item.categorySlug || '').toLowerCase().trim();
+    const cat = (item.category || '').toLowerCase().trim();
+    return (currentCatSlug && slug === currentCatSlug) || (currentCat && cat === currentCat);
+  });
+
+  const differentCategory = otherArticles.filter(item => !sameCategory.includes(item));
+
+  // Pick up to 3 related articles
+  const relatedList = [...sameCategory, ...differentCategory].slice(0, 3);
+  if (relatedList.length === 0) return '';
+
+  const overline = currentLang === 'en' ? 'RECOMMENDED READING' : 'PREPORUČENO ČITANJE';
+  const heading = currentLang === 'en' ? 'Related Papers & Publications' : 'Povezani radovi i publikacije';
+  const readMoreText = currentLang === 'en' ? 'Read article &rarr;' : 'Pročitaj rad &rarr;';
+
+  const cardsHTML = relatedList.map(item => {
+    const title = (currentLang === 'en' && item.title_en) ? item.title_en : (item.title || 'Naslov');
+    const category = (currentLang === 'en' && item.category_en) ? item.category_en : (item.category || 'Općenito');
+    const excerpt = (currentLang === 'en' && (item.excerpt_en || item.summary_en)) 
+      ? (item.excerpt_en || item.summary_en) 
+      : (item.excerpt || item.summary || '');
+    const rawContent = (currentLang === 'en' && item.content_en) ? item.content_en : (item.content || excerpt);
+    const readTime = calculateReadingTime(rawContent, currentLang);
+    const itemUrl = `article.html?id=${item.id}`;
+    const image = item.image || '';
+
+    const mediaHTML = image ? `
+      <div class="related-card-media">
+        <img src="${escapeHTML(image)}" alt="${escapeHTML(title)}" class="related-card-thumb" onerror="this.parentElement.style.display='none'">
+      </div>
+    ` : '';
+
+    return `
+      <a href="${itemUrl}" class="related-card">
+        ${mediaHTML}
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">${escapeHTML(category)}</span>
+            <span class="related-read-time">${escapeHTML(readTime)}</span>
+          </div>
+          <h4 class="related-card-title">${escapeHTML(title)}</h4>
+          <p class="related-card-excerpt">${escapeHTML(excerpt)}</p>
+          <div class="related-card-footer">
+            <span>${readMoreText}</span>
+          </div>
+        </div>
+      </a>
+    `;
+  }).join('');
+
+  return `
+    <section class="related-articles-section" aria-labelledby="related-heading">
+      <div class="related-header">
+        <span class="related-overline">${escapeHTML(overline)}</span>
+        <h3 id="related-heading" class="related-title">${escapeHTML(heading)}</h3>
+      </div>
+      <div class="related-grid">
+        ${cardsHTML}
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * Attaches event listeners for 1-click URL copying with visual tooltip feedback
+ */
+function setupCopyLinkListeners(currentLang) {
+  const copyButtons = document.querySelectorAll('.btn-trigger-copy');
+  copyButtons.forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        
+        btn.classList.add('copied');
+        const tooltip = btn.querySelector('.copy-tooltip');
+        if (tooltip) tooltip.classList.add('show');
+
+        const linkIcon = btn.querySelector('.icon-link');
+        const checkIcon = btn.querySelector('.icon-check');
+        if (linkIcon) linkIcon.style.display = 'none';
+        if (checkIcon) checkIcon.style.display = 'block';
+
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if (tooltip) tooltip.classList.remove('show');
+          if (linkIcon) linkIcon.style.display = 'block';
+          if (checkIcon) checkIcon.style.display = 'none';
+        }, 2000);
+      } catch (err) {
+        console.error('Kopiranje poveznice nije uspjelo:', err);
+      }
+    });
+  });
 }
 
 /**
