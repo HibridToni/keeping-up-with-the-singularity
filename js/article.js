@@ -130,10 +130,9 @@ function renderArticleContent(container, article, allArticles = []) {
   const xAria = currentLang === 'en' ? 'Share on X (Twitter)' : 'Podijeli na X-u (Twitter)';
   const linkedinAria = currentLang === 'en' ? 'Share on LinkedIn' : 'Podijeli na LinkedInu';
 
-  // Update document title and Open Graph meta tags for social crawlers
-  document.title = `${title} - Keeping up with the singularity`;
+  // Update document title, Open Graph, Twitter Cards and Schema.org JSON-LD for crawlers
   const summaryText = article.excerpt || article.summary || title;
-  updateOpenGraphMeta(title, summaryText, window.location.href, image);
+  updateOpenGraphMeta(article, title, summaryText, currentLang);
 
   const coverHeroHTML = image ? `
     <div class="article-cover-wrapper">
@@ -499,24 +498,110 @@ function escapeHTML(str) {
 }
 
 /**
- * Dynamically updates or inserts Open Graph and Twitter Card meta tags
+ * Dynamically updates or inserts Open Graph, Twitter Card, and Schema.org JSON-LD structured metadata
+ * @param {Object} article
+ * @param {string} title
+ * @param {string} description
+ * @param {string} [currentLang='hr']
  */
-function updateOpenGraphMeta(title, description, url, image) {
-  setMetaTag('property', 'og:title', title);
-  setMetaTag('property', 'og:description', description);
-  setMetaTag('property', 'og:url', url);
-  setMetaTag('property', 'og:type', 'article');
-  if (image) {
-    try {
-      const fullImageUrl = new URL(image, window.location.href).href;
-      setMetaTag('property', 'og:image', fullImageUrl);
-    } catch (e) {
-      setMetaTag('property', 'og:image', image);
+function updateOpenGraphMeta(article, title, description, currentLang = 'hr') {
+  const currentUrl = window.location.href;
+  const baseUrl = window.location.origin || 'https://keeping-up-singularity.web.app';
+  
+  // Resolve absolute image URL for external social scrapers
+  let fullImageUrl = 'https://keeping-up-singularity.web.app/img/logo.png';
+  if (article && article.image && article.image.trim()) {
+    const rawImage = article.image.trim();
+    if (rawImage.startsWith('http://') || rawImage.startsWith('https://')) {
+      fullImageUrl = rawImage;
+    } else {
+      fullImageUrl = `${baseUrl}/${rawImage.replace(/^\.?\//, '')}`;
     }
   }
+
+  // Update Page Title and Meta Description
+  document.title = `${title} - Keeping up with the singularity`;
+  setMetaTag('name', 'description', description);
+  setMetaTag('name', 'author', 'Keeping up with the singularity');
+
+  // Open Graph
+  setMetaTag('property', 'og:type', 'article');
+  setMetaTag('property', 'og:site_name', 'Keeping up with the singularity');
+  setMetaTag('property', 'og:title', title);
+  setMetaTag('property', 'og:description', description);
+  setMetaTag('property', 'og:url', currentUrl);
+  setMetaTag('property', 'og:image', fullImageUrl);
+  setMetaTag('property', 'og:image:alt', title);
+  setMetaTag('property', 'og:locale', currentLang === 'en' ? 'en_US' : 'hr_HR');
+  if (article && article.category) {
+    setMetaTag('property', 'article:section', article.category);
+  }
+  if (article && article.date) {
+    setMetaTag('property', 'article:published_time', article.date);
+  }
+
+  // Twitter Cards
   setMetaTag('name', 'twitter:card', 'summary_large_image');
   setMetaTag('name', 'twitter:title', title);
   setMetaTag('name', 'twitter:description', description);
+  setMetaTag('name', 'twitter:image', fullImageUrl);
+  setMetaTag('name', 'twitter:image:alt', title);
+
+  // Canonical Link
+  let canonicalEl = document.querySelector('link[rel="canonical"]');
+  if (!canonicalEl) {
+    canonicalEl = document.createElement('link');
+    canonicalEl.setAttribute('rel', 'canonical');
+    document.head.appendChild(canonicalEl);
+  }
+  canonicalEl.setAttribute('href', currentUrl);
+
+  // Schema.org JSON-LD Structured Data
+  updateJsonLdSchema(article, title, description, fullImageUrl, currentUrl);
+}
+
+/**
+ * Injects or updates Schema.org JSON-LD script for rich search snippets
+ */
+function updateJsonLdSchema(article, title, description, imageUrl, currentUrl) {
+  let scriptEl = document.getElementById('jsonld-article-schema');
+  if (!scriptEl) {
+    scriptEl = document.createElement('script');
+    scriptEl.id = 'jsonld-article-schema';
+    scriptEl.type = 'application/ld+json';
+    document.head.appendChild(scriptEl);
+  }
+
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'ScholarlyArticle',
+    'headline': title,
+    'description': description,
+    'image': [imageUrl],
+    'datePublished': article && article.date ? article.date : undefined,
+    'author': {
+      '@type': 'Person',
+      'name': 'Toni',
+      'jobTitle': 'Editor & Researcher',
+      'url': 'https://keeping-up-singularity.web.app/o-autoru.html'
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Keeping up with the singularity',
+      'url': 'https://keeping-up-singularity.web.app',
+      'logo': {
+        '@type': 'ImageObject',
+        'url': 'https://keeping-up-singularity.web.app/img/logo.png'
+      }
+    },
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': currentUrl
+    },
+    'articleSection': article && article.category ? article.category : 'Science & Technology'
+  };
+
+  scriptEl.textContent = JSON.stringify(schemaData, null, 2);
 }
 
 /**
