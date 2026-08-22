@@ -59,8 +59,20 @@
     <!-- Articles Grid Section -->
     <section aria-labelledby="section-heading">
       <div class="articles-section-header">
-        <h2 id="section-heading" class="section-label" data-i18n="section.short_texts">Kratki tekstovi</h2>
-        <span id="articles-count" class="articles-count">Učitavanje...</span>
+        <div class="section-title-wrap">
+          <h2 id="section-heading" class="section-label" data-i18n="section.short_texts">Kratki tekstovi</h2>
+          <span id="articles-count" class="articles-count">Učitavanje...</span>
+        </div>
+        <div class="search-container">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" id="article-search" class="search-input" placeholder="Pretraži radove (npr. Yamanaka, peptidi, AI...)" data-i18n-placeholder="search.placeholder" data-i18n-aria-label="search.aria_label" aria-label="Pretraži radove" autocomplete="off" spellcheck="false">
+            <button type="button" id="search-clear-btn" class="search-clear-btn" aria-label="Očisti pretragu" data-i18n-aria-label="search.clear" style="display: none;">&times;</button>
+          </div>
+        </div>
       </div>
 
       <!-- CSS Grid spremnik za dinamički prikaz kartica -->

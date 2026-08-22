@@ -5,10 +5,12 @@
 
 let cachedCategoryArticles = [];
 let currentCategoryTitle = '';
+let currentCategorySearchQuery = '';
 
 document.addEventListener('DOMContentLoaded', () => {
   initCategoryPage();
   setupResponsiveNav();
+  setupSearch();
   if (typeof updateActiveNavLink === 'function') {
     updateActiveNavLink();
   }
@@ -84,7 +86,11 @@ async function initCategoryPage() {
   });
 
   cachedCategoryArticles = filteredArticles;
-  renderCategoryArticles(filteredArticles, catTitle);
+  if (currentCategorySearchQuery && currentCategorySearchQuery.trim()) {
+    handleSearch(currentCategorySearchQuery);
+  } else {
+    renderCategoryArticles(filteredArticles, catTitle);
+  }
 }
 
 async function fetchArticles(url) {
@@ -107,7 +113,7 @@ async function fetchArticles(url) {
   }
 }
 
-function renderCategoryArticles(articles, categoryTitle) {
+function renderCategoryArticles(articles, categoryTitle, query = '') {
   const container = document.getElementById('articles-grid');
   const countBadge = document.getElementById('articles-count');
   if (!container) return;
@@ -120,20 +126,24 @@ function renderCategoryArticles(articles, categoryTitle) {
     if (countBadge) {
       countBadge.textContent = currentLang === 'en' ? '0 Papers' : '0 Radova';
     }
-    if (currentLang === 'en') {
-      container.innerHTML = `
-        <div class="empty-state">
-          <h3>No published articles in this category currently</h3>
-          <p>There are currently no published articles in "${escapeHTML(categoryTitle)}". Stay tuned for upcoming content.</p>
-        </div>
-      `;
+    if (query && query.trim()) {
+      renderEmptySearchState(container, query);
     } else {
-      container.innerHTML = `
-        <div class="empty-state">
-          <h3>U ovoj kategoriji trenutno nema objavljenih članaka</h3>
-          <p>U kategoriji "${escapeHTML(categoryTitle)}" trenutno nema objavljenih članaka. Pratite nas uskoro za nove sadržaje.</p>
-        </div>
-      `;
+      if (currentLang === 'en') {
+        container.innerHTML = `
+          <div class="empty-state">
+            <h3>No published articles in this category currently</h3>
+            <p>There are currently no published articles in "${escapeHTML(categoryTitle)}". Stay tuned for upcoming content.</p>
+          </div>
+        `;
+      } else {
+        container.innerHTML = `
+          <div class="empty-state">
+            <h3>U ovoj kategoriji trenutno nema objavljenih članaka</h3>
+            <p>U kategoriji "${escapeHTML(categoryTitle)}" trenutno nema objavljenih članaka. Pratite nas uskoro za nove sadržaje.</p>
+          </div>
+        `;
+      }
     }
     return;
   }
@@ -280,4 +290,146 @@ function escapeHTML(str) {
     };
     return chars[tag] || tag;
   });
+}
+
+/**
+ * Displays empty state message when search returns no results
+ * @param {HTMLElement} container
+ * @param {string} query
+ */
+function renderEmptySearchState(container, query) {
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+  const title = currentLang === 'en' ? 'No matching papers found' : 'Nema pronađenih radova';
+  const desc = currentLang === 'en'
+    ? `No papers match your search for "${escapeHTML(query)}". Try using different keywords.`
+    : `Niti jedan rad ne odgovara vašem upitu "${escapeHTML(query)}". Pokušajte s drugim ključnim riječima.`;
+  const resetBtnText = currentLang === 'en' ? 'Show all papers' : 'Prikaži sve radove';
+
+  container.innerHTML = `
+    <div class="empty-state search-empty-state">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 12px; display: block; opacity: 0.5; color: var(--accent-cyan);">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        <line x1="8" y1="11" x2="14" y2="11"></line>
+      </svg>
+      <h3>${escapeHTML(title)}</h3>
+      <p>${desc}</p>
+      <button type="button" class="btn-reset-search" id="reset-search-btn">
+        <span>&larr;</span> ${escapeHTML(resetBtnText)}
+      </button>
+    </div>
+  `;
+
+  const resetBtn = document.getElementById('reset-search-btn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      const searchInput = document.getElementById('article-search');
+      const clearBtn = document.getElementById('search-clear-btn');
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.focus();
+      }
+      if (clearBtn) {
+        clearBtn.style.display = 'none';
+      }
+      handleSearch('');
+    });
+  }
+}
+
+/**
+ * Normalizes text for search: removes accents/diacritics, converts to lowercase, trims whitespace
+ * @param {string} text
+ * @returns {string}
+ */
+function normalizeSearchText(text) {
+  if (!text || typeof text !== 'string') return '';
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'd')
+    .trim();
+}
+
+/**
+ * Checks if article matches search query
+ * @param {Object} article
+ * @param {string} normalizedQuery
+ * @returns {boolean}
+ */
+function matchesSearchQuery(article, normalizedQuery) {
+  if (!normalizedQuery) return true;
+
+  const queryTerms = normalizedQuery.split(/\s+/).filter(Boolean);
+
+  const searchableFields = [
+    article.title,
+    article.title_en,
+    article.category,
+    article.category_en,
+    article.categorySlug,
+    article.summary,
+    article.summary_en,
+    article.excerpt,
+    article.excerpt_en,
+    article.readTime,
+    article.doi
+  ];
+
+  const combinedSearchableText = normalizeSearchText(searchableFields.filter(Boolean).join(' '));
+
+  return queryTerms.every(term => combinedSearchableText.includes(term));
+}
+
+/**
+ * Handles search query execution
+ * @param {string} query
+ */
+function handleSearch(query) {
+  currentCategorySearchQuery = query;
+  const normalized = normalizeSearchText(query);
+  if (!normalized) {
+    renderCategoryArticles(cachedCategoryArticles, currentCategoryTitle);
+    return;
+  }
+
+  const filtered = cachedCategoryArticles.filter(article => matchesSearchQuery(article, normalized));
+  renderCategoryArticles(filtered, currentCategoryTitle, query);
+}
+
+/**
+ * Attaches search input and clear button listeners
+ */
+function setupSearch() {
+  const searchInput = document.getElementById('article-search');
+  const clearBtn = document.getElementById('search-clear-btn');
+
+  if (!searchInput) return;
+
+  searchInput.addEventListener('input', (e) => {
+    const query = e.target.value;
+    if (clearBtn) {
+      clearBtn.style.display = query.trim() ? 'block' : 'none';
+    }
+    handleSearch(query);
+  });
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      if (clearBtn) clearBtn.style.display = 'none';
+      handleSearch('');
+    }
+  });
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearBtn.style.display = 'none';
+      searchInput.focus();
+      handleSearch('');
+    });
+  }
 }

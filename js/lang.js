@@ -30,6 +30,14 @@ const translations = {
     "lang.toggle_label": "ENG",
     "lang.aria_label": "Promijeni jezik",
 
+    // Search UI
+    "search.placeholder": "Pretraži radove (npr. Yamanaka, peptidi, AI...)",
+    "search.aria_label": "Pretraži radove",
+    "search.clear": "Očisti pretragu",
+    "search.no_results_title": "Nema pronađenih radova",
+    "search.no_results_desc": "Niti jedan rad ne odgovara vašem upitu \"{query}\". Pokušajte s drugim ključnim riječima.",
+    "search.reset_btn": "Prikaži sve radove",
+
     // Article Meta & States
     "article.loading": "Učitavanje sadržaja rada...",
     "article.not_found": "Rad nije pronađen",
@@ -106,6 +114,14 @@ const translations = {
     "btn.back_summary": "← Back to summary list",
     "lang.toggle_label": "HRV",
     "lang.aria_label": "Change language",
+
+    // Search UI
+    "search.placeholder": "Search papers (e.g. Yamanaka, peptides, AI...)",
+    "search.aria_label": "Search papers",
+    "search.clear": "Clear search",
+    "search.no_results_title": "No matching papers found",
+    "search.no_results_desc": "No papers match your search for \"{query}\". Try using different keywords.",
+    "search.reset_btn": "Show all papers",
 
     // Article Meta & States
     "article.loading": "Loading article content...",
@@ -195,6 +211,24 @@ function setLanguage(lang) {
       } else {
         el.textContent = translation;
       }
+    }
+  });
+
+  // Update placeholder attributes with data-i18n-placeholder
+  const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+  placeholderElements.forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (translations[currentLang] && translations[currentLang][key] !== undefined) {
+      el.setAttribute('placeholder', translations[currentLang][key]);
+    }
+  });
+
+  // Update aria-label attributes with data-i18n-aria-label
+  const ariaElements = document.querySelectorAll('[data-i18n-aria-label]');
+  ariaElements.forEach(el => {
+    const key = el.getAttribute('data-i18n-aria-label');
+    if (translations[currentLang] && translations[currentLang][key] !== undefined) {
+      el.setAttribute('aria-label', translations[currentLang][key]);
     }
   });
 
