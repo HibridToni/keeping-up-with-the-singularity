@@ -25,10 +25,15 @@ const translations = {
 
     // Buttons & UI
     "btn.read_article": "Pročitaj rad →",
+    "btn.load_more": "Učitaj više radova",
     "btn.back_home": "← Natrag na sve radove",
     "btn.back_summary": "← Povratak na popis sažetaka",
     "lang.toggle_label": "ENG",
     "lang.aria_label": "Promijeni jezik",
+
+    // Pagination
+    "pagination.showing": "Prikazano {count} od {total} radova",
+    "pagination.all_loaded": "Prikazani su svi radovi ({total})",
 
     // Search UI
     "search.placeholder": "Pretraži radove (npr. Yamanaka, peptidi, AI...)",
@@ -110,10 +115,15 @@ const translations = {
 
     // Buttons & UI
     "btn.read_article": "Read article →",
+    "btn.load_more": "Load more papers",
     "btn.back_home": "← Back to all articles",
     "btn.back_summary": "← Back to summary list",
     "lang.toggle_label": "HRV",
     "lang.aria_label": "Change language",
+
+    // Pagination
+    "pagination.showing": "Showing {count} of {total} papers",
+    "pagination.all_loaded": "All papers loaded ({total})",
 
     // Search UI
     "search.placeholder": "Search papers (e.g. Yamanaka, peptides, AI...)",

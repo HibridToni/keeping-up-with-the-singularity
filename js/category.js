@@ -1,9 +1,7 @@
-/**
- * TechHorizons Blog - Category Filtering Script
- * Reads 'cat' parameter from URL, filters articles from articles.json, and renders matching cards or empty state.
- */
-
+const PAGE_SIZE = 6;
 let cachedCategoryArticles = [];
+let currentCategoryArticlesList = [];
+let displayedCategoryCount = 0;
 let currentCategoryTitle = '';
 let currentCategorySearchQuery = '';
 
@@ -11,12 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initCategoryPage();
   setupResponsiveNav();
   setupSearch();
+  setupPagination();
   if (typeof updateActiveNavLink === 'function') {
     updateActiveNavLink();
   }
 
   window.addEventListener('languageChanged', () => {
-    initCategoryPage();
+    initCategoryPage(false);
   });
 });
 
@@ -37,7 +36,7 @@ const CATEGORY_MAP = {
   }
 };
 
-async function initCategoryPage() {
+async function initCategoryPage(resetPagination = true) {
   const urlParams = new URLSearchParams(window.location.search);
   const catSlug = urlParams.get('cat') ? urlParams.get('cat').toLowerCase().trim() : '';
   const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
@@ -87,9 +86,9 @@ async function initCategoryPage() {
 
   cachedCategoryArticles = filteredArticles;
   if (currentCategorySearchQuery && currentCategorySearchQuery.trim()) {
-    handleSearch(currentCategorySearchQuery);
+    handleSearch(currentCategorySearchQuery, resetPagination);
   } else {
-    renderCategoryArticles(filteredArticles, catTitle);
+    renderCategoryArticles(filteredArticles, catTitle, '', resetPagination);
   }
 }
 
@@ -113,18 +112,34 @@ async function fetchArticles(url) {
   }
 }
 
-function renderCategoryArticles(articles, categoryTitle, query = '') {
+function renderCategoryArticles(articles, categoryTitle, query = '', resetPagination = true) {
   const container = document.getElementById('articles-grid');
   const countBadge = document.getElementById('articles-count');
+  const loadMoreContainer = document.getElementById('load-more-container');
+
   if (!container) return;
+
+  currentCategoryArticlesList = Array.isArray(articles) ? articles : [];
+
+  if (resetPagination) {
+    displayedCategoryCount = Math.min(PAGE_SIZE, currentCategoryArticlesList.length);
+  } else {
+    displayedCategoryCount = Math.min(
+      Math.max(displayedCategoryCount, Math.min(PAGE_SIZE, currentCategoryArticlesList.length)),
+      currentCategoryArticlesList.length
+    );
+  }
 
   container.innerHTML = '';
 
   const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
 
-  if (!articles || articles.length === 0) {
+  if (currentCategoryArticlesList.length === 0) {
     if (countBadge) {
       countBadge.textContent = currentLang === 'en' ? '0 Papers' : '0 Radova';
+    }
+    if (loadMoreContainer) {
+      loadMoreContainer.style.display = 'none';
     }
     if (query && query.trim()) {
       renderEmptySearchState(container, query);
@@ -150,18 +165,90 @@ function renderCategoryArticles(articles, categoryTitle, query = '') {
 
   if (countBadge) {
     const summaryLabel = currentLang === 'en' 
-      ? (articles.length === 1 ? 'Summary' : 'Summaries')
-      : (articles.length === 1 ? 'Sažetak' : 'Sažetka');
-    countBadge.textContent = `${articles.length} ${summaryLabel}`;
+      ? (currentCategoryArticlesList.length === 1 ? 'Summary' : 'Summaries')
+      : (currentCategoryArticlesList.length === 1 ? 'Sažetak' : 'Sažetka');
+    countBadge.textContent = `${currentCategoryArticlesList.length} ${summaryLabel}`;
   }
 
   const fragment = document.createDocumentFragment();
-  articles.forEach(article => {
+  const visibleArticles = currentCategoryArticlesList.slice(0, displayedCategoryCount);
+
+  visibleArticles.forEach(article => {
     const cardElement = createArticleCard(article);
     fragment.appendChild(cardElement);
   });
 
   container.appendChild(fragment);
+  updateCategoryPaginationUI();
+}
+
+/**
+ * Loads the next batch of category articles
+ */
+function loadMoreCategoryArticles() {
+  const container = document.getElementById('articles-grid');
+  if (!container || displayedCategoryCount >= currentCategoryArticlesList.length) return;
+
+  const nextCount = Math.min(displayedCategoryCount + PAGE_SIZE, currentCategoryArticlesList.length);
+  const newArticles = currentCategoryArticlesList.slice(displayedCategoryCount, nextCount);
+
+  const fragment = document.createDocumentFragment();
+  newArticles.forEach(article => {
+    const cardElement = createArticleCard(article);
+    cardElement.classList.add('anim-fade-in');
+    fragment.appendChild(cardElement);
+  });
+
+  container.appendChild(fragment);
+  displayedCategoryCount = nextCount;
+  updateCategoryPaginationUI();
+}
+
+/**
+ * Updates the Load More button visibility and status text on category page
+ */
+function updateCategoryPaginationUI() {
+  const loadMoreContainer = document.getElementById('load-more-container');
+  const loadMoreBtn = document.getElementById('load-more-btn');
+  const statusEl = document.getElementById('pagination-status');
+
+  if (!loadMoreContainer || !loadMoreBtn || !statusEl) return;
+
+  const total = currentCategoryArticlesList.length;
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+
+  if (total <= PAGE_SIZE) {
+    loadMoreContainer.style.display = 'none';
+    return;
+  }
+
+  loadMoreContainer.style.display = 'flex';
+
+  if (displayedCategoryCount < total) {
+    loadMoreBtn.style.display = 'inline-flex';
+    const statusTemplate = currentLang === 'en'
+      ? `Showing ${displayedCategoryCount} of ${total} papers`
+      : `Prikazano ${displayedCategoryCount} od ${total} radova`;
+    statusEl.textContent = statusTemplate;
+  } else {
+    loadMoreBtn.style.display = 'none';
+    const statusTemplate = currentLang === 'en'
+      ? `All papers loaded (${total})`
+      : `Prikazani su svi radovi (${total})`;
+    statusEl.textContent = statusTemplate;
+  }
+}
+
+/**
+ * Attaches pagination event listeners on category page
+ */
+function setupPagination() {
+  const loadMoreBtn = document.getElementById('load-more-btn');
+  if (!loadMoreBtn) return;
+
+  loadMoreBtn.addEventListener('click', () => {
+    loadMoreCategoryArticles();
+  });
 }
 
 function createArticleCard(article) {
@@ -386,17 +473,18 @@ function matchesSearchQuery(article, normalizedQuery) {
 /**
  * Handles search query execution
  * @param {string} query
+ * @param {boolean} [resetPagination=true]
  */
-function handleSearch(query) {
+function handleSearch(query, resetPagination = true) {
   currentCategorySearchQuery = query;
   const normalized = normalizeSearchText(query);
   if (!normalized) {
-    renderCategoryArticles(cachedCategoryArticles, currentCategoryTitle);
+    renderCategoryArticles(cachedCategoryArticles, currentCategoryTitle, '', resetPagination);
     return;
   }
 
   const filtered = cachedCategoryArticles.filter(article => matchesSearchQuery(article, normalized));
-  renderCategoryArticles(filtered, currentCategoryTitle, query);
+  renderCategoryArticles(filtered, currentCategoryTitle, query, resetPagination);
 }
 
 /**

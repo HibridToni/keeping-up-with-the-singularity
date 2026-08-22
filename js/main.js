@@ -1,15 +1,14 @@
-/**
- * TechHorizons Blog - Main Application Logic
- * Modular Vanilla JavaScript for fetching and dynamically rendering articles.
- */
-
+const PAGE_SIZE = 6;
 let cachedArticles = [];
+let currentArticlesList = [];
+let displayedArticlesCount = 0;
 let currentSearchQuery = '';
 
 document.addEventListener('DOMContentLoaded', () => {
   initApp();
   setupResponsiveNav();
   setupSearch();
+  setupPagination();
   if (typeof updateActiveNavLink === 'function') {
     updateActiveNavLink();
   }
@@ -17,9 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('languageChanged', () => {
     if (cachedArticles && cachedArticles.length > 0) {
       if (currentSearchQuery && currentSearchQuery.trim()) {
-        handleSearch(currentSearchQuery);
+        handleSearch(currentSearchQuery, false);
       } else {
-        renderArticles(cachedArticles);
+        renderArticles(cachedArticles, '', false);
       }
     }
   });
@@ -60,15 +59,28 @@ async function fetchArticles(url) {
 }
 
 /**
- * Dynamically renders article cards into the CSS Grid container
+ * Dynamically renders article cards into the CSS Grid container with pagination support
  * @param {Array} articles - Array of article objects
  * @param {string} [query=''] - Search query if filtering is active
+ * @param {boolean} [resetPagination=true] - Whether to reset pagination to initial page size
  */
-function renderArticles(articles, query = '') {
+function renderArticles(articles, query = '', resetPagination = true) {
   const container = document.getElementById('articles-grid');
   const countBadge = document.getElementById('articles-count');
+  const loadMoreContainer = document.getElementById('load-more-container');
 
   if (!container) return;
+
+  currentArticlesList = Array.isArray(articles) ? articles : [];
+
+  if (resetPagination) {
+    displayedArticlesCount = Math.min(PAGE_SIZE, currentArticlesList.length);
+  } else {
+    displayedArticlesCount = Math.min(
+      Math.max(displayedArticlesCount, Math.min(PAGE_SIZE, currentArticlesList.length)),
+      currentArticlesList.length
+    );
+  }
 
   // Clear existing static/loading content
   container.innerHTML = '';
@@ -76,9 +88,12 @@ function renderArticles(articles, query = '') {
   const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
 
   // Handle empty state
-  if (!articles || articles.length === 0) {
+  if (currentArticlesList.length === 0) {
     if (countBadge) {
       countBadge.textContent = currentLang === 'en' ? '0 Papers' : '0 Radova';
+    }
+    if (loadMoreContainer) {
+      loadMoreContainer.style.display = 'none';
     }
     if (query && query.trim()) {
       renderEmptySearchState(container, query);
@@ -91,20 +106,91 @@ function renderArticles(articles, query = '') {
   // Update article counter badge
   if (countBadge) {
     const summaryLabel = currentLang === 'en' 
-      ? (articles.length === 1 ? 'Summary' : 'Summaries')
-      : (articles.length === 1 ? 'Sažetak' : 'Sažetka');
-    countBadge.textContent = `${articles.length} ${summaryLabel}`;
+      ? (currentArticlesList.length === 1 ? 'Summary' : 'Summaries')
+      : (currentArticlesList.length === 1 ? 'Sažetak' : 'Sažetka');
+    countBadge.textContent = `${currentArticlesList.length} ${summaryLabel}`;
   }
 
   // Create document fragment for optimal performance
   const fragment = document.createDocumentFragment();
+  const visibleArticles = currentArticlesList.slice(0, displayedArticlesCount);
 
-  articles.forEach(article => {
+  visibleArticles.forEach(article => {
     const cardElement = createArticleCard(article);
     fragment.appendChild(cardElement);
   });
 
   container.appendChild(fragment);
+  updatePaginationUI();
+}
+
+/**
+ * Loads the next batch of articles
+ */
+function loadMoreArticles() {
+  const container = document.getElementById('articles-grid');
+  if (!container || displayedArticlesCount >= currentArticlesList.length) return;
+
+  const nextCount = Math.min(displayedArticlesCount + PAGE_SIZE, currentArticlesList.length);
+  const newArticles = currentArticlesList.slice(displayedArticlesCount, nextCount);
+
+  const fragment = document.createDocumentFragment();
+  newArticles.forEach(article => {
+    const cardElement = createArticleCard(article);
+    cardElement.classList.add('anim-fade-in');
+    fragment.appendChild(cardElement);
+  });
+
+  container.appendChild(fragment);
+  displayedArticlesCount = nextCount;
+  updatePaginationUI();
+}
+
+/**
+ * Updates the Load More button visibility and status text
+ */
+function updatePaginationUI() {
+  const loadMoreContainer = document.getElementById('load-more-container');
+  const loadMoreBtn = document.getElementById('load-more-btn');
+  const statusEl = document.getElementById('pagination-status');
+
+  if (!loadMoreContainer || !loadMoreBtn || !statusEl) return;
+
+  const total = currentArticlesList.length;
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+
+  if (total <= PAGE_SIZE) {
+    loadMoreContainer.style.display = 'none';
+    return;
+  }
+
+  loadMoreContainer.style.display = 'flex';
+
+  if (displayedArticlesCount < total) {
+    loadMoreBtn.style.display = 'inline-flex';
+    const statusTemplate = currentLang === 'en'
+      ? `Showing ${displayedArticlesCount} of ${total} papers`
+      : `Prikazano ${displayedArticlesCount} od ${total} radova`;
+    statusEl.textContent = statusTemplate;
+  } else {
+    loadMoreBtn.style.display = 'none';
+    const statusTemplate = currentLang === 'en'
+      ? `All papers loaded (${total})`
+      : `Prikazani su svi radovi (${total})`;
+    statusEl.textContent = statusTemplate;
+  }
+}
+
+/**
+ * Attaches pagination event listeners
+ */
+function setupPagination() {
+  const loadMoreBtn = document.getElementById('load-more-btn');
+  if (!loadMoreBtn) return;
+
+  loadMoreBtn.addEventListener('click', () => {
+    loadMoreArticles();
+  });
 }
 
 /**
@@ -280,17 +366,18 @@ function matchesSearchQuery(article, normalizedQuery) {
 /**
  * Handles search query execution
  * @param {string} query
+ * @param {boolean} [resetPagination=true]
  */
-function handleSearch(query) {
+function handleSearch(query, resetPagination = true) {
   currentSearchQuery = query;
   const normalized = normalizeSearchText(query);
   if (!normalized) {
-    renderArticles(cachedArticles);
+    renderArticles(cachedArticles, '', resetPagination);
     return;
   }
 
   const filtered = cachedArticles.filter(article => matchesSearchQuery(article, normalized));
-  renderArticles(filtered, query);
+  renderArticles(filtered, query, resetPagination);
 }
 
 /**

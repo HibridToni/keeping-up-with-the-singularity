@@ -79,6 +79,17 @@
       <div id="articles-grid" class="articles-grid" role="region" aria-live="polite">
         <!-- Kartice članaka učitavaju se dinamički putem js/category.js -->
       </div>
+
+      <!-- Load More Container -->
+      <div id="load-more-container" class="load-more-container" style="display: none;">
+        <button id="load-more-btn" class="btn-load-more" aria-label="Učitaj više radova" data-i18n="btn.load_more">
+          <span>Učitaj više radova</span>
+          <svg class="load-more-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <p id="pagination-status" class="pagination-status"></p>
+      </div>
     </section>
 
   </main>
