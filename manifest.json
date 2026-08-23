@@ -1,0 +1,58 @@
+{
+  "name": "Keeping up with the singularity",
+  "short_name": "Singularity",
+  "description": "Scientific insights, theoretical physics, AI advancements & longevity research journal.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#030712",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "hr",
+  "icons": [
+    {
+      "src": "img/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI i tehnologija",
+      "short_name": "AI",
+      "description": "Članci o umjetnoj inteligenciji i novim tehnologijama",
+      "url": "/category.html?cat=ai-tehnologija",
+      "icons": [
+        {
+          "src": "img/logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Longevity",
+      "short_name": "Longevity",
+      "description": "Članci o biologiji starenja, peptidima i pomlađivanju",
+      "url": "/category.html?cat=longevity",
+      "icons": [
+        {
+          "src": "img/logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    "news",
+    "education",
+    "science",
+    "technology"
+  ]
+}
