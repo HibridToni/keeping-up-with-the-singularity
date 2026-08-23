@@ -26,9 +26,15 @@
   </url>
   <url>
     <loc>https://keeping-up-singularity.web.app/o-autoru.html</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://keeping-up-singularity.web.app/article.html?id=koliko-vode-trose-podatkovni-centri</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://keeping-up-singularity.web.app/article.html?id=yamanaka-faktori-resetiranje-bioloskog-sata</loc>

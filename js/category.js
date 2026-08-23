@@ -27,6 +27,13 @@ const CATEGORY_MAP = {
       en: 'Overview of research papers, analyses, and publications in artificial intelligence, machine learning, and technological innovations.'
     }
   },
+  'ai-tech': {
+    title: { hr: 'AI i tehnologija', en: 'AI & Tech' },
+    description: {
+      hr: 'Pregled stručnih radova, analiza i publikacija iz područja umjetne inteligencije, strojnog učenja i tehnoloških inovacija.',
+      en: 'Overview of research papers, analyses, and publications in artificial intelligence, machine learning, and technological innovations.'
+    }
+  },
   'longevity': {
     title: { hr: 'Longevity', en: 'Longevity' },
     description: {
@@ -81,7 +88,7 @@ async function initCategoryPage(resetPagination = true) {
     const mapTitleHR = mappedCat ? mappedCat.title.hr.toLowerCase() : '';
     const mapTitleEN = mappedCat ? mappedCat.title.en.toLowerCase() : '';
     
-    return slug === catSlug || catNameHR === mapTitleHR || catNameEN === mapTitleEN || catNameHR === catTitle.toLowerCase();
+    return slug === catSlug || (catSlug === 'ai-tehnologija' && slug === 'ai-tech') || (catSlug === 'ai-tech' && slug === 'ai-tehnologija') || catNameHR === mapTitleHR || catNameEN === mapTitleEN || catNameHR === catTitle.toLowerCase();
   });
 
   cachedCategoryArticles = filteredArticles;

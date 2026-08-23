@@ -948,12 +948,13 @@ a {
 
 .reader-body ul, .reader-body ol {
   margin: 16px 0 24px 24px;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 .reader-body li {
   margin-bottom: 10px;
   line-height: 1.7;
+  color: var(--text-primary);
 }
 
 .reader-body strong {
@@ -1008,6 +1009,485 @@ a {
   border: none;
   padding: 0;
   color: var(--text-primary);
+}
+
+.reader-body hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color) 20%, var(--border-color) 80%, transparent);
+  margin: 36px 0;
+}
+
+/* KaTeX Formulas & Math Styling */
+.katex-display {
+  margin: 24px 0 !important;
+  padding: 16px 20px !important;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-border-radius);
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+}
+
+.katex {
+  font-size: 1.05em;
+  color: var(--text-primary);
+}
+
+.katex-display > .katex {
+  color: var(--accent-cyan);
+}
+
+[data-theme="light"] .katex-display > .katex {
+  color: var(--accent-cyan-dark, #0284c7);
+}
+
+/* Inline Article Images & Figures */
+.reader-body figure {
+  margin: 32px 0;
+  text-align: center;
+}
+
+.reader-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--card-border-radius);
+  border: 1px solid var(--border-color);
+  display: block;
+  margin: 28px auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.reader-body figcaption {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 10px;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Water Footprint Infographic Diagram */
+.water-footprint-diagram {
+  margin: 36px 0;
+  padding: 28px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  font-family: var(--font-sans);
+}
+
+.wfd-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  max-width: 480px;
+  margin: 0 auto 28px;
+  padding: 14px 22px;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.12), rgba(59, 130, 246, 0.12));
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  border-radius: 12px;
+  text-align: center;
+}
+
+[data-theme="light"] .wfd-header {
+  background: linear-gradient(135deg, #e0f2fe, #e0e7ff);
+  border-color: #38bdf8;
+}
+
+.wfd-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.wfd-title span {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  margin-top: 2px;
+}
+
+[data-theme="light"] .wfd-title span {
+  color: var(--accent-cyan-dark, #0284c7);
+}
+
+.wfd-icon-globe {
+  color: #06b6d4;
+  flex-shrink: 0;
+}
+
+.wfd-icon-drop {
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+.wfd-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .wfd-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.wfd-column {
+  border-radius: 12px;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.wfd-column:hover {
+  transform: translateY(-2px);
+}
+
+.wfd-col-direct {
+  border-top: 4px solid #0ea5e9;
+}
+
+.wfd-col-indirect {
+  border-top: 4px solid #f97316;
+}
+
+.wfd-col-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.wfd-col-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.wfd-col-title span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.wfd-badge-direct {
+  background: rgba(14, 165, 233, 0.15);
+  color: #38bdf8;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-left: auto;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .wfd-badge-direct {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.wfd-badge-indirect {
+  background: rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-left: auto;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .wfd-badge-indirect {
+  background: #ffedd5;
+  color: #ea580c;
+}
+
+.wfd-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.wfd-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary) !important;
+  margin-bottom: 0 !important;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.wfd-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="light"] .wfd-item:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.wfd-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.wfd-col-direct .wfd-item-icon {
+  background: rgba(14, 165, 233, 0.12);
+  color: #38bdf8;
+}
+
+[data-theme="light"] .wfd-col-direct .wfd-item-icon {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.wfd-col-indirect .wfd-item-icon {
+  background: rgba(249, 115, 22, 0.12);
+  color: #fb923c;
+}
+
+[data-theme="light"] .wfd-col-indirect .wfd-item-icon {
+  background: #ffedd5;
+  color: #ea580c;
+}
+
+/* Responsive Data Tables in Articles */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 32px 0;
+  border-radius: var(--card-border-radius);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.article-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.article-table thead {
+  background-color: var(--bg-secondary);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.article-table th {
+  padding: 14px 18px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="light"] .article-table th {
+  color: var(--accent-cyan-dark, #0284c7);
+}
+
+.article-table td {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.article-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.article-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+[data-theme="light"] .article-table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Water Footprint In Perspective Card */
+.water-perspective-card {
+  margin: 36px 0;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  font-family: var(--font-sans);
+}
+
+.wpc-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 440px;
+  margin: 0 auto 24px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.12), rgba(59, 130, 246, 0.12));
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  border-radius: 12px;
+  text-align: center;
+}
+
+[data-theme="light"] .wpc-header {
+  background: linear-gradient(135deg, #e0f2fe, #e0e7ff);
+  border-color: #38bdf8;
+}
+
+.wpc-header svg {
+  color: var(--accent-cyan);
+}
+
+[data-theme="light"] .wpc-header svg {
+  color: var(--accent-cyan-dark, #0284c7);
+}
+
+.wpc-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+}
+
+.wpc-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wpc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.wpc-row:hover {
+  transform: translateX(4px);
+  border-color: rgba(6, 182, 212, 0.4);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="light"] .wpc-row:hover {
+  background: #f8fafc;
+  border-color: #38bdf8;
+}
+
+.wpc-row-highlight {
+  border-left: 4px solid var(--accent-cyan);
+  background: linear-gradient(90deg, rgba(6, 182, 212, 0.08), transparent);
+}
+
+[data-theme="light"] .wpc-row-highlight {
+  background: linear-gradient(90deg, rgba(2, 132, 199, 0.08), transparent);
+  border-left-color: var(--accent-cyan-dark, #0284c7);
+}
+
+.wpc-item-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wpc-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .wpc-icon {
+  color: var(--accent-cyan-dark, #0284c7);
+  background: #ffffff;
+}
+
+.wpc-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.wpc-value-badge {
+  font-size: 0.95rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+  padding: 6px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="light"] .wpc-value-badge {
+  color: var(--accent-cyan-dark, #0284c7);
+  background: #ffffff;
+}
+
+.wpc-row-highlight .wpc-value-badge {
+  background: rgba(6, 182, 212, 0.15);
+  border-color: rgba(6, 182, 212, 0.4);
+  color: #38bdf8;
+}
+
+[data-theme="light"] .wpc-row-highlight .wpc-value-badge {
+  background: #e0f2fe;
+  border-color: #38bdf8;
+  color: #0284c7;
+}
+
+@media (max-width: 600px) {
+  .wpc-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .wpc-value-badge {
+    align-self: flex-end;
+  }
 }
 
 /* Bottom Share Section */

@@ -303,6 +303,39 @@ function renderArticleContent(container, article, allArticles = []) {
   // Attach Audio Controller events & Copy link listeners
   setupTTSController(article, currentLang);
   setupCopyLinkListeners(currentLang);
+
+  // Render KaTeX math formulas if present
+  renderMathInContainer(container);
+}
+
+/**
+ * Safely renders LaTeX equations using KaTeX if available
+ * @param {HTMLElement} element
+ */
+function renderMathInContainer(element) {
+  if (!element) return;
+  const doRender = () => {
+    if (typeof renderMathInElement === 'function') {
+      try {
+        renderMathInElement(element, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      } catch (err) {
+        console.warn('KaTeX rendering error:', err);
+      }
+    }
+  };
+
+  if (typeof renderMathInElement === 'function') {
+    doRender();
+  } else {
+    // Retry once KaTeX finishes loading
+    window.addEventListener('load', doRender, { once: true });
+  }
 }
 
 /**

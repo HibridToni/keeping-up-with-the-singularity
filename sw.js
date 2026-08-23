@@ -3,7 +3,7 @@
  * Provides offline reading, background caching, and fast asset delivery.
  */
 
-const CACHE_NAME = 'singularity-pwa-v1';
+const CACHE_NAME = 'singularity-pwa-v2';
 
 // Static core assets to pre-cache immediately on install
 const PRECACHE_ASSETS = [
@@ -13,12 +13,12 @@ const PRECACHE_ASSETS = [
   '/article.html',
   '/o-autoru.html',
   '/style.css',
-  '/style.css?v=20260822_3',
-  '/js/theme.js?v=20260822_3',
-  '/js/lang.js?v=20260822_3',
-  '/js/main.js?v=20260822_3',
-  '/js/category.js?v=20260822_3',
-  '/js/article.js?v=20260822_3',
+  '/style.css?v=20260823_1',
+  '/js/theme.js?v=20260823_1',
+  '/js/lang.js?v=20260823_1',
+  '/js/main.js?v=20260823_1',
+  '/js/category.js?v=20260823_1',
+  '/js/article.js?v=20260823_1',
   '/js/pwa.js',
   '/articles.json',
   '/manifest.json',
