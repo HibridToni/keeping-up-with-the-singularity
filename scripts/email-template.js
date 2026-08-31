@@ -5,7 +5,7 @@
  * @param {string} baseUrl - Base portal domain (e.g. 'https://keeping-up-singularity.web.app')
  * @returns {{ subject: string, html: string, text: string }}
  */
-export function generateArticleNewsletterEmail(article, lang = 'hr', baseUrl = 'https://keeping-up-singularity.web.app') {
+export function generateArticleNewsletterEmail(article, lang = 'hr', baseUrl = 'https://keeping-up-singularity.web.app', recipientEmail = '') {
   const isEn = lang === 'en';
 
   const title = (isEn && article.title_en) ? article.title_en : article.title;
@@ -14,6 +14,10 @@ export function generateArticleNewsletterEmail(article, lang = 'hr', baseUrl = '
   const summary = (isEn && article.summary_en) ? article.summary_en : (article.summary || article.excerpt || '');
   const articleUrl = `${baseUrl.replace(/\/$/, '')}/article.html?id=${article.id}`;
   
+  const unsubscribeUrl = recipientEmail 
+    ? `${baseUrl.replace(/\/$/, '')}/unsubscribe.html?email=${encodeURIComponent(recipientEmail)}`
+    : `${baseUrl.replace(/\/$/, '')}/unsubscribe.html`;
+
   // Format full image URL
   const imageUrl = article.image 
     ? (article.image.startsWith('http') ? article.image : `${baseUrl.replace(/\/$/, '')}/${article.image.replace(/^\//, '')}`)
@@ -25,9 +29,12 @@ export function generateArticleNewsletterEmail(article, lang = 'hr', baseUrl = '
 
   const overline = isEn ? 'NEW RESEARCH SUMMARY' : 'NOVI SAŽETAK ISTRAŽIVANJA';
   const ctaText = isEn ? 'Read Full Article →' : 'Pročitaj cijeli rad →';
-  const unsubscribeText = isEn 
-    ? 'You are receiving this because you subscribed to Keeping up with the singularity updates.' 
-    : 'Ovu poruku primate jer ste se prijavili za obavijesti na portalu Keeping up with the singularity.';
+  const unsubscribeHtml = isEn 
+    ? `You are receiving this because you subscribed to updates. <a href="${escapeHtml(unsubscribeUrl)}" class="footer-link" style="color: #38bdf8; text-decoration: underline;">Unsubscribe here</a>.` 
+    : `Ovu poruku primate jer ste se prijavili za obavijesti. <a href="${escapeHtml(unsubscribeUrl)}" class="footer-link" style="color: #38bdf8; text-decoration: underline;">Odjavite se ovdje</a>.`;
+  const unsubscribePlain = isEn
+    ? `To unsubscribe: ${unsubscribeUrl}`
+    : `Za odjavu: ${unsubscribeUrl}`;
 
   const html = `<!DOCTYPE html>
 <html lang="${lang}">
@@ -98,7 +105,7 @@ export function generateArticleNewsletterEmail(article, lang = 'hr', baseUrl = '
 
           <!-- Footer -->
           <div class="email-footer" style="padding: 24px 28px; background-color: #0a0c0e; border-top: 1px solid #242a36; text-align: center; font-size: 12px; color: #626e82; line-height: 1.6;">
-            <p style="margin: 0 0 8px;">${escapeHtml(unsubscribeText)}</p>
+            <p style="margin: 0 0 8px;">${unsubscribeHtml}</p>
             <p style="margin: 0;">
               <a href="${escapeHtml(baseUrl)}" class="footer-link" style="color: #38bdf8; text-decoration: none;">Keeping up with the singularity</a> • Scientific Insights &amp; Physics Journal
             </p>
@@ -120,7 +127,7 @@ ${ctaText}
 ${articleUrl}
 
 ---
-${unsubscribeText}
+${unsubscribePlain}
 ${baseUrl}
 `;
 

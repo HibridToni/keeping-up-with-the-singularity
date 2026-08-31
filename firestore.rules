@@ -2,11 +2,13 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /subscribers/{subscriberId} {
-      allow read: if false;
+      allow read: if false; // Private - only admin can read list
       allow create: if request.resource.data.keys().hasAll(['email', 'createdAt', 'lang'])
                     && request.resource.data.email is string
                     && request.resource.data.email.size() >= 5;
-      allow update, delete: if false;
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['active', 'unsubscribedAt'])
+                    && request.resource.data.active == false;
+      allow delete: if false;
     }
   }
 }

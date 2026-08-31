@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="description" content="Odjava s newslettera - Keeping up with the singularity">
+  <meta name="author" content="Keeping up with the singularity">
+  <title>Odjava s newslettera - Keeping up with the singularity</title>
+
+  <!-- PWA & Mobile Web App Meta -->
+  <meta name="theme-color" content="#030712">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Singularity">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="img/logo.png">
+
+  <link rel="stylesheet" href="style.css?v=20260831_1">
+  <script src="js/theme.js?v=20260822_3"></script>
+  <script src="js/lang.js?v=20260822_3"></script>
+  <script src="js/pwa.js"></script>
+</head>
+<body>
+
+  <!-- FIKSNA NAVIGACIJSKA TRAKA -->
+  <header>
+    <nav class="navbar" aria-label="Glavna navigacija">
+      <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+          <img src="img/logo.png" alt="Horizont Događaja Logo" class="site-logo">
+          <span class="brand-title">Keeping up with the singularity</span>
+          <span class="brand-subtitle">PHYSICS &amp; TECH JOURNAL</span>
+        </a>
+
+        <!-- Hamburger Toggle za mobilne uređaje -->
+        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Otvori navigacijski izbornik" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <!-- Navigacijski Linkovi -->
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="index.html" class="nav-link" id="nav-pocetna" data-i18n="nav.home">Početna</a></li>
+          <li><a href="category.html?cat=ai-tehnologija" class="nav-link" id="nav-ai" data-i18n="nav.ai">AI i tehnologija</a></li>
+          <li><a href="category.html?cat=longevity" class="nav-link" id="nav-longevity" data-i18n="nav.longevity">Longevity</a></li>
+          <li><button id="lang-toggle" class="lang-btn" aria-label="Promijeni jezik">ENG</button></li>
+          <li><button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">🌓</button></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- GLAVNI SPREMNIK -->
+  <main class="main-container" style="max-width: 680px; margin: 48px auto 64px; padding: 0 20px;">
+    
+    <div class="newsletter-card" style="text-align: center; padding: 48px 32px;">
+      
+      <div style="margin-bottom: 24px;">
+        <span class="newsletter-badge" style="margin: 0 auto 16px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          Newsletter
+        </span>
+        <h1 id="unsub-title" class="newsletter-title" data-i18n="unsub.title" style="font-size: 1.75rem; margin-bottom: 10px;">
+          Odjava s newslettera
+        </h1>
+        <p id="unsub-desc" class="newsletter-desc" data-i18n="unsub.desc" style="max-width: 480px; margin: 0 auto;">
+          Upravljajte svojim pretplatama na obavijesti časopisa.
+        </p>
+      </div>
+
+      <!-- Dynamic Status Container -->
+      <div id="unsub-status-box" style="margin: 32px 0;">
+        <div class="newsletter-feedback newsletter-feedback--warning is-visible" id="unsub-loading-msg" data-i18n="unsub.processing">
+          Odjavljivanje u tijeku...
+        </div>
+      </div>
+
+      <!-- Action Links -->
+      <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 14px; align-items: center;">
+        <a href="index.html" class="newsletter-submit-btn" style="text-decoration: none; max-width: 260px;" data-i18n="unsub.back_home">
+          ← Povratak na početnu stranicu
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- PODNOŽJE (FOOTER) -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">Keeping up with the singularity</div>
+        <p class="footer-desc" data-i18n="footer.desc">
+          Platforma inspirirana tehnološkim napretkom i eksponencijalnim tehnologijama, u pokušaju držanja koraka za istim
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3 class="footer-heading" data-i18n="footer.podcasts">Podcasti &amp; Mediji</h3>
+        <ul class="footer-links">
+          <li><a href="https://www.youtube.com/results?search_query=moonshots+with+peter+diamandis" target="_blank" rel="noopener noreferrer" id="link-moonshot" data-i18n="footer.podcast_moonshot">Moonshot Podcast</a></li>
+          <li><a href="https://allin.com/" target="_blank" rel="noopener noreferrer" id="link-allin" data-i18n="footer.podcast_allin">All-In Podcast</a></li>
+          <li><a href="https://www.youtube.com/@TwoMinutePapers" target="_blank" rel="noopener noreferrer" id="link-twominute" data-i18n="footer.podcast_twominute">Two Minute Papers</a></li>
+          <li><a href="https://www.youtube.com/@Alex.kantrowitz" target="_blank" rel="noopener noreferrer" id="link-kantrowitz" data-i18n="footer.podcast_kantrowitz">Alex Kantrowitz</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3 class="footer-heading" data-i18n="footer.newsletters">NEWSLETTERI</h3>
+        <ul class="footer-links">
+          <li><a href="https://theinnermostloop.substack.com/" target="_blank" rel="noopener noreferrer" id="link-innermostloop" data-i18n="footer.newsletter_innermostloop">The Innermost Loop</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">&copy; 2026 Keeping up with the singularity. Sva prava pridržana.</span>
+      <span data-i18n="footer.arch">Arhitektura: Vanilla HTML5 / CSS3 Grid / Vanilla JS</span>
+    </div>
+  </footer>
+
+  <script src="js/unsubscribe.js?v=20260831_1"></script>
+</body>
+</html>

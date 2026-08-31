@@ -203,8 +203,9 @@ async function main() {
     console.log('⚡ DRY RUN MODE ACTIVE - No emails will be transmitted');
     console.log('------------------------------------------------------');
 
-    const previewHr = generateArticleNewsletterEmail(targetArticle, 'hr', BASE_URL);
-    const previewEn = generateArticleNewsletterEmail(targetArticle, 'en', BASE_URL);
+    const previewEmail = recipients.length > 0 ? recipients[0].email : '';
+    const previewHr = generateArticleNewsletterEmail(targetArticle, 'hr', BASE_URL, previewEmail);
+    const previewEn = generateArticleNewsletterEmail(targetArticle, 'en', BASE_URL, previewEmail);
 
     console.log('\n[Preview - HR Subject]:', previewHr.subject);
     console.log('[Preview - EN Subject]:', previewEn.subject);
@@ -244,7 +245,7 @@ async function main() {
 
   for (const recipient of recipients) {
     const lang = forcedLang || recipient.lang || 'hr';
-    const emailData = generateArticleNewsletterEmail(targetArticle, lang, BASE_URL);
+    const emailData = generateArticleNewsletterEmail(targetArticle, lang, BASE_URL, recipient.email);
 
     try {
       if (resendKey) {

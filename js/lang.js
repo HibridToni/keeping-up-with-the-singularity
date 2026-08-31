@@ -92,6 +92,19 @@ const translations = {
     "newsletter.privacy_note": "Bez spama. Možete se odjaviti u bilo kojem trenutku.",
     "newsletter.error": "Došlo je do greške prilikom prijave. Pokušajte ponovno.",
 
+    // Unsubscribe
+    "unsub.title": "Odjava s newslettera",
+    "unsub.desc": "Upravljajte svojim pretplatama na obavijesti časopisa.",
+    "unsub.processing": "Odjavljivanje u tijeku...",
+    "unsub.success_title": "Uspješno ste odjavljeni",
+    "unsub.success_desc": "Vaša email adresa ({email}) je uspješno uklonjena s liste za slanje obavijesti.",
+    "unsub.resubscribe_prompt": "Slučajno ste se odjavili?",
+    "unsub.resubscribe_btn": "Ponovno se pretplati",
+    "unsub.manual_prompt": "Upišite email adresu s koje se želite odjaviti:",
+    "unsub.input_placeholder": "Vaša e-mail adresa...",
+    "unsub.btn_submit": "Odjavi me",
+    "unsub.back_home": "← Povratak na početnu stranicu",
+
     // Footer
     "footer.desc": "Platforma inspirirana tehnološkim napretkom i eksponencijalnim tehnologijama, u pokušaju držanja koraka za istim",
     "footer.contact": "Kontakt:",
@@ -207,6 +220,19 @@ const translations = {
     "newsletter.invalid_email": "Please enter a valid email address (e.g. name@domain.com).",
     "newsletter.privacy_note": "No spam. You can unsubscribe at any time.",
     "newsletter.error": "An error occurred while subscribing. Please try again.",
+
+    // Unsubscribe
+    "unsub.title": "Newsletter Unsubscribe",
+    "unsub.desc": "Manage your publication notification preferences.",
+    "unsub.processing": "Processing your unsubscribe request...",
+    "unsub.success_title": "Successfully Unsubscribed",
+    "unsub.success_desc": "Your email address ({email}) has been removed from our notification list.",
+    "unsub.resubscribe_prompt": "Unsubscribed by mistake?",
+    "unsub.resubscribe_btn": "Re-subscribe",
+    "unsub.manual_prompt": "Enter the email address you wish to unsubscribe:",
+    "unsub.input_placeholder": "Your email address...",
+    "unsub.btn_submit": "Unsubscribe Me",
+    "unsub.back_home": "← Back to Homepage",
 
     // Footer
     "footer.desc": "A platform inspired by technological progress and exponential technologies, in an attempt to keep up with them",
