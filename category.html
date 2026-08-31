@@ -124,6 +124,47 @@
       </div>
     </section>
 
+    <!-- Newsletter Subscription Section -->
+    <section class="newsletter-section" aria-labelledby="newsletter-title">
+      <div class="newsletter-card">
+        <div class="newsletter-content">
+          <div class="newsletter-info">
+            <span class="newsletter-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              Newsletter
+            </span>
+            <h2 id="newsletter-title" class="newsletter-title" data-i18n="newsletter.section_title">Budite u tijeku sa singularnošću</h2>
+            <p class="newsletter-desc" data-i18n="newsletter.section_desc">
+              Prijavite se na newsletter i primite obavijest sa sažetkom i poveznicom izravno u inbox čim objavimo novu analizu.
+            </p>
+          </div>
+          <div class="newsletter-form-wrapper">
+            <form class="newsletter-form" id="newsletter-form" novalidate>
+              <div class="newsletter-input-wrap">
+                <svg class="newsletter-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <input type="email" class="newsletter-input" placeholder="Upišite vašu e-mail adresu..." data-i18n-placeholder="newsletter.input_placeholder" aria-label="E-mail adresa" required autocomplete="email">
+              </div>
+              <button type="submit" class="newsletter-submit-btn" data-i18n="newsletter.btn_subscribe">Pretplati se</button>
+            </form>
+            <div class="newsletter-feedback" aria-live="polite"></div>
+            <p class="newsletter-privacy">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span data-i18n="newsletter.privacy_note">Bez spama. Možete se odjaviti u bilo kojem trenutku.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- 3. PODNOŽJE (FOOTER) -->
@@ -167,5 +208,6 @@
 
   <!-- Vanilla JavaScript Logic for Category Page -->
   <script src="js/category.js?v=20260822_3"></script>
+  <script src="js/newsletter.js?v=20260831_1"></script>
 </body>
 </html>

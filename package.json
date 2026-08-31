@@ -1,0 +1,23 @@
+{
+  "name": "keeping-up-with-the-singularity",
+  "version": "1.0.0",
+  "description": "Scientific Insights & Physics Journal - Web Publication and Newsletter Dispatcher",
+  "type": "module",
+  "scripts": {
+    "notify": "node scripts/notify-subscribers.js",
+    "notify:dry": "node scripts/notify-subscribers.js --dry-run",
+    "notify:test": "node scripts/notify-subscribers.js --dry-run --test=test@example.com",
+    "deploy": ".\\run_fb.bat deploy"
+  },
+  "keywords": [
+    "singularity",
+    "science",
+    "journal",
+    "physics",
+    "ai",
+    "longevity",
+    "newsletter"
+  ],
+  "author": "Keeping up with the singularity",
+  "license": "ISC"
+}

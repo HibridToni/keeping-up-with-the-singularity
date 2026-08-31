@@ -1,2 +1,7 @@
 .firebase/
 run_fb.bat
+.env
+.env.local
+node_modules/
+dist/
+*.log

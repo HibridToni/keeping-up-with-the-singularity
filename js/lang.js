@@ -80,6 +80,18 @@ const translations = {
     "count.summary_single": "Sažetak",
     "count.summary_plural": "Sažetka",
 
+    // Newsletter
+    "newsletter.section_title": "Budite u tijeku sa singularnošću",
+    "newsletter.section_desc": "Prijavite se na newsletter i primite obavijest sa sažetkom i poveznicom izravno u inbox čim objavimo novu analizu.",
+    "newsletter.input_placeholder": "Upišite vašu e-mail adresu...",
+    "newsletter.btn_subscribe": "Pretplati se",
+    "newsletter.btn_loading": "Prijava...",
+    "newsletter.success": "Uspješno ste prijavljeni! Obavijestit ćemo vas o svakom novom članku.",
+    "newsletter.already_subscribed": "Ova email adresa je već prijavljena na newsletter.",
+    "newsletter.invalid_email": "Molimo unesite valjanu e-mail adresu (npr. ime@domena.com).",
+    "newsletter.privacy_note": "Bez spama. Možete se odjaviti u bilo kojem trenutku.",
+    "newsletter.error": "Došlo je do greške prilikom prijave. Pokušajte ponovno.",
+
     // Footer
     "footer.desc": "Platforma inspirirana tehnološkim napretkom i eksponencijalnim tehnologijama, u pokušaju držanja koraka za istim",
     "footer.contact": "Kontakt:",
@@ -183,6 +195,18 @@ const translations = {
     "count.papers_zero": "0 Papers",
     "count.summary_single": "Summary",
     "count.summary_plural": "Summaries",
+
+    // Newsletter
+    "newsletter.section_title": "Keep Up with the Singularity",
+    "newsletter.section_desc": "Subscribe to our newsletter and receive summaries and links directly to your inbox whenever a new research paper or article is published.",
+    "newsletter.input_placeholder": "Enter your email address...",
+    "newsletter.btn_subscribe": "Subscribe",
+    "newsletter.btn_loading": "Subscribing...",
+    "newsletter.success": "Successfully subscribed! You will be notified whenever a new article is published.",
+    "newsletter.already_subscribed": "This email address is already subscribed to the newsletter.",
+    "newsletter.invalid_email": "Please enter a valid email address (e.g. name@domain.com).",
+    "newsletter.privacy_note": "No spam. You can unsubscribe at any time.",
+    "newsletter.error": "An error occurred while subscribing. Please try again.",
 
     // Footer
     "footer.desc": "A platform inspired by technological progress and exponential technologies, in an attempt to keep up with them",
