@@ -1,0 +1,30 @@
+name: Automatic Newsletter Dispatcher
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'articles.json'
+  workflow_dispatch:
+
+jobs:
+  notify-subscribers:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Dispatch Newsletter to Subscribers
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM || 'Keeping up with the singularity <onboarding@resend.dev>' }}
+          BASE_URL: 'https://keeping-up-singularity.web.app'
+        run: |
+          node scripts/notify-subscribers.js
