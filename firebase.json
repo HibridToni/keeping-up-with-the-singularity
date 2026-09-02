@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": ".",
+    "postdeploy": "node scripts/notify-subscribers.js",
     "ignore": [
       "firebase.json",
       "**/.*",

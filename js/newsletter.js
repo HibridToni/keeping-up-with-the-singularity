@@ -57,33 +57,23 @@
     };
 
     try {
-      // Check if document already exists
-      const checkRes = await fetch(url);
-      if (checkRes.ok) {
+      const createUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_CONFIG.projectId}/databases/${FIREBASE_CONFIG.databaseId}/documents/subscribers?documentId=${docId}&key=${FIREBASE_CONFIG.apiKey}`;
+      const createRes = await fetch(createUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      if (createRes.ok) {
+        return { success: true, alreadySubscribed: false };
+      }
+
+      if (createRes.status === 409) {
         return { success: true, alreadySubscribed: true };
       }
 
-      // If 404, create new subscriber document
-      if (checkRes.status === 404) {
-        const createUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_CONFIG.projectId}/databases/${FIREBASE_CONFIG.databaseId}/documents/subscribers?documentId=${docId}&key=${FIREBASE_CONFIG.apiKey}`;
-        const createRes = await fetch(createUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
-        });
-
-        if (createRes.ok) {
-          return { success: true, alreadySubscribed: false };
-        } else {
-          const errData = await createRes.json().catch(() => ({}));
-          console.warn('Firestore create response:', createRes.status, errData);
-          // Fallback to local storage persistence for offline/development resilience
-          saveSubscriberLocally(email, lang);
-          return { success: true, alreadySubscribed: false };
-        }
-      }
-
-      // Any other response fallback
+      const errData = await createRes.json().catch(() => ({}));
+      console.warn('Firestore create response:', createRes.status, errData);
       saveSubscriberLocally(email, lang);
       return { success: true, alreadySubscribed: false };
     } catch (err) {

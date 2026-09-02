@@ -5,3 +5,4 @@ run_fb.bat
 node_modules/
 dist/
 *.log
+scripts/preview-email.html

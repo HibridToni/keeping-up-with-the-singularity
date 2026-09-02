@@ -57,6 +57,7 @@ const EMAIL_FROM = process.env.EMAIL_FROM || 'Keeping up with the singularity <n
 // Parse CLI flags
 const args = process.argv.slice(2);
 const isDryRun = args.includes('--dry-run') || args.includes('-d');
+const isForce = args.includes('--force') || args.includes('-f');
 const testArg = args.find(a => a.startsWith('--test='));
 const testEmail = testArg ? testArg.split('=')[1] : null;
 const idArg = args.find(a => a.startsWith('--id='));
@@ -64,10 +65,47 @@ const targetArticleId = idArg ? idArg.split('=')[1] : null;
 const langArg = args.find(a => a.startsWith('--lang='));
 const forcedLang = langArg ? langArg.split('=')[1] : null;
 
-async function fetchSubscribersFromFirestore() {
-  const url = `https://firestore.googleapis.com/v1/projects/${FIREBASE_CONFIG.projectId}/databases/${FIREBASE_CONFIG.databaseId}/documents/subscribers?key=${FIREBASE_CONFIG.apiKey}&pageSize=1000`;
+const LAST_NOTIFIED_FILE = path.join(ROOT_DIR, 'scripts', '.last_notified.json');
+
+/**
+ * Attempts to retrieve an authenticated admin access token from Firebase CLI environment
+ * @returns {Promise<string|null>}
+ */
+async function getFirebaseAdminAccessToken() {
+  if (process.env.FIREBASE_ADMIN_TOKEN) {
+    return process.env.FIREBASE_ADMIN_TOKEN;
+  }
+
   try {
-    const res = await fetch(url);
+    const authModulePath = path.join(process.env.APPDATA || '', 'npm', 'node_modules', 'firebase-tools', 'lib', 'auth.js');
+    if (fs.existsSync(authModulePath)) {
+      const { createRequire } = await import('module');
+      const req = createRequire(import.meta.url);
+      const auth = req(authModulePath);
+      const account = auth.getGlobalDefaultAccount ? auth.getGlobalDefaultAccount() : null;
+      if (account && account.tokens && account.tokens.refresh_token) {
+        const tokens = await auth.getAccessToken(account.tokens.refresh_token, account.tokens.scopes || []);
+        if (tokens && tokens.access_token) {
+          return tokens.access_token;
+        }
+      }
+    }
+  } catch (err) {
+    // Non-fatal, fallback to standard key
+  }
+  return null;
+}
+
+async function fetchSubscribersFromFirestore() {
+  const adminToken = await getFirebaseAdminAccessToken();
+  const url = `https://firestore.googleapis.com/v1/projects/${FIREBASE_CONFIG.projectId}/databases/${FIREBASE_CONFIG.databaseId}/documents/subscribers?pageSize=1000${adminToken ? '' : `&key=${FIREBASE_CONFIG.apiKey}`}`;
+  const headers = {};
+  if (adminToken) {
+    headers['Authorization'] = `Bearer ${adminToken}`;
+  }
+
+  try {
+    const res = await fetch(url, { headers });
     if (!res.ok) {
       console.warn(`[Firestore] HTTP ${res.status}: ${res.statusText}`);
       return [];
@@ -177,6 +215,22 @@ async function main() {
   console.log(`   Date:     ${targetArticle.date || 'N/A'}`);
   console.log(`   URL:      ${BASE_URL}/article.html?id=${targetArticle.id}\n`);
 
+  // Check if article was already notified (only in auto mode without --force and without --test)
+  if (!testEmail && !isDryRun && !isForce) {
+    try {
+      if (fs.existsSync(LAST_NOTIFIED_FILE)) {
+        const lastNotifiedData = JSON.parse(fs.readFileSync(LAST_NOTIFIED_FILE, 'utf8'));
+        if (lastNotifiedData && lastNotifiedData.lastArticleId === targetArticle.id) {
+          console.log(`ℹ️  Article "${targetArticle.id}" was already notified to subscribers on ${lastNotifiedData.sentAt || 'an earlier run'}.`);
+          console.log('   Skipping automatic dispatch to avoid duplicates. (Use --force to override)\n');
+          return;
+        }
+      }
+    } catch (e) {
+      // Non-fatal, proceed
+    }
+  }
+
   // 3. Determine recipients
   let recipients = [];
   if (testEmail) {
@@ -275,6 +329,20 @@ async function main() {
   console.log('\n======================================================');
   console.log(`📊 Dispatch Complete: ${sentCount} sent, ${errorCount} errors`);
   console.log('======================================================\n');
+
+  if (sentCount > 0 && !testEmail && !isDryRun) {
+    try {
+      fs.writeFileSync(LAST_NOTIFIED_FILE, JSON.stringify({
+        lastArticleId: targetArticle.id,
+        articleTitle: targetArticle.title,
+        sentAt: new Date().toISOString(),
+        recipientsCount: sentCount
+      }, null, 2), 'utf8');
+      console.log(`💾 Recorded last notified article ID to: ${LAST_NOTIFIED_FILE}\n`);
+    } catch (e) {
+      console.warn('Could not record last notified state:', e.message);
+    }
+  }
 }
 
 main().catch(err => {
