@@ -19,5 +19,8 @@
     "newsletter"
   ],
   "author": "Keeping up with the singularity",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nodemailer": "^9.1.1"
+  }
 }

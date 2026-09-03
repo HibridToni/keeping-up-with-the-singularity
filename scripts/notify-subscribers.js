@@ -15,6 +15,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import nodemailer from 'nodemailer';
 import { generateArticleNewsletterEmail } from './email-template.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -179,6 +180,33 @@ async function sendEmailViaBrevo(apiKey, { to, subject, html, text }) {
   return await res.json();
 }
 
+let gmailTransporter = null;
+
+function getGmailTransporter(user, pass) {
+  if (!gmailTransporter) {
+    gmailTransporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user,
+        pass: pass.replace(/\s+/g, '') // remove spaces from Google app password
+      }
+    });
+  }
+  return gmailTransporter;
+}
+
+async function sendEmailViaGmail(user, pass, { to, subject, html, text }) {
+  const transporter = getGmailTransporter(user, pass);
+  const fromHeader = process.env.EMAIL_FROM || `Keeping up with the singularity <${user}>`;
+  return await transporter.sendMail({
+    from: fromHeader,
+    to,
+    subject,
+    html,
+    text
+  });
+}
+
 async function main() {
   console.log('\n======================================================');
   console.log('  KEEPING UP WITH THE SINGULARITY - NEWSLETTER ENGINE');
@@ -273,16 +301,15 @@ async function main() {
     return;
   }
 
-  // 5. Check email provider keys
+  const gmailUser = process.env.GMAIL_USER || process.env.SMTP_USER;
+  const gmailPass = process.env.GMAIL_APP_PASSWORD || process.env.SMTP_PASS;
   const resendKey = process.env.RESEND_API_KEY;
   const brevoKey = process.env.BREVO_API_KEY;
 
-  if (!resendKey && !brevoKey) {
-    console.warn('⚠️  No active email provider API key found in .env (RESEND_API_KEY or BREVO_API_KEY).');
-    console.warn('💡 To send live emails:');
-    console.warn('   1. Copy .env.example to .env');
-    console.warn('   2. Add your free Resend or Brevo API key');
-    console.warn('   3. Re-run: npm run notify\n');
+  const hasProvider = (gmailUser && gmailPass) || resendKey || brevoKey;
+  if (!hasProvider) {
+    console.warn('⚠️  No active email provider configured in .env.');
+    console.warn('💡 Configure GMAIL_USER & GMAIL_APP_PASSWORD (recommended), or RESEND_API_KEY / BREVO_API_KEY.\n');
     console.log('Running dry-run preview instead...\n');
 
     const previewHr = generateArticleNewsletterEmail(targetArticle, 'hr', BASE_URL);
@@ -291,6 +318,9 @@ async function main() {
     console.log(`💾 Saved HTML email preview to: ${previewFile}\n`);
     return;
   }
+
+  const activeProvider = (gmailUser && gmailPass) ? `Gmail SMTP (${gmailUser})` : resendKey ? 'Resend API' : 'Brevo API';
+  console.log(`📡 Using Email Provider: ${activeProvider}`);
 
   // 6. Send emails
   console.log('🚀 Dispatching emails...');
@@ -302,7 +332,14 @@ async function main() {
     const emailData = generateArticleNewsletterEmail(targetArticle, lang, BASE_URL, recipient.email);
 
     try {
-      if (resendKey) {
+      if (gmailUser && gmailPass) {
+        await sendEmailViaGmail(gmailUser, gmailPass, {
+          to: recipient.email,
+          subject: emailData.subject,
+          html: emailData.html,
+          text: emailData.text
+        });
+      } else if (resendKey) {
         await sendEmailViaResend(resendKey, {
           to: recipient.email,
           subject: emailData.subject,
