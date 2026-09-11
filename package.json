@@ -4,10 +4,11 @@
   "description": "Scientific Insights & Physics Journal - Web Publication and Newsletter Dispatcher",
   "type": "module",
   "scripts": {
+    "build": "node scripts/generate-static-pages.js",
     "notify": "node scripts/notify-subscribers.js",
     "notify:dry": "node scripts/notify-subscribers.js --dry-run",
     "notify:test": "node scripts/notify-subscribers.js --dry-run --test=test@example.com",
-    "deploy": ".\\run_fb.bat deploy"
+    "deploy": "npm run build && .\\run_fb.bat deploy"
   },
   "keywords": [
     "singularity",

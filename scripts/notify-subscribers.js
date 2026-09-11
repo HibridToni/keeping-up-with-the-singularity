@@ -241,7 +241,7 @@ async function main() {
   console.log(`   ID:       ${targetArticle.id}`);
   console.log(`   Category: ${targetArticle.category}`);
   console.log(`   Date:     ${targetArticle.date || 'N/A'}`);
-  console.log(`   URL:      ${BASE_URL}/article.html?id=${targetArticle.id}\n`);
+  console.log(`   URL:      ${BASE_URL}/articles/${targetArticle.id}.html\n`);
 
   // Check if article was already notified (only in auto mode without --force and without --test)
   if (!testEmail && !isDryRun && !isForce) {

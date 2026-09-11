@@ -12,7 +12,7 @@ export function generateArticleNewsletterEmail(article, lang = 'hr', baseUrl = '
   const category = (isEn && article.category_en) ? article.category_en : article.category;
   const readTime = (isEn && article.readTime_en) ? article.readTime_en : (article.readTime || '3 min čitanja');
   const summary = (isEn && article.summary_en) ? article.summary_en : (article.summary || article.excerpt || '');
-  const articleUrl = `${baseUrl.replace(/\/$/, '')}/article.html?id=${article.id}`;
+  const articleUrl = `${baseUrl.replace(/\/$/, '')}/articles/${article.id}.html`;
   
   const unsubscribeUrl = recipientEmail 
     ? `${baseUrl.replace(/\/$/, '')}/unsubscribe.html?email=${encodeURIComponent(recipientEmail)}`

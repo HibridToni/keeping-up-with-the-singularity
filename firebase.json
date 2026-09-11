@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": ".",
+    "predeploy": "node scripts/generate-static-pages.js",
     "postdeploy": "node scripts/notify-subscribers.js",
     "ignore": [
       "firebase.json",

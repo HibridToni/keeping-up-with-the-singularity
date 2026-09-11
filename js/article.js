@@ -53,7 +53,13 @@ async function loadArticleDetail() {
   if (!container) return;
 
   const urlParams = new URLSearchParams(window.location.search);
-  const articleId = urlParams.get('id');
+  let articleId = (typeof window !== 'undefined' && window.PRELOADED_ARTICLE_ID) ? window.PRELOADED_ARTICLE_ID : urlParams.get('id');
+  if (!articleId) {
+    const match = window.location.pathname.match(/\/articles\/([^\/\.]+)(?:\.html)?$/i);
+    if (match) {
+      articleId = decodeURIComponent(match[1]);
+    }
+  }
 
   const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
 
@@ -64,7 +70,8 @@ async function loadArticleDetail() {
   }
 
   try {
-    const response = await fetch('articles.json');
+    const jsonPath = window.location.pathname.includes('/articles/') ? '../articles.json' : 'articles.json';
+    const response = await fetch(jsonPath);
     if (!response.ok) {
       throw new Error(`Pogreška pri učitavanju: ${response.status} ${response.statusText}`);
     }
@@ -135,16 +142,33 @@ function renderArticleContent(container, article, allArticles = []) {
   const summaryText = article.excerpt || article.summary || title;
   updateOpenGraphMeta(article, title, summaryText, currentLang);
 
-  const coverHeroHTML = image ? `
+  const isInsideArticlesDir = window.location.pathname.includes('/articles/');
+  const homeUrl = isInsideArticlesDir ? '../index.html' : 'index.html';
+
+  let resolvedImage = image;
+  if (resolvedImage && isInsideArticlesDir && !resolvedImage.startsWith('http') && !resolvedImage.startsWith('/') && !resolvedImage.startsWith('../')) {
+    resolvedImage = `../${resolvedImage}`;
+  }
+
+  let resolvedVideo = (article.video && article.video.trim()) ? article.video.trim() : '';
+  if (resolvedVideo && isInsideArticlesDir && !resolvedVideo.startsWith('http') && !resolvedVideo.startsWith('/') && !resolvedVideo.startsWith('../')) {
+    resolvedVideo = `../${resolvedVideo}`;
+  }
+
+  if (isInsideArticlesDir && contentHTML) {
+    contentHTML = contentHTML.replace(/src="img\//g, 'src="../img/');
+  }
+
+  const coverHeroHTML = resolvedImage ? `
     <div class="article-cover-wrapper">
-      <img src="${escapeHTML(image)}" alt="${escapeHTML(title)}" class="article-cover-hero" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+      <img src="${escapeHTML(resolvedImage)}" alt="${escapeHTML(title)}" class="article-cover-hero" onerror="this.closest('.article-cover-wrapper').style.display='none'">
     </div>
   ` : '';
 
-  const videoHTML = (article.video && article.video.trim()) ? `
+  const videoHTML = (resolvedVideo && resolvedVideo.trim()) ? `
     <div class="article-video-container">
       <video controls preload="metadata">
-        <source src="${escapeHTML(article.video.trim())}" type="video/mp4">
+        <source src="${escapeHTML(resolvedVideo.trim())}" type="video/mp4">
         Vaš preglednik ne podržava HTML5 video element.
       </video>
     </div>
@@ -163,7 +187,7 @@ function renderArticleContent(container, article, allArticles = []) {
 
   container.innerHTML = `
     <!-- Link za povratak -->
-    <a href="index.html" class="back-link">${backLinkText}</a>
+    <a href="${homeUrl}" class="back-link">${backLinkText}</a>
 
     <!-- Zaglavlje rada -->
     <header class="reader-header">
@@ -300,7 +324,7 @@ function renderArticleContent(container, article, allArticles = []) {
 
     <!-- Fusnota i povratak -->
     <footer class="reader-footer">
-      <a href="index.html" class="btn-read-article">${bottomBtnText}</a>
+      <a href="${homeUrl}" class="btn-read-article">${bottomBtnText}</a>
     </footer>
   `;
 
@@ -386,12 +410,16 @@ function renderRelatedArticles(currentArticle, allArticles, currentLang) {
       : (item.excerpt || item.summary || '');
     const rawContent = (currentLang === 'en' && item.content_en) ? item.content_en : (item.content || excerpt);
     const readTime = calculateReadingTime(rawContent, currentLang);
-    const itemUrl = `article.html?id=${item.id}`;
-    const image = item.image || '';
+    const isInsideArticlesDir = window.location.pathname.includes('/articles/');
+    const itemUrl = isInsideArticlesDir ? `${encodeURIComponent(item.id)}.html` : `articles/${encodeURIComponent(item.id)}.html`;
+    let relatedImage = item.image || '';
+    if (relatedImage && isInsideArticlesDir && !relatedImage.startsWith('http') && !relatedImage.startsWith('/') && !relatedImage.startsWith('../')) {
+      relatedImage = `../${relatedImage}`;
+    }
 
-    const mediaHTML = image ? `
+    const mediaHTML = relatedImage ? `
       <div class="related-card-media">
-        <img src="${escapeHTML(image)}" alt="${escapeHTML(title)}" class="related-card-thumb" onerror="this.parentElement.style.display='none'">
+        <img src="${escapeHTML(relatedImage)}" alt="${escapeHTML(title)}" class="related-card-thumb" onerror="this.parentElement.style.display='none'">
       </div>
     ` : '';
 

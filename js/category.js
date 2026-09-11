@@ -293,7 +293,7 @@ function createArticleCard(article) {
   const readTime = calculateReadingTime(rawContent, currentLang);
 
   const doi = article.doi || '';
-  const articleUrl = `article.html?id=${article.id}`;
+  const articleUrl = `articles/${encodeURIComponent(article.id)}.html`;
   const image = article.image || '';
   const readBtnText = currentLang === 'en' ? 'Read article &rarr;' : 'Pročitaj rad &rarr;';
   const readBtnAria = currentLang === 'en' ? `Read article: ${title}` : `Pročitaj rad: ${title}`;
