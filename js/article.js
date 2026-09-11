@@ -8,6 +8,7 @@ let cachedAllArticles = [];
 let currentUtterance = null;
 let ttsSpeed = 1.0;
 let ttsState = 'stopped'; // 'stopped' | 'speaking' | 'paused'
+let currentTOCScrollspyObserver = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   loadArticleDetail();
@@ -251,8 +252,11 @@ function renderArticleContent(container, article, allArticles = []) {
       </div>
     </div>
 
+    <!-- Table of Contents (Sadržaj rada) Container -->
+    <div id="article-toc-container" class="article-toc-wrapper"></div>
+
     <!-- Puni HTML Sadržaj Članka -->
-    <article class="reader-body">
+    <article class="reader-body" id="reader-body">
       ${contentHTML}
     </article>
 
@@ -306,6 +310,9 @@ function renderArticleContent(container, article, allArticles = []) {
 
   // Render KaTeX math formulas if present
   renderMathInContainer(container);
+
+  // Initialize Table of Contents (TOC)
+  initTableOfContents(currentLang);
 }
 
 /**
@@ -689,15 +696,16 @@ function cleanArticleText(title, rawContent) {
 }
 
 /**
- * Retrieves localized text for TTS UI strings
+ * Retrieves localized text for UI strings
  */
-function getTTSTranslation(key, fallback) {
+function getTranslation(key, fallback) {
   const lang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
   if (typeof translations !== 'undefined' && translations[lang] && translations[lang][key]) {
     return translations[lang][key];
   }
   return fallback;
 }
+const getTTSTranslation = getTranslation;
 
 /**
  * Initializes listeners for Audio Player Bar buttons and controls
@@ -874,3 +882,208 @@ function updateTTSUIState(state) {
     playBtn.setAttribute('title', getTTSTranslation('tts.play', 'Pokreni čitanje'));
   }
 }
+
+/**
+ * Generates and initializes the Table of Contents (TOC) for the article
+ * @param {string} currentLang
+ */
+function initTableOfContents(currentLang) {
+  const tocContainer = document.getElementById('article-toc-container');
+  const readerBody = document.getElementById('reader-body');
+  if (!tocContainer || !readerBody) return;
+
+  // Disconnect any existing scrollspy observer
+  if (currentTOCScrollspyObserver) {
+    currentTOCScrollspyObserver.disconnect();
+    currentTOCScrollspyObserver = null;
+  }
+
+  // Find all headings within the article content
+  const headings = Array.from(readerBody.querySelectorAll('h2, h3, h4'));
+
+  // If there are fewer than 2 headings, don't show TOC
+  if (headings.length < 2) {
+    tocContainer.innerHTML = '';
+    return;
+  }
+
+  const usedIds = new Set();
+  const tocItems = [];
+
+  headings.forEach((heading, index) => {
+    let id = heading.id;
+    if (!id || !id.trim()) {
+      const rawText = heading.textContent.trim();
+      let slug = rawText
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\u00C0-\u024F\u1E00-\u1EFF-]+/g, '')
+        .replace(/--+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      if (!slug) slug = `section-${index + 1}`;
+      let finalId = slug;
+      let counter = 2;
+      while (usedIds.has(finalId) || document.getElementById(finalId)) {
+        finalId = `${slug}-${counter++}`;
+      }
+      heading.id = finalId;
+      id = finalId;
+    }
+    usedIds.add(id);
+
+    const level = heading.tagName.toLowerCase();
+    tocItems.push({
+      id,
+      text: heading.textContent.trim(),
+      level
+    });
+  });
+
+  const title = getTranslation('toc.title', currentLang === 'en' ? 'Table of Contents' : 'Sadržaj rada');
+  const toggleHideText = getTranslation('toc.toggle_hide', currentLang === 'en' ? 'Hide' : 'Sakrij');
+  const toggleShowText = getTranslation('toc.toggle_show', currentLang === 'en' ? 'Show' : 'Prikaži');
+  const ariaLabel = getTranslation('toc.aria_label', currentLang === 'en' ? 'Table of contents' : 'Sadržaj članka');
+
+  const itemsHTML = tocItems.map(item => {
+    const isSub = item.level === 'h4' ? 'toc-sub-item' : 'toc-main-item';
+    return `
+      <li class="article-toc-item ${isSub}" data-level="${item.level}">
+        <a href="#${escapeHTML(item.id)}" class="article-toc-link" data-toc-target="${escapeHTML(item.id)}">
+          <span class="toc-link-text">${escapeHTML(item.text)}</span>
+        </a>
+      </li>
+    `;
+  }).join('');
+
+  tocContainer.innerHTML = `
+    <nav class="article-toc-card" aria-label="${escapeHTML(ariaLabel)}">
+      <div class="article-toc-header">
+        <div class="article-toc-title-group">
+          <svg class="article-toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h2 class="article-toc-title">${escapeHTML(title)}</h2>
+          <span class="article-toc-badge">${tocItems.length}</span>
+        </div>
+        <button type="button" class="article-toc-toggle-btn" id="toc-toggle-btn" aria-expanded="true" aria-controls="article-toc-body" aria-label="${escapeHTML(toggleHideText)}">
+          <span class="toc-toggle-text">${escapeHTML(toggleHideText)}</span>
+          <svg class="toc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="article-toc-body" id="article-toc-body">
+        <ol class="article-toc-list">
+          ${itemsHTML}
+        </ol>
+      </div>
+    </nav>
+  `;
+
+  // Toggle Collapse/Expand listener
+  const toggleBtn = document.getElementById('toc-toggle-btn');
+  const tocCard = tocContainer.querySelector('.article-toc-card');
+  const toggleText = toggleBtn ? toggleBtn.querySelector('.toc-toggle-text') : null;
+
+  if (toggleBtn && tocCard) {
+    toggleBtn.addEventListener('click', () => {
+      const isCollapsed = tocCard.classList.toggle('collapsed');
+      toggleBtn.setAttribute('aria-expanded', !isCollapsed);
+      if (toggleText) {
+        toggleText.textContent = isCollapsed ? toggleShowText : toggleHideText;
+      }
+      toggleBtn.setAttribute('aria-label', isCollapsed ? toggleShowText : toggleHideText);
+    });
+  }
+
+  // Smooth Scroll Click Handlers
+  const tocLinks = tocContainer.querySelectorAll('.article-toc-link');
+  tocLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('data-toc-target');
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (history.pushState) {
+          history.pushState(null, null, `#${targetId}`);
+        } else {
+          location.hash = targetId;
+        }
+      }
+    });
+  });
+
+  // Setup Scrollspy
+  setupTOCScrollspy(headings, tocLinks);
+
+  // If page loaded with a hash in URL, smooth scroll to it
+  if (window.location.hash) {
+    const hashId = decodeURIComponent(window.location.hash.substring(1));
+    const targetEl = document.getElementById(hashId);
+    if (targetEl) {
+      setTimeout(() => {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+  }
+}
+
+/**
+ * Sets up IntersectionObserver for highlighting the active TOC link while scrolling
+ * @param {Array<HTMLElement>} headings
+ * @param {NodeList} tocLinks
+ */
+function setupTOCScrollspy(headings, tocLinks) {
+  if (!window.IntersectionObserver || headings.length === 0 || tocLinks.length === 0) return;
+
+  const visibleHeadings = new Map();
+
+  currentTOCScrollspyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      visibleHeadings.set(entry.target.id, entry.isIntersecting);
+    });
+
+    // Find the first heading that is currently intersecting
+    let activeId = null;
+    for (const h of headings) {
+      if (visibleHeadings.get(h.id)) {
+        activeId = h.id;
+        break;
+      }
+    }
+
+    // If none are currently intersecting, check which one was last passed above the viewport
+    if (!activeId) {
+      const scrollY = window.scrollY || window.pageYOffset;
+      for (let i = headings.length - 1; i >= 0; i--) {
+        const top = headings[i].getBoundingClientRect().top + scrollY;
+        if (scrollY >= top - 120) {
+          activeId = headings[i].id;
+          break;
+        }
+      }
+    }
+
+    if (activeId) {
+      tocLinks.forEach(link => {
+        if (link.getAttribute('data-toc-target') === activeId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+  }, {
+    rootMargin: '-70px 0px -60% 0px',
+    threshold: 0
+  });
+
+  headings.forEach(h => currentTOCScrollspyObserver.observe(h));
+}
+

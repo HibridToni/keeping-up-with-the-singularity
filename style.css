@@ -922,6 +922,12 @@ a {
   color: var(--text-primary);
 }
 
+.reader-body h2,
+.reader-body h3,
+.reader-body h4 {
+  scroll-margin-top: calc(var(--nav-height) + 24px);
+}
+
 .reader-body h2 {
   font-size: 1.45rem;
   font-weight: 700;
@@ -2628,5 +2634,182 @@ video:-moz-full-screen {
     padding: 12px 20px;
   }
 }
+
+/* ==========================================================================
+   Article Table of Contents (TOC) Styles
+   ========================================================================== */
+
+.article-toc-wrapper {
+  margin-bottom: 32px;
+}
+
+.article-toc-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-border-radius, 8px);
+  padding: 14px 18px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.article-toc-card:hover {
+  border-color: var(--border-color-hover);
+}
+
+.article-toc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  user-select: none;
+}
+
+.article-toc-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.article-toc-icon {
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+.article-toc-title {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.article-toc-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background-color: var(--bg-secondary);
+  color: var(--accent-cyan);
+  border: 1px solid var(--border-color);
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.article-toc-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.article-toc-toggle-btn:hover {
+  color: var(--accent-cyan);
+  background-color: var(--accent-cyan-glow);
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.toc-chevron {
+  transition: transform 0.25s ease;
+}
+
+.article-toc-card.collapsed .toc-chevron {
+  transform: rotate(-90deg);
+}
+
+.article-toc-body {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color);
+  max-height: 520px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, margin-top 0.25s ease, padding-top 0.25s ease;
+}
+
+.article-toc-card.collapsed .article-toc-body {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+  overflow: hidden;
+}
+
+.article-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.article-toc-item {
+  position: relative;
+  line-height: 1.4;
+}
+
+.article-toc-item.toc-sub-item {
+  padding-left: 20px;
+}
+
+.article-toc-item.toc-sub-item::before {
+  content: "—";
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.article-toc-link {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-family: var(--font-sans);
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.article-toc-link:hover {
+  color: var(--accent-cyan);
+  background-color: var(--accent-cyan-glow);
+  transform: translateX(4px);
+}
+
+.article-toc-link.active {
+  color: var(--accent-cyan);
+  font-weight: 600;
+  background-color: var(--accent-cyan-glow);
+  border-left: 2px solid var(--accent-cyan);
+  padding-left: 10px;
+}
+
+@media (max-width: 640px) {
+  .article-toc-card {
+    padding: 12px 14px;
+  }
+  .article-toc-item.toc-sub-item {
+    padding-left: 14px;
+  }
+  .article-toc-link {
+    font-size: 0.84rem;
+  }
+}
+
 
 

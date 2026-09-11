@@ -72,8 +72,15 @@ const translations = {
     "tts.paused": "Pauzirano",
     "tts.speed": "Brzina:",
     "tts.play": "Pokreni čitanje",
-    "tts.pause": "Pauziraj čitanje",
-    "tts.stop": "Zaustavi čitanje",
+    "tts.pause": "Pauziraj",
+    "tts.stop": "Zaustavi",
+    "tts.speed_label": "Brzina govora",
+
+    // Table of Contents (Sadržaj rada)
+    "toc.title": "Sadržaj rada",
+    "toc.toggle_hide": "Sakrij",
+    "toc.toggle_show": "Prikaži",
+    "toc.aria_label": "Sadržaj članka",
 
     // Count Badges
     "count.papers_zero": "0 Radova",
@@ -203,6 +210,12 @@ const translations = {
     "tts.play": "Play reading",
     "tts.pause": "Pause reading",
     "tts.stop": "Stop reading",
+
+    // Table of Contents
+    "toc.title": "Table of Contents",
+    "toc.toggle_hide": "Hide",
+    "toc.toggle_show": "Show",
+    "toc.aria_label": "Table of contents",
 
     // Count Badges
     "count.papers_zero": "0 Papers",
