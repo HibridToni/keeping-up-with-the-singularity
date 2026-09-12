@@ -13,9 +13,13 @@ let currentTOCScrollspyObserver = null;
 document.addEventListener('DOMContentLoaded', () => {
   loadArticleDetail();
   setupResponsiveNav();
+  setupReadingProgressBar();
+  setupFloatingReaderToolbar(typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr');
 
   window.addEventListener('languageChanged', () => {
     stopSpeechSynthesis();
+    const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+    setupFloatingReaderToolbar(currentLang);
     if (cachedArticle) {
       const container = document.getElementById('article-reader-container');
       if (container) {
@@ -337,6 +341,10 @@ function renderArticleContent(container, article, allArticles = []) {
 
   // Initialize Table of Contents (TOC)
   initTableOfContents(currentLang);
+
+  // Setup / update Reading Progress Bar & Floating Toolbar
+  setupReadingProgressBar();
+  setupFloatingReaderToolbar(currentLang);
 }
 
 /**
@@ -1114,4 +1122,216 @@ function setupTOCScrollspy(headings, tocLinks) {
 
   headings.forEach(h => currentTOCScrollspyObserver.observe(h));
 }
+
+/* ==========================================================================
+   Reading Progress Bar & Floating Toolbar Controllers
+   ========================================================================== */
+
+let isProgressBarTicking = false;
+let isToolbarTicking = false;
+
+const FONT_SIZES = [
+  { id: 'normal', size: '1.05rem', label: 'Aa' },
+  { id: 'large', size: '1.18rem', label: 'A+' },
+  { id: 'xlarge', size: '1.30rem', label: 'A++' }
+];
+let currentFontSizeIndex = 0;
+
+/**
+ * Initializes saved font size preference from localStorage
+ */
+function initReaderFontSize() {
+  try {
+    const saved = localStorage.getItem('reader-font-size');
+    if (saved) {
+      const foundIdx = FONT_SIZES.findIndex(f => f.id === saved);
+      if (foundIdx !== -1) {
+        currentFontSizeIndex = foundIdx;
+      }
+    }
+    applyReaderFontSize();
+  } catch (e) {
+    // localStorage might be unavailable in some private contexts
+  }
+}
+
+/**
+ * Applies the current font size to the reader body
+ */
+function applyReaderFontSize() {
+  const current = FONT_SIZES[currentFontSizeIndex];
+  document.documentElement.style.setProperty('--reader-font-size', current.size);
+  const indicator = document.getElementById('floating-font-indicator');
+  if (indicator) {
+    indicator.textContent = current.label;
+  }
+  try {
+    localStorage.setItem('reader-font-size', current.id);
+  } catch (e) {}
+}
+
+/**
+ * Cycles through available font sizes (Standard -> Large -> Extra Large -> Standard)
+ */
+function cycleReaderFontSize() {
+  currentFontSizeIndex = (currentFontSizeIndex + 1) % FONT_SIZES.length;
+  applyReaderFontSize();
+}
+
+/**
+ * Sets up and manages the reading progress bar at the bottom of the navigation bar
+ */
+function setupReadingProgressBar() {
+  const progressBar = document.getElementById('reading-progress-bar');
+  if (!progressBar) return;
+
+  const updateProgress = () => {
+    const readerBody = document.getElementById('reader-body');
+    if (!readerBody) {
+      progressBar.style.width = '0%';
+      isProgressBarTicking = false;
+      return;
+    }
+
+    const rect = readerBody.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const bodyHeight = readerBody.offsetHeight;
+    const navHeight = 64;
+
+    const startOffset = rect.top - navHeight;
+    const totalDistance = bodyHeight - (windowHeight - navHeight);
+
+    if (totalDistance <= 0) {
+      progressBar.style.width = '100%';
+      progressBar.setAttribute('aria-valuenow', 100);
+      isProgressBarTicking = false;
+      return;
+    }
+
+    let progress = (-startOffset / totalDistance) * 100;
+    progress = Math.max(0, Math.min(100, progress));
+
+    progressBar.style.width = `${progress.toFixed(1)}%`;
+    progressBar.setAttribute('aria-valuenow', Math.round(progress));
+
+    isProgressBarTicking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!isProgressBarTicking) {
+      window.requestAnimationFrame(updateProgress);
+      isProgressBarTicking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    if (!isProgressBarTicking) {
+      window.requestAnimationFrame(updateProgress);
+      isProgressBarTicking = true;
+    }
+  }, { passive: true });
+
+  updateProgress();
+}
+
+/**
+ * Sets up the floating quick navigation toolbar (Scroll-to-top, TOC Jump, Font Size)
+ * @param {string} [currentLang='hr']
+ */
+function setupFloatingReaderToolbar(currentLang = 'hr') {
+  const toolbar = document.getElementById('reader-floating-toolbar');
+  const topBtn = document.getElementById('floating-top-btn');
+  const tocBtn = document.getElementById('floating-toc-btn');
+  const fontBtn = document.getElementById('floating-font-btn');
+
+  if (!toolbar) return;
+
+  // Localized tooltips and aria-labels
+  const topText = getTranslation('reader.back_to_top', currentLang === 'en' ? 'Back to top' : 'Vrh stranice');
+  const tocText = getTranslation('reader.toc_jump', currentLang === 'en' ? 'Table of Contents' : 'Sadržaj rada');
+  const fontText = getTranslation('reader.font_size', currentLang === 'en' ? 'Text size' : 'Veličina teksta');
+  const progressAria = getTranslation('reader.progress_aria', currentLang === 'en' ? 'Reading progress' : 'Napredak čitanja');
+
+  const progressBar = document.getElementById('reading-progress-bar');
+  if (progressBar) {
+    progressBar.setAttribute('aria-label', progressAria);
+  }
+
+  if (topBtn) {
+    topBtn.setAttribute('aria-label', topText);
+    const tip = document.getElementById('floating-top-tooltip');
+    if (tip) tip.textContent = topText;
+  }
+  if (tocBtn) {
+    tocBtn.setAttribute('aria-label', tocText);
+    const tip = document.getElementById('floating-toc-tooltip');
+    if (tip) tip.textContent = tocText;
+  }
+  if (fontBtn) {
+    fontBtn.setAttribute('aria-label', fontText);
+    const tip = document.getElementById('floating-font-tooltip');
+    if (tip) tip.textContent = fontText;
+  }
+
+  // Scroll listener for showing/hiding floating toolbar
+  const checkToolbarVisibility = () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+    if (scrollY > 350) {
+      toolbar.classList.add('visible');
+    } else {
+      toolbar.classList.remove('visible');
+    }
+    isToolbarTicking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!isToolbarTicking) {
+      window.requestAnimationFrame(checkToolbarVisibility);
+      isToolbarTicking = true;
+    }
+  }, { passive: true });
+
+  checkToolbarVisibility();
+
+  // Scroll to top click action
+  if (topBtn) {
+    topBtn.onclick = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+  }
+
+  // Jump to Table of Contents click action
+  if (tocBtn) {
+    tocBtn.onclick = () => {
+      const tocContainer = document.getElementById('article-toc-container');
+      if (tocContainer) {
+        const tocCard = tocContainer.querySelector('.article-toc-card');
+        const toggleBtn = document.getElementById('toc-toggle-btn');
+        if (tocCard && tocCard.classList.contains('collapsed')) {
+          tocCard.classList.remove('collapsed');
+          if (toggleBtn) {
+            toggleBtn.setAttribute('aria-expanded', 'true');
+            const toggleText = toggleBtn.querySelector('.toc-toggle-text');
+            if (toggleText) {
+              toggleText.textContent = getTranslation('toc.toggle_hide', currentLang === 'en' ? 'Hide' : 'Sakrij');
+            }
+          }
+        }
+        tocContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+  }
+
+  // Font size toggle click action
+  if (fontBtn) {
+    fontBtn.onclick = () => {
+      cycleReaderFontSize();
+    };
+  }
+
+  initReaderFontSize();
+}
+
 

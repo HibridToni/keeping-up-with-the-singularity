@@ -911,9 +911,10 @@ a {
 }
 
 .reader-body {
-  font-size: 1.05rem;
+  font-size: var(--reader-font-size, 1.05rem);
   line-height: 1.8;
   color: var(--text-primary);
+  transition: font-size 0.2s ease;
 }
 
 .reader-body p {
@@ -2810,6 +2811,132 @@ video:-moz-full-screen {
     font-size: 0.84rem;
   }
 }
+
+/* ==========================================================================
+   Reading Progress Bar & Floating Toolbar Styles
+   ========================================================================== */
+
+.reading-progress-bar {
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-cyan), #818cf8);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+  z-index: 1001;
+  pointer-events: none;
+  transition: width 0.08s ease-out;
+}
+
+.reader-floating-toolbar {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 990;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, border-color var(--transition-fast);
+}
+
+.reader-floating-toolbar.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.reader-floating-toolbar:hover {
+  border-color: var(--border-color-hover);
+}
+
+.floating-btn {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0;
+}
+
+.floating-btn:hover {
+  color: var(--accent-cyan);
+  background-color: var(--accent-cyan-glow);
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: scale(1.08);
+}
+
+.floating-btn:active {
+  transform: scale(0.95);
+}
+
+.floating-btn-font {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Tooltip for floating buttons */
+.floating-tooltip {
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.floating-btn:hover .floating-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(-2px);
+}
+
+@media (max-width: 640px) {
+  .reader-floating-toolbar {
+    right: 16px;
+    bottom: 16px;
+    gap: 6px;
+    padding: 5px;
+  }
+  .floating-btn {
+    width: 34px;
+    height: 34px;
+  }
+  .floating-tooltip {
+    display: none;
+  }
+}
+
 
 
 

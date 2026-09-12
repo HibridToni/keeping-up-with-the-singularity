@@ -82,6 +82,12 @@ const translations = {
     "toc.toggle_show": "Prikaži",
     "toc.aria_label": "Sadržaj članka",
 
+    // Reading Experience & Floating Toolbar
+    "reader.progress_aria": "Napredak čitanja",
+    "reader.back_to_top": "Vrh stranice",
+    "reader.toc_jump": "Sadržaj rada",
+    "reader.font_size": "Veličina teksta",
+
     // Count Badges
     "count.papers_zero": "0 Radova",
     "count.summary_single": "Sažetak",
@@ -216,6 +222,12 @@ const translations = {
     "toc.toggle_hide": "Hide",
     "toc.toggle_show": "Show",
     "toc.aria_label": "Table of contents",
+
+    // Reading Experience & Floating Toolbar
+    "reader.progress_aria": "Reading progress",
+    "reader.back_to_top": "Back to top",
+    "reader.toc_jump": "Table of Contents",
+    "reader.font_size": "Text size",
 
     // Count Badges
     "count.papers_zero": "0 Papers",
