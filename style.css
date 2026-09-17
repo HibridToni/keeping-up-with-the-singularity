@@ -2937,6 +2937,136 @@ video:-moz-full-screen {
   }
 }
 
+/* ==========================================================================
+   Scientific Timeline Component
+   ========================================================================== */
+.timeline-container {
+  position: relative;
+  margin: 32px 0 40px;
+  padding-left: 28px;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent-cyan), rgba(56, 189, 248, 0.25) 85%, transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  top: 14px;
+  left: -28px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--accent-cyan);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.timeline-item:hover .timeline-marker {
+  transform: scale(1.2);
+  background: var(--accent-cyan);
+}
+
+.timeline-item-active .timeline-marker {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+}
+
+.timeline-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-border-radius);
+  padding: 16px 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.timeline-content:hover {
+  border-color: var(--border-color-hover);
+  transform: translateX(3px);
+}
+
+.timeline-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.timeline-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.timeline-author {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.timeline-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Status Badges for Tables & Matrices */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-pill-open {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.status-pill-review {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+[data-theme="light"] .status-pill-open {
+  background: #fef2f2;
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+
+[data-theme="light"] .status-pill-review {
+  background: #fffbeb;
+  color: #d97706;
+  border-color: #fcd34d;
+}
+
 
 
 

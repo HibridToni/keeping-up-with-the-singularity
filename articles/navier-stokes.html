@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get('id');
+      if (id) {
+        window.location.replace('articles/' + encodeURIComponent(id) + '.html' + (window.location.hash || ''));
+      }
+    })();
+  </script>
+    <title>Navier–Stokes - Keeping up with the singularity</title>
+  <meta name="description" content="Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.">
+  <meta name="author" content="Keeping up with the singularity">
+
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Keeping up with the singularity">
+  <meta property="og:title" content="Navier–Stokes">
+  <meta property="og:description" content="Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.">
+  <meta property="og:image" content="https://keeping-up-singularity.web.app/img/Navier Stokes.jpg">
+  <meta property="og:image:alt" content="Navier–Stokes">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://keeping-up-singularity.web.app/articles/navier-stokes.html">
+  <meta property="og:locale" content="hr_HR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="article:section" content="AI i tehnologija">
+  <meta property="article:published_time" content="17. rujna 2026.">
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Navier–Stokes">
+  <meta name="twitter:description" content="Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.">
+  <meta name="twitter:image" content="https://keeping-up-singularity.web.app/img/Navier Stokes.jpg">
+  <meta name="twitter:image:alt" content="Navier–Stokes">
+
+  <!-- Canonical Link -->
+  <link rel="canonical" href="https://keeping-up-singularity.web.app/articles/navier-stokes.html">
+
+  <!-- Schema.org JSON-LD Structured Data for Crawlers & Rich Search Results -->
+  <script type="application/ld+json" id="jsonld-article-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Navier–Stokes",
+    "description": "Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.",
+    "image": "https://keeping-up-singularity.web.app/img/Navier Stokes.jpg",
+    "url": "https://keeping-up-singularity.web.app/articles/navier-stokes.html",
+    "datePublished": "17. rujna 2026.",
+    "articleSection": "AI i tehnologija",
+    "inLanguage": "hr",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://keeping-up-singularity.web.app/articles/navier-stokes.html"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Keeping up with the singularity",
+      "url": "https://keeping-up-singularity.web.app/o-autoru.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Keeping up with the singularity",
+      "url": "https://keeping-up-singularity.web.app",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://keeping-up-singularity.web.app/img/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <!-- PWA & Mobile Web App Meta -->
+  <meta name="theme-color" content="#030712">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Singularity">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="apple-touch-icon" href="../img/logo.png">
+
+  <link rel="stylesheet" href="../style.css?v=20260911_1">
+  <!-- KaTeX for math formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/theme.js?v=20260911_1"></script>
+  <script src="../js/lang.js?v=20260911_1"></script>
+  <script src="../js/pwa.js"></script>
+</head>
+<body>
+
+  <!-- FIKSNA NAVIGACIJSKA TRAKA -->
+  <header>
+    <nav class="navbar" aria-label="Glavna navigacija">
+      <div class="nav-container">
+        <a href="../index.html" class="nav-brand">
+          <img src="../img/logo.png" alt="Horizont Događaja Logo" class="site-logo">
+          <span class="brand-title">Keeping up with the singularity</span>
+          <span class="brand-subtitle">PHYSICS &amp; TECH JOURNAL</span>
+        </a>
+
+        <!-- Hamburger Toggle za mobilne uređaje -->
+        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Otvori navigacijski izbornik" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="../index.html" class="nav-link" id="nav-pocetna" data-i18n="nav.home">Početna</a></li>
+          <li><a href="../category.html?cat=ai-tehnologija" class="nav-link" id="nav-ai" data-i18n="nav.ai">AI i tehnologija</a></li>
+          <li><a href="../category.html?cat=longevity" class="nav-link" id="nav-longevity" data-i18n="nav.longevity">Longevity</a></li>
+          <!-- <li><a href="../o-autoru.html" class="nav-link" id="nav-autor" data-i18n="nav.author">O autoru</a></li> -->
+          <li><button id="lang-toggle" class="lang-btn" aria-label="Promijeni jezik">ENG</button></li>
+          <li><button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">🌓</button></li>
+        </ul>
+      </div>
+      <!-- Reading Progress Bar -->
+      <div id="reading-progress-bar" class="reading-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Napredak čitanja"></div>
+    </nav>
+  </header>
+
+  <!-- GLAVNI SPREMNIK - CENTRIRANI STUPAC ZA ČITANJE (max 800px) -->
+  <main class="main-container">
+    <div class="article-reader-container" id="article-reader-container">
+      <div class="loading-state">
+        <p data-i18n="article.loading">Učitavanje sadržaja rada...</p>
+      </div>
+    </div>
+
+    <!-- Newsletter Subscription Section -->
+    <section class="newsletter-section" aria-labelledby="newsletter-title">
+      <div class="newsletter-card">
+        <div class="newsletter-content">
+          <div class="newsletter-info">
+            <span class="newsletter-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              Newsletter
+            </span>
+            <h2 id="newsletter-title" class="newsletter-title" data-i18n="newsletter.section_title">Budite u tijeku sa singularnošću</h2>
+            <p class="newsletter-desc" data-i18n="newsletter.section_desc">
+              Prijavite se na newsletter i primite obavijest sa sažetkom i poveznicom izravno u inbox čim objavimo novu analizu.
+            </p>
+          </div>
+          <div class="newsletter-form-wrapper">
+            <form class="newsletter-form" id="newsletter-form" novalidate>
+              <div class="newsletter-input-wrap">
+                <svg class="newsletter-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <input type="email" class="newsletter-input" placeholder="Upišite vašu e-mail adresu..." data-i18n-placeholder="newsletter.input_placeholder" aria-label="E-mail adresa" required autocomplete="email">
+              </div>
+              <button type="submit" class="newsletter-submit-btn" data-i18n="newsletter.btn_subscribe">Pretplati se</button>
+            </form>
+            <div class="newsletter-feedback" aria-live="polite"></div>
+            <p class="newsletter-privacy">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span data-i18n="newsletter.privacy_note">Bez spama. Možete se odjaviti u bilo kojem trenutku.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating Reader Quick Navigation Toolbar -->
+    <div id="reader-floating-toolbar" class="reader-floating-toolbar" aria-label="Brza navigacija">
+      <!-- Brzi skok na Sadržaj (TOC) -->
+      <button type="button" id="floating-toc-btn" class="floating-btn" aria-label="Sadržaj rada">
+        <span class="floating-tooltip" id="floating-toc-tooltip">Sadržaj rada</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="8" y1="6" x2="21" y2="6"></line>
+          <line x1="8" y1="12" x2="21" y2="12"></line>
+          <line x1="8" y1="18" x2="21" y2="18"></line>
+          <line x1="3" y1="6" x2="3.01" y2="6"></line>
+          <line x1="3" y1="12" x2="3.01" y2="12"></line>
+          <line x1="3" y1="18" x2="3.01" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Promjena veličine teksta -->
+      <button type="button" id="floating-font-btn" class="floating-btn floating-btn-font" aria-label="Veličina teksta">
+        <span class="floating-tooltip" id="floating-font-tooltip">Veličina teksta</span>
+        <span id="floating-font-indicator">Aa</span>
+      </button>
+
+      <!-- Povratak na vrh -->
+      <button type="button" id="floating-top-btn" class="floating-btn" aria-label="Vrh stranice">
+        <span class="floating-tooltip" id="floating-top-tooltip">Vrh stranice</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
+    </div>
+  </main>
+
+  <!-- PODNOŽJE (FOOTER) -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">Keeping up with the singularity</div>
+        <p class="footer-desc" data-i18n="footer.desc">
+          Platforma inspirirana tehnološkim napretkom i eksponencijalnim tehnologijama, u pokušaju držanja koraka za istim
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3 class="footer-heading" data-i18n="footer.podcasts">Podcasti &amp; Mediji</h3>
+        <ul class="footer-links">
+          <li><a href="https://www.youtube.com/results?search_query=moonshots+with+peter+diamandis" target="_blank" rel="noopener noreferrer" id="link-moonshot" data-i18n="footer.podcast_moonshot">Moonshot Podcast</a></li>
+          <li><a href="https://allin.com/" target="_blank" rel="noopener noreferrer" id="link-allin" data-i18n="footer.podcast_allin">All-In Podcast</a></li>
+          <li><a href="https://www.youtube.com/@TwoMinutePapers" target="_blank" rel="noopener noreferrer" id="link-twominute" data-i18n="footer.podcast_twominute">Two Minute Papers</a></li>
+          <li><a href="https://www.youtube.com/@Alex.kantrowitz" target="_blank" rel="noopener noreferrer" id="link-kantrowitz" data-i18n="footer.podcast_kantrowitz">Alex Kantrowitz</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3 class="footer-heading" data-i18n="footer.newsletters">NEWSLETTERI</h3>
+        <ul class="footer-links">
+          <li><a href="https://theinnermostloop.substack.com/" target="_blank" rel="noopener noreferrer" id="link-innermostloop" data-i18n="footer.newsletter_innermostloop">The Innermost Loop</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">&copy; 2026 Keeping up with the singularity. Sva prava pridržana.</span>
+      <span data-i18n="footer.arch">Arhitektura: Vanilla HTML5 / CSS3 / Vanilla JS</span>
+    </div>
+  </footer>
+
+  <script>window.PRELOADED_ARTICLE_ID = "navier-stokes";</script>
+  <script src="../js/article.js?v=20260911_1"></script>
+  <script src="../js/newsletter.js?v=20260831_1"></script>
+</body>
+</html>
