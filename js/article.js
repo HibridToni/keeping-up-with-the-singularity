@@ -342,6 +342,9 @@ function renderArticleContent(container, article, allArticles = []) {
   // Initialize Table of Contents (TOC)
   initTableOfContents(currentLang);
 
+  // Initialize Reynolds Number Interactive Calculator
+  initReynoldsCalculator(currentLang);
+
   // Setup / update Reading Progress Bar & Floating Toolbar
   setupReadingProgressBar();
   setupFloatingReaderToolbar(currentLang);
@@ -1332,6 +1335,137 @@ function setupFloatingReaderToolbar(currentLang = 'hr') {
   }
 
   initReaderFontSize();
+}
+
+/**
+ * Initializes the Interactive Reynolds Number Calculator if present on the page
+ * @param {string} currentLang
+ */
+function initReynoldsCalculator(currentLang) {
+  const calcEl = document.getElementById('reynolds-calculator');
+  if (!calcEl) return;
+
+  const fluidSelect = calcEl.querySelector('#re-fluid');
+  const velocityInput = calcEl.querySelector('#re-velocity');
+  const lengthInput = calcEl.querySelector('#re-length');
+  const viscosityInput = calcEl.querySelector('#re-viscosity');
+  const customViscGroup = calcEl.querySelector('#re-custom-visc-group');
+  const resultVal = calcEl.querySelector('#re-result-val');
+  const regimeBadge = calcEl.querySelector('#re-regime-badge');
+  const meterNeedle = calcEl.querySelector('#re-meter-needle');
+  const regimeDesc = calcEl.querySelector('#re-regime-desc');
+  const presetBtns = calcEl.querySelectorAll('.reynolds-preset-btn');
+
+  if (!fluidSelect || !velocityInput || !lengthInput || !resultVal) return;
+
+  const presets = {
+    microbe: { u: 0.00003, L: 0.000002, fluid: '1e-6' },
+    faucet: { u: 1.5, L: 0.015, fluid: '1e-6' },
+    car: { u: 33.3, L: 4.0, fluid: '1.5e-5' },
+    plane: { u: 240, L: 35.0, fluid: '1.5e-5' },
+    lava: { u: 1.0, L: 5.0, fluid: '0.1' }
+  };
+
+  const updateCalculation = () => {
+    let u = parseFloat(velocityInput.value);
+    let L = parseFloat(lengthInput.value);
+    let nu = fluidSelect.value === 'custom' ? parseFloat(viscosityInput.value) : parseFloat(fluidSelect.value);
+
+    if (isNaN(u) || u <= 0) u = 1.0;
+    if (isNaN(L) || L <= 0) L = 1.0;
+    if (isNaN(nu) || nu <= 0) nu = 1e-6;
+
+    const Re = (u * L) / nu;
+
+    // Format number nicely
+    if (Re < 0.001) {
+      resultVal.textContent = Re.toExponential(2);
+    } else if (Re < 10000) {
+      resultVal.textContent = Re.toLocaleString('hr-HR', { maximumFractionDigits: Re < 10 ? 2 : 0 });
+    } else if (Re < 1e7) {
+      resultVal.textContent = Math.round(Re).toLocaleString('hr-HR');
+    } else {
+      resultVal.textContent = Re.toExponential(2);
+    }
+
+    // Determine Regime:
+    // Re < 2300: Laminar
+    // 2300 <= Re <= 4000: Transitional
+    // Re > 4000: Turbulent
+    regimeBadge.className = 'reynolds-regime-badge status-pill';
+
+    if (Re < 2300) {
+      regimeBadge.classList.add('regime-laminar');
+      regimeBadge.textContent = currentLang === 'en' ? 'Laminar Flow' : 'Laminarni tok';
+      regimeDesc.innerHTML = currentLang === 'en'
+        ? '<strong>Viscous damping dominates:</strong> The fluid flows in orderly, parallel layers without chaotic mixing. Inertial perturbations are extinguished by friction.'
+        : '<strong>Viskozno trenje dominira:</strong> Tok je uredan, slojevit i paralelan bez kaotičnog miješanja. Viskoznost odmah gasi sve poremećaje i nepravilnosti.';
+    } else if (Re <= 4000) {
+      regimeBadge.classList.add('regime-transition');
+      regimeBadge.textContent = currentLang === 'en' ? 'Transitional Regime' : 'Prijelazni režim';
+      regimeDesc.innerHTML = currentLang === 'en'
+        ? '<strong>Onset of instability:</strong> Viscous damping begins to lose control. Boundary layers oscillate and the first unstable vortices begin to form.'
+        : '<strong>Gubitak stabilnosti:</strong> Viskoznost više ne uspijeva prigušiti nestabilnosti. Javljaju se prvi valoviti poremećaji i začeci vrtloga.';
+    } else {
+      regimeBadge.classList.add('regime-turbulent');
+      regimeBadge.textContent = currentLang === 'en' ? 'Turbulent Flow' : 'Turbulentni tok';
+      regimeDesc.innerHTML = currentLang === 'en'
+        ? '<strong>Nonlinear convection dominates:</strong> The nonlinear convective term (<strong>u</strong> · ∇)<strong>u</strong> overpowers viscosity. Vortices rapidly stretch, twist, and cascade kinetic energy into chaotic eddies.'
+        : '<strong>Nelinearna konvekcija dominira:</strong> Nelinearni član (<strong>u</strong> · ∇)<strong>u</strong> nadvladava viskoznost. Vrtložne niti nekontrolirano se rastežu i kaskadno drobe u kaos malih vrtloga.';
+    }
+
+    // Logarithmic needle position from 10^-4 to 10^9 (13 decades)
+    const logRe = Math.log10(Math.max(1e-4, Math.min(1e9, Re)));
+    const percent = Math.max(3, Math.min(97, ((logRe - (-4)) / 13) * 100));
+    meterNeedle.style.left = `${percent}%`;
+  };
+
+  fluidSelect.addEventListener('change', () => {
+    if (fluidSelect.value === 'custom') {
+      if (customViscGroup) customViscGroup.style.display = 'block';
+    } else {
+      if (customViscGroup) customViscGroup.style.display = 'none';
+    }
+    presetBtns.forEach(b => b.classList.remove('active'));
+    updateCalculation();
+  });
+
+  velocityInput.addEventListener('input', () => {
+    presetBtns.forEach(b => b.classList.remove('active'));
+    updateCalculation();
+  });
+
+  lengthInput.addEventListener('input', () => {
+    presetBtns.forEach(b => b.classList.remove('active'));
+    updateCalculation();
+  });
+
+  if (viscosityInput) {
+    viscosityInput.addEventListener('input', () => {
+      presetBtns.forEach(b => b.classList.remove('active'));
+      updateCalculation();
+    });
+  }
+
+  presetBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      presetBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const presetKey = btn.dataset.preset;
+      const data = presets[presetKey];
+      if (data) {
+        velocityInput.value = data.u;
+        lengthInput.value = data.L;
+        fluidSelect.value = data.fluid;
+        if (customViscGroup) customViscGroup.style.display = 'none';
+        updateCalculation();
+      }
+    });
+  });
+
+  // Run initial calculation
+  updateCalculation();
 }
 
 
