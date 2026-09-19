@@ -15,7 +15,6 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import nodemailer from 'nodemailer';
 import { generateArticleNewsletterEmail } from './email-template.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -182,8 +181,9 @@ async function sendEmailViaBrevo(apiKey, { to, subject, html, text }) {
 
 let gmailTransporter = null;
 
-function getGmailTransporter(user, pass) {
+async function getGmailTransporter(user, pass) {
   if (!gmailTransporter) {
+    const { default: nodemailer } = await import('nodemailer');
     gmailTransporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -196,7 +196,7 @@ function getGmailTransporter(user, pass) {
 }
 
 async function sendEmailViaGmail(user, pass, { to, subject, html, text }) {
-  const transporter = getGmailTransporter(user, pass);
+  const transporter = await getGmailTransporter(user, pass);
   const fromHeader = process.env.EMAIL_FROM || `Keeping up with the singularity <${user}>`;
   return await transporter.sendMail({
     from: fromHeader,
@@ -205,6 +205,69 @@ async function sendEmailViaGmail(user, pass, { to, subject, html, text }) {
     html,
     text
   });
+}
+
+/**
+ * Checks if the target article is newly added or if it is an existing article that was simply edited.
+ * @param {Object} targetArticle
+ * @returns {Promise<{ isNew: boolean, reason?: string }>}
+ */
+async function checkIfArticleIsNew(targetArticle) {
+  // 1. Check local persistent state file (.last_notified.json)
+  try {
+    if (fs.existsSync(LAST_NOTIFIED_FILE)) {
+      const lastNotifiedData = JSON.parse(fs.readFileSync(LAST_NOTIFIED_FILE, 'utf8'));
+      if (lastNotifiedData && String(lastNotifiedData.lastArticleId) === String(targetArticle.id)) {
+        return {
+          isNew: false,
+          reason: `Article "${targetArticle.id}" was already notified to subscribers on ${lastNotifiedData.sentAt || 'an earlier run'}.`
+        };
+      }
+    }
+  } catch (e) {
+    // Non-fatal, fallback to git check
+  }
+
+  // 2. Check git history to see if targetArticle.id existed before the current commit/state
+  try {
+    const { execSync } = await import('child_process');
+    let prevArticlesJson = null;
+
+    // In CI or git push, check HEAD~1 first
+    try {
+      prevArticlesJson = execSync('git show HEAD~1:articles.json', {
+        encoding: 'utf8',
+        stdio: ['pipe', 'pipe', 'ignore']
+      });
+    } catch (e) {
+      // In local uncommitted working tree, compare against HEAD
+      try {
+        prevArticlesJson = execSync('git show HEAD:articles.json', {
+          encoding: 'utf8',
+          stdio: ['pipe', 'pipe', 'ignore']
+        });
+      } catch (e2) {
+        // Git history not accessible
+      }
+    }
+
+    if (prevArticlesJson) {
+      const prevArticles = JSON.parse(prevArticlesJson);
+      if (Array.isArray(prevArticles) && prevArticles.length > 0) {
+        const existedBefore = prevArticles.some(a => String(a.id) === String(targetArticle.id));
+        if (existedBefore) {
+          return {
+            isNew: false,
+            reason: `Article "${targetArticle.id}" already existed in articles.json before this update (an edit or correction was made).`
+          };
+        }
+      }
+    }
+  } catch (err) {
+    // Non-fatal
+  }
+
+  return { isNew: true };
 }
 
 async function main() {
@@ -243,19 +306,13 @@ async function main() {
   console.log(`   Date:     ${targetArticle.date || 'N/A'}`);
   console.log(`   URL:      ${BASE_URL}/articles/${targetArticle.id}.html\n`);
 
-  // Check if article was already notified (only in auto mode without --force and without --test)
+  // Check if article was already notified or if this is just an edit to an existing article
   if (!testEmail && !isDryRun && !isForce) {
-    try {
-      if (fs.existsSync(LAST_NOTIFIED_FILE)) {
-        const lastNotifiedData = JSON.parse(fs.readFileSync(LAST_NOTIFIED_FILE, 'utf8'));
-        if (lastNotifiedData && lastNotifiedData.lastArticleId === targetArticle.id) {
-          console.log(`ℹ️  Article "${targetArticle.id}" was already notified to subscribers on ${lastNotifiedData.sentAt || 'an earlier run'}.`);
-          console.log('   Skipping automatic dispatch to avoid duplicates. (Use --force to override)\n');
-          return;
-        }
-      }
-    } catch (e) {
-      // Non-fatal, proceed
+    const checkResult = await checkIfArticleIsNew(targetArticle);
+    if (!checkResult.isNew) {
+      console.log(`ℹ️  ${checkResult.reason}`);
+      console.log('   Skipping automatic dispatch (edits/corrections do not trigger new emails). Use --force to override.\n');
+      return;
     }
   }
 
