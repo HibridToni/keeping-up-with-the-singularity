@@ -10,5 +10,17 @@ service cloud.firestore {
                     && request.resource.data.active == false;
       allow delete: if false;
     }
+
+    match /articles/{articleId}/comments/{commentId} {
+      allow read: if true; // Public - anyone can read comments
+      allow create: if request.resource.data.keys().hasAll(['author', 'content', 'createdAt'])
+                    && request.resource.data.author is string
+                    && request.resource.data.author.size() >= 2
+                    && request.resource.data.author.size() <= 60
+                    && request.resource.data.content is string
+                    && request.resource.data.content.size() >= 2
+                    && request.resource.data.content.size() <= 3000;
+      allow update, delete: if false;
+    }
   }
 }

@@ -348,6 +348,11 @@ function renderArticleContent(container, article, allArticles = []) {
   // Setup / update Reading Progress Bar & Floating Toolbar
   setupReadingProgressBar();
   setupFloatingReaderToolbar(currentLang);
+
+  // Initialize Article Comments System
+  if (typeof window.initComments === 'function' && article && article.id) {
+    window.initComments(article.id);
+  }
 }
 
 /**

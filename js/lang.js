@@ -143,7 +143,31 @@ const translations = {
     "about.li2": "<strong>Kvantna fizika i neuromorfno računanje:</strong> Eksperimentalne analize koherencije i samoorganizirane kritičnosti.",
     "about.li3": "<strong>Longevity i modeliranje proteina:</strong> Primjena transformatora u dinamici savijanja proteina i mRNK terapijama.",
     "about.contact_title": "Kontakt & Suradnja",
-    "about.contact_desc": "Za istraživačke upite, recenzije radova ili akademsku suradnju možete me kontaktirati putem:"
+    "about.contact_desc": "Za istraživačke upite, recenzije radova ili akademsku suradnju možete me kontaktirati putem:",
+
+    // Comments (Komentari)
+    "comments.title": "Komentari",
+    "comments.count_zero": "0 komentara",
+    "comments.count_single": "1 komentar",
+    "comments.count_few": "{count} komentara",
+    "comments.empty_title": "Budi prvi koji će ostaviti komentar",
+    "comments.empty_desc": "Podijelite svoja razmišljanja, pitanja ili analizu vezanu uz temu ovog rada.",
+    "comments.form_title": "Ostavi komentar",
+    "comments.name_label": "Vaše ime ili nadimak",
+    "comments.name_placeholder": "Upišite vaše ime ili nadimak...",
+    "comments.content_label": "Vaš komentar",
+    "comments.content_placeholder": "Napišite komentar ili postavite pitanje vezano uz rad...",
+    "comments.submit_btn": "Objavi komentar",
+    "comments.submitting_btn": "Objavljivanje...",
+    "comments.success_msg": "Vaš komentar je uspješno objavljen!",
+    "comments.error_name_empty": "Molimo unesite vaše ime ili nadimak (minimalno 2 znaka).",
+    "comments.error_content_empty": "Molimo unesite tekst komentara (minimalno 2 znaka).",
+    "comments.error_generic": "Došlo je do pogreške prilikom objave komentara. Molimo pokušajte ponovno.",
+    "comments.error_rate_limit": "Molimo pričekajte trenutak prije objave novog komentara.",
+    "comments.just_now": "upravo sada",
+    "comments.minutes_ago": "prije {n} min",
+    "comments.hours_ago": "prije {n} h",
+    "comments.days_ago": "prije {n} d"
   },
 
   en: {
@@ -284,7 +308,31 @@ const translations = {
     "about.li2": "<strong>Quantum Physics & Neuromorphic Computing:</strong> Experimental coherence analysis and self-organized criticality.",
     "about.li3": "<strong>Longevity & Protein Modeling:</strong> Transformer applications in protein folding dynamics and mRNA therapies.",
     "about.contact_title": "Contact & Collaboration",
-    "about.contact_desc": "For research inquiries, paper reviews, or academic collaboration, you can reach me via:"
+    "about.contact_desc": "For research inquiries, paper reviews, or academic collaboration, you can reach me via:",
+
+    // Comments
+    "comments.title": "Comments",
+    "comments.count_zero": "0 comments",
+    "comments.count_single": "1 comment",
+    "comments.count_few": "{count} comments",
+    "comments.empty_title": "Be the first to leave a comment",
+    "comments.empty_desc": "Share your thoughts, questions, or analysis regarding this publication.",
+    "comments.form_title": "Leave a comment",
+    "comments.name_label": "Your name or alias",
+    "comments.name_placeholder": "Enter your name or alias...",
+    "comments.content_label": "Your comment",
+    "comments.content_placeholder": "Write your comment or question about this paper...",
+    "comments.submit_btn": "Post comment",
+    "comments.submitting_btn": "Posting...",
+    "comments.success_msg": "Your comment was successfully posted!",
+    "comments.error_name_empty": "Please enter your name or alias (at least 2 characters).",
+    "comments.error_content_empty": "Please enter comment text (at least 2 characters).",
+    "comments.error_generic": "An error occurred while posting your comment. Please try again.",
+    "comments.error_rate_limit": "Please wait a moment before posting another comment.",
+    "comments.just_now": "just now",
+    "comments.minutes_ago": "{n} min ago",
+    "comments.hours_ago": "{n} h ago",
+    "comments.days_ago": "{n} d ago"
   }
 };
 

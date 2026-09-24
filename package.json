@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/generate-static-pages.js",
+    "serve": "node scripts/serve.js",
     "notify": "node scripts/notify-subscribers.js",
     "notify:dry": "node scripts/notify-subscribers.js --dry-run",
     "notify:test": "node scripts/notify-subscribers.js --dry-run --test=test@example.com",
