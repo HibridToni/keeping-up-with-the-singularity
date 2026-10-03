@@ -2205,6 +2205,58 @@ a {
   text-overflow: ellipsis;
 }
 
+/* Right Controls Container: Voice Select + Speed Options */
+.audio-right-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+/* Voice Controls */
+.audio-voice-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.voice-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.voice-label svg {
+  color: var(--accent-cyan);
+}
+
+.audio-voice-select {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  outline: none;
+  cursor: pointer;
+  max-width: 175px;
+  text-overflow: ellipsis;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.audio-voice-select:hover,
+.audio-voice-select:focus {
+  border-color: var(--accent-cyan);
+  background-color: var(--bg-hover);
+}
+
 /* Speed Controls */
 .audio-speed-controls {
   display: flex;
@@ -2254,7 +2306,7 @@ a {
 }
 
 /* Mobile Responsiveness for Audio Player Bar */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .audio-player-bar {
     flex-wrap: wrap;
     padding: 10px 14px;
@@ -2270,12 +2322,16 @@ a {
     order: 0;
   }
 
-  .audio-speed-controls {
+  .audio-right-controls {
     order: 2;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding-top: 8px;
     border-top: 1px dashed var(--border-color);
+  }
+
+  .audio-voice-select {
+    max-width: 150px;
   }
 }
 

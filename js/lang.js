@@ -75,6 +75,10 @@ const translations = {
     "tts.pause": "Pauziraj",
     "tts.stop": "Zaustavi",
     "tts.speed_label": "Brzina govora",
+    "tts.voice": "Glas:",
+    "tts.voice_label": "Odabir glasa za čitanje",
+    "tts.voice_auto": "Najbolji prirodni glas",
+    "tts.voice_natural_badge": "Prirodni ✨",
 
     // Table of Contents (Sadržaj rada)
     "toc.title": "Sadržaj rada",
@@ -240,6 +244,10 @@ const translations = {
     "tts.play": "Play reading",
     "tts.pause": "Pause reading",
     "tts.stop": "Stop reading",
+    "tts.voice": "Voice:",
+    "tts.voice_label": "Voice selection for reading",
+    "tts.voice_auto": "Best natural voice",
+    "tts.voice_natural_badge": "Natural ✨",
 
     // Table of Contents
     "toc.title": "Table of Contents",

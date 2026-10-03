@@ -8,6 +8,9 @@ let cachedAllArticles = [];
 let currentUtterance = null;
 let ttsSpeed = 1.0;
 let ttsState = 'stopped'; // 'stopped' | 'speaking' | 'paused'
+let ttsSelectedVoiceURI = (typeof localStorage !== 'undefined') ? (localStorage.getItem('singularity_tts_voice_uri') || '') : '';
+let ttsChunks = [];
+let ttsCurrentChunkIndex = 0;
 let currentTOCScrollspyObserver = null;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -270,12 +273,29 @@ function renderArticleContent(container, article, allArticles = []) {
         <span id="tts-status-text" class="audio-status-text">${getTTSTranslation('tts.listen', 'Slušaj članak')}</span>
       </div>
 
-      <div class="audio-speed-controls">
-        <span class="speed-label">${getTTSTranslation('tts.speed', 'Brzina:')}</span>
-        <div class="speed-options">
-          <button class="speed-btn ${ttsSpeed === 1.0 ? 'active' : ''}" data-speed="1.0">1x</button>
-          <button class="speed-btn ${ttsSpeed === 1.25 ? 'active' : ''}" data-speed="1.25">1.25x</button>
-          <button class="speed-btn ${ttsSpeed === 1.5 ? 'active' : ''}" data-speed="1.5">1.5x</button>
+      <div class="audio-right-controls">
+        <div class="audio-voice-controls" id="audio-voice-controls">
+          <label for="tts-voice-select" class="voice-label" title="${getTTSTranslation('tts.voice_label', 'Odabir glasa za čitanje')}">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span class="voice-label-text">${getTTSTranslation('tts.voice', 'Glas:')}</span>
+          </label>
+          <select id="tts-voice-select" class="audio-voice-select" aria-label="${getTTSTranslation('tts.voice_label', 'Odabir glasa za čitanje')}">
+            <option value="">${getTTSTranslation('tts.voice_auto', 'Najbolji prirodni glas')}</option>
+          </select>
+        </div>
+
+        <div class="audio-speed-controls">
+          <span class="speed-label">${getTTSTranslation('tts.speed', 'Brzina:')}</span>
+          <div class="speed-options">
+            <button class="speed-btn ${ttsSpeed === 1.0 ? 'active' : ''}" data-speed="1.0">1x</button>
+            <button class="speed-btn ${ttsSpeed === 1.25 ? 'active' : ''}" data-speed="1.25">1.25x</button>
+            <button class="speed-btn ${ttsSpeed === 1.5 ? 'active' : ''}" data-speed="1.5">1.5x</button>
+          </div>
         </div>
       </div>
     </div>
@@ -706,7 +726,8 @@ function setMetaTag(attrName, attrValue, content) {
    ========================================================================== */
 
 /**
- * Strips HTML tags and Markdown formatting to produce clean text for SpeechSynthesis.
+ * Strips HTML tags, LaTeX math formulas, code blocks, widgets, and Markdown syntax
+ * to produce clean, natural spoken plain text suitable for SpeechSynthesis.
  * @param {string} title - Article title
  * @param {string} rawContent - Raw HTML/Markdown content of the article
  * @returns {string} Clean plain text suitable for TTS
@@ -714,12 +735,52 @@ function setMetaTag(attrName, attrValue, content) {
 function cleanArticleText(title, rawContent) {
   let text = rawContent || '';
 
-  // 1. Create a temporary element to strip HTML tags
+  // 1. Create a temporary element to strip HTML tags and interactive widgets
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = text;
+
+  // Remove non-prose elements: interactive widgets, calculators, equation breakdown cards, tables, svgs, buttons
+  tempDiv.querySelectorAll(
+    'script, style, svg, button, .reynolds-calc-wrapper, .interactive-widget, .calculator-wrapper, .equation-cards-grid, table, .table-container, .vortex-loop-wrapper, .timeline-container'
+  ).forEach(el => el.remove());
+
   text = tempDiv.textContent || tempDiv.innerText || '';
 
-  // 2. Strip common Markdown syntax markers
+  // 2. Clean mathematical LaTeX formulas and symbols to sound natural when spoken
+  text = text
+    // Remove display/block math $$...$$
+    .replace(/\$\$[\s\S]*?\$\$/g, ' ')
+    // Replace common LaTeX expressions with natural spoken phrases
+    .replace(/\\text\{([^}]+)\}/g, '$1')
+    .replace(/\\mathbf\{([^}]+)\}/g, '$1')
+    .replace(/\\boldsymbol\{([^}]+)\}/g, '$1')
+    .replace(/\\mathrm\{([^}]+)\}/g, '$1')
+    .replace(/\\mathit\{([^}]+)\}/g, '$1')
+    .replace(/\\mathbb\{R\}\^?(\d*)/g, 'R prostor $1')
+    .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '$1 kroz $2')
+    .replace(/\\partial/g, 'parcijalno ')
+    .replace(/\\nabla/g, 'nabla ')
+    .replace(/\\Delta/g, 'delta ')
+    .replace(/\\nu/g, 'ni ')
+    .replace(/\\rho/g, 'ro ')
+    .replace(/\\mu/g, 'mi ')
+    .replace(/\\omega/g, 'omega ')
+    .replace(/\\zeta/g, 'zeta ')
+    .replace(/\\le/g, 'manje ili jednako ')
+    .replace(/\\ge/g, 'veće ili jednako ')
+    .replace(/\\neq/g, 'različito od ')
+    .replace(/\\to/g, 'teži u ')
+    .replace(/\\infty/g, 'beskonačnost')
+    .replace(/\\cdot/g, ' puta ')
+    .replace(/\\times/g, ' puta ')
+    .replace(/\\|/g, '')
+    // Remove inline math wrappers $...$
+    .replace(/\$([^$]+)\$/g, '$1')
+    // Remove leftover backslash LaTeX commands
+    .replace(/\\[a-zA-Z]+/g, ' ')
+    .replace(/[{}]/g, '');
+
+  // 3. Strip common Markdown syntax markers
   text = text
     .replace(/^#+\s+/gm, '')                  // Headings (# Heading)
     .replace(/(\*\*|__)(.*?)\1/g, '$2')      // Bold
@@ -730,13 +791,212 @@ function cleanArticleText(title, rawContent) {
     .replace(/^[\s]*[-\*\+]\s+/gm, '')        // Unordered list items
     .replace(/^[\s]*\d+\.\s+/gm, '')         // Ordered list items
     .replace(/^>\s+/gm, '')                  // Blockquotes
-    .replace(/^[-*_]{3,}\s*$/gm, '');        // Horizontal rules
+    .replace(/^[-*_]{3,}\s*$/gm, '')         // Horizontal rules
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, '')  // Images
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // Links
+    .replace(/https?:\/\/\S+/g, '');         // URLs
 
-  // 3. Normalize whitespace
-  text = text.replace(/\s+/g, ' ').trim();
+  // 4. Ensure natural sentence cadence and clean whitespace
+  text = text
+    .replace(/([.!?])([A-Za-zČĆŽŠĐčćžšđ])/g, '$1 $2') // ensure space after punctuation
+    .replace(/\s+/g, ' ')
+    .trim();
 
   // Combine title and article body text
   return title ? `${title}. ${text}` : text;
+}
+
+/**
+ * Splits long text into natural sentence-based chunks to prevent browser speech timeout bugs
+ * and provide smooth cadence with slight natural pauses.
+ * @param {string} cleanText
+ * @returns {string[]} Array of readable chunks
+ */
+function splitTextIntoTTSChunks(cleanText) {
+  if (!cleanText) return [];
+  // Split cleanText by sentence boundaries (. ! ?)
+  const sentences = cleanText.split(/(?<=[.!?])\s+/);
+  const chunks = [];
+  let currentChunk = '';
+
+  for (const s of sentences) {
+    const trimmed = s.trim();
+    if (!trimmed) continue;
+
+    if (currentChunk.length + trimmed.length > 240) {
+      if (currentChunk) chunks.push(currentChunk.trim());
+      currentChunk = trimmed;
+    } else {
+      currentChunk = currentChunk ? `${currentChunk} ${trimmed}` : trimmed;
+    }
+  }
+
+  if (currentChunk.trim()) {
+    chunks.push(currentChunk.trim());
+  }
+
+  return chunks;
+}
+
+/**
+ * Ranks available speech synthesis voices, prioritizing realistic, human-like neural voices.
+ * Scores Microsoft Online Natural, Azure Neural, Google Neural, and Apple Enhanced voices highest.
+ * @param {string} lang - 'hr' or 'en'
+ * @returns {SpeechSynthesisVoice[]} Sorted array of voices
+ */
+function getRankedVoices(lang) {
+  if (!('speechSynthesis' in window)) return [];
+  const voices = window.speechSynthesis.getVoices() || [];
+  if (!voices.length) return [];
+
+  const isEn = lang === 'en';
+
+  // Filter voices matching current language or close regional fallbacks (hr, bs, sr for Croatian)
+  let matching = voices.filter(v => {
+    const vLang = (v.lang || '').toLowerCase();
+    if (isEn) return vLang.startsWith('en');
+    return vLang.startsWith('hr') || vLang.startsWith('bs') || vLang.startsWith('sr');
+  });
+
+  // If no language-specific voices found and lang is hr, check if there are multilingual or system default voices
+  if (!matching.length) {
+    matching = voices.filter(v => {
+      const name = (v.name || '').toLowerCase();
+      return name.includes('multilingual') || v.default;
+    });
+  }
+
+  // Scoring function: High score = more natural / human-like
+  function scoreVoice(v) {
+    const name = (v.name || '').toLowerCase();
+    const vLang = (v.lang || '').toLowerCase();
+    let score = 0;
+
+    // Language priority: hr-HR / hr is top for Croatian
+    if (!isEn) {
+      if (vLang === 'hr-hr' || vLang === 'hr') score += 100;
+      else if (vLang.startsWith('hr')) score += 80;
+      else if (vLang.startsWith('bs') || vLang.startsWith('sr')) score += 40;
+    } else {
+      if (vLang === 'en-us' || vLang === 'en-gb') score += 60;
+      else if (vLang.startsWith('en')) score += 50;
+    }
+
+    // Natural & Neural voices (Microsoft Edge Online Natural, Azure Neural, Apple Neural/Premium)
+    if (name.includes('natural')) score += 200;
+    if (name.includes('neural')) score += 200;
+    if (name.includes('online')) score += 120;
+    if (name.includes('enhanced')) score += 90;
+    if (name.includes('premium')) score += 90;
+    if (name.includes('google')) score += 70;
+
+    // Top Croatian human voices:
+    // "Microsoft Gabrijela Online (Natural)" is widely acknowledged as the smoothest and most human Croatian voice
+    if (name.includes('gabrijela')) score += 50;
+    // "Microsoft Matej Online (Natural)"
+    if (name.includes('matej') && (name.includes('natural') || name.includes('online'))) score += 40;
+
+    // Penalize legacy offline robotic desktop SAPI voices
+    if (name.includes('desktop')) score -= 60;
+    if (!name.includes('natural') && !name.includes('neural') && !name.includes('online') && !name.includes('google') && !name.includes('enhanced') && !name.includes('premium')) {
+      score -= 30;
+    }
+
+    return score;
+  }
+
+  return matching.sort((a, b) => scoreVoice(b) - scoreVoice(a));
+}
+
+/**
+ * Formats a clean, readable display label for a voice in the dropdown
+ * @param {SpeechSynthesisVoice} voice
+ * @param {string} currentLang
+ * @returns {string} Formatted label
+ */
+function formatVoiceDisplayName(voice, currentLang) {
+  const name = voice.name || '';
+  const lower = name.toLowerCase();
+
+  let label = name;
+  const isNatural = lower.includes('natural') || lower.includes('neural') || lower.includes('online') || lower.includes('premium') || lower.includes('enhanced');
+
+  if (lower.includes('gabrijela')) {
+    label = 'Gabrijela';
+  } else if (lower.includes('matej')) {
+    label = 'Hush';
+  } else if (lower.includes('google')) {
+    label = currentLang === 'en' ? 'Google Voice' : 'Google Hrvatski';
+  } else if (lower.includes('jenny')) {
+    label = 'Jenny';
+  } else if (lower.includes('guy')) {
+    label = 'Guy';
+  } else if (lower.includes('aria')) {
+    label = 'Aria';
+  } else {
+    // Simplify name: remove "Microsoft", "Desktop", language brackets, etc.
+    label = name
+      .replace(/Microsoft\s+/i, '')
+      .replace(/Online\s*\([^)]*\)/i, '')
+      .replace(/\([^)]*\)/g, '')
+      .replace(/Desktop/i, '')
+      .replace(/-\s*Croatian.*/i, '')
+      .replace(/-\s*English.*/i, '')
+      .trim();
+    if (!label) label = name;
+  }
+
+  if (isNatural) {
+    return `${label} (${getTTSTranslation('tts.voice_natural_badge', 'Prirodni ✨')})`;
+  }
+  return label;
+}
+
+/**
+ * Populates voice selector options with available high-quality voices
+ * @param {string} currentLang
+ */
+function populateVoiceSelector(currentLang) {
+  const voiceSelect = document.getElementById('tts-voice-select');
+  if (!voiceSelect || !('speechSynthesis' in window)) return;
+
+  const voices = getRankedVoices(currentLang);
+  if (!voices.length) {
+    voiceSelect.innerHTML = `<option value="">${getTTSTranslation('tts.voice_auto', 'Najbolji prirodni glas')}</option>`;
+    return;
+  }
+
+  const savedUri = (typeof localStorage !== 'undefined') ? (localStorage.getItem('singularity_tts_voice_uri') || '') : '';
+  const hasSaved = savedUri && voices.some(v => (v.voiceURI || v.name) === savedUri);
+
+  voiceSelect.innerHTML = voices.map((v, idx) => {
+    const val = v.voiceURI || v.name;
+    const isSelected = hasSaved ? (val === savedUri) : (idx === 0);
+    const friendlyName = formatVoiceDisplayName(v, currentLang);
+    return `<option value="${escapeHTML(val)}"${isSelected ? ' selected' : ''}>${escapeHTML(friendlyName)}</option>`;
+  }).join('');
+
+  if (!hasSaved && voices.length > 0) {
+    ttsSelectedVoiceURI = voices[0].voiceURI || voices[0].name;
+  }
+}
+
+/**
+ * Returns currently chosen or top-ranked voice for current language
+ * @param {string} currentLang
+ * @returns {SpeechSynthesisVoice|null}
+ */
+function getSelectedVoice(currentLang) {
+  if (!('speechSynthesis' in window)) return null;
+  const voices = getRankedVoices(currentLang);
+  if (!voices.length) return null;
+
+  if (ttsSelectedVoiceURI) {
+    const found = voices.find(v => (v.voiceURI || v.name) === ttsSelectedVoiceURI);
+    if (found) return found;
+  }
+
+  return voices[0];
 }
 
 /**
@@ -752,12 +1012,13 @@ function getTranslation(key, fallback) {
 const getTTSTranslation = getTranslation;
 
 /**
- * Initializes listeners for Audio Player Bar buttons and controls
+ * Initializes listeners for Audio Player Bar buttons, voice selector, and speed controls
  */
 function setupTTSController(article, currentLang) {
   const playBtn = document.getElementById('tts-play-btn');
   const stopBtn = document.getElementById('tts-stop-btn');
   const statusText = document.getElementById('tts-status-text');
+  const voiceSelect = document.getElementById('tts-voice-select');
   const speedBtns = document.querySelectorAll('.speed-btn');
 
   if (!playBtn || !stopBtn) return;
@@ -765,7 +1026,27 @@ function setupTTSController(article, currentLang) {
   if (!('speechSynthesis' in window)) {
     if (statusText) statusText.textContent = getTTSTranslation('tts.unsupported', 'Govorna sinteza nije podržana');
     playBtn.disabled = true;
+    if (voiceSelect) voiceSelect.disabled = true;
     return;
+  }
+
+  // Populate voice selector immediately & bind voiceschanged listener
+  populateVoiceSelector(currentLang);
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      populateVoiceSelector(currentLang);
+    };
+  }
+
+  if (voiceSelect) {
+    voiceSelect.addEventListener('change', (e) => {
+      ttsSelectedVoiceURI = e.target.value;
+      localStorage.setItem('singularity_tts_voice_uri', ttsSelectedVoiceURI);
+      if (ttsState === 'speaking') {
+        window.speechSynthesis.cancel();
+        playCurrentTTSChunk(currentLang);
+      }
+    });
   }
 
   updateTTSUIState(ttsState);
@@ -796,21 +1077,22 @@ function setupTTSController(article, currentLang) {
       ttsSpeed = newSpeed;
       speedBtns.forEach(b => b.classList.toggle('active', parseFloat(b.dataset.speed) === ttsSpeed));
 
-      if (ttsState === 'speaking' || ttsState === 'paused') {
+      if (ttsState === 'speaking') {
         window.speechSynthesis.cancel();
-        startSpeechSynthesis(article, currentLang);
+        playCurrentTTSChunk(currentLang);
       }
     });
   });
 }
 
 /**
- * Starts SpeechSynthesis with clean article text in specified language
+ * Starts SpeechSynthesis with clean article text in specified language,
+ * prepared as sequential natural chunks
  */
 function startSpeechSynthesis(article, currentLang) {
   if (!('speechSynthesis' in window)) return;
 
-  window.speechSynthesis.cancel();
+  stopSpeechSynthesis();
 
   const title = (currentLang === 'en' && article.title_en) ? article.title_en : (article.title || '');
   let rawContent = article.content || article.excerpt || article.summary || '';
@@ -821,18 +1103,39 @@ function startSpeechSynthesis(article, currentLang) {
   const cleanText = cleanArticleText(title, rawContent);
   if (!cleanText) return;
 
-  const utterance = new SpeechSynthesisUtterance(cleanText);
+  ttsChunks = splitTextIntoTTSChunks(cleanText);
+  if (!ttsChunks.length) return;
+
+  ttsCurrentChunkIndex = 0;
+  ttsState = 'speaking';
+  updateTTSUIState('speaking');
+
+  playCurrentTTSChunk(currentLang);
+}
+
+/**
+ * Plays the current text chunk using SpeechSynthesis with chosen voice
+ */
+function playCurrentTTSChunk(currentLang) {
+  if (ttsState !== 'speaking') return;
+
+  if (ttsCurrentChunkIndex >= ttsChunks.length) {
+    stopSpeechSynthesis();
+    return;
+  }
+
+  const chunkText = ttsChunks[ttsCurrentChunkIndex];
+  const utterance = new SpeechSynthesisUtterance(chunkText);
   utterance.lang = currentLang === 'en' ? 'en-US' : 'hr-HR';
   utterance.rate = ttsSpeed;
 
-  const voices = window.speechSynthesis.getVoices();
-  if (voices && voices.length > 0) {
-    const targetPrefix = currentLang === 'en' ? 'en' : 'hr';
-    const matchingVoice = voices.find(v => v.lang.toLowerCase().startsWith(targetPrefix));
-    if (matchingVoice) {
-      utterance.voice = matchingVoice;
-    }
+  const voice = getSelectedVoice(currentLang);
+  if (voice) {
+    utterance.voice = voice;
   }
+
+  // Natural pitch
+  utterance.pitch = 1.0;
 
   utterance.onstart = () => {
     ttsState = 'speaking';
@@ -850,16 +1153,27 @@ function startSpeechSynthesis(article, currentLang) {
   };
 
   utterance.onend = () => {
-    ttsState = 'stopped';
-    currentUtterance = null;
-    updateTTSUIState('stopped');
+    if (ttsState === 'speaking') {
+      ttsCurrentChunkIndex++;
+      if (ttsCurrentChunkIndex < ttsChunks.length) {
+        playCurrentTTSChunk(currentLang);
+      } else {
+        stopSpeechSynthesis();
+      }
+    }
   };
 
   utterance.onerror = (e) => {
+    if (e.error === 'interrupted' || e.error === 'canceled') return;
     console.warn('SpeechSynthesis event error:', e);
-    ttsState = 'stopped';
-    currentUtterance = null;
-    updateTTSUIState('stopped');
+    if (ttsState === 'speaking') {
+      ttsCurrentChunkIndex++;
+      if (ttsCurrentChunkIndex < ttsChunks.length) {
+        playCurrentTTSChunk(currentLang);
+      } else {
+        stopSpeechSynthesis();
+      }
+    }
   };
 
   currentUtterance = utterance;
@@ -874,6 +1188,7 @@ function stopSpeechSynthesis() {
     window.speechSynthesis.cancel();
   }
   ttsState = 'stopped';
+  ttsCurrentChunkIndex = 0;
   currentUtterance = null;
   updateTTSUIState('stopped');
 }
