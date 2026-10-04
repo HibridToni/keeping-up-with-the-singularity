@@ -4396,3 +4396,668 @@ video:-moz-full-screen {
   }
 }
 
+/* ==========================================================================
+   Robotics Article Visual Enhancements
+   ========================================================================== */
+
+/* 1. Moravec Paradox Card */
+.moravec-compare-card {
+  margin: 36px 0 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.moravec-header {
+  background: var(--bg-secondary);
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.moravec-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.moravec-title-wrap svg {
+  color: var(--accent-cyan);
+}
+
+.moravec-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.moravec-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.moravec-col {
+  padding: 24px;
+}
+
+.moravec-col-digital {
+  background: rgba(56, 189, 248, 0.03);
+  border-right: 1px solid var(--border-color);
+}
+
+.moravec-col-physical {
+  background: rgba(249, 115, 22, 0.03);
+}
+
+.moravec-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.moravec-col-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.moravec-status-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.tag-easy {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.tag-hard {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.moravec-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.moravec-tasks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.moravec-task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+  padding: 6px 10px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.moravec-task-item span.icon {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .moravec-columns {
+    grid-template-columns: 1fr;
+  }
+  .moravec-col-digital {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+/* 2. Cost of Transport (CoT) Breakdown & Spectrum */
+.cot-breakdown-card {
+  margin: 36px 0 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-border-radius);
+  padding: 24px 26px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cot-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cot-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.cot-title svg {
+  color: #10b981;
+}
+
+.cot-math-display {
+  text-align: center;
+  background: var(--bg-secondary);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 22px;
+}
+
+.cot-variables-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.cot-var-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.cot-var-symbol {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent-cyan);
+}
+
+.cot-var-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.cot-var-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cot-var-unit {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.cot-spectrum-section {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+
+.cot-spectrum-title {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.cot-spectrum-bar-wrap {
+  position: relative;
+  height: 12px;
+  background: linear-gradient(90deg, #10b981 0%, #38bdf8 35%, #fbbf24 65%, #ef4444 100%);
+  border-radius: 6px;
+  margin-bottom: 28px;
+}
+
+.cot-markers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.cot-marker-card {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.8rem;
+}
+
+.cot-marker-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.cot-marker-label {
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+.cot-mark-1 .cot-marker-val { color: #10b981; }
+.cot-mark-2 .cot-marker-val { color: #38bdf8; }
+.cot-mark-3 .cot-marker-val { color: #fbbf24; }
+.cot-mark-4 .cot-marker-val { color: #f87171; }
+
+@media (max-width: 680px) {
+  .cot-markers-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* 3. VLA vs Classical Pipeline */
+.vla-architecture-card {
+  margin: 36px 0 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-border-radius);
+  padding: 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.vla-arch-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.vla-arch-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.vla-pipe-block {
+  margin-bottom: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+
+.vla-pipe-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.vla-pipe-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.vla-pipe-steps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.vla-step-node {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vla-arrow {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.vla-pipe-block.pipe-vla {
+  border-color: rgba(56, 189, 248, 0.4);
+  background: rgba(56, 189, 248, 0.04);
+}
+
+.vla-pipe-block.pipe-vla .vla-step-node.vla-hero-node {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(168, 85, 247, 0.2));
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+/* 4. Hand Mechatronics Stats Grid */
+.hand-stats-wrapper {
+  margin: 36px 0 40px;
+}
+
+.hand-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+}
+
+.hand-stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-border-radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.hand-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-cyan);
+}
+
+.hand-stat-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.hand-stat-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.hand-stat-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hand-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hand-stat-row span.label {
+  color: var(--text-secondary);
+}
+
+.hand-stat-row span.val {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.card-human {
+  border-top: 3px solid #10b981;
+}
+.card-figure {
+  border-top: 3px solid var(--accent-cyan);
+}
+.card-tesla {
+  border-top: 3px solid #ef4444;
+}
+.card-digit {
+  border-top: 3px solid #fbbf24;
+}
+
+/* 5. The Five Nines Problem Card */
+.fivenines-card {
+  margin: 36px 0 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.fivenines-header {
+  background: var(--bg-secondary);
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fivenines-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fivenines-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.fivenines-col {
+  padding: 24px;
+}
+
+.fivenines-col-fail {
+  background: rgba(239, 68, 68, 0.04);
+  border-right: 1px solid var(--border-color);
+}
+
+.fivenines-col-pass {
+  background: rgba(16, 185, 129, 0.04);
+}
+
+.fivenines-rate {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.fivenines-col-fail .fivenines-rate { color: #f87171; }
+.fivenines-col-pass .fivenines-rate { color: #10b981; }
+
+.fivenines-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.fivenines-stats {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+.fivenines-stats li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.45;
+}
+
+@media (max-width: 720px) {
+  .fivenines-grid {
+    grid-template-columns: 1fr;
+  }
+  .fivenines-col-fail {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+/* 6. Market Adoption Waves */
+.market-waves-wrapper {
+  margin: 36px 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.market-wave-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-border-radius);
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: flex-start;
+  transition: transform 0.2s ease;
+}
+
+.market-wave-card:hover {
+  transform: translateX(4px);
+}
+
+.market-wave-badge-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 90px;
+}
+
+.wave-num {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.wave-time-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--accent-cyan);
+  white-space: nowrap;
+}
+
+.market-wave-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.market-wave-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.market-wave-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.market-wave-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.market-tag {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .market-wave-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .market-wave-badge-col {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* Light Theme Overrides for Robotics Elements */
+[data-theme="light"] .moravec-compare-card,
+[data-theme="light"] .cot-breakdown-card,
+[data-theme="light"] .vla-architecture-card,
+[data-theme="light"] .hand-stat-card,
+[data-theme="light"] .fivenines-card,
+[data-theme="light"] .market-wave-card {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .moravec-task-item,
+[data-theme="light"] .cot-var-pill,
+[data-theme="light"] .vla-step-node,
+[data-theme="light"] .market-tag {
+  background: #ffffff;
+}
+
+[data-theme="light"] .hand-stat-row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
