@@ -921,6 +921,8 @@ a {
   margin-bottom: 20px;
   letter-spacing: 0.01em;
   color: var(--text-primary);
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .reader-body h2,
@@ -962,6 +964,8 @@ a {
   margin-bottom: 10px;
   line-height: 1.7;
   color: var(--text-primary);
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .reader-body strong {
@@ -990,6 +994,8 @@ a {
 .reader-body blockquote p, blockquote p {
   margin-bottom: 0;
   color: var(--text-primary);
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .reader-body code {
@@ -4933,6 +4939,7 @@ video:-moz-full-screen {
   align-items: flex-start;
   gap: 8px;
   line-height: 1.45;
+  text-align: left;
 }
 
 @media (max-width: 720px) {
