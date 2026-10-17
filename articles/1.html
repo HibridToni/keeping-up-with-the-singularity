@@ -85,13 +85,13 @@
   <link rel="manifest" href="../manifest.json">
   <link rel="apple-touch-icon" href="../img/logo.png">
 
-  <link rel="stylesheet" href="../style.css?v=20260911_1">
+  <link rel="stylesheet" href="../style.css?v=20261017_1">
   <!-- KaTeX for math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script src="../js/theme.js?v=20260911_1"></script>
-  <script src="../js/lang.js?v=20260911_1"></script>
+  <script src="../js/theme.js?v=20261017_1"></script>
+  <script src="../js/lang.js?v=20261017_1"></script>
   <script src="../js/pwa.js"></script>
 </head>
 <body>
@@ -129,12 +129,299 @@
 
   <!-- GLAVNI SPREMNIK - CENTRIRANI STUPAC ZA ČITANJE (max 800px) -->
   <main class="main-container">
-    <div class="article-reader-container" id="article-reader-container">
-      <div class="loading-state">
-        <p data-i18n="article.loading">Učitavanje sadržaja rada...</p>
+    <div class="article-reader-container" id="article-reader-container" data-ssg-rendered="true" data-ssg-lang="hr">
+    <!-- Link za povratak -->
+    <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
+
+    <!-- Zaglavlje rada -->
+    <header class="reader-header">
+      <div class="reader-meta">
+        <span class="card-category">AI i tehnologija</span>
+      </div>
+
+      <h1 class="reader-title">Integracija AI-ja u CAD sustave: Zašto crtanje zaostaje za programiranjem?</h1>
+
+      <div class="reader-submeta">
+        <div class="reader-submeta-info">
+          <time class="card-date" datetime="19. srpnja 2026.">19. srpnja 2026.</time>
+          <span class="card-read-time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            ⏱ 5 min čitanja
+          </span>
+          <span class="card-doi">doi:10.1016/j.engstruct.2026.10482</span>
+        </div>
+
+        <div class="share-buttons">
+          <button type="button" class="share-btn share-copy btn-trigger-copy" aria-label="Kopiraj poveznicu na rad" title="Kopiraj poveznicu na rad">
+            <span class="copy-tooltip">Poveznica kopirana!</span>
+            <svg class="icon-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2F1.html&text=Integracija%20AI-ja%20u%20CAD%20sustave%3A%20Za%C5%A1to%20crtanje%20zaostaje%20za%20programiranjem%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2F1.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2F1.html&quote=Integracija%20AI-ja%20u%20CAD%20sustave%3A%20Za%C5%A1to%20crtanje%20zaostaje%20za%20programiranjem%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+    <div class="article-cover-wrapper">
+      <img src="../img/Integracija AI-ja u CAD sustave.png" alt="Integracija AI-ja u CAD sustave: Zašto crtanje zaostaje za programiranjem?" class="article-cover-hero" fetchpriority="high" decoding="async" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+    </div>
+  
+    </header>
+
+    <!-- Audio Player Bar (Preslušavanje članka) -->
+    <div class="audio-player-bar" id="audio-player-bar" aria-label="Slušaj članak">
+      <div class="audio-controls-left">
+        <button id="tts-play-btn" class="audio-btn audio-btn-play" aria-label="Pokreni čitanje" title="Pokreni čitanje">
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+        </button>
+        <button id="tts-stop-btn" class="audio-btn audio-btn-stop" aria-label="Zaustavi čitanje" title="Zaustavi čitanje" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="audio-status-container">
+        <span class="audio-status-pulse" id="tts-status-pulse"></span>
+        <span id="tts-status-text" class="audio-status-text">Slušaj članak</span>
+      </div>
+
+      <div class="audio-right-controls">
+        <div class="audio-voice-controls" id="audio-voice-controls">
+          <label for="tts-voice-select" class="voice-label" title="Odabir glasa za čitanje">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span class="voice-label-text">Glas:</span>
+          </label>
+          <select id="tts-voice-select" class="audio-voice-select" aria-label="Odabir glasa za čitanje">
+            <option value="">Najbolji prirodni glas</option>
+          </select>
+        </div>
+
+        <div class="audio-speed-controls">
+          <span class="speed-label">Brzina:</span>
+          <div class="speed-options">
+            <button class="speed-btn active" data-speed="1.0">1x</button>
+            <button class="speed-btn" data-speed="1.25">1.25x</button>
+            <button class="speed-btn" data-speed="1.5">1.5x</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Table of Contents (Sadržaj rada) Container -->
+    <div id="article-toc-container" class="article-toc-wrapper">
+    <nav class="article-toc-card" aria-label="Sadržaj članka">
+      <div class="article-toc-header">
+        <div class="article-toc-title-group">
+          <svg class="article-toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h2 class="article-toc-title">Sadržaj rada</h2>
+          <span class="article-toc-badge">8</span>
+        </div>
+        <button type="button" class="article-toc-toggle-btn" id="toc-toggle-btn" aria-expanded="true" aria-controls="article-toc-body" aria-label="Sakrij">
+          <span class="toc-toggle-text">Sakrij</span>
+          <svg class="toc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="article-toc-body" id="article-toc-body">
+        <ol class="article-toc-list">
+          
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#1-analiza-komercijalnih-cad-platformi-ai-kao-kopilot" class="article-toc-link" data-toc-target="1-analiza-komercijalnih-cad-platformi-ai-kao-kopilot">
+          <span class="toc-link-text">1. Analiza komercijalnih CAD platformi: AI kao &quot;Kopilot&quot;</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#autodesk-autocad-optimizacija-i-metapodaci" class="article-toc-link" data-toc-target="autodesk-autocad-optimizacija-i-metapodaci">
+          <span class="toc-link-text">Autodesk AutoCAD: Optimizacija i metapodaci</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#dassault-systèmes-solidworks-catia-geometrijski-kontekst" class="article-toc-link" data-toc-target="dassault-systèmes-solidworks-catia-geometrijski-kontekst">
+          <span class="toc-link-text">Dassault Systèmes (SolidWorks &amp; CATIA): Geometrijski kontekst</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#siemens-nx-adaptivna-sučelja-i-llm" class="article-toc-link" data-toc-target="siemens-nx-adaptivna-sučelja-i-llm">
+          <span class="toc-link-text">Siemens NX: Adaptivna sučelja i LLM</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#2-brzi-prodor-ai-ja-u-aec-industriju-arhitektura-i-građevinarstvo" class="article-toc-link" data-toc-target="2-brzi-prodor-ai-ja-u-aec-industriju-arhitektura-i-građevinarstvo">
+          <span class="toc-link-text">2. Brzi prodor AI-ja u AEC industriju (Arhitektura i Građevinarstvo)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#3-fundamentalne-prepreke-zašto-crtanje-zaostaje-za-programiranjem" class="article-toc-link" data-toc-target="3-fundamentalne-prepreke-zašto-crtanje-zaostaje-za-programiranjem">
+          <span class="toc-link-text">3. Fundamentalne prepreke: Zašto crtanje zaostaje za programiranjem?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#4-novi-horizonti-text-to-cad-i-neural-cad" class="article-toc-link" data-toc-target="4-novi-horizonti-text-to-cad-i-neural-cad">
+          <span class="toc-link-text">4. Novi horizonti: Text-to-CAD i &quot;Neural CAD&quot;</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#zaključak-što-ovo-znači-za-inženjere" class="article-toc-link" data-toc-target="zaključak-što-ovo-znači-za-inženjere">
+          <span class="toc-link-text">Zaključak: Što ovo znači za inženjere?</span>
+        </a>
+      </li>
+        </ol>
+      </div>
+    </nav></div>
+
+    <!-- Puni HTML Sadržaj Članka -->
+    <article class="reader-body" id="reader-body">
+      <p>Razvoj umjetne inteligencije (AI), posebice u domeni velikih jezičnih modela (LLM) i generativnih arhitektura, od početka 2026. dolazi uz velike promjene. U sferi softverskog inženjerstva, alati temeljeni na AI-ju s visokom razinom autonomije generiraju kompleksne kodove, pa čak i refaktoriraju čitave legacy sustave.</p><p>Međutim, primjena AI-ja u računalno potpomognutom dizajnu (CAD) pokazuje znatno drugačiju, asimetričnu i usporeniju putanju. Ovdje dolazimo do paradoksa suvremenog tehnološkog trenutka: napredni umjetni agent programira funkcionalan server u C++, dok komercijalni CAD softver i dalje zahtijeva izrazito visoku razinu manualne interakcije za iscrtavanje osnovnih geometrijskih tijela.</p><p>Tržište AI-ja u građevinskom i inženjerskom sektoru vrtoglavo raste (očekuje se skok s 4 milijarde USD u 2024. na preko 22 milijarde do 2032.). Ipak, uzrok sporije pojave autonomnih agenata leži u dubokim razlikama u strukturiranju podataka i matematičkim temeljima mehaničkog i arhitektonskog modeliranja.</p><p>U nastavku je dana analiza trenutnog stanja, smjerova razvoja i tehnoloških barijera.</p><h2 id="1-analiza-komercijalnih-cad-platformi-ai-kao-kopilot">1. Analiza komercijalnih CAD platformi: AI kao "Kopilot"</h2><p>Trenutni pristup primjene AI-ja u etabliranim CAD sustavima svodi se na optimizaciju radnih procesa, a ne na potpunu autonomnu generaciju geometrije. Razvoj ide u smjeru integracije inteligentnih asistenata.</p><h3 id="autodesk-autocad-optimizacija-i-metapodaci">Autodesk AutoCAD: Optimizacija i metapodaci</h3><p>U iteracijama za 2025. i 2026., Autodesk se fokusirao na smanjenje administrativnog tereta. AI ovdje vrši ulogu naprednog optimizatora:</p><ul><li><strong>Smart Blocks (Detect & Convert):</strong> AI skenira nacrt, prepoznaje uzorke i sirovu geometriju automatski pretvara u blokove, bez obzira na varijacije u dimenzijama.</li><li><strong>Markup Assist:</strong> Sustav računalnog vida detektira revizije i rukom pisane bilješke s PDF-a te ih precizno smješta u DWG koordinatni sustav.</li><li><strong>Macro Advisor:</strong> Prati repetitivno ponašanje korisnika i proaktivno piše kratki LISP kod (makro naredbe) za automatizaciju klika.</li></ul><h3 id="dassault-systèmes-solidworks-catia-geometrijski-kontekst">Dassault Systèmes (SolidWorks & CATIA): Geometrijski kontekst</h3><p>SolidWorks nudi lokalne desktop alate i cloud rješenja (3DEXPERIENCE). Najzanimljiviji je <strong>AI Fastener Recognition</strong> koji automatski prepoznaje vijke i matice te primjenjuje kinematske relacije (SmartMates), štedeći stotine sati rada. S druge strane, njihova platforma CATIA agresivno koristi AI za topološku optimizaciju (Generative Design) - korisnik zadaje rubne uvjete (sile, momente), a AI autonomno uklanja višak materijala, stvarajući bioničke strukture idealne za autoindustriju i avijaciju.</p><h3 id="siemens-nx-adaptivna-sučelja-i-llm">Siemens NX: Adaptivna sučelja i LLM</h3><p>Siemens koristi <strong>Design Copilot</strong>, alat koji spaja LLM-ove s CAD okruženjem. Umjesto traženja po složenom stablu sklopova, inženjer može napisati: <em>"Istakni sve dijelove od aluminija debljine ispod 2 mm"</em>, a sustav automatski prevodi prirodni jezik u API pozive kernela i izolira komponente.</p><h2 id="2-brzi-prodor-ai-ja-u-aec-industriju-arhitektura-i-građevinarstvo">2. Brzi prodor AI-ja u AEC industriju (Arhitektura i Građevinarstvo)</h2><p>Dok strojarstvo uvodi asistente, najradikalnija automatizacija događa se u građevinskom sektoru (AEC). Zbog strogih normi i ogromnih gubitaka na gradilištima zbog loše dokumentacije, startupi razvijaju skoro potpuno autonomna rješenja:</p><ul><li><strong>Augmenta:</strong> Generativni AI u oblaku koji samostalno rješava kolizije i razvodi kilometre MEP instalacija (struja, voda, cijevi) kroz zgradu, stvarajući troškovnike u roku od nekoliko sati.</li><li><strong>Swapp:</strong> Strojno učenje analizira povijesne projekte arhitektonskog ureda kako bi "kopiralo" njihov vizualni stil i autonomno izgeneriralo tisuće 2D nacrta, presjeka i detalja iz konceptualnog 3D modela.</li><li><strong>Code Compliance (UpCodes, Civils.ai):</strong> Spoj NLP-a i računalnog vida koji analizira nacrte i automatski upozorava krši li projekt recimo protupožarne propise. Algoritam računa putanje evakuacije i generativno predlaže pomicanje pregradnih zidova uz citiranje točnog članka zakona.</li></ul><h2 id="3-fundamentalne-prepreke-zašto-crtanje-zaostaje-za-programiranjem">3. Fundamentalne prepreke: Zašto crtanje zaostaje za programiranjem?</h2><p>Glavno pitanje je - zašto AI model briljira u kodiranju, a halucinira pri crtanju jednostavnog utora? Analizirana su četiri glavna ograničavajuća faktora:</p><ol><li><strong>Asimetrija u podacima za učenje:</strong> Softverski inženjering ima GitHub - milijarde linija otvorenog, verificiranog koda. S druge strane, visokokvalitetni industrijski CAD modeli (intelektualno vlasništvo) zaključani su iza korporativnih vatrozida (PLM sustava). AI uči na manjkavim, hobističkim modelima prepunim geometrijskog šuma.</li><li><strong>B-Rep format vs. LLM arhitektura:</strong> LLM-ovi (Transformer arhitektura) su dizajnirani za linearne, jednodimenzionalne tekstualne nizove. CAD softveri ne koriste piksele, već B-Rep (Boundary Representation) - neprekidnu mrežu topoloških odnosa i matematičkih funkcija u 3D prostoru. Natjerati jezični model da generira bezgrešan topološki niz eksponencijalno je teže od predviđanja sljedeće linije u Pythonu.</li><li><strong>Zastarjelost geometrijskih kernela:</strong> Većina svjetskog inženjerstva počiva na arhaičnim kernelima iz osamdesetih (Parasolid, ACIS) koji koriste kruto parametarsko "stablo povijesti" (History Tree). Ako umjetna inteligencija pogriješi za milimetar u ranoj fazi, cijeli model puca bez jasne povratne tekstualne informacije o grešci (tzv. spaghetti mess), što AI-ju onemogućava ispravak.</li><li><strong>Problem standardizacije u građevini (IFC format):</strong> Iako je IFC apsolutni BIM standard za razmjenu, on pati od semantičkog jaza i gubi podatke o hijerarhiji prilikom kompresije, što ga čini izrazito "prljavim" formatom za obuku dubokih neuronskih mreža.</li></ol><h2 id="4-novi-horizonti-text-to-cad-i-neural-cad">4. Novi horizonti: Text-to-CAD i "Neural CAD"</h2><p>Kako zaobići te prepreke? Nova rješenja okrenula su se programskom kodu kao posredniku. Platforme poput Zoo.dev i koncepti poput CAD-Codera ne traže od AI-ja da generira sliku volumena. AI zapravo piše kod u Pythonu (koristeći alate poput CadQuery) koji deterministički iscrtava model. Vizualno-prostorna logika prebacuje se na stabilan API, dok AI radi ono što najbolje zna - piše logiku.</p><p>Istovremeno, giganti ulažu milijune u Neural CAD. To su 3D generativni temeljni (Foundation) modeli nativno trenirani na geometriji. U budućnosti, arhitekt će oblikovati samo osnovnu masu zgrade, a neuronski motor će instantno obaviti "autodovršavanje" unutarnjih nosivih elemenata, instalacija i armatura.</p><h2 id="zaključak-što-ovo-znači-za-inženjere">Zaključak: Što ovo znači za inženjere?</h2><p>Umjetna inteligencija trenutačno neće zamijeniti eksperte unutar CAD alata onom brzinom kojom koderski agenti utječu na rad programera juniora. Zbog tvrdoglavih matematičkih zakona prostora, ulazimo u fazu intenzivne kooperacije.</p><p>Softver više nije samo pasivno platno za miša i tipkovnicu, već proaktivan inženjerski partner. Bilo da razvijamo hidrotehničke projekte ili masivne građevinske sustave, najbrže će napredovati oni inženjeri koji znaju kako strukturirati svoje arhivirane projekte da budu "razumljivi" novim pametnim alatima.</p><p><em>Kako vi vidite primjenu AI asistenata u svojim svakodnevnim inženjerskim alatima? Jeste li već počeli prepuštati rutinske zadatke softveru?</em></p>
+    </article>
+
+    <!-- Donji Share Blok -->
+    <div class="reader-share-box">
+      <div class="reader-share-info">
+        <span class="reader-share-label">Podijeli ovaj rad:</span>
+      </div>
+      <div class="reader-share-actions">
+        <button type="button" class="btn-copy-link btn-trigger-copy" aria-label="Kopiraj poveznicu na rad">
+          <span class="copy-tooltip">Poveznica kopirana!</span>
+          <svg class="icon-link" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="copy-btn-text">Kopiraj poveznicu</span>
+        </button>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2F1.html&text=Integracija%20AI-ja%20u%20CAD%20sustave%3A%20Za%C5%A1to%20crtanje%20zaostaje%20za%20programiranjem%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2F1.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2F1.html&quote=Integracija%20AI-ja%20u%20CAD%20sustave%3A%20Za%C5%A1to%20crtanje%20zaostaje%20za%20programiranjem%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Povezani članci sekcija -->
+    
+    <section class="related-articles-section" aria-labelledby="related-heading">
+      <div class="related-header">
+        <span class="related-overline">PREPORUČENO ČITANJE</span>
+        <h3 id="related-heading" class="related-title">Povezani radovi i publikacije</h3>
+      </div>
+      <div class="related-grid">
+        
+      <a href="humanoidna-robotika.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/robotika.jpg" alt="Robotika – New Frontier" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 23 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Robotika – New Frontier</h4>
+          <p class="related-card-excerpt">Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="navier-stokes.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/Navier Stokes.jpg" alt="Navier–Stokes" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 31 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Navier–Stokes</h4>
+          <p class="related-card-excerpt">Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="koliko-vode-trose-podatkovni-centri.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/voda_data_centri.jpg" alt="Koliko vode zapravo troše podatkovni centri?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 11 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Koliko vode zapravo troše podatkovni centri?</h4>
+          <p class="related-card-excerpt">Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      </div>
+    </section>
+
+    <!-- Fusnota i povratak -->
+    <footer class="reader-footer">
+      <a href="../index.html" class="btn-read-article">&larr; Povratak na popis sažetaka</a>
+    </footer>
+    </div>
     <!-- Sekcija komentara (Article Comments & Discussion) -->
     <section id="comments-section" class="comments-section" aria-labelledby="comments-title">
       <!-- Sadržaj komentara renderira js/comments.js -->
@@ -246,9 +533,9 @@
     </div>
   </footer>
 
-  <script>window.PRELOADED_ARTICLE_ID = 1;</script>
-  <script src="../js/article.js?v=20260911_1"></script>
-  <script src="../js/comments.js?v=20260919_1"></script>
-  <script src="../js/newsletter.js?v=20260831_1"></script>
+  <script>window.PRELOADED_ARTICLE_ID = 1;window.PRELOADED_ARTICLE_DATA = {"id":1,"title":"Integracija AI-ja u CAD sustave: Zašto crtanje zaostaje za programiranjem?","category":"AI i tehnologija","excerpt":"Dok AI radi čudesne stvari s kodom, napredak u CAD softverima ostaje skroman. Dubinski pregled trenutnog stanja na tržištu i matematičkih barijera u automatizaciji izrade građevinskih detalja.","date":"19. srpnja 2026.","readTime":"5 min čitanja","doi":"doi:10.1016/j.engstruct.2026.10482","image":"img/Integracija AI-ja u CAD sustave.png","categorySlug":"ai-tehnologija","title_en":"AI Integration in CAD Systems: Why Drawing Lags Behind Programming?","category_en":"AI & Tech","summary_en":"While AI works wonders with code, progress in CAD software remains modest. A deep-dive review of current market conditions and mathematical barriers in automating structural drawing details.","excerpt_en":"While AI works wonders with code, progress in CAD software remains modest. A deep-dive review of current market conditions and mathematical barriers in automating structural drawing details.","wordCount":924,"wordCount_en":414};window.PRELOADED_ARTICLES_INDEX = [{"id":"humanoidna-robotika","title":"Robotika – New Frontier","title_en":"Humanoid Robotics – The New Frontier","category":"AI i tehnologija","category_en":"AI & Tech","date":"4. listopada 2026.","readTime":"⏱ 23 min čitanja","readTime_en":"⏱ 23 min read","wordCount":4460,"wordCount_en":4498,"image":"img/robotika.jpg","excerpt":"Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.","excerpt_en":"Why Moravec's paradox is the defining challenge of our era, how VLA models and massive parallel simulation are emancipating AI into the physical world, and who leads the global race between Tesla, Figure, Boston Dynamics, and China."},{"id":"navier-stokes","title":"Navier–Stokes","title_en":"Navier–Stokes","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"17. rujna 2026.","readTime":"⏱ 31 min čitanja","readTime_en":"⏱ 32 min read","wordCount":6011,"wordCount_en":6211,"image":"img/Navier Stokes.jpg","excerpt":"Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.","excerpt_en":"From Hilbert's 23 problems to the Clay Mathematics Institute's million-dollar prize: What the Navier–Stokes equations actually describe, what finite-time singularity means, and how OpenAI's agent swarm and Lean formal verification shook mathematics to its core."},{"id":"koliko-vode-trose-podatkovni-centri","title":"Koliko vode zapravo troše podatkovni centri?","title_en":"How Much Water Do Data Centers Actually Consume?","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tech","date":"23. kolovoza 2026.","readTime":"⏱ 11 min čitanja","readTime_en":"⏱ 12 min read","wordCount":2169,"wordCount_en":2202,"image":"img/voda_data_centri.jpg","excerpt":"Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.","excerpt_en":"A thermodynamic and physical analysis of data center water consumption – covering direct and indirect footprints, WUE and PUE metrics, liquid cooling, and comparisons with other industries."}];</script>
+  <script src="../js/article.js?v=20261017_1"></script>
+  <script src="../js/comments.js?v=20261017_1"></script>
+  <script src="../js/newsletter.js?v=20261017_1"></script>
 </body>
 </html>

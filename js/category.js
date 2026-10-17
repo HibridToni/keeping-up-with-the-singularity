@@ -79,8 +79,8 @@ async function initCategoryPage(resetPagination = true) {
     metaTagEl.textContent = `${metaPrefix}${catTitle}`;
   }
 
-  // Fetch articles and filter
-  const articles = await fetchArticles('articles.json');
+  // Fetch articles from lightweight index and filter
+  const articles = await fetchArticles('articles-index.json', 'articles.json');
   const filteredArticles = articles.filter(art => {
     const slug = art.categorySlug ? art.categorySlug.toLowerCase().trim() : '';
     const catNameHR = (art.category || '').toLowerCase().trim();
@@ -99,10 +99,13 @@ async function initCategoryPage(resetPagination = true) {
   }
 }
 
-async function fetchArticles(url) {
+async function fetchArticles(url, fallbackUrl = 'articles.json') {
   const container = document.getElementById('articles-grid');
   try {
-    const response = await fetch(url);
+    let response = await fetch(url);
+    if (!response.ok && fallbackUrl && fallbackUrl !== url) {
+      response = await fetch(fallbackUrl);
+    }
     if (!response.ok) {
       throw new Error(`Mrežna pogreška pri učitavanju: ${response.status}`);
     }
@@ -259,12 +262,35 @@ function setupPagination() {
 }
 
 /**
- * Calculates estimated reading time based on actual content word count
+ * Calculates estimated reading time based on actual content word count or precomputed index metadata
  * @param {string} content
  * @param {string} lang
+ * @param {Object} [article=null]
  * @returns {string} Formatted reading time string
  */
-function calculateReadingTime(content, lang = 'hr') {
+function calculateReadingTime(content, lang = 'hr', article = null) {
+  if (article) {
+    if (lang === 'en') {
+      if (article.content_en && typeof article.content_en === 'string') {
+        content = article.content_en;
+      } else if (typeof article.wordCount_en === 'number' && article.wordCount_en > 0) {
+        const mins = Math.max(1, Math.ceil(article.wordCount_en / 200));
+        return `⏱ ${mins} min read`;
+      } else if (article.readTime_en) {
+        return article.readTime_en.startsWith('⏱') ? article.readTime_en : `⏱ ${article.readTime_en}`;
+      }
+    } else {
+      if (article.content && typeof article.content === 'string') {
+        content = article.content;
+      } else if (typeof article.wordCount === 'number' && article.wordCount > 0) {
+        const mins = Math.max(1, Math.ceil(article.wordCount / 200));
+        return `⏱ ${mins} min čitanja`;
+      } else if (article.readTime) {
+        return article.readTime.startsWith('⏱') ? article.readTime : `⏱ ${article.readTime}`;
+      }
+    }
+  }
+
   if (!content || typeof content !== 'string') {
     return lang === 'en' ? '⏱ 3 min read' : '⏱ 3 min čitanja';
   }
@@ -289,8 +315,8 @@ function createArticleCard(article) {
   
   const date = article.date || 'Nepoznat datum';
   
-  const rawContent = (currentLang === 'en' && article.content_en) ? article.content_en : (article.content || excerpt);
-  const readTime = calculateReadingTime(rawContent, currentLang);
+  const rawContent = (currentLang === 'en' && article.content_en) ? article.content_en : (article.content || '');
+  const readTime = calculateReadingTime(rawContent, currentLang, article);
 
   const doi = article.doi || '';
   const articleUrl = `articles/${encodeURIComponent(article.id)}.html`;
@@ -301,7 +327,7 @@ function createArticleCard(article) {
   const mediaHTML = image ? `
     <div class="article-card-media">
       <a href="${articleUrl}" tabindex="-1" aria-hidden="true">
-        <img src="${escapeHTML(image)}" alt="${escapeHTML(title)}" class="article-card-thumb" onerror="this.closest('.article-card-media').style.display='none'">
+        <img src="${escapeHTML(image)}" alt="${escapeHTML(title)}" class="article-card-thumb" loading="lazy" decoding="async" onerror="this.closest('.article-card-media').style.display='none'">
       </a>
     </div>
   ` : '';
@@ -482,6 +508,7 @@ function matchesSearchQuery(article, normalizedQuery) {
     article.summary_en,
     article.excerpt,
     article.excerpt_en,
+    article.headingsText,
     article.readTime,
     article.doi
   ];

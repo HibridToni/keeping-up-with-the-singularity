@@ -85,13 +85,13 @@
   <link rel="manifest" href="../manifest.json">
   <link rel="apple-touch-icon" href="../img/logo.png">
 
-  <link rel="stylesheet" href="../style.css?v=20260911_1">
+  <link rel="stylesheet" href="../style.css?v=20261017_1">
   <!-- KaTeX for math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script src="../js/theme.js?v=20260911_1"></script>
-  <script src="../js/lang.js?v=20260911_1"></script>
+  <script src="../js/theme.js?v=20261017_1"></script>
+  <script src="../js/lang.js?v=20261017_1"></script>
   <script src="../js/pwa.js"></script>
 </head>
 <body>
@@ -129,12 +129,284 @@
 
   <!-- GLAVNI SPREMNIK - CENTRIRANI STUPAC ZA ČITANJE (max 800px) -->
   <main class="main-container">
-    <div class="article-reader-container" id="article-reader-container">
-      <div class="loading-state">
-        <p data-i18n="article.loading">Učitavanje sadržaja rada...</p>
+    <div class="article-reader-container" id="article-reader-container" data-ssg-rendered="true" data-ssg-lang="hr">
+    <!-- Link za povratak -->
+    <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
+
+    <!-- Zaglavlje rada -->
+    <header class="reader-header">
+      <div class="reader-meta">
+        <span class="card-category">AI i tehnologija</span>
+      </div>
+
+      <h1 class="reader-title">Prompt inženjering vs. AI harnessing</h1>
+
+      <div class="reader-submeta">
+        <div class="reader-submeta-info">
+          <time class="card-date" datetime="20. srpnja 2026.">20. srpnja 2026.</time>
+          <span class="card-read-time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            ⏱ 8 min čitanja
+          </span>
+          <span class="card-doi">doi:10.1038/s41586-026-09511-x</span>
+        </div>
+
+        <div class="share-buttons">
+          <button type="button" class="share-btn share-copy btn-trigger-copy" aria-label="Kopiraj poveznicu na rad" title="Kopiraj poveznicu na rad">
+            <span class="copy-tooltip">Poveznica kopirana!</span>
+            <svg class="icon-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fprompt-inzenjering-vs-ai-harnessing.html&text=Prompt%20in%C5%BEenjering%20vs.%20AI%20harnessing" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fprompt-inzenjering-vs-ai-harnessing.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fprompt-inzenjering-vs-ai-harnessing.html&quote=Prompt%20in%C5%BEenjering%20vs.%20AI%20harnessing" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+    <div class="article-cover-wrapper">
+      <img src="../img/Prompt inženjering.png" alt="Prompt inženjering vs. AI harnessing" class="article-cover-hero" fetchpriority="high" decoding="async" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+    </div>
+  
+    </header>
+
+    <!-- Audio Player Bar (Preslušavanje članka) -->
+    <div class="audio-player-bar" id="audio-player-bar" aria-label="Slušaj članak">
+      <div class="audio-controls-left">
+        <button id="tts-play-btn" class="audio-btn audio-btn-play" aria-label="Pokreni čitanje" title="Pokreni čitanje">
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+        </button>
+        <button id="tts-stop-btn" class="audio-btn audio-btn-stop" aria-label="Zaustavi čitanje" title="Zaustavi čitanje" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="audio-status-container">
+        <span class="audio-status-pulse" id="tts-status-pulse"></span>
+        <span id="tts-status-text" class="audio-status-text">Slušaj članak</span>
+      </div>
+
+      <div class="audio-right-controls">
+        <div class="audio-voice-controls" id="audio-voice-controls">
+          <label for="tts-voice-select" class="voice-label" title="Odabir glasa za čitanje">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span class="voice-label-text">Glas:</span>
+          </label>
+          <select id="tts-voice-select" class="audio-voice-select" aria-label="Odabir glasa za čitanje">
+            <option value="">Najbolji prirodni glas</option>
+          </select>
+        </div>
+
+        <div class="audio-speed-controls">
+          <span class="speed-label">Brzina:</span>
+          <div class="speed-options">
+            <button class="speed-btn active" data-speed="1.0">1x</button>
+            <button class="speed-btn" data-speed="1.25">1.25x</button>
+            <button class="speed-btn" data-speed="1.5">1.5x</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Table of Contents (Sadržaj rada) Container -->
+    <div id="article-toc-container" class="article-toc-wrapper">
+    <nav class="article-toc-card" aria-label="Sadržaj članka">
+      <div class="article-toc-header">
+        <div class="article-toc-title-group">
+          <svg class="article-toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h2 class="article-toc-title">Sadržaj rada</h2>
+          <span class="article-toc-badge">5</span>
+        </div>
+        <button type="button" class="article-toc-toggle-btn" id="toc-toggle-btn" aria-expanded="true" aria-controls="article-toc-body" aria-label="Sakrij">
+          <span class="toc-toggle-text">Sakrij</span>
+          <svg class="toc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="article-toc-body" id="article-toc-body">
+        <ol class="article-toc-list">
+          
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#evolucija-interakcije-s-modelima" class="article-toc-link" data-toc-target="evolucija-interakcije-s-modelima">
+          <span class="toc-link-text">Evolucija interakcije s modelima</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#dekonstrukcija-prompt-inženjeringa" class="article-toc-link" data-toc-target="dekonstrukcija-prompt-inženjeringa">
+          <span class="toc-link-text">Dekonstrukcija prompt inženjeringa</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#temelji-ai-harnessinga" class="article-toc-link" data-toc-target="temelji-ai-harnessinga">
+          <span class="toc-link-text">Temelji AI Harnessinga</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#praktični-primjer-upravljanje-projektom" class="article-toc-link" data-toc-target="praktični-primjer-upravljanje-projektom">
+          <span class="toc-link-text">Praktični primjer: Upravljanje projektom</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#budućnost-integracije" class="article-toc-link" data-toc-target="budućnost-integracije">
+          <span class="toc-link-text">Budućnost integracije</span>
+        </a>
+      </li>
+        </ol>
+      </div>
+    </nav></div>
+
+    <!-- Puni HTML Sadržaj Članka -->
+    <article class="reader-body" id="reader-body">
+      <h2 id="evolucija-interakcije-s-modelima">Evolucija interakcije s modelima</h2><p>Komercijalni uspon generativne umjetne inteligencije tijekom 2023. godine popratila je i pojava raznih tečajeva/priručnika za savladavanje "tajni promptova". Ideja koju su tada prodavali bila je jednostavna: jezični modeli reagiraju na specifične kombinacije riječi koje otključavaju njihov puni potencijal. Fenomen tzv. prompt inženjeringa pokazao se kao prolazni simptom ograničenih sposobnosti tadašnjih modela. Modeli su se morali ručno voditi kroz logičke korake (chain-of-thought), uz pojašnjenje konteksta i s osvrtom na sintaktičke pojedinosti kako ne bi generirali pogrešan izlaz. Biti "prompt inženjer" praktički je značilo kompenzirati nedostatak inherentnog rezoniranja samog modela.</p><p>Možda ste u zadnje vrijeme primijetili kako rezultati puno bolje ‘pogađaju’ ono što vam treba, a što možda niste do kraja specificirali. Kako modeli postaju značajno sposobniji za apstraktno zaključivanje, oni počinju implicitno prepoznavati namjeru korisnika. Modeli koji se sastoje od nekoliko bilijuna parametara u sebi imaju praktički cijeli dostupni internet. Više im nije potrebno definirati svaki međukorak; dovoljno je postaviti jasne ciljeve i rubne uvjete, a algoritmi samostalno pronalaze optimalan put do rješenja. Međutim, oslanjanje na takvu intuitivnost modela nosi rizik od nedeterminizma i nepredvidivosti u produkcijskim uvjetima. Posljedično, mikromenadžment izoliranih upita unutar chat sučelja postaje zastarjela i sigurnosno neadekvatna praksa.</p><p>Stari pristup temeljio se na tome kako komuniciramo s modelom, što je uvelike limitiralo skalabilnost na razini cijele organizacije. Fokus se seli na to u kakve softverske arhitekture i automatizirane radne procese integriramo modele. Nova vrijednost se stvara kroz AI Harnessing. U svojoj suštini, harnessing predstavlja arhitektonski pristup gdje je AI model kognitivni sloj inteligencije integriran s vanjskim bazama podataka, API-jima i logikom poslovnih procesa, čime se rješava problem izoliranosti modela i osigurava pouzdanost u stvarnom vremenu. U nastavku se daje osvrt na ograničenja tradicionalnog prompt inženjeringa te analiza glavnih komponenti harnessinga koje omogućavaju izgradnju takvih naprednih i autonomnih sustava.</p><h2 id="dekonstrukcija-prompt-inženjeringa">Dekonstrukcija prompt inženjeringa</h2><p>Da bi se razumio postepeni prelazak na harnessing, potrebno je prvenstveno definirati parametre unutar kojih operira prompt inženjering. U svojoj inženjerskoj osnovi, on predstavlja rad isključivo na mikrorazini. To je proces strukturiranja ulaznog teksta (prompta) s ciljem usmjeravanja i ograničavanja izlaza velikog jezičnog modela (LLM). Oslanja se na tehnike poput few-shot učenja (implementacija primjera unutar samog upita) ili chain-of-thought forsiranja (zahtijevanje od modela da eksplicitno generira korake zaključivanja). Međutim, ovaj pristup stvara iluziju klasičnog programiranja. Umjesto pisanja egzaktnog, determinističkog koda, autor prompta zapravo pokušava upravljati statističkom vjerojatnošću modela, što prirodni jezik čini previše dvosmislenim za stroge inženjerske zahtjeve.</p><p>Temeljni arhitektonski nedostatak ovog pristupa leži u njegovoj strogoj linearnosti i sinkronoj ovisnosti o čovjeku. Interakcija se svodi na jednostavnu transakciju: korisnik šalje upit, sustav vraća odgovor. Unutar ovog modela ne postoji ugrađena autonomija, izostaje komunikacija s vanjskim sustavima u stvarnom vremenu i, što je najkritičnije, ne postoji automatizirana petlja povratne sprege (feedback loop). Ako izlazni rezultat ne zadovoljava zadane uvjete, proces se zaustavlja dok čovjek ručno ne rekalibrira i ponovno unese ulazne parametri. Uz to, takav je pristup iznimno krt i stvara ozbiljan tehnički nedostatak. Prompt koji danas optimalno funkcionira na jednoj verziji modela može postati potpuno neupotrebljiv nakon prve pozadinske nadogradnje sustava od strane razvojne tvrtke.</p><p>Čak je i sama praksa oblikovanja upita s vremenom morala evoluirati, od pisanja opisne proze prešlo se na stroge strukture poput JSON-a ili XML-a, što je bio jasan signal da modeli traže čvršći okvir. Posljedično, prompt inženjering gubi status specijalizirane tehničke discipline i prelazi u domenu osnovne digitalne pismenosti. Sposobnost jasnog i strukturiranog artikuliranja zahtjeva prema kognitivnim modelima postala je standardni preduvjet za rad, usporediva s poznavanjem osnova pismenosti u bilo kojem drugom digitalnom okruženju. Baš kao što sviranje pojedinačne dionice na jednom instrumentu ne čini nekoga skladateljem ili dirigentom cijele simfonije, tako ni pisanje optimiziranog prompta ne predstavlja dizajniranje inteligentnog sustava.</p><h2 id="temelji-ai-harnessinga">Temelji AI Harnessinga</h2><p>AI harnessing predstavlja softversku arhitekturu koja stvara deterministički, upravljivi okvir oko jezičnih modela. Riječ je o pristupu u kojem se model više ne promatra kao izolirano sučelje za razgovor, već kao kognitivni modul (sloj inteligencije) integriran unutar šireg aplikacijskog sustava. Umjesto da se oslanjamo na točnost slobodnog generiranja teksta, model se postavlja u kontrolirano okruženje s jasno definiranim granicama odgovornosti, programskim validatorima izlaza, izravnim pristupom strukturiranim vanjskim resursima te mehanizmima automatske kontrole kvalitete. U praksi, ovaj se pristup oslanja na tri esencijalna stupa.</p><p>Prvi stup je dinamičko utemeljenje kroz RAG (Retrieval-Augmented Generation) sustave. Budući da su modeli trenirani na statičkim i javno dostupnim podacima, oni ne posjeduju kontekst o specifičnim, internim ili vremenski kritičnim informacijama nekog poduzeća. Na ovaj način model ne mora isključivo biti inicijalno ‘sveznajući’ već ima sposobosnost otvorenog pretraživanja. Prije nego što upit uopće stigne do modela, sustav pretražuje interne baze podataka (najčešće indeksirane kroz vektorske baze) i pronalazi najrelevantne dokumente. Model tada dobiva zadatak da sintetizira odgovor isključivo na temelju tih provjerenih i strogo ograničenih izvora, čime se pojava halucinacija svodi na minimum, a točnost podataka dramatično raste bez potrebe za skupim i sporim finim podešavanjem (fine-tuningom) samog modela.</p><p>Drugi stup čine agentne arhitekture (agentic workflows). Za razliku od linearnog prompt inženjeringa, agentni sustavi daju modelu mogućnost donošenja odluka o korištenju vanjskih alata i resursa. Model aktivno poziva API-je, pretražuje web, izvršava kod u sigurnom okruženje (sandboxu) ili šalje upite strukturiranim SQL bazama podataka. Sustav je postavljen tako da model može samostalno odlučiti koji mu je alat potreban za rješavanje kompleksnog problema, izvršiti akciju, analizirati povratnu informaciju od tog alata i prilagoditi svoj idući korak. Na taj način model polako postaje autonomni entitet sposoban za rješavanje višestupanjskih radnih zadataka.</p><p>Treći, i vjerojatno najvažniji stup za produkcijsku stabilnost, jesu automatizirane petlje povratne sprege i validacijski sustavi (evals & feedback loops). U harnessing arhitekturi, izlazni rezultat modela nikada ne ide izravno krajnjem korisniku ili u produkcijski sustav bez prethodne provjere. Oko modela se grade programski validatori koji automatski analiziraju strukturu i kvalitetu izlaza. Primjerice, ako sustav zahtijeva strogo definiran JSON format, a model isporuči sintaktički neispravan objekt, validator će automatski presresti taj izlaz, kreirati tehnički opis pogreške i poslati ga natrag modelu na doradu. Ovaj proces se ponavlja u zatvorenoj petlji sve dok se ne zadovolje unaprijed definirani kriteriji, čime se postiže razina pouzdanosti koja je u čistom prompt inženjeringu bila potpuno neostvariva.</p><h2 id="praktični-primjer-upravljanje-projektom">Praktični primjer: Upravljanje projektom</h2><p>Ovi koncepti mogu djelovati pomalo apstraktno. Kako bismo ih pokušali prenijeti u realno okruženje, promotrimo primjer iz građevinskog menadžmenta. Pretpostavimo da inženjer gradilišta dobije obavijest da će isporuka kritične armature kasniti pet radnih dana.</p><p>U tradicionalnom pristupu, on bi morao samostalno formulirati upit unutar chat sučelja (primjerice: "Što da radim ako mi armatura kasni pet dana?"). Model bi mu vratio općenite, teorijske savjete o upravljivanju rizicima koji nemaju nikakvu izravnu poveznicu sa stvarnim stanjem na terenu. Korisnik bi tada morao ručno pretraživati tablice, proračune i ugovore te ponovno slati podatke modelu u potrazi za konkretnijim odgovorom.</p><p>Nasuprot tome, sustav postavljen kroz principe AI harnessinga ovaj problem rješava potpuno autonomno i u stvarnom vremenu kroz tri definirana stupa:</p><ul><li><strong>Dinamičko utemeljenje (RAG):</strong> Sustav automatski detektira obavijest o kašnjenju isporuke unutar e-maila ili ERP sustava. Prije nego što uopće aktivira jezični model, sustav iz vektorske baze povlači aktualni dinamički plan projekta, troškovnik, ugovore s alternativnim dobavljačima te tehničku dokumentaciju specifičnu za to gradilište.</li><li><strong>Agentni tijek rada (Agentic Workflow):</strong> Kognitivni modul preuzima ulogu agenta i dobiva pristup alatima. On samostalno koristi kalkulator za analizu kritičnog puta projekta (kako bi izračunao utjecaj kašnjenja armature na faza betoniranja), pretražuje baze podataka drugih lokalnih dobavljača te provjerava trenutačno stanje zaliha u skladištu. Agent potom samostalno sastavlja nacrt novog, optimiziranog terminskog plana i generira službene upite prema alternativnim dobavljačima.</li><li><strong>Validacijska petlja (Evals & Feedback):</strong> Prije nego što predloži novi plan voditelju projekta, sustav ga propušta kroz programske validatore. Primjerice, validator provjerava jesu li predloženi datumi tehnički izvedivi (npr. ne dopušta početak skidanja oplate prije nego što prođe zakonski definiran broj dana za sušenje betona). Ako model u prvoj iteraciji predloži nelogičan raspored faza, validator automatski odbija taj plan, opisuje fizikalno-tehničku pogrešku i vraća ga modelu na rekalibraciju.</li></ul><p>Tek kada sustav u zatvorenoj petlji generira rješenje koje zadovoljava sve inženjerske i zakonske parametre, inženjer dobiva gotov, provjeren i primjenjiv prijedlog odluke sa svim izračunatim troškovima i novim terminima.</p><h2 id="budućnost-integracije">Budućnost integracije</h2><p>Svijet umjetne inteligencije ubrzano se kreće od faze fascinacije mogućnostima pojedinačnih modela prema fazi njihove sustavne eksploatacije. Pisanje izoliranih upita unutar chat sučelja odigralo je važnu ulogu u demokratizaciji tehnologije, no danas ta praksa predstavlja tek bazični ulazni prag. Prava konkurentska prednost sada se stvara izgradnjom robusnih softverskih sustava koji kognitivne sposobnosti modela stavljaju u funkciju šireg poslovanja.</p><p>Jedna od potvrda ove tranzicije dolazi iz središta tehnološke industrije. Nedavna odluka Googlea da odgodi lansiranje svog vodećeg modela Gemini 3.5 Pro nije se dogodila zbog nedostatka procesorske snage, već zbog internih procjena da model nije u potpunosti zadovoljio iznimno visoke standarde u složenim zadacima programiranja i agentnog izvršavanja (coding & agentic benchmarks). Činjenica da tehnološki lideri radije biraju odgode lansiranja nego izlazak s modelom koji ne briljira u integraciji i autonomnom rješavanju zadataka unutar razvojnih okruženja (poput njihove platforme Antigravity), jasno potvrđuje da je utrka u 'običnim' tekstualnim performansama gotova.</p><p>Uspjeh u novoj eri mjeri se time koliko su modeli učinkovito integrirani u automatizirane procese koji rade autonomno, pouzdano i u stvarnom vremenu. Tranzicija s prompt inženjeringa na AI harnessing zahtijeva korjenitu promjenu mentalnog sklopa u pristupu problemu. Pitanje na koje moramo dati odgovor je kako softverski sustav može dinamički strukturirati i upravljati kontekstom koji se šalje kognitivnom sloju. Na putu prema AGI-u, AI harnessing je još jedan od evolucijskih koraka.</p>
+    </article>
+
+    <!-- Donji Share Blok -->
+    <div class="reader-share-box">
+      <div class="reader-share-info">
+        <span class="reader-share-label">Podijeli ovaj rad:</span>
+      </div>
+      <div class="reader-share-actions">
+        <button type="button" class="btn-copy-link btn-trigger-copy" aria-label="Kopiraj poveznicu na rad">
+          <span class="copy-tooltip">Poveznica kopirana!</span>
+          <svg class="icon-link" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="copy-btn-text">Kopiraj poveznicu</span>
+        </button>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fprompt-inzenjering-vs-ai-harnessing.html&text=Prompt%20in%C5%BEenjering%20vs.%20AI%20harnessing" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fprompt-inzenjering-vs-ai-harnessing.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fprompt-inzenjering-vs-ai-harnessing.html&quote=Prompt%20in%C5%BEenjering%20vs.%20AI%20harnessing" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Povezani članci sekcija -->
+    
+    <section class="related-articles-section" aria-labelledby="related-heading">
+      <div class="related-header">
+        <span class="related-overline">PREPORUČENO ČITANJE</span>
+        <h3 id="related-heading" class="related-title">Povezani radovi i publikacije</h3>
+      </div>
+      <div class="related-grid">
+        
+      <a href="humanoidna-robotika.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/robotika.jpg" alt="Robotika – New Frontier" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 23 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Robotika – New Frontier</h4>
+          <p class="related-card-excerpt">Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="navier-stokes.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/Navier Stokes.jpg" alt="Navier–Stokes" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 31 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Navier–Stokes</h4>
+          <p class="related-card-excerpt">Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="koliko-vode-trose-podatkovni-centri.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/voda_data_centri.jpg" alt="Koliko vode zapravo troše podatkovni centri?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 11 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Koliko vode zapravo troše podatkovni centri?</h4>
+          <p class="related-card-excerpt">Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      </div>
+    </section>
+
+    <!-- Fusnota i povratak -->
+    <footer class="reader-footer">
+      <a href="../index.html" class="btn-read-article">&larr; Povratak na popis sažetaka</a>
+    </footer>
+    </div>
     <!-- Sekcija komentara (Article Comments & Discussion) -->
     <section id="comments-section" class="comments-section" aria-labelledby="comments-title">
       <!-- Sadržaj komentara renderira js/comments.js -->
@@ -246,9 +518,9 @@
     </div>
   </footer>
 
-  <script>window.PRELOADED_ARTICLE_ID = "prompt-inzenjering-vs-ai-harnessing";</script>
-  <script src="../js/article.js?v=20260911_1"></script>
-  <script src="../js/comments.js?v=20260919_1"></script>
-  <script src="../js/newsletter.js?v=20260831_1"></script>
+  <script>window.PRELOADED_ARTICLE_ID = "prompt-inzenjering-vs-ai-harnessing";window.PRELOADED_ARTICLE_DATA = {"id":"prompt-inzenjering-vs-ai-harnessing","title":"Prompt inženjering vs. AI harnessing","date":"20. srpnja 2026.","category":"AI i tehnologija","readTime":"10 min čitanja","doi":"doi:10.1038/s41586-026-09511-x","excerpt":"Analiza evolucije interakcije s jezičnim modelima, prelaska s tradicionalnog prompt inženjeringa na AI harnessing te integracije kognitivnih modula u automatizirane, agentne radne procese.","image":"img/Prompt inženjering.png","categorySlug":"ai-tehnologija","title_en":"Prompt Engineering vs. AI Harnessing","category_en":"AI & Tech","summary_en":"An analysis of the evolution of LLM interaction, shifting from traditional prompt engineering to AI harnessing and integrating cognitive modules into automated agentic workflows.","excerpt_en":"An analysis of the evolution of LLM interaction, shifting from traditional prompt engineering to AI harnessing and integrating cognitive modules into automated agentic workflows.","wordCount":1548,"wordCount_en":1449};window.PRELOADED_ARTICLES_INDEX = [{"id":"humanoidna-robotika","title":"Robotika – New Frontier","title_en":"Humanoid Robotics – The New Frontier","category":"AI i tehnologija","category_en":"AI & Tech","date":"4. listopada 2026.","readTime":"⏱ 23 min čitanja","readTime_en":"⏱ 23 min read","wordCount":4460,"wordCount_en":4498,"image":"img/robotika.jpg","excerpt":"Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.","excerpt_en":"Why Moravec's paradox is the defining challenge of our era, how VLA models and massive parallel simulation are emancipating AI into the physical world, and who leads the global race between Tesla, Figure, Boston Dynamics, and China."},{"id":"navier-stokes","title":"Navier–Stokes","title_en":"Navier–Stokes","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"17. rujna 2026.","readTime":"⏱ 31 min čitanja","readTime_en":"⏱ 32 min read","wordCount":6011,"wordCount_en":6211,"image":"img/Navier Stokes.jpg","excerpt":"Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.","excerpt_en":"From Hilbert's 23 problems to the Clay Mathematics Institute's million-dollar prize: What the Navier–Stokes equations actually describe, what finite-time singularity means, and how OpenAI's agent swarm and Lean formal verification shook mathematics to its core."},{"id":"koliko-vode-trose-podatkovni-centri","title":"Koliko vode zapravo troše podatkovni centri?","title_en":"How Much Water Do Data Centers Actually Consume?","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tech","date":"23. kolovoza 2026.","readTime":"⏱ 11 min čitanja","readTime_en":"⏱ 12 min read","wordCount":2169,"wordCount_en":2202,"image":"img/voda_data_centri.jpg","excerpt":"Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.","excerpt_en":"A thermodynamic and physical analysis of data center water consumption – covering direct and indirect footprints, WUE and PUE metrics, liquid cooling, and comparisons with other industries."}];</script>
+  <script src="../js/article.js?v=20261017_1"></script>
+  <script src="../js/comments.js?v=20261017_1"></script>
+  <script src="../js/newsletter.js?v=20261017_1"></script>
 </body>
 </html>

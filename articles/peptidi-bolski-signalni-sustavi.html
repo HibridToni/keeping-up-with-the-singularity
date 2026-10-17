@@ -85,13 +85,13 @@
   <link rel="manifest" href="../manifest.json">
   <link rel="apple-touch-icon" href="../img/logo.png">
 
-  <link rel="stylesheet" href="../style.css?v=20260911_1">
+  <link rel="stylesheet" href="../style.css?v=20261017_1">
   <!-- KaTeX for math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script src="../js/theme.js?v=20260911_1"></script>
-  <script src="../js/lang.js?v=20260911_1"></script>
+  <script src="../js/theme.js?v=20261017_1"></script>
+  <script src="../js/lang.js?v=20261017_1"></script>
   <script src="../js/pwa.js"></script>
 </head>
 <body>
@@ -129,12 +129,301 @@
 
   <!-- GLAVNI SPREMNIK - CENTRIRANI STUPAC ZA ČITANJE (max 800px) -->
   <main class="main-container">
-    <div class="article-reader-container" id="article-reader-container">
-      <div class="loading-state">
-        <p data-i18n="article.loading">Učitavanje sadržaja rada...</p>
+    <div class="article-reader-container" id="article-reader-container" data-ssg-rendered="true" data-ssg-lang="hr">
+    <!-- Link za povratak -->
+    <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
+
+    <!-- Zaglavlje rada -->
+    <header class="reader-header">
+      <div class="reader-meta">
+        <span class="card-category">Longevity</span>
+      </div>
+
+      <h1 class="reader-title">Peptidi: Biološki signalni molekularni sustavi</h1>
+
+      <div class="reader-submeta">
+        <div class="reader-submeta-info">
+          <time class="card-date" datetime="27. srpnja 2026.">27. srpnja 2026.</time>
+          <span class="card-read-time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            ⏱ 6 min čitanja
+          </span>
+          
+        </div>
+
+        <div class="share-buttons">
+          <button type="button" class="share-btn share-copy btn-trigger-copy" aria-label="Kopiraj poveznicu na rad" title="Kopiraj poveznicu na rad">
+            <span class="copy-tooltip">Poveznica kopirana!</span>
+            <svg class="icon-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fpeptidi-bolski-signalni-sustavi.html&text=Peptidi%3A%20Biolo%C5%A1ki%20signalni%20molekularni%20sustavi" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fpeptidi-bolski-signalni-sustavi.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fpeptidi-bolski-signalni-sustavi.html&quote=Peptidi%3A%20Biolo%C5%A1ki%20signalni%20molekularni%20sustavi" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+    <div class="article-cover-wrapper">
+      <img src="../img/peptidi.png.png" alt="Peptidi: Biološki signalni molekularni sustavi" class="article-cover-hero" fetchpriority="high" decoding="async" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+    </div>
+  
+    </header>
+
+    <!-- Audio Player Bar (Preslušavanje članka) -->
+    <div class="audio-player-bar" id="audio-player-bar" aria-label="Slušaj članak">
+      <div class="audio-controls-left">
+        <button id="tts-play-btn" class="audio-btn audio-btn-play" aria-label="Pokreni čitanje" title="Pokreni čitanje">
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+        </button>
+        <button id="tts-stop-btn" class="audio-btn audio-btn-stop" aria-label="Zaustavi čitanje" title="Zaustavi čitanje" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="audio-status-container">
+        <span class="audio-status-pulse" id="tts-status-pulse"></span>
+        <span id="tts-status-text" class="audio-status-text">Slušaj članak</span>
+      </div>
+
+      <div class="audio-right-controls">
+        <div class="audio-voice-controls" id="audio-voice-controls">
+          <label for="tts-voice-select" class="voice-label" title="Odabir glasa za čitanje">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span class="voice-label-text">Glas:</span>
+          </label>
+          <select id="tts-voice-select" class="audio-voice-select" aria-label="Odabir glasa za čitanje">
+            <option value="">Najbolji prirodni glas</option>
+          </select>
+        </div>
+
+        <div class="audio-speed-controls">
+          <span class="speed-label">Brzina:</span>
+          <div class="speed-options">
+            <button class="speed-btn active" data-speed="1.0">1x</button>
+            <button class="speed-btn" data-speed="1.25">1.25x</button>
+            <button class="speed-btn" data-speed="1.5">1.5x</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Table of Contents (Sadržaj rada) Container -->
+    <div id="article-toc-container" class="article-toc-wrapper">
+    <nav class="article-toc-card" aria-label="Sadržaj članka">
+      <div class="article-toc-header">
+        <div class="article-toc-title-group">
+          <svg class="article-toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h2 class="article-toc-title">Sadržaj rada</h2>
+          <span class="article-toc-badge">7</span>
+        </div>
+        <button type="button" class="article-toc-toggle-btn" id="toc-toggle-btn" aria-expanded="true" aria-controls="article-toc-body" aria-label="Sakrij">
+          <span class="toc-toggle-text">Sakrij</span>
+          <svg class="toc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="article-toc-body" id="article-toc-body">
+        <ol class="article-toc-list">
+          
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#što-su-zapravo-peptidi" class="article-toc-link" data-toc-target="što-su-zapravo-peptidi">
+          <span class="toc-link-text">Što su zapravo peptidi?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#metabolička-revolucija-glp-1-i-nova-era-u-liječenju-pretilosti" class="article-toc-link" data-toc-target="metabolička-revolucija-glp-1-i-nova-era-u-liječenju-pretilosti">
+          <span class="toc-link-text">Metabolička revolucija: GLP-1 i nova era u liječenju pretilosti</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#agonisti-glp-1-i-gip-receptora" class="article-toc-link" data-toc-target="agonisti-glp-1-i-gip-receptora">
+          <span class="toc-link-text">Agonisti GLP-1 i GIP receptora</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#regenerativna-medicina-biološko-ubrzanje-obnove-tkiva" class="article-toc-link" data-toc-target="regenerativna-medicina-biološko-ubrzanje-obnove-tkiva">
+          <span class="toc-link-text">Regenerativna medicina: Biološko ubrzanje obnove tkiva</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#rejuvenacija-i-anti-aging-optimizacija-staničnog-zdravlja" class="article-toc-link" data-toc-target="rejuvenacija-i-anti-aging-optimizacija-staničnog-zdravlja">
+          <span class="toc-link-text">Rejuvenacija i anti-aging: Optimizacija staničnog zdravlja</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#izazovi-u-primjeni-i-ograničenja" class="article-toc-link" data-toc-target="izazovi-u-primjeni-i-ograničenja">
+          <span class="toc-link-text">Izazovi u primjeni i ograničenja</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#budućnost-ai-de-novo-sintetski-peptidi-i-ciljana-dostava" class="article-toc-link" data-toc-target="budućnost-ai-de-novo-sintetski-peptidi-i-ciljana-dostava">
+          <span class="toc-link-text">Budućnost: AI, de novo sintetski peptidi i ciljana dostava</span>
+        </a>
+      </li>
+        </ol>
+      </div>
+    </nav></div>
+
+    <!-- Puni HTML Sadržaj Članka -->
+    <article class="reader-body" id="reader-body">
+      <p>Većinu je vremena tradicionalna medicina funkcionirala po principu gašenja požara: kada tkivo oboli ili zakaže određeni metabolički proces, medicina reagira sintetskim kemijskim spojevima kako bi blokirala ili pojačala određene funkcije, često uz cijenu sistemskih nuspojava. Međutim, svjedočimo tihoj revoluciji u kojoj se težište s vanjskog "prisiljavanja" organizma pomiče prema davanju preciznih, biološki izvornih uputa samoj stanici. Umjesto da u tijelo unosimo agresivne kemijske strukture, moderna medicina sve češće koristi jezik kojim stanice prirodno komuniciraju – peptide.</p>
+    <div class="article-video-container">
+      <video controls preload="metadata">
+        <source src="../video/peptidi.mp4" type="video/mp4">
+        Vaš preglednik ne podržava HTML5 video element.
+      </video>
+    </div>
+  <h3 id="što-su-zapravo-peptidi">Što su zapravo peptidi?</h3><p>Unatoč tome što u javnosti često zvuče kao novi laboratorijski izum, peptidi su među najstarijim molekulama života. Najjednostavnije rečeno, peptidi su kratki lanci aminokiselina povezani peptidnim vezama. Ako aminokiseline zamislimo kao slova abecede, proteini su opsežne knjige, dok su peptidi kratke, iznimno precizne rečenice. U biokemiji se granica između peptida i proteina obično postavlja na duljini lanca: molekule koje sadrže do $50$ aminokiselina nazivamo peptidima, dok duži lanci tvore proteine.</p><p>U ljudskom tijelu peptidi djeluju kao stanični glasnici ili "ključevi" koji se spajaju na točno određene receptore na površini stanica. Kada se peptid veže za svoj receptor, stanici predaje specifičnu poruku: "ubrzaj obnovu tkiva", "potični lučenje hormona", "smanji upalni proces" ili "reguliraj razinu glukoze".</p><p>Da bismo razumjeli zašto peptidi zauzimaju središnje mjesto u razvoju suvremenih terapija, korisno ih je usporediti s dva dosadašnja stupa farmakologije:</p><ul><li><strong>U usporedbi s velikim proteinima (npr. antitijelima):</strong> Proteini su velike i kompleksne strukture koje se teško probijaju kroz stanične barijere i tkiva, a imunitet ih nerijetko može prepoznati kao strane objekte i odbaciti. Peptidi su, zahvaljujući znatno manjoj molekularnoj masi, mobilniji, lakše prodiru u ciljana tkiva te znatno rjeđe izazivaju neželjeni imunosni odgovor.</li><li><strong>U usporedbi s klasičnim sintetskim lijekovima male molekularne mase:</strong> Klasični lijekovi često djeluju neselektivno, ciljaju željeni mehanizam, ali usput utječu na niz drugih receptora u tijelu, što rezultira nuspojavama. Peptidi posjeduju visoku afinitetnu specifičnost i djeluju po principu "ključ u bravu". Osim toga, nakon što obave svoju funkciju, tijelo ih razgrađuje na prirodne aminokiseline, čime se drastično smanjuje toksično opterećenje na jetru i bubrege.</li></ul><p>Možda i najvažnija spoznaja uvođenjem terapijskih peptida u medicinsku praksu jest da ne mijenjamo fundamentalnu biologiju čovjeka, već joj vraćamo "softverske upute" koje su zbog starenja, bolesti ili ozljeda izostale.</p><h3 id="metabolička-revolucija-glp-1-i-nova-era-u-liječenju-pretilosti">Metabolička revolucija: GLP-1 i nova era u liječenju pretilosti</h3><p>Desetljećima je tretman pretilosti i metaboličkog sindroma bio zarobljen u pojednostavljenom narativu o "nedostatku volje" i matematici unosa i potrošnje kalorija. Međutim, pojava peptidnih terapija baziranih na crijevno-moždanoj (gut-brain) osi počinje rušiti tu dogmu, ukazujući da je pretilost kompleksna neurobiološka i metabolička bolest regulirana mrežom hormonskih signala.</p><h4 id="agonisti-glp-1-i-gip-receptora">Agonisti GLP-1 i GIP receptora</h4><p>Središnji akteri ove revolucije su sintetski analozi prirodnog peptida GLP-1 (Glucagon-like peptide-1), crijevnog hormona koji se prirodno luči nakon obroka i signalizira tijelu prisutnost nutrijenata.</p><ul><li><strong>Semaglutid (Ozempic, Wegovy):</strong> Djeluje tako što imitira prirodni GLP-1: potiče gušteraču na lučenje inzulina kada je razina glukoze povišena, usporava pražnjenje želuca te šalje snažne signale sitosti u hipotalamus.</li><li><strong>Tirzepatid (Mounjaro, Zepbound):</strong> Napravio je dodatni korak kao dvostruki agonist. Osim GLP-1 receptora, aktivira i receptore za GIP. Ova sinergija dvaju peptida ostvaruje još snažniji učinak na osjetljivost na inzulin i razgradnju masnog tkiva.</li><li><strong>Retatrutid:</strong> Najnoviji val istraživanja donosi "triple-G" peptide koji istovremeno stimuliraju GLP-1, GIP i receptore za glukagon. Dodatak glukagonske komponente povećava energetsku potrošnju i potiče izravno sagorijevanje masti u jetri.</li></ul><p>Kliničke studije pokazale su da terapija GLP-1 peptidima drastično smanjuje rizik od velikih kardiovaskularnih događaja te značajno poboljšava parametre kod pacijenata s masnom jetrom i kroničnim upalnim procesima. Uvođenjem ovih peptida u medicinsku praksu, pacijenti više ne moraju voditi borbu protiv vlastite biologije.</p><h3 id="regenerativna-medicina-biološko-ubrzanje-obnove-tkiva">Regenerativna medicina: Biološko ubrzanje obnove tkiva</h3><p>Dok se metaboličke terapije bave sistemskim hormonskim signalima, regenerativna medicina fokusirana je na lokalnu obnovu i mikrokruženje oštećenih tkiva. Peptidi u regeneraciji ne potiskuju odgovor tijela, već ubrzavaju i usmjeravaju prirodne reparativne mehanizme.</p><p>U središtu istraživanja regenerativnih peptida nalaze se dva spoja koji djeluju komplementarno:</p><ul><li><strong>BPC-157 (Body Protection Compound-157):</strong> Sintetski pentadekapeptid sastavljen od $15$ aminokiselina, deriviran iz želučanog soka. Primarni mehanizam BPC-157 leži u snažnoj promociji angiogeneze (stvaranja novih kapilara). Omogućuje bržu dostavu kisika i nutrijenata u slabije prokrvljena tkiva (tetive, ligamente, hrskavicu) te obnavlja sluznicu probavnog trakta.</li><li><strong>TB-500 (Sintetski fragment Timozina Beta-4):</strong> Djeluje prvenstveno kroz regulaciju aktina, proteina ključnog za građu staničnog kostura. Omogućava stanicama da se lakše kreću prema mjestu ozljede i sprječava prekomjerno stvaranje ožiljkastog tkiva (fibroze).</li></ul><p>Sinergija BPC-157 i TB-500 predstavlja izuzetnu strukturu u modernoj ortopediji i sportskoj medicini: BPC-157 gradi krvnu infrastrukturu, dok TB-500 mobilizira stanice graditelje.</p><h3 id="rejuvenacija-i-anti-aging-optimizacija-staničnog-zdravlja">Rejuvenacija i anti-aging: Optimizacija staničnog zdravlja</h3><p>Koncept longevityja (dugovječnosti) i anti-aging medicine koristi peptide za usporavanje samog procesa biološkog starenja.</p><ul><li><strong>GHK-Cu:</strong> Tripeptid povezan s ionom bakra čija razina u krvi drastično opada s godinama (do 60. godine opadne za više od $60\%$). GHK-Cu stimulira proizvodnju kolagena i elastina te modulira ekspresiju više od $4000$ ljudskih gena, vraćajući njihov profil prema mlađem fenotipu.</li><li><strong>CJC-1295 i Ipamorelin:</strong> Sekretagoga peptidi koji potiču hipofizu na lučenje vlastitog hormona rasta ($hGH$). Ova sinergijska primjena oponaša prirodnu fiziološku dinamiku tijela, sprječava sarkopeniju (gubitak mišićne mase) i potiče lipolizu bez gašenja vlastite endokrine funkcije.</li></ul><h3 id="izazovi-u-primjeni-i-ograničenja">Izazovi u primjeni i ograničenja</h3><p>Najveća prepreka u primjeni peptida jest njihova osjetljivost na probavni sustav, gdje ih proteolitički enzimi brzo razgrađuju. Zbog toga su primarni put primjene supkutane injekcije ili nazalni sprejevi. Ipak, nova biotehnološka rješenja poput SNAC tehnologije omogućuju zaštitu molekule pri oralnoj primjeni.</p><p>Kako bi se produžio kratak poluvijek života peptida u tijelu, medicinski kemičari koriste:</p><ol><li><strong>Ciklizaciju:</strong> Spajanje krajeva lanca u prsten.</li><li><strong>Zamjenu aminokiselina:</strong> Uvođenje D-aminokiselina.</li><li><strong>Spajanje s masnim kiselinama ili PEGilaciju:</strong> Produljenje djelovanja (npr. semaglutid ostaje aktivan više od $168$ sati).</li></ol><h3 id="budućnost-ai-de-novo-sintetski-peptidi-i-ciljana-dostava">Budućnost: AI, de novo sintetski peptidi i ciljana dostava</h3><p>Evolucija peptidne medicine ulazi u uzbudljivu fazu spajanjem s umjetnom inteligencijom. Sustavi za predviđanje 3D strukture proteina i generativni AI algoritmi omogućuju projektiranje potpuno novih (de novo) peptida od nule, skraćujući razvoj s više godina na svega nekoliko mjeseci.</p><p>Također, razvoj konjugata peptid-lijek ($PDC$) omogućuje da peptidi djeluju kao navođeni projektili koji citotoksični teret za uništavanje raka dostavljaju izravno u stanicu tumora, ostavljajući zdravo tkivo netaknutim. Peptidi nas vode u eru precizne medicine gdje liječenje ne znači pritiskanje organizma protiv njegove volje, već obnavljanje njegove prirodne ravnoteže.</p>
+    </article>
+
+    <!-- Donji Share Blok -->
+    <div class="reader-share-box">
+      <div class="reader-share-info">
+        <span class="reader-share-label">Podijeli ovaj rad:</span>
+      </div>
+      <div class="reader-share-actions">
+        <button type="button" class="btn-copy-link btn-trigger-copy" aria-label="Kopiraj poveznicu na rad">
+          <span class="copy-tooltip">Poveznica kopirana!</span>
+          <svg class="icon-link" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="copy-btn-text">Kopiraj poveznicu</span>
+        </button>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fpeptidi-bolski-signalni-sustavi.html&text=Peptidi%3A%20Biolo%C5%A1ki%20signalni%20molekularni%20sustavi" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fpeptidi-bolski-signalni-sustavi.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fpeptidi-bolski-signalni-sustavi.html&quote=Peptidi%3A%20Biolo%C5%A1ki%20signalni%20molekularni%20sustavi" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Povezani članci sekcija -->
+    
+    <section class="related-articles-section" aria-labelledby="related-heading">
+      <div class="related-header">
+        <span class="related-overline">PREPORUČENO ČITANJE</span>
+        <h3 id="related-heading" class="related-title">Povezani radovi i publikacije</h3>
+      </div>
+      <div class="related-grid">
+        
+      <a href="jesmo-li-vec-vidjeli-prve-longevity-lijekove.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/GLP_lijekovi.jpg" alt="Jesmo li već vidjeli prve Longevity lijekove?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">Longevity</span>
+            <span class="related-read-time">⏱ 19 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Jesmo li već vidjeli prve Longevity lijekove?</h4>
+          <p class="related-card-excerpt">Analiza inkretinske revolucije – od semaglutida i tirzepatida do retatrutida i orforgliprona: djeluju li GLP-1 agonisti kao stvarni geroprotektori ili metabolički štit protiv modernog načina života?</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="yamanaka-faktori-resetiranje-bioloskog-sata.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/yamanaka.png" alt="Resetiranje biološkog sata: Što su Yamanaka faktori" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">Longevity</span>
+            <span class="related-read-time">⏱ 7 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Resetiranje biološkog sata: Što su Yamanaka faktori</h4>
+          <p class="related-card-excerpt">Pregled znanstvenog proboja Shinyje Yamanake i OSKM proteina koji su dokazali da je stanična diferencijacija reverzibilan proces – od iPSC tehnologije i autologne medicine do parcijalnog reprogramiranja za pomlađivanje tkiva.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="alphafold-nobel-nagrada.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/Alphafold.png" alt="AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">Longevity</span>
+            <span class="related-read-time">⏱ 10 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?</h4>
+          <p class="related-card-excerpt">Kratki pregled kako je DeepMindov AlphaFold riješio 50 godina star problem savijanja proteina, osvojio Nobelovu nagradu i otvorio novu eru u dizajniranju sintetičkih enzima za pomlađivanje tkiva.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      </div>
+    </section>
+
+    <!-- Fusnota i povratak -->
+    <footer class="reader-footer">
+      <a href="../index.html" class="btn-read-article">&larr; Povratak na popis sažetaka</a>
+    </footer>
+    </div>
     <!-- Sekcija komentara (Article Comments & Discussion) -->
     <section id="comments-section" class="comments-section" aria-labelledby="comments-title">
       <!-- Sadržaj komentara renderira js/comments.js -->
@@ -246,9 +535,9 @@
     </div>
   </footer>
 
-  <script>window.PRELOADED_ARTICLE_ID = "peptidi-bolski-signalni-sustavi";</script>
-  <script src="../js/article.js?v=20260911_1"></script>
-  <script src="../js/comments.js?v=20260919_1"></script>
-  <script src="../js/newsletter.js?v=20260831_1"></script>
+  <script>window.PRELOADED_ARTICLE_ID = "peptidi-bolski-signalni-sustavi";window.PRELOADED_ARTICLE_DATA = {"id":"peptidi-bolski-signalni-sustavi","title":"Peptidi: Biološki signalni molekularni sustavi","title_en":"Peptides: Biological Signaling Molecular Systems","date":"27. srpnja 2026.","category":"Longevity","categorySlug":"longevity","category_en":"Longevity","readTime":"8 min čitanja","readTime_en":"8 min read","image":"img/peptidi.png.png","video":"video/peptidi.mp4","summary":"Pregled uloge peptida u modernoj medicini – od GLP-1 metaboličke revolucije i regenerativnih spojeva BPC-157 i TB-500 do rejuvenacije, GHK-Cu i primjene umjetne inteligencije u dizajnu de novo peptida.","summary_en":"An overview of the role of peptides in modern medicine – from the GLP-1 metabolic revolution and regenerative compounds BPC-157 and TB-500 to rejuvenation, GHK-Cu, and the application of artificial intelligence in de novo peptide design.","excerpt":"Pregled uloge peptida u modernoj medicini – od GLP-1 metaboličke revolucije i regenerativnih spojeva BPC-157 i TB-500 do rejuvenacije, GHK-Cu i primjene umjetne inteligencije u dizajnu de novo peptida.","excerpt_en":"An overview of the role of peptides in modern medicine – from the GLP-1 metabolic revolution and regenerative compounds BPC-157 and TB-500 to rejuvenation, GHK-Cu, and the application of artificial intelligence in de novo peptide design.","wordCount":1009,"wordCount_en":1174};window.PRELOADED_ARTICLES_INDEX = [{"id":"jesmo-li-vec-vidjeli-prve-longevity-lijekove","title":"Jesmo li već vidjeli prve Longevity lijekove?","title_en":"Have We Already Seen the First Longevity Drugs?","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"2. rujna 2026.","readTime":"⏱ 19 min čitanja","readTime_en":"⏱ 17 min read","wordCount":3614,"wordCount_en":3230,"image":"img/GLP_lijekovi.jpg","excerpt":"Analiza inkretinske revolucije – od semaglutida i tirzepatida do retatrutida i orforgliprona: djeluju li GLP-1 agonisti kao stvarni geroprotektori ili metabolički štit protiv modernog načina života?","excerpt_en":"An analysis of the incretin revolution – from semaglutide and tirzepatide to retatrutide and orforglipron: do GLP-1 agonists act as true geroprotectors or as a metabolic shield against modern lifestyles?"},{"id":"yamanaka-faktori-resetiranje-bioloskog-sata","title":"Resetiranje biološkog sata: Što su Yamanaka faktori","title_en":"Resetting the Biological Clock: What Are Yamanaka Factors","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"2. kolovoza 2026.","readTime":"⏱ 7 min čitanja","readTime_en":"⏱ 8 min read","wordCount":1290,"wordCount_en":1427,"image":"img/yamanaka.png","excerpt":"Pregled znanstvenog proboja Shinyje Yamanake i OSKM proteina koji su dokazali da je stanična diferencijacija reverzibilan proces – od iPSC tehnologije i autologne medicine do parcijalnog reprogramiranja za pomlađivanje tkiva.","excerpt_en":"An overview of Shinya Yamanaka's scientific breakthrough and OSKM proteins that proved cellular differentiation is a reversible process – from iPSC technology and autologous medicine to partial reprogramming for tissue rejuvenation."},{"id":"alphafold-nobel-nagrada","title":"AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?","title_en":"AlphaFold – The First Nobel Prize Not Won by a Human?","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"24. srpnja 2026.","readTime":"⏱ 10 min čitanja","readTime_en":"⏱ 9 min read","wordCount":1816,"wordCount_en":1758,"image":"img/Alphafold.png","doi":"doi:10.1038/s41586-026-09855-3","excerpt":"Kratki pregled kako je DeepMindov AlphaFold riješio 50 godina star problem savijanja proteina, osvojio Nobelovu nagradu i otvorio novu eru u dizajniranju sintetičkih enzima za pomlađivanje tkiva.","excerpt_en":"A brief overview of how DeepMind's AlphaFold solved the 50-year-old protein folding problem, won a Nobel Prize, and opened a new era in designing synthetic enzymes for tissue rejuvenation."}];</script>
+  <script src="../js/article.js?v=20261017_1"></script>
+  <script src="../js/comments.js?v=20261017_1"></script>
+  <script src="../js/newsletter.js?v=20261017_1"></script>
 </body>
 </html>

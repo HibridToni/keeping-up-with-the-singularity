@@ -85,13 +85,13 @@
   <link rel="manifest" href="../manifest.json">
   <link rel="apple-touch-icon" href="../img/logo.png">
 
-  <link rel="stylesheet" href="../style.css?v=20260911_1">
+  <link rel="stylesheet" href="../style.css?v=20261017_1">
   <!-- KaTeX for math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script src="../js/theme.js?v=20260911_1"></script>
-  <script src="../js/lang.js?v=20260911_1"></script>
+  <script src="../js/theme.js?v=20261017_1"></script>
+  <script src="../js/lang.js?v=20261017_1"></script>
   <script src="../js/pwa.js"></script>
 </head>
 <body>
@@ -129,12 +129,558 @@
 
   <!-- GLAVNI SPREMNIK - CENTRIRANI STUPAC ZA ČITANJE (max 800px) -->
   <main class="main-container">
-    <div class="article-reader-container" id="article-reader-container">
-      <div class="loading-state">
-        <p data-i18n="article.loading">Učitavanje sadržaja rada...</p>
+    <div class="article-reader-container" id="article-reader-container" data-ssg-rendered="true" data-ssg-lang="hr">
+    <!-- Link za povratak -->
+    <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
+
+    <!-- Zaglavlje rada -->
+    <header class="reader-header">
+      <div class="reader-meta">
+        <span class="card-category">AI i tehnologija</span>
+      </div>
+
+      <h1 class="reader-title">Koliko vode zapravo troše podatkovni centri?</h1>
+
+      <div class="reader-submeta">
+        <div class="reader-submeta-info">
+          <time class="card-date" datetime="23. kolovoza 2026.">23. kolovoza 2026.</time>
+          <span class="card-read-time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            ⏱ 11 min čitanja
+          </span>
+          
+        </div>
+
+        <div class="share-buttons">
+          <button type="button" class="share-btn share-copy btn-trigger-copy" aria-label="Kopiraj poveznicu na rad" title="Kopiraj poveznicu na rad">
+            <span class="copy-tooltip">Poveznica kopirana!</span>
+            <svg class="icon-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fkoliko-vode-trose-podatkovni-centri.html&text=Koliko%20vode%20zapravo%20tro%C5%A1e%20podatkovni%20centri%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fkoliko-vode-trose-podatkovni-centri.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fkoliko-vode-trose-podatkovni-centri.html&quote=Koliko%20vode%20zapravo%20tro%C5%A1e%20podatkovni%20centri%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+    <div class="article-cover-wrapper">
+      <img src="../img/voda_data_centri.jpg" alt="Koliko vode zapravo troše podatkovni centri?" class="article-cover-hero" fetchpriority="high" decoding="async" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+    </div>
+  
+    </header>
+
+    <!-- Audio Player Bar (Preslušavanje članka) -->
+    <div class="audio-player-bar" id="audio-player-bar" aria-label="Slušaj članak">
+      <div class="audio-controls-left">
+        <button id="tts-play-btn" class="audio-btn audio-btn-play" aria-label="Pokreni čitanje" title="Pokreni čitanje">
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+        </button>
+        <button id="tts-stop-btn" class="audio-btn audio-btn-stop" aria-label="Zaustavi čitanje" title="Zaustavi čitanje" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="audio-status-container">
+        <span class="audio-status-pulse" id="tts-status-pulse"></span>
+        <span id="tts-status-text" class="audio-status-text">Slušaj članak</span>
+      </div>
+
+      <div class="audio-right-controls">
+        <div class="audio-voice-controls" id="audio-voice-controls">
+          <label for="tts-voice-select" class="voice-label" title="Odabir glasa za čitanje">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span class="voice-label-text">Glas:</span>
+          </label>
+          <select id="tts-voice-select" class="audio-voice-select" aria-label="Odabir glasa za čitanje">
+            <option value="">Najbolji prirodni glas</option>
+          </select>
+        </div>
+
+        <div class="audio-speed-controls">
+          <span class="speed-label">Brzina:</span>
+          <div class="speed-options">
+            <button class="speed-btn active" data-speed="1.0">1x</button>
+            <button class="speed-btn" data-speed="1.25">1.25x</button>
+            <button class="speed-btn" data-speed="1.5">1.5x</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Table of Contents (Sadržaj rada) Container -->
+    <div id="article-toc-container" class="article-toc-wrapper">
+    <nav class="article-toc-card" aria-label="Sadržaj članka">
+      <div class="article-toc-header">
+        <div class="article-toc-title-group">
+          <svg class="article-toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h2 class="article-toc-title">Sadržaj rada</h2>
+          <span class="article-toc-badge">10</span>
+        </div>
+        <button type="button" class="article-toc-toggle-btn" id="toc-toggle-btn" aria-expanded="true" aria-controls="article-toc-body" aria-label="Sakrij">
+          <span class="toc-toggle-text">Sakrij</span>
+          <svg class="toc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="article-toc-body" id="article-toc-body">
+        <ol class="article-toc-list">
+          
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#dvije-slike-potrošnje" class="article-toc-link" data-toc-target="dvije-slike-potrošnje">
+          <span class="toc-link-text">Dvije slike potrošnje</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#direktni-vodeni-otisak" class="article-toc-link" data-toc-target="direktni-vodeni-otisak">
+          <span class="toc-link-text">Direktni vodeni otisak</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#indirektni-vodeni-otisak" class="article-toc-link" data-toc-target="indirektni-vodeni-otisak">
+          <span class="toc-link-text">Indirektni vodeni otisak</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#razlika-zahvaćena-voda-naspram-potrošnje-vode" class="article-toc-link" data-toc-target="razlika-zahvaćena-voda-naspram-potrošnje-vode">
+          <span class="toc-link-text">Razlika: Zahvaćena voda naspram potrošnje vode</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#standardna-industrijska-metrika-wue-i-termodinamički-paradoks-pue-naspram-wue" class="article-toc-link" data-toc-target="standardna-industrijska-metrika-wue-i-termodinamički-paradoks-pue-naspram-wue">
+          <span class="toc-link-text">Standardna industrijska metrika: WUE i termodinamički paradoks PUE naspram WUE</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#termodinamički-paradoks-pue-naspram-wue" class="article-toc-link" data-toc-target="termodinamički-paradoks-pue-naspram-wue">
+          <span class="toc-link-text">Termodinamički paradoks: PUE naspram WUE</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#tehnologije-hlađenja-i-vodeni-balans" class="article-toc-link" data-toc-target="tehnologije-hlađenja-i-vodeni-balans">
+          <span class="toc-link-text">Tehnologije hlađenja i vodeni balans</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#brojke-u-realnom-kontekstu" class="article-toc-link" data-toc-target="brojke-u-realnom-kontekstu">
+          <span class="toc-link-text">Brojke u realnom kontekstu</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#apsolutne-brojke-na-razini-objekta-i-korisnika" class="article-toc-link" data-toc-target="apsolutne-brojke-na-razini-objekta-i-korisnika">
+          <span class="toc-link-text">Apsolutne brojke na razini objekta i korisnika</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#usporedba-s-drugim-aktivnostima" class="article-toc-link" data-toc-target="usporedba-s-drugim-aktivnostima">
+          <span class="toc-link-text">Usporedba s drugim aktivnostima:</span>
+        </a>
+      </li>
+        </ol>
+      </div>
+    </nav></div>
+
+    <!-- Puni HTML Sadržaj Članka -->
+    <article class="reader-body" id="reader-body">
+      <p>Svaki put kada pošaljemo upit sustavu umjetne inteligencije, pokrenemo <em>stream</em> videozapisa visoke rezolucije ili pohranimo datoteku, u pozadini nesvjesno aktiviramo kompleksan fizički sustav. Izraz "oblak" (<em>cloud</em>) stvorio je iluziju nematerijalnosti, viziju u kojoj se podaci bestežinski kreću kroz zrak, očišćeni od fizikalnih ograničenja. Međutim, stvarnost računalstva ipak je ukorijenjena u zakonima termodinamike, čeliku i siliciju.</p>
+<p>U središtu te infrastrukture nalaze se podatkovni centri, postrojenja čija je svrha pretvaranje električne energije u izračune (<em>compute</em>). No, prema prvom zakonu termodinamike, gotovo sva električna energija koju utroše mikroprocesori na kraju se pretvara u toplinu. Što više računamo, to više grijemo. Slično možete primijetiti i kod zagrijavanja osobnih računala.</p>
+<p>U početku je standardna gustoća snage po poslužiteljskom ormaru (<em>racku</em>) iznosila između $5\text{ kW}$ i $10\text{ kW}$. Zračno hlađenje, usmjeravanjem hladnog zraka kroz izolirane prolaze, bilo je sasvim dovoljno da održava komponente na stabilnoj radnoj temperaturi. Međutim, pojava generativne umjetne inteligencije i modernih AI čipova narušila je taj model. Današnji AI klasteri zahtijevaju gustoće snage od $40\text{ kW}$, $80\text{ kW}$, pa čak i preko $100\text{ kW}$ po pojedinačnom ormaru.</p>
+<p>Na tim razinama toplinskog toka, zrak jednostavno ne funkcionira kao učinkovit medij za prijenos topline. Specifični toplinski kapacitet zraka iznosi:</p>
+$c_p \approx 1{,}005\text{ kJ/(kg}\cdot\text{K)}$
+<p>S druge strane, voda ima znatno veći specifični toplinski kapacitet:</p>
+$c_p \approx 4{,}184\text{ kJ/(kg}\cdot\text{K)}$
+<p>Zbog ove fizikalne činjenice, uz značajno veću gustoću tekućine u odnosu na plin, voda je više tisuća puta učinkovitiji medij za odvođenje topline po jedinici volumena. Kako bi se spriječilo toplinsko oštećenje procesora čije radne temperature ne bi smjele prelaziti $85^\circ\text{C}$, industrija je prešla na masovnu primjenu vodenog hlađenja.</p>
+<p>Kada govorimo o "digitalnoj transformaciji", zapravo govorimo o preusmjeravanju fizikalnih resursa. Time dolazimo do pitanja: <strong>Koliko vode podatkovni centri zapravo troše?</strong></p>
+<hr>
+<h3 id="dvije-slike-potrošnje">Dvije slike potrošnje</h3>
+<p>Da bismo precizno izmjerili utjecaj podatkovnog centra na vodne resurse, ispravno je promatrati cijeli energetski lanac. Vodeni otisak računalne infrastrukture dijeli se na dva osnovna dijela: direktnu (lokalnu) i indirektnu (udaljenu) potrošnju.</p>
+<div class="water-footprint-diagram">
+  <div class="wfd-header">
+    <svg class="wfd-icon-globe" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    <div class="wfd-title">
+      UKUPNI VODENI OTISAK
+      <span>(Scope 1 + Scope 2)</span>
+    </div>
+    <svg class="wfd-icon-drop" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+  </div>
+  <div class="wfd-grid">
+    <div class="wfd-column wfd-col-direct">
+      <div class="wfd-col-header">
+        <div class="wfd-col-title">
+          DIREKTNA POTROŠNJA
+          <span>Lokalno na lokaciji objekta</span>
+        </div>
+        <span class="wfd-badge-direct">Scope 1</span>
+      </div>
+      <ul class="wfd-list">
+        <li class="wfd-item">
+          <div class="wfd-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 22l3-16h6l3 16"/><path d="M8 14h8"/><path d="M9 6c0-2 2-3 3-4 1 1 3 2 3 4"/></svg>
+          </div>
+          <span>Rashladni tornjevi</span>
+        </li>
+        <li class="wfd-item">
+          <div class="wfd-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M3 12h18"/><path d="M6 6l12 12"/></svg>
+          </div>
+          <span>Evaporativno hlađenje</span>
+        </li>
+        <li class="wfd-item">
+          <div class="wfd-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 14h4v4H3z"/><path d="M17 14h4v4h-4z"/><path d="M7 16h10"/><path d="M12 16V9"/><path d="M9 9h6"/><circle cx="12" cy="6" r="3"/></svg>
+          </div>
+          <span>On-site procesi</span>
+        </li>
+      </ul>
+    </div>
+    <div class="wfd-column wfd-col-indirect">
+      <div class="wfd-col-header">
+        <div class="wfd-col-title">
+          INDIREKTNA POTROŠNJA
+          <span>U elektranama elektroenergetske mreže</span>
+        </div>
+        <span class="wfd-badge-indirect">Scope 2</span>
+      </div>
+      <ul class="wfd-list">
+        <li class="wfd-item">
+          <div class="wfd-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V10l4 3V10l4 3V5h7v16"/><path d="M18 9h-2"/></svg>
+          </div>
+          <span>Termoelektrane</span>
+        </li>
+        <li class="wfd-item">
+          <div class="wfd-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/></svg>
+          </div>
+          <span>Nuklearne elektrane</span>
+        </li>
+        <li class="wfd-item">
+          <div class="wfd-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18c2-2 4 2 6 0s4 2 6 0 4 2 6 0"/><path d="M3 12c2-2 4 2 6 0s4 2 6 0 4 2 6 0"/><path d="M3 6c2-2 4 2 6 0s4 2 6 0 4 2 6 0"/></svg>
+          </div>
+          <span>Hidroakumulacije</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<h4 id="direktni-vodeni-otisak">Direktni vodeni otisak</h4>
+<p>Ovo je najvidljiviji oblik potrošnje. Predstavlja vodu koja se fizički dovozi ili crpi na samoj lokaciji podatkovnog centra i koristi u sustavima za hlađenje. Kada rashladni sustav izbacuje toplinu iz poslužiteljskih dvorana, voda se raspršuje u rashladnim tornjevima ili evaporativnim hladnjacima. Dio te vode isparava u atmosferu kako bi se preostala tekućina ohladila, oslanjajući se na visoku latentnu toplinu isparavanja vode.</p>
+<h4 id="indirektni-vodeni-otisak">Indirektni vodeni otisak</h4>
+<p>Ovaj dio otiska često ostaje nevidljiv jer se ne događa na lokaciji samog poslužitelja, već na lokaciji gdje se proizvodi električna energija. Svaki kilovatsat ($1\text{ kWh}$) koji podatkovni centar povuče iz električne mreže nosi sa sobom vlastiti vodeni otisak:</p>
+<ul>
+  <li><strong>Termoelektrane i nuklearne elektrane:</strong> Koriste velike količine vode u kondenzatorima za hlađenje pare koja pokreće turbine.</li>
+  <li><strong>Hidroelektrane:</strong> Iako ne sagorijevaju gorivo, akumulacijska jezera imaju veliku otvorenu površinu s koje kontinuirano isparava voda (akumulacijski gubitak vode).</li>
+</ul>
+<p>Ako podatkovni centar koristi električnu energiju iz mreže u kojoj dominiraju ugljen ili nuklearna energija, njegov indirektni vodeni otisak može višestruko premašiti količinu vode koju fizički potroši na vlastitom gradilištu.</p>
+<h4 id="razlika-zahvaćena-voda-naspram-potrošnje-vode">Razlika: Zahvaćena voda naspram potrošnje vode</h4>
+<p>U analizi održivosti važno je razlikovati dva pojma koja se u javnosti često pogrešno izjednačavaju:</p>
+<ol>
+  <li><strong>Zahvaćena voda (<em>Water Withdrawal</em>):</strong> Ukupna količina vode koja se povlači iz prirodnog izvora (rijeke, jezera, podzemnog vodonosnika) ili javne vodovodne mreže. Nakon što prođe kroz sustav hlađenja u zatvorenom ili polu-otvorenom krugu bez isparavanja, velika većina te vode vraća se u izvorni vodotok (često samo uz blago povišenu temperaturu).</li>
+  <li><strong>Potrošnja vode (<em>Water Consumption</em>):</strong> Količina vode koja se tijekom procesa hlađenja pretvori u paru (isparavanje) ili se ugradi u otpadne muljeve te se trajno uklanja iz lokalnog vodnog sliva.</li>
+</ol>
+<p>Kada procjenjujemo ekološki pritisak na lokalnu zajednicu i sušom pogođena područja, primarna varijabla je potrošnja vode, jer isparena voda u atmosferi ne jamči povratak oborina u isti lokalni sliv.</p>
+<hr>
+<h3 id="standardna-industrijska-metrika-wue-i-termodinamički-paradoks-pue-naspram-wue">Standardna industrijska metrika: WUE i termodinamički paradoks PUE naspram WUE</h3>
+<p>Kako bi se uvela standardizacija u mjerenju vodenog otiska, konzorcij <em>The Green Grid</em> definirao je 2011. godine metriku <strong>WUE (Water Usage Effectiveness)</strong>. Slično kao što PUE mjeri energetsku efikasnost objekta, WUE kvantificira koliko se litara vode utroši za svaki kilovatsat električne energije isporučen IT opremi (poslužiteljima, mrežnoj opremi i sustavima pohrane).</p>
+<p>Osnovna formula za lokalnu potrošnju vode glasi:</p>
+$WUE_{\text{site}} = \frac{\text{Godišnja potrošnja vode na lokaciji (L)}}{\text{Godišnja potrošnja energije IT opreme (kWh)}}$
+<p>Ako se promatra ukupan utjecaj koji obuhvaća i vodu utrošenu u proizvodnji električne energije na razini elektroenergetske mreže, koristi se proširena metrika:</p>
+$WUE_{\text{source}} = WUE_{\text{site}} + WUE_{\text{utility}}$
+<p>gdje $WUE_{\text{utility}}$ predstavlja specifičnu potrošnju vode u elektranama po jedinici proizvedene električne energije unutar zadanog regionalnog energetskog miksa.</p>
+<p>Vrijednosti WUE metrike dramatično variraju ovisno o odabranom termodinamičkom ciklusu i lokalnim klimatskim uvjetima:</p>
+<ul>
+  <li><strong>Tradicionalni evaporativni sustavi (otvoreni rashladni tornjevi):</strong> $1{,}5 - 2{,}5\text{ L/kWh}$ (u vrućim i suhim zonama redovito prelazi i $3{,}0\text{ L/kWh}$).</li>
+  <li><strong>Hibridni sustavi s optimiziranim ciklusima rada:</strong> $0{,}5 - 1{,}2\text{ L/kWh}$.</li>
+  <li><strong>Zatvoreni sustavi sa zračnim hlađenjem (<em>dry coolers</em> / kompresorski sustavi):</strong> $0{,}0 - 0{,}2\text{ L/kWh}$ na samoj lokaciji, no uz osjetan energetski penal.</li>
+  <li><strong>Ciljevi suvremenih hiperskalera:</strong> Postizanje operativnog $WUE_{\text{site}} \le 0{,}3\text{ L/kWh}$, primarno eliminacijom evaporativnih faza u hladnijim dijelovima godine.</li>
+</ul>
+<h4 id="termodinamički-paradoks-pue-naspram-wue">Termodinamički paradoks: PUE naspram WUE</h4>
+<p>Tijekom protekla dva desetljeća inženjerski fokus industrije bio je usmjeren na minimiziranje PUE faktora:</p>
+$PUE = \frac{\text{Ukupna snaga podatkovnog centra}}{\text{Snaga isporučena IT opremi}} \rightarrow 1{,}0$
+<p>Najjednostavniji i termodinamički najučinkovitiji način za spuštanje PUE-a ispod $1{,}15$ bilo je uvođenje masovnog evaporativnog hlađenja.</p>
+<p>Fizikalni temelj leži u iznimno visokoj latentnoj toplini isparavanja vode ($h_{fg} \approx 2260\text{ kJ/kg}$ pri atmosferskom tlaku). Isparavanje svega jedne litre vode apsorbira jednaku količinu topline kao zagrijavanje iste mase vode od $0^\circ\text{C}$ do $100^\circ\text{C}$ više od pet puta. Korištenjem tog faznog prijelaza izbjegava se kontinuirani rad mehaničkih kompresora (<em>chillera</em>) koji troše velike količine električne energije.</p>
+<p>Tu dolazimo do izraženog inženjerskog konflikta:</p>
+<ul>
+  <li><strong>Optimizacija za PUE (štednja električne energije):</strong> U pogon se stavljaju rashladni tornjevi i adijabatski paneli. Kompresori miruju, električna potrošnja rashladnog sustava pada na minimum, a PUE postiže izvrsne vrijednosti. Međutim, cijena toga je masivna lokalna potrošnja vode, pri čemu stotine tisuća kubnih metara vode trajno isparavaju u atmosferu.</li>
+  <li><strong>Optimizacija za WUE (štednja vode):</strong> Isključuje se evaporacija, a postrojenje prelazi na zatvorene suhe rashladnike (<em>dry coolers</em>) ili izravno mehaničko pothlađivanje. Potrošnja vode na lokaciji pada na nulu, ali se potrošnja električne energije za ventilatore i kompresore višestruko povećava, što drastično ruši PUE. Ako ta dodatna električna energija dolazi iz termoelektrana s otvorenim rashladnim krugovima, problem se samo premješta s lokacije poslužitelja na lokaciju elektrane.</li>
+</ul>
+<p>Odluka o izboru rashladnog sustava danas se donosi kroz analizu mikrolokacije. U hidrološki osjetljivim bazenima evaporativno hlađenje se u potpunosti napušta, bez obzira na posljedični porast potrošnje električne energije. U regijama gdje je mreža oslonjena na vjetar i fotonaponske sustave, suho zračno hlađenje postaje znatno održiviji izbor od evaporacije vode.</p>
+<hr>
+<h3 id="tehnologije-hlađenja-i-vodeni-balans">Tehnologije hlađenja i vodeni balans</h3>
+<p>Razumijevanje fizikalnih mehanizama rashladnih sustava sljedeći je korak u sagledavanju načina na koji izbor opreme izravno diktira lokalni i mrežni vodeni otisak. Industrija koristi četiri dominantna arhitekturna pristupa:</p>
+<ul>
+  <li><strong>Evaporativno hlađenje i otvoreni rashladni tornjevi:</strong> Oslanja se na raspršivanje tople vode iz sekundarnog kruga u struju atmosferskog zraka. Isparavanjem malog dijela vode, preostala se tekućina intenzivno hladi te vraća u izmjenjivač topline. Osim isparavanja (<em>evaporation loss</em>), dio vode se mora kontinuirano ispuštati (<em>blowdown</em>) kako bi se spriječilo taloženje minerala i kamenca, što dodatno povećava zahvat vode. Omogućuje iznimno nizak PUE uz minimalnu potrošnju električne energije za kompresore, ali nosi rizik od mikrobiološkog zagađenja (npr. <em>Legionella</em>), nužnost kemijskog tretmana vode i masivan pritisak na lokalni vodovod.</li>
+  <li><strong>Zatvoreni rashladni krugovi i suhi hladnjaci:</strong> Toplina iz poslužiteljskih dvorana prenosi se putem zatvorene cijevne mreže u zračne hladnjake (<em>dry coolers</em>) opremljene masivnim ventilatorima. Rashladni medij (voda ili mješavina vode i glikola) kruži u hermetički zatvorenom sustavu bez doticaja s atmosferom. Nema isparavanja, gubitka tekućine niti potrebe za dopunjavanjem, čime se postiže neovisnost o lokalnim vodnim resursima. Tijekom ljetnih mjeseci, kada vanjski zrak pređe $35^\circ\text{C}$, suhi hladnjaci gube učinkovitost i zahtijevaju rad kompresora (<em>chillera</em>), što podiže PUE i indirektnu potrošnju vode u elektranama.</li>
+  <li><strong>Direktno hlađenje tekućinom na čip (Direct-to-Chip / DLC):</strong> Tekućina (najčešće deionizirana voda ili glikolni fluid) dovodi se izravno do bakrenih hladnjaka (<em>cold plates</em>) montiranih neposredno na površinu procesora (CPU/GPU). Vanjski rashladni krug može raditi u režimu zračnog hlađenja (<em>free cooling</em>) tijekom cijele godine, čime se direktna potrošnja vode eliminira ili svodi na minimum. Zahtijeva veću početnu investiciju, kompleksnije spajanje i nosi rizik od curenja fluida unutar ormara.</li>
+  <li><strong>Uronjeno hlađenje (Immersion Cooling):</strong> Poslužitelji se u potpunosti uranjaju u bazene ispunjene dielektričnom tekućinom (specijalizirani sintetički dielektrični ugljikovodici ili fluidi koji ne provode struju). Tekućina izravno oplakuje sve komponente, od čipova do matičnih ploča i napajanja. Lokalni vodeni otisak je zanemariv ili jednak nuli. Donosi potpunu eliminaciju ventilatorske opreme na poslužiteljima i iznimnu energetsku učinkovitost, uz promjene u procedurama održavanja hardvera i veće troškove dielektričnih fluida.</li>
+</ul>
+<div class="table-container">
+  <table class="article-table">
+    <thead>
+      <tr>
+        <th>Tehnologija hlađenja</th>
+        <th>Lokalni WUE (L/kWh)</th>
+        <th>Tipični PUE</th>
+        <th>Glavna prednost</th>
+        <th>Glavni kompromis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Evaporativni tornjevi</strong></td>
+        <td>$1{,}5 - 3{,}0+$</td>
+        <td>$1{,}10 - 1{,}15$</td>
+        <td>Najniža potrošnja struje za kompresore</td>
+        <td>Masovna lokalna potrošnja vode</td>
+      </tr>
+      <tr>
+        <td><strong>Suhi hladnjaci (Dry Coolers)</strong></td>
+        <td>$0{,}0 - 0{,}2$</td>
+        <td>$1{,}25 - 1{,}40$</td>
+        <td>Nula lokalne potrošnje vode</td>
+        <td>Veći utrošak struje tijekom ljeta</td>
+      </tr>
+      <tr>
+        <td><strong>Direct-to-Chip (DLC)</strong></td>
+        <td>$0{,}0 - 0{,}1$</td>
+        <td>$1{,}12 - 1{,}20$</td>
+        <td>Iznimna efikasnost za AI čipove</td>
+        <td>Kompleksnija rack infrastruktura</td>
+      </tr>
+      <tr>
+        <td><strong>Uronjeno (Immersion)</strong></td>
+        <td>$\approx 0{,}0$</td>
+        <td>$1{,}05 - 1{,}10$</td>
+        <td>Podrška za ekstremne gustoće snage</td>
+        <td>Specifični protokoli održavanja hardvera</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+<h3 id="brojke-u-realnom-kontekstu">Brojke u realnom kontekstu</h3>
+<p>Kako bismo apstraktne fizikalne i inženjerske formule preveli u razumljive okvire, nužno je staviti potrošnju vode podatkovnih centara u realan kontekst te je usporediti s drugim ljudskim i industrijskim aktivnostima. Naslovi u medijima često ističu zastrašujuće apsolutne brojke, no dublja analiza pokazuje da je teza o "podatkovnim centrima koji isušuju planet" često predimenzionirana i istrgnuta iz šireg konteksta.</p>
+<h4 id="apsolutne-brojke-na-razini-objekta-i-korisnika">Apsolutne brojke na razini objekta i korisnika</h4>
+<p>Za moderan podatkovni centar kapaciteta IT opreme od $100\text{ MW}$ koji koristi tradicionalno ili hibridno evaporativno hlađenje, prosječna dnevna direktna potrošnja vode kreće se između $1{,}0\text{ i }2{,}0\text{ milijuna litara}$. Ova količina vode odgovara prosječnoj dnevnoj potrošnji manjeg naselja ili grada od $10.000\text{ do }15.000\text{ stanovnika}$.</p>
+<h4 id="usporedba-s-drugim-aktivnostima">Usporedba s drugim aktivnostima:</h4>
+<ol>
+  <li><strong>Golf tereni:</strong> Standardni golf teren s 18 rupa u prosjeku troši između $1{,}1\text{ i }1{,}5\text{ milijuna litara}$ vode dnevno isključivo za održavanje trave. U sušim regijama (poput Arizone, Južne Španjolske ili Bliskog Istoka), jedan jedini golf teren troši preko $3{,}5\text{ milijuna litara}$ vode dnevno. Jedan golf teren troši jednako ili više vode od cjelokupnog podatkovnog centra snage $100\text{ MW}$. Širom svijeta postoji preko $38.000$ golf terena koji dnevno potroše milijarde litara vode u svrhu rekreacije.</li>
+  <li><strong>Gubitak vode u dotrajalim komunalnim vodovodnim mrežama:</strong> U mnogim europskim i svjetskim gradovima, postotak neobračunate vode (<em>Non-Revenue Water</em>) uslijed curenja u starim cijevima iznosi između $30\%\text{ i }50\%$. Prosječan europski grad od $300.000$ stanovnika kroz pukotine cijevi u zemlji izgubi između $20\text{ i }40\text{ milijuna litara}$ pitke vode svakog dana. Komunalni gubici samo jednog srednjeg grada višestruko premašuju ukupnu godišnju potrošnju svih podatkovnih centara u široj regiji.</li>
+  <li><strong>Poljoprivreda i prehrambena industrija:</strong> Za proizvodnju samo $1\text{ kg}$ govedine potrebno je u prosjeku oko $15.000\text{ litara}$ vode. Jedan običan burger od $150\text{ grama}$ ima vodeni otisak od preko $2.200\text{ litara}$ vode. Jedna šalica kave nosi vodeni otisak od $140\text{ litara}$, dok je za proizvodnju jedne pamučne majice potrebno oko $2.700\text{ litara}$ vode. Odricanjem od samo jednog burgera uštedi se količina vode dovoljna za pokretanje više od $200.000$ AI upita.</li>
+</ol>
+<div class="water-perspective-card">
+  <div class="wpc-header">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+    <div class="wpc-title">VODENI OTISAK U PERSPEKTIVI</div>
+  </div>
+  <div class="wpc-rows">
+    <div class="wpc-row">
+      <div class="wpc-item-info">
+        <div class="wpc-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a8 8 0 0 1 16 0H4z"/><rect x="2" y="15" width="20" height="2" rx="1"/><path d="M4 19a4 4 0 0 0 8 0 4 4 0 0 0 8 0"/><line x1="2" y1="13" x2="22" y2="13"/></svg>
+        </div>
+        <span class="wpc-label">Jedan burger (150g govedine)</span>
+      </div>
+      <span class="wpc-value-badge">~ 2.200 Litara</span>
+    </div>
+    <div class="wpc-row">
+      <div class="wpc-item-info">
+        <div class="wpc-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a2 2 0 0 0 2 1.66h.74v10a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-10h.74a2 2 0 0 0 2-1.66l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+        </div>
+        <span class="wpc-label">Pamučna majica</span>
+      </div>
+      <span class="wpc-value-badge">~ 2.700 Litara</span>
+    </div>
+    <div class="wpc-row">
+      <div class="wpc-item-info">
+        <div class="wpc-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21c4-2 8-2 12 0"/><circle cx="17" cy="18" r="2"/><path d="M12 18V3l6 3-6 3"/><path d="M7 8a4 4 0 0 1 4-4"/></svg>
+        </div>
+        <span class="wpc-label">Dnevno navodnjavanje 1 golf terena</span>
+      </div>
+      <span class="wpc-value-badge">~ 1.200.000 Litara</span>
+    </div>
+    <div class="wpc-row">
+      <div class="wpc-item-info">
+        <div class="wpc-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h5v8H3z"/><path d="M16 8h5v8h-5z"/><path d="M8 10h8v4H8z"/><path d="M12 14v4"/><path d="M12 21a1.5 1.5 0 0 0 1.5-1.5c0-.8-1.5-2.5-1.5-2.5s-1.5 1.7-1.5 2.5A1.5 1.5 0 0 0 12 21z"/></svg>
+        </div>
+        <span class="wpc-label">Dnevni komunalni gubici 1 grada (curenje)</span>
+      </div>
+      <span class="wpc-value-badge">~ 30.000.000 Litara</span>
+    </div>
+    <div class="wpc-row wpc-row-highlight">
+      <div class="wpc-item-info">
+        <div class="wpc-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="6" rx="2"/><rect x="4" y="9" width="16" height="6" rx="2"/><rect x="4" y="16" width="16" height="6" rx="2"/><circle cx="8" cy="5" r="1"/><circle cx="8" cy="12" r="1"/><circle cx="8" cy="19" r="1"/><line x1="12" y1="5" x2="16" y2="5"/><line x1="12" y1="12" x2="16" y2="12"/><line x1="12" y1="19" x2="16" y2="19"/></svg>
+        </div>
+        <span class="wpc-label"><strong>100 MW Podatkovni centar (dnevno)</strong></span>
+      </div>
+      <span class="wpc-value-badge">~ 1.500.000 Litara</span>
+    </div>
+  </div>
+</div>
+<blockquote>
+  <p>„Optimizacija za uštedu električne energije često znači veću potrošnju vode na lokaciji, i obrnuto. Pravi izazov modernog AI računalstva nije samo smanjenje jednog izoliranog faktora, već postizanje termodinamičke ravnoteže prilagođene lokalnom energetskom i hidrološkom ekosustavu.“</p>
+</blockquote>
+<p>Predstavljanje podatkovnih centara kao primarnih krivaca za lokalne nestašice vode često služi za senzacionalističke medijske naslove i izazivanje javnog otpora (<em>NIMBY - Not In My Back Yard</em> efekt). Iako je iznimno važno inzistirati na odgovornom upravljanju resursima, važno je uočiti razlike:</p>
+<ul>
+  <li>Podatkovni centri posluju pod rigoroznim financijskim i ekološkim (ESG) kontrolama gdje voda predstavlja direktan trošak, zbog čega IT industrija neprekidno ulaže u optimizaciju ciklusa hlađenja.</li>
+  <li>Sve veći broj novih objekata koristi tehničku (sivu) vodu, pročišćene komunalne otpadne vode ili kišnicu, umjesto da crpi pitku vodu iz javnog vodovoda.</li>
+  <li>Masovnim usvajanjem tehnologija poput <em>Direct-to-Chip</em> (DLC) i uronjenog hlađenja, lokalna potrošnja vode na novim objektima u potpunosti teži prema nuli.</li>
+</ul>
+<p>Pitanje "Koliko vode zapravo troše podatkovni centri?" nema jednostavan dvoznamenkasti odgovor. Vodeni otisak računalne infrastrukture direktna je posljedica fizikalnih izbora u termodinamičkom dizajnu, geografskoj lokaciji i energetskom miksu mreže. Iako apsolutne brojke od milijun litara vode dnevno zvuče zabrinjavajuće, usporedba s komunalnim gubicima, golf terenima i poljoprivredom jasno pokazuje da podatkovni centri nisu primarni uzročnik globalne vodne krize. Pod pritiskom regulative i cijena resursa, IT industrija je danas jedan od najbržih pokretača tehnoloških inovacija u upravljanju vodom.</p>
+    </article>
+
+    <!-- Donji Share Blok -->
+    <div class="reader-share-box">
+      <div class="reader-share-info">
+        <span class="reader-share-label">Podijeli ovaj rad:</span>
+      </div>
+      <div class="reader-share-actions">
+        <button type="button" class="btn-copy-link btn-trigger-copy" aria-label="Kopiraj poveznicu na rad">
+          <span class="copy-tooltip">Poveznica kopirana!</span>
+          <svg class="icon-link" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="copy-btn-text">Kopiraj poveznicu</span>
+        </button>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fkoliko-vode-trose-podatkovni-centri.html&text=Koliko%20vode%20zapravo%20tro%C5%A1e%20podatkovni%20centri%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fkoliko-vode-trose-podatkovni-centri.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fkoliko-vode-trose-podatkovni-centri.html&quote=Koliko%20vode%20zapravo%20tro%C5%A1e%20podatkovni%20centri%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Povezani članci sekcija -->
+    
+    <section class="related-articles-section" aria-labelledby="related-heading">
+      <div class="related-header">
+        <span class="related-overline">PREPORUČENO ČITANJE</span>
+        <h3 id="related-heading" class="related-title">Povezani radovi i publikacije</h3>
+      </div>
+      <div class="related-grid">
+        
+      <a href="humanoidna-robotika.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/robotika.jpg" alt="Robotika – New Frontier" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 23 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Robotika – New Frontier</h4>
+          <p class="related-card-excerpt">Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="navier-stokes.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/Navier Stokes.jpg" alt="Navier–Stokes" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 31 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Navier–Stokes</h4>
+          <p class="related-card-excerpt">Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="prompt-inzenjering-vs-ai-harnessing.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/Prompt inženjering.png" alt="Prompt inženjering vs. AI harnessing" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 8 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Prompt inženjering vs. AI harnessing</h4>
+          <p class="related-card-excerpt">Analiza evolucije interakcije s jezičnim modelima, prelaska s tradicionalnog prompt inženjeringa na AI harnessing te integracije kognitivnih modula u automatizirane, agentne radne procese.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      </div>
+    </section>
+
+    <!-- Fusnota i povratak -->
+    <footer class="reader-footer">
+      <a href="../index.html" class="btn-read-article">&larr; Povratak na popis sažetaka</a>
+    </footer>
+    </div>
     <!-- Sekcija komentara (Article Comments & Discussion) -->
     <section id="comments-section" class="comments-section" aria-labelledby="comments-title">
       <!-- Sadržaj komentara renderira js/comments.js -->
@@ -246,9 +792,9 @@
     </div>
   </footer>
 
-  <script>window.PRELOADED_ARTICLE_ID = "koliko-vode-trose-podatkovni-centri";</script>
-  <script src="../js/article.js?v=20260911_1"></script>
-  <script src="../js/comments.js?v=20260919_1"></script>
-  <script src="../js/newsletter.js?v=20260831_1"></script>
+  <script>window.PRELOADED_ARTICLE_ID = "koliko-vode-trose-podatkovni-centri";window.PRELOADED_ARTICLE_DATA = {"id":"koliko-vode-trose-podatkovni-centri","title":"Koliko vode zapravo troše podatkovni centri?","title_en":"How Much Water Do Data Centers Actually Consume?","date":"23. kolovoza 2026.","category":"AI i tehnologija","categorySlug":"ai-tech","category_en":"AI & Tech","readTime":"8 min čitanja","readTime_en":"8 min read","image":"img/voda_data_centri.jpg","summary":"Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.","summary_en":"A thermodynamic and physical analysis of data center water consumption – covering direct and indirect footprints, WUE and PUE metrics, liquid cooling, and comparisons with other industries.","excerpt":"Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.","excerpt_en":"A thermodynamic and physical analysis of data center water consumption – covering direct and indirect footprints, WUE and PUE metrics, liquid cooling, and comparisons with other industries.","wordCount":2169,"wordCount_en":2202};window.PRELOADED_ARTICLES_INDEX = [{"id":"humanoidna-robotika","title":"Robotika – New Frontier","title_en":"Humanoid Robotics – The New Frontier","category":"AI i tehnologija","category_en":"AI & Tech","date":"4. listopada 2026.","readTime":"⏱ 23 min čitanja","readTime_en":"⏱ 23 min read","wordCount":4460,"wordCount_en":4498,"image":"img/robotika.jpg","excerpt":"Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.","excerpt_en":"Why Moravec's paradox is the defining challenge of our era, how VLA models and massive parallel simulation are emancipating AI into the physical world, and who leads the global race between Tesla, Figure, Boston Dynamics, and China."},{"id":"navier-stokes","title":"Navier–Stokes","title_en":"Navier–Stokes","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"17. rujna 2026.","readTime":"⏱ 31 min čitanja","readTime_en":"⏱ 32 min read","wordCount":6011,"wordCount_en":6211,"image":"img/Navier Stokes.jpg","excerpt":"Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.","excerpt_en":"From Hilbert's 23 problems to the Clay Mathematics Institute's million-dollar prize: What the Navier–Stokes equations actually describe, what finite-time singularity means, and how OpenAI's agent swarm and Lean formal verification shook mathematics to its core."},{"id":"prompt-inzenjering-vs-ai-harnessing","title":"Prompt inženjering vs. AI harnessing","title_en":"Prompt Engineering vs. AI Harnessing","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"20. srpnja 2026.","readTime":"⏱ 8 min čitanja","readTime_en":"⏱ 8 min read","wordCount":1548,"wordCount_en":1449,"image":"img/Prompt inženjering.png","doi":"doi:10.1038/s41586-026-09511-x","excerpt":"Analiza evolucije interakcije s jezičnim modelima, prelaska s tradicionalnog prompt inženjeringa na AI harnessing te integracije kognitivnih modula u automatizirane, agentne radne procese.","excerpt_en":"An analysis of the evolution of LLM interaction, shifting from traditional prompt engineering to AI harnessing and integrating cognitive modules into automated agentic workflows."}];</script>
+  <script src="../js/article.js?v=20261017_1"></script>
+  <script src="../js/comments.js?v=20261017_1"></script>
+  <script src="../js/newsletter.js?v=20261017_1"></script>
 </body>
 </html>

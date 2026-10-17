@@ -85,13 +85,13 @@
   <link rel="manifest" href="../manifest.json">
   <link rel="apple-touch-icon" href="../img/logo.png">
 
-  <link rel="stylesheet" href="../style.css?v=20260911_1">
+  <link rel="stylesheet" href="../style.css?v=20261017_1">
   <!-- KaTeX for math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script src="../js/theme.js?v=20260911_1"></script>
-  <script src="../js/lang.js?v=20260911_1"></script>
+  <script src="../js/theme.js?v=20261017_1"></script>
+  <script src="../js/lang.js?v=20261017_1"></script>
   <script src="../js/pwa.js"></script>
 </head>
 <body>
@@ -129,12 +129,1007 @@
 
   <!-- GLAVNI SPREMNIK - CENTRIRANI STUPAC ZA ČITANJE (max 800px) -->
   <main class="main-container">
-    <div class="article-reader-container" id="article-reader-container">
-      <div class="loading-state">
-        <p data-i18n="article.loading">Učitavanje sadržaja rada...</p>
+    <div class="article-reader-container" id="article-reader-container" data-ssg-rendered="true" data-ssg-lang="hr">
+    <!-- Link za povratak -->
+    <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
+
+    <!-- Zaglavlje rada -->
+    <header class="reader-header">
+      <div class="reader-meta">
+        <span class="card-category">AI i tehnologija</span>
+      </div>
+
+      <h1 class="reader-title">Robotika – New Frontier</h1>
+
+      <div class="reader-submeta">
+        <div class="reader-submeta-info">
+          <time class="card-date" datetime="4. listopada 2026.">4. listopada 2026.</time>
+          <span class="card-read-time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            ⏱ 23 min čitanja
+          </span>
+          
+        </div>
+
+        <div class="share-buttons">
+          <button type="button" class="share-btn share-copy btn-trigger-copy" aria-label="Kopiraj poveznicu na rad" title="Kopiraj poveznicu na rad">
+            <span class="copy-tooltip">Poveznica kopirana!</span>
+            <svg class="icon-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fhumanoidna-robotika.html&text=Robotika%20%E2%80%93%20New%20Frontier" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fhumanoidna-robotika.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fhumanoidna-robotika.html&quote=Robotika%20%E2%80%93%20New%20Frontier" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+    <div class="article-cover-wrapper">
+      <img src="../img/robotika.jpg" alt="Robotika – New Frontier" class="article-cover-hero" fetchpriority="high" decoding="async" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+    </div>
+  
+    </header>
+
+    <!-- Audio Player Bar (Preslušavanje članka) -->
+    <div class="audio-player-bar" id="audio-player-bar" aria-label="Slušaj članak">
+      <div class="audio-controls-left">
+        <button id="tts-play-btn" class="audio-btn audio-btn-play" aria-label="Pokreni čitanje" title="Pokreni čitanje">
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+        </button>
+        <button id="tts-stop-btn" class="audio-btn audio-btn-stop" aria-label="Zaustavi čitanje" title="Zaustavi čitanje" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="audio-status-container">
+        <span class="audio-status-pulse" id="tts-status-pulse"></span>
+        <span id="tts-status-text" class="audio-status-text">Slušaj članak</span>
+      </div>
+
+      <div class="audio-right-controls">
+        <div class="audio-voice-controls" id="audio-voice-controls">
+          <label for="tts-voice-select" class="voice-label" title="Odabir glasa za čitanje">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span class="voice-label-text">Glas:</span>
+          </label>
+          <select id="tts-voice-select" class="audio-voice-select" aria-label="Odabir glasa za čitanje">
+            <option value="">Najbolji prirodni glas</option>
+          </select>
+        </div>
+
+        <div class="audio-speed-controls">
+          <span class="speed-label">Brzina:</span>
+          <div class="speed-options">
+            <button class="speed-btn active" data-speed="1.0">1x</button>
+            <button class="speed-btn" data-speed="1.25">1.25x</button>
+            <button class="speed-btn" data-speed="1.5">1.5x</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Table of Contents (Sadržaj rada) Container -->
+    <div id="article-toc-container" class="article-toc-wrapper">
+    <nav class="article-toc-card" aria-label="Sadržaj članka">
+      <div class="article-toc-header">
+        <div class="article-toc-title-group">
+          <svg class="article-toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h2 class="article-toc-title">Sadržaj rada</h2>
+          <span class="article-toc-badge">38</span>
+        </div>
+        <button type="button" class="article-toc-toggle-btn" id="toc-toggle-btn" aria-expanded="true" aria-controls="article-toc-body" aria-label="Sakrij">
+          <span class="toc-toggle-text">Sakrij</span>
+          <svg class="toc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="article-toc-body" id="article-toc-body">
+        <ol class="article-toc-list">
+          
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#1-antropocentrični-svijet-kao-inženjerska-zadanost" class="article-toc-link" data-toc-target="1-antropocentrični-svijet-kao-inženjerska-zadanost">
+          <span class="toc-link-text">1. Antropocentrični svijet kao inženjerska zadanost</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#2-tehnološka-konvergencija" class="article-toc-link" data-toc-target="2-tehnološka-konvergencija">
+          <span class="toc-link-text">2. Tehnološka konvergencija</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#a-aktuacija-i-gustoća-snage" class="article-toc-link" data-toc-target="a-aktuacija-i-gustoća-snage">
+          <span class="toc-link-text">A. Aktuacija i gustoća snage</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#b-minijaturizacija-senzora-i-rubno-računanje" class="article-toc-link" data-toc-target="b-minijaturizacija-senzora-i-rubno-računanje">
+          <span class="toc-link-text">B. Minijaturizacija senzora i rubno računanje</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#c-proboj-modela-ponašanja-vla-i-učenje-s-potkrepljenjem" class="article-toc-link" data-toc-target="c-proboj-modela-ponašanja-vla-i-učenje-s-potkrepljenjem">
+          <span class="toc-link-text">C. Proboj modela ponašanja (VLA i učenje s potkrepljenjem)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#3-od-prototipa-do-stvarnog-ekonomskog-benefita" class="article-toc-link" data-toc-target="3-od-prototipa-do-stvarnog-ekonomskog-benefita">
+          <span class="toc-link-text">3. Od prototipa do stvarnog ekonomskog benefita</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#4-anatomija-sposobnosti" class="article-toc-link" data-toc-target="4-anatomija-sposobnosti">
+          <span class="toc-link-text">4. Anatomija sposobnosti</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#1-lokomocija-i-dinamička-ravnoteža" class="article-toc-link" data-toc-target="1-lokomocija-i-dinamička-ravnoteža">
+          <span class="toc-link-text">1. Lokomocija i dinamička ravnoteža</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#2-fina-manipulacija-i-inženjerski-izazov-šake" class="article-toc-link" data-toc-target="2-fina-manipulacija-i-inženjerski-izazov-šake">
+          <span class="toc-link-text">2. Fina manipulacija i inženjerski izazov šake</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#ljudska-šaka" class="article-toc-link" data-toc-target="ljudska-šaka">
+          <span class="toc-link-text">Ljudska šaka</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#figure-02" class="article-toc-link" data-toc-target="figure-02">
+          <span class="toc-link-text">Figure 02</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#tesla-optimus-gen-2" class="article-toc-link" data-toc-target="tesla-optimus-gen-2">
+          <span class="toc-link-text">Tesla Optimus Gen 2</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#agility-digit" class="article-toc-link" data-toc-target="agility-digit">
+          <span class="toc-link-text">Agility Digit</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#3-kognitivno-upravljanje-vizualno-jezično-akcijski-modeli-vla" class="article-toc-link" data-toc-target="3-kognitivno-upravljanje-vizualno-jezično-akcijski-modeli-vla">
+          <span class="toc-link-text">3. Kognitivno upravljanje: Vizualno-jezično-akcijski modeli (VLA)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#5-akceleratori-razvoja" class="article-toc-link" data-toc-target="5-akceleratori-razvoja">
+          <span class="toc-link-text">5. Akceleratori razvoja</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#1-masivna-paralelna-simulacija-i-sim-to-real-transfer" class="article-toc-link" data-toc-target="1-masivna-paralelna-simulacija-i-sim-to-real-transfer">
+          <span class="toc-link-text">1. Masivna paralelna simulacija i Sim-to-Real transfer</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#2-teleoperacija" class="article-toc-link" data-toc-target="2-teleoperacija">
+          <span class="toc-link-text">2. Teleoperacija</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#3-kineska-industrijska-vertikala-i-komoditizacija-hardvera" class="article-toc-link" data-toc-target="3-kineska-industrijska-vertikala-i-komoditizacija-hardvera">
+          <span class="toc-link-text">3. Kineska industrijska vertikala i komoditizacija hardvera</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#6-pregled-vodećih-platformi-i-njihovih-inženjerskih-filozofija" class="article-toc-link" data-toc-target="6-pregled-vodećih-platformi-i-njihovih-inženjerskih-filozofija">
+          <span class="toc-link-text">6. Pregled vodećih platformi i njihovih inženjerskih filozofija</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#1-figure-ai-figure-02-paradigma-ai-first-i-velika-partnerstva" class="article-toc-link" data-toc-target="1-figure-ai-figure-02-paradigma-ai-first-i-velika-partnerstva">
+          <span class="toc-link-text">1. Figure AI (Figure 02) – Paradigma „AI-first” i velika partnerstva</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#2-tesla-optimus-vertikalna-integracija-i-masovna-skalabilnost" class="article-toc-link" data-toc-target="2-tesla-optimus-vertikalna-integracija-i-masovna-skalabilnost">
+          <span class="toc-link-text">2. Tesla Optimus – Vertikalna integracija i masovna skalabilnost</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#3-boston-dynamics-electric-atlas-vrhunac-kinematičkog-inženjeringa" class="article-toc-link" data-toc-target="3-boston-dynamics-electric-atlas-vrhunac-kinematičkog-inženjeringa">
+          <span class="toc-link-text">3. Boston Dynamics (Electric Atlas) – Vrhunac kinematičkog inženjeringa</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#4-agility-robotics-digit-funkcionalni-pragmatizam-u-logistici" class="article-toc-link" data-toc-target="4-agility-robotics-digit-funkcionalni-pragmatizam-u-logistici">
+          <span class="toc-link-text">4. Agility Robotics (Digit) – Funkcionalni pragmatizam u logistici</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#5-kineski-val-unitree-agibot-fourier-brzina-iteracije-i-kompresija-troškova" class="article-toc-link" data-toc-target="5-kineski-val-unitree-agibot-fourier-brzina-iteracije-i-kompresija-troškova">
+          <span class="toc-link-text">5. Kineski val (Unitree, Agibot, Fourier) – Brzina iteracije i kompresija troškova</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#6-1x-technologies-eve-i-neo-meka-aktuacija-i-siguran-suživot-s-ljudima" class="article-toc-link" data-toc-target="6-1x-technologies-eve-i-neo-meka-aktuacija-i-siguran-suživot-s-ljudima">
+          <span class="toc-link-text">6. 1X Technologies (Eve i Neo) – Meka aktuacija i siguran suživot s ljudima</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#usporedna-tehnička-analiza-vodećih-platformi" class="article-toc-link" data-toc-target="usporedna-tehnička-analiza-vodećih-platformi">
+          <span class="toc-link-text">Usporedna tehnička analiza vodećih platformi</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#7-inženjerska-i-ekonomska-uska-grla" class="article-toc-link" data-toc-target="7-inženjerska-i-ekonomska-uska-grla">
+          <span class="toc-link-text">7. Inženjerska i ekonomska uska grla</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#energetska-autonomija-i-fizikalna-granica-baterija" class="article-toc-link" data-toc-target="energetska-autonomija-i-fizikalna-granica-baterija">
+          <span class="toc-link-text">Energetska autonomija i fizikalna granica baterija</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#izazov-pouzdanosti-i-rubnih-slučajeva-the-five-nines-problem" class="article-toc-link" data-toc-target="izazov-pouzdanosti-i-rubnih-slučajeva-the-five-nines-problem">
+          <span class="toc-link-text">Izazov pouzdanosti i rubnih slučajeva (The &quot;Five Nines&quot; Problem)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#ekonomska-jednadžba-capex-opex-i-roi-po-radnom-satu" class="article-toc-link" data-toc-target="ekonomska-jednadžba-capex-opex-i-roi-po-radnom-satu">
+          <span class="toc-link-text">Ekonomska jednadžba: CAPEX, OPEX i ROI po radnom satu</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#sigurnosni-i-regulatorni-okviri" class="article-toc-link" data-toc-target="sigurnosni-i-regulatorni-okviri">
+          <span class="toc-link-text">Sigurnosni i regulatorni okviri</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#8-zaključak-što-donosi-sljedećih-pet-godina" class="article-toc-link" data-toc-target="8-zaključak-što-donosi-sljedećih-pet-godina">
+          <span class="toc-link-text">8. Zaključak: Što donosi sljedećih pet godina?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#tri-vala-tržišnog-usvajanja" class="article-toc-link" data-toc-target="tri-vala-tržišnog-usvajanja">
+          <span class="toc-link-text">Tri vala tržišnog usvajanja</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#val-1-visokostrukturirana-logistika-i-automobilska-industrija" class="article-toc-link" data-toc-target="val-1-visokostrukturirana-logistika-i-automobilska-industrija">
+          <span class="toc-link-text">Val 1: Visokostrukturirana logistika i automobilska industrija</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#val-2-polustrukturirana-industrija-gradilišta-i-održavanje" class="article-toc-link" data-toc-target="val-2-polustrukturirana-industrija-gradilišta-i-održavanje">
+          <span class="toc-link-text">Val 2: Polustrukturirana industrija, gradilišta i održavanje</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#val-3-uslužni-sektor-maloprodaja-i-kućna-asistencija" class="article-toc-link" data-toc-target="val-3-uslužni-sektor-maloprodaja-i-kućna-asistencija">
+          <span class="toc-link-text">Val 3: Uslužni sektor, maloprodaja i kućna asistencija</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#nova-ekonomska-i-demografska-paradigma" class="article-toc-link" data-toc-target="nova-ekonomska-i-demografska-paradigma">
+          <span class="toc-link-text">Nova ekonomska i demografska paradigma</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#završna-misao-premošćivanje-posljednje-granice" class="article-toc-link" data-toc-target="završna-misao-premošćivanje-posljednje-granice">
+          <span class="toc-link-text">Završna misao: Premošćivanje posljednje granice</span>
+        </a>
+      </li>
+        </ol>
+      </div>
+    </nav></div>
+
+    <!-- Puni HTML Sadržaj Članka -->
+    <article class="reader-body" id="reader-body">
+      <p>U proteklom desetljeću svjedočili smo povijesnom proboju umjetne inteligencije unutar digitalnog ekosustava. Veliki jezični modeli, difuzijski sustavi za generiranje multimedije i algoritmi za analizu podataka pokazali su da strojevi mogu pisati funkcionalan računalni kôd, prevoditi jezike, polagati profesionalne ispite i rješavati apstraktne logičke probleme brže (i preciznije) od čovjeka. Računalna inteligencija ovladala je svijetom definiranim nulama i jedinicama.</p>
+<p>Međutim, unatoč naglašenom rastu u domeni softvera, i dalje se suočavamo s jednim velikim problemom: <strong>umjetna inteligencija još je uvijek zarobljena unutar zaslona.</strong></p>
+<p>U fizičkom svijetu, gdje prirodni zakoni diktiraju pravila, današnji algoritmi posrću pred zadacima koje prosječno trogodišnje dijete izvodi bez imalo kognitivnog napora, poput slaganja zgužvane majice, podizanja klizave šalice kave, hoda po šljunčanom terenu ili prepoznavanja kvake na nepoznatim vratima. Ovaj inženjerski i kognitivni fenomen u robotici je poznat kao <strong>Moravecov paradoks</strong> (<em>Moravec's paradox</em>): zadaci koji zahtijevaju visoku razinu apstraktnog ljudskog razmišljanja (šah, viša matematika, analiza teksta) traže iznenađujuće malo računalnih resursa, dok senzomotorne vještine i manipulacija objektima, vještine koje su se brusile kroz stotine milijuna godina biološke evolucije, zahtijevaju kolosalan inženjerski i komputacijski napor.</p>
+
+<div class="moravec-compare-card">
+  <div class="moravec-header">
+    <div class="moravec-title-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+      <span>Moravecov paradoks (Moravec's Paradox)</span>
+    </div>
+    <span class="moravec-badge">Kognitivni kontrast</span>
+  </div>
+  <div class="moravec-columns">
+    <div class="moravec-col moravec-col-digital">
+      <div class="moravec-col-header">
+        <span class="moravec-col-title">🧠 Digitalna apstrakcija</span>
+        <span class="moravec-status-tag tag-easy">Lako za AI</span>
+      </div>
+      <p class="moravec-desc">Visoka razina simboličkog i apstraktnog mišljenja. Zahtijeva zanemarivo malo računalnih resursa jer se pravila daju formalizirati.</p>
+      <div class="moravec-tasks-list">
+        <div class="moravec-task-item"><span class="icon">♟️</span><span>Igranje velemajstorskog šaha i Go-a</span></div>
+        <div class="moravec-task-item"><span class="icon">📐</span><span>Rješavanje više matematike i logike</span></div>
+        <div class="moravec-task-item"><span class="icon">💻</span><span>Pisanje i optimizacija programskog koda</span></div>
+        <div class="moravec-task-item"><span class="icon">📜</span><span>Polaganje pravosudnih i medicinskih ispita</span></div>
+      </div>
+    </div>
+    <div class="moravec-col moravec-col-physical">
+      <div class="moravec-col-header">
+        <span class="moravec-col-title">🖐️ Senzomotorna manipulacija</span>
+        <span class="moravec-status-tag tag-hard">Teško za AI</span>
+      </div>
+      <p class="moravec-desc">Instinktivne vještine brušene kroz stotine milijuna godina biološke evolucije. Zahtijevaju kolosalan inženjerski napor.</p>
+      <div class="moravec-tasks-list">
+        <div class="moravec-task-item"><span class="icon">👕</span><span>Slaganje zgužvane, mekane majice</span></div>
+        <div class="moravec-task-item"><span class="icon">☕</span><span>Hvatanje klizave šalice bez prolijevanja</span></div>
+        <div class="moravec-task-item"><span class="icon">🪨</span><span>Stabilan hod po nepredvidivom šljunku</span></div>
+        <div class="moravec-task-item"><span class="icon">🚪</span><span>Otvaranje brave na nepoznatim vratima</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="scientific-quote-card">
+  <div class="scientific-quote-content">
+    <div class="scientific-quote-text">
+      „Razmjerno je lako postići da računala pokazuju performanse na razini odraslog čovjeka u testovima inteligencije ili igranju šaha, ali je iznimno teško ili nemoguće dati im vještine jednogodišnjeg djeteta kada je riječ o percepciji i kretanju.“
+    </div>
+    <div class="scientific-quote-author">
+      <div class="quote-author-avatar">HM</div>
+      <div class="quote-author-info">
+        <span class="quote-author-name">Hans Moravec</span>
+        <span class="quote-author-title">Pionir robotike &amp; profesor na Carnegie Mellon University</span>
+      </div>
+      <span class="quote-context-tag">Mind Children (1988.)</span>
+    </div>
+  </div>
+</div>
+<p>Robotika predstavlja nužan most između kognitivne inteligencije i materijalne stvarnosti. Želi li umjetna inteligencija prerasti ulogu pasivnog savjetnika i digitalnog asistenta te postati aktivni sudionik globalnog gospodarstva, mora izaći iz svijeta bitova u svijet atoma.</p>
+<p>Jedno od temeljnih pitanja koje se pritom nameće glasi: <em>kakvo tijelo treba dati toj utjelovljenoj inteligenciji?</em></p>
+
+<hr>
+
+<h2 id="1-antropocentrični-svijet-kao-inženjerska-zadanost">1. Antropocentrični svijet kao inženjerska zadanost</h2>
+<p>Netko bi mogao opravdano postaviti pitanje: zašto ulagati stotine milijuna eura u razvoj inherentno nestabilnog, biomehanički kompleksnog dvonožnog stroja umjesto u energetski znatno učinkovitija rješenja na kotačima ili gusjenicama? Odgovor leži u činjenici da je cjelokupna globalna infrastruktura, od industrijskih pogona i skladišta do bolničkih hodnika i kućnih kuhinja, projektirana isključivo prema proporcijama, dosegu i biomehanici ljudskog tijela.</p>
+<p>Tijekom proteklih pola stoljeća industrijska automatizacija temeljila se na prilagodbi okruženja robotu. Kako bi konvencionalna robotska ruka varila karoseriju automobila ili sortirala pošiljke, prostor oko nje morao je biti strogo prilagođen, ograđen sigurnosnim kavezima i opskrbljen preciznom opremom za pozicioniranje. Takav pristup, iako iznimno učinkovit u masovnoj proizvodnji, ima oštru granicu isplativosti: onog trenutka kada radno okruženje postane stohastičko, promjenjivo ili prostorno skučeno, preuređenje tvornice ili skladišta za specijalizirane strojeve postaje astronomski skupo.</p>
+<p>Ljudsko okruženje definirano je nizom prepreka koje eliminiraju većinu tradicionalnih mobilnih robota:</p>
+<ul>
+  <li><strong>Vertikalne barijere:</strong> Stepenice, pragovi, kabelski kanali i uske platforme nepremostivi su za standardne platforme na kotačima poput AGV (<em>Automated Guided Vehicles</em>) i AMR (<em>Autonomous Mobile Robots</em>).</li>
+  <li><strong>Ergonomija alata i radnih stanica:</strong> Prekidači, ventili, ručke na vratima, police različitih visina i industrijski ručni alati projektirani su za hvat s pet prstiju, rotaciju podlaktice i raspon ruku od približno <strong>1.5 m do 2.0 m</strong>.</li>
+  <li><strong>Volumetrijski otisak:</strong> Čovjek može raditi u izrazito uskim prolazima, mijenjati težište, čučnuti ispod prepreke ili zakrenuti torzo bez promjene položaja stopala.</li>
+</ul>
+
+<hr>
+
+<h2 id="2-tehnološka-konvergencija">2. Tehnološka konvergencija</h2>
+<p>Humanoidni roboti nisu nova ideja. Desetljećima su instituti poput Sveučilišta Waseda (WABOT-1 iz 1973.) ili Honde (ASIMO predstavljen 2000.) demonstrirali impresivne rezultate. Međutim, ti su sustavi bili skupi, laboratorijski unikati, energetski neučinkoviti i kognitivno slijepi. Drugim riječima, funkcionirali su unutar strogo programiranih trajektorija gdje bi i najmanje odstupanje od zadanih koordinata dovelo do pada sustava.</p>
+<p>Eksplozija razvoja kojoj svjedočimo u ovom desetljeću nije rezultat jednog izoliranog otkrića, već istovremenog sazrijevanja triju presudnih tehnoloških stupova:</p>
+
+<h3 id="a-aktuacija-i-gustoća-snage">A. Aktuacija i gustoća snage</h3>
+<p>Povijesno su postojala dva ekstrema: spori, kruti elektromehanički motori s visokim prijenosnim omjerima (koji su pucali pri udarcima) ili izuzetno snažni, ali bučni, teški i energetski rastrošni hidraulički sustavi (kakve je proslavio rani Boston Dynamics Atlas). Današnja generacija humanoidnih robota koristi kompaktnu <strong>kvazi-direktnu aktuaciju (QDD)</strong> i napredne planetarne ili cikloidne reduktore. Ovi pogoni omogućuju transparentnost zakretnog momenta (<em>torque transparency</em>), reverzibilnost pokreta i visoku reaktivnost na vanjske udare, uz znatno manju masu i drastično niže proizvodne troškove.</p>
+
+<h3 id="b-minijaturizacija-senzora-i-rubno-računanje">B. Minijaturizacija senzora i rubno računanje</h3>
+<p>LiDAR senzori u čvrstom stanju (Solid-State LiDAR), minijaturne dubinske RGB-D kamere i inercijalne mjerne jedinice (IMU) preuzete iz masovne industrije pametnih telefona i autonomnih vozila postale su iznimno jeftine i lagane. Istodobno, napredak u namenskim mobilnim procesorima omogućuje izvođenje teških dubokih neuronskih mreža izravno na robotu, uz energetski profil koji ne iscrpljuje primarni baterijski paket unutar pola sata rada.</p>
+
+<h3 id="c-proboj-modela-ponašanja-vla-i-učenje-s-potkrepljenjem">C. Proboj modela ponašanja (VLA i učenje s potkrepljenjem)</h3>
+<p>Najveći skok dogodio se u domeni softvera. Klasična kontrola temeljena na analitičkim jednadžbama dinamike krutih tijela zamijenjena je <strong>učenjem s potkrepljenjem (<em>Reinforcement Learning - RL</em>)</strong> i <strong>vizualno-jezično-akcijskim modelima (<em>Vision-Language-Action - VLA</em>)</strong>. Umjesto da inženjer ručno programira kut svakog zgloba pri penjanju uz stepenice, neuronska mreža uči hodati kroz simulaciju stotina milijuna koraka, razvijajući adaptivnu robusnost na smetnje kakva je ranije bila nezamisliva.</p>
+
+<hr>
+
+<h2 id="3-od-prototipa-do-stvarnog-ekonomskog-benefita">3. Od prototipa do stvarnog ekonomskog benefita</h2>
+<p>Dugo vremena javna percepcija humanoidnih robota svodila se na viralne videozapise salta unatrag, plesa ili nespretnih padova. Ti su prikazi često zamagljivali temeljni inženjerski i poslovni cilj. Salto demonstrira vrhunsku dinamiku sustava, ali industrija ne treba akrobate. Konačni cilj je pouzdan stroj koji može podići kutiju od <strong>15 kg</strong>, rotirati je za <strong>90°</strong> i precizno postaviti na policu bez greške, osam sati dnevno, <strong>365 dana u godini</strong>.</p>
+<p>Nalazimo se u točki prijeloma kakvu su osobna računala doživjela krajem 1970-ih, a pametni telefoni 2007. godine. Humanoidni robot postaje <strong>univerzalna hardverska platforma za izvođenje umjetne inteligencije u fizički svijet</strong>.</p>
+<p>Fokus industrije seli se s pitanja „može li robot stajati na dvije noge“ na tri bitne operativne točke:</p>
+<ol>
+  <li>Kolika je cijena izrade po jedinici (CAPEX) u serijskoj masovnoj proizvodnji?</li>
+  <li>Kolika je brzina generalizacije zadataka na nove, prethodno neviđene objekte i promjene u okruženju?</li>
+  <li>Može li operativni trošak rada humanoida po satu ($/h) postati konkurentan bruto cijeni ljudskog rada u industrijama suočenima s kroničnim strukturnim deficitom radne snage?</li>
+</ol>
+
+<hr>
+
+<h2 id="4-anatomija-sposobnosti">4. Anatomija sposobnosti</h2>
+
+<h3 id="1-lokomocija-i-dinamička-ravnoteža">1. Lokomocija i dinamička ravnoteža</h3>
+<p>Dvonožni hod je proces kontinuiranog kontroliranog pada. Čovjek se kreće tako da pomiče svoje težište prema naprijed i pravovremeno postavlja nogu kako bi spriječio kolaps. U klasičnoj robotici stabilnost se desetljećima osiguravala konceptom <strong>nulte točke momenta (<em>Zero Moment Point - ZMP</em>)</strong>, matematičkim kriterijem koji nalaže da ukupni pritisak stopala na tlo mora ostati unutar potporne poligonalne površine. Iako stabilan, ZMP hod rezultirao je ukočenim, neprirodnim i energetski iznimno rastrošnim kretanjem sa savijenim koljenima.</p>
+<p>Suvremeni pristup temelji se na <strong>pasivnoj dinamici i učenju lokomocije kroz potkrepljenje (RL)</strong>. Motori ne forsiraju krute putanje u svakom djeliću sekunde, već iskorištavaju gravitaciju, inerciju i elastičnost zglobova, ubacujući energiju samo u kritičnim trenucima kontakta s tlom.</p>
+<p>Energetska efikasnost kretanja mjeri se bezdimenzionalnim parametrom poznatim kao <strong>trošak transporta (<em>Cost of Transport - CoT</em>)</strong>:</p>
+
+<div class="cot-breakdown-card">
+  <div class="cot-card-header">
+    <div class="cot-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+      </svg>
+      <span>Energetska efikasnost: Trošak transporta (Cost of Transport)</span>
+    </div>
+    <span class="moravec-badge">Bezdimenzionalni omjer</span>
+  </div>
+
+  <div class="cot-math-display">
+    $CoT = \frac{E}{m \cdot g \cdot d}$
+  </div>
+
+  <div class="cot-variables-grid">
+    <div class="cot-var-pill">
+      <span class="cot-var-symbol">E</span>
+      <div class="cot-var-meta">
+        <span class="cot-var-name">Utrošena energija</span>
+        <span class="cot-var-unit">Jouli (J) / rad motora i računala</span>
+      </div>
+    </div>
+    <div class="cot-var-pill">
+      <span class="cot-var-symbol">m</span>
+      <div class="cot-var-meta">
+        <span class="cot-var-name">Masa sustava</span>
+        <span class="cot-var-unit">Kilogrami (kg) / robot + teret</span>
+      </div>
+    </div>
+    <div class="cot-var-pill">
+      <span class="cot-var-symbol">g</span>
+      <div class="cot-var-meta">
+        <span class="cot-var-name">Gravitacijsko ubrzanje</span>
+        <span class="cot-var-unit">9.81 m/s² / fizikalna konstanta</span>
+      </div>
+    </div>
+    <div class="cot-var-pill">
+      <span class="cot-var-symbol">d</span>
+      <div class="cot-var-meta">
+        <span class="cot-var-name">Prijeđena udaljenost</span>
+        <span class="cot-var-unit">Metri (m) / prijeđeni put</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cot-spectrum-section">
+    <div class="cot-spectrum-title">Usporedni spektar energetske efikasnosti kretanja</div>
+    <div class="cot-spectrum-bar-wrap"></div>
+    <div class="cot-markers-grid">
+      <div class="cot-marker-card cot-mark-1">
+        <span class="cot-marker-val">CoT &lt; 0.05</span>
+        <span class="cot-marker-label"><strong>Kotači &amp; Vlak:</strong> Ekstremna mehanička efikasnost, ali vezani za ravnu podlogu</span>
+      </div>
+      <div class="cot-marker-card cot-mark-2">
+        <span class="cot-marker-val">CoT ≈ 0.2</span>
+        <span class="cot-marker-label"><strong>Čovjek:</strong> Biološki optimum evolucije s pasivnim njihalom nogu</span>
+      </div>
+      <div class="cot-marker-card cot-mark-3">
+        <span class="cot-marker-val">CoT ≈ 0.4 – 0.8</span>
+        <span class="cot-marker-label"><strong>Moderni bipedali (QDD):</strong> Regenerativno kočenje i učenje koračanja kroz RL</span>
+      </div>
+      <div class="cot-marker-card cot-mark-4">
+        <span class="cot-marker-val">CoT &gt; 2.0</span>
+        <span class="cot-marker-label"><strong>Rani roboti (ASIMO):</strong> Kruti ZMP hod sa savijenim koljenima, brzo pražnjenje</span>
+      </div>
+    </div>
+  </div>
+</div>
+<p>gdje je $E$ utrošena energija (u džulima), $m$ ukupna masa, $g$ gravitacijsko ubrzanje, a $d$ prijeđena udaljenost. Dok ljudska biomehanika postiže izvanrednu energetsku učinkovitost od $CoT \approx 0.2$, rani električni humanoidi (poput ASIMO-a) imali su $CoT > 2.0$. Zahvaljujući optimizaciji koračanja putem neuronskih mreža i QDD pogonima s povratom energije, današnji bipedalni roboti spuštaju $CoT$ prema biološkim razinama, omogućujući višesatnu autonomiju.</p>
+
+<h3 id="2-fina-manipulacija-i-inženjerski-izazov-šake">2. Fina manipulacija i inženjerski izazov šake</h3>
+<p>Dok su noge zadužene za dolazak na radno mjesto, cjelokupna stvarna ekonomska vrijednost stvara se manipulacijom. Ljudska šaka predstavlja biomehaničko remek-djelo s <strong>27 kostiju, više od 30 mišića i preko 20 stupnjeva slobode kretanja (DoF)</strong>, prožetih gustom mrežom taktilnih receptora.</p>
+
+<div class="hand-stats-wrapper">
+  <div class="hand-stats-grid">
+    <div class="hand-stat-card card-human">
+      <span class="hand-stat-badge">Biološki etalon</span>
+      <h4 class="hand-stat-title" id="ljudska-šaka">Ljudska šaka</h4>
+      <div class="hand-stat-items">
+        <div class="hand-stat-row"><span class="label">Stupnjevi slobode:</span><span class="val">&gt;20 DoF</span></div>
+        <div class="hand-stat-row"><span class="label">Koštana struktura:</span><span class="val">27 kostiju</span></div>
+        <div class="hand-stat-row"><span class="label">Mišićni sustav:</span><span class="val">&gt;30 mišića</span></div>
+        <div class="hand-stat-row"><span class="label">Taktilna osjetila:</span><span class="val">17.000 receptora</span></div>
+      </div>
+    </div>
+
+    <div class="hand-stat-card card-figure">
+      <span class="hand-stat-badge">Precizna industrija</span>
+      <h4 class="hand-stat-title" id="figure-02">Figure 02</h4>
+      <div class="hand-stat-items">
+        <div class="hand-stat-row"><span class="label">Stupnjevi slobode:</span><span class="val">16 DoF / šaci</span></div>
+        <div class="hand-stat-row"><span class="label">Aktuacija:</span><span class="val">QDD + zupčanici</span></div>
+        <div class="hand-stat-row"><span class="label">Povratna sprega:</span><span class="val">Senzori sile u prstima</span></div>
+        <div class="hand-stat-row"><span class="label">Cilj:</span><span class="val">BMW auto-linija</span></div>
+      </div>
+    </div>
+
+    <div class="hand-stat-card card-tesla">
+      <span class="hand-stat-badge">Masovna proizvodnja</span>
+      <h4 class="hand-stat-title" id="tesla-optimus-gen-2">Tesla Optimus Gen 2</h4>
+      <div class="hand-stat-items">
+        <div class="hand-stat-row"><span class="label">Stupnjevi slobode:</span><span class="val">11 DoF / šaci</span></div>
+        <div class="hand-stat-row"><span class="label">Aktuacija:</span><span class="val">Tetivni prijenos</span></div>
+        <div class="hand-stat-row"><span class="label">Senzorika:</span><span class="val">Taktilne jagodice</span></div>
+        <div class="hand-stat-row"><span class="label">Cilj:</span><span class="val">Gigatvornice (&lt;$20k)</span></div>
+      </div>
+    </div>
+
+    <div class="hand-stat-card card-digit">
+      <span class="hand-stat-badge">Skladišni pragmatizam</span>
+      <h4 class="hand-stat-title" id="agility-digit">Agility Digit</h4>
+      <div class="hand-stat-items">
+        <div class="hand-stat-row"><span class="label">Stupnjevi slobode:</span><span class="val">Fokus na trup/noge</span></div>
+        <div class="hand-stat-row"><span class="label">End-efektor:</span><span class="val">0 prstiju (Stezači)</span></div>
+        <div class="hand-stat-row"><span class="label">Nosivost:</span><span class="val">16 kg (Kutije)</span></div>
+        <div class="hand-stat-row"><span class="label">Cilj:</span><span class="val">Amazon &amp; GXO</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>Repliciranje ovih mogućnosti unutar kompaktnog volumena robotske šake predstavlja jedan od najtežih inženjerskih izazova. Ugradnja 20 minijaturnih motora izravno u prste povećava masu i inerciju na vrhu ruke, drastično smanjujući brzinu i nosivost. Zbog toga se vodeći proizvođači dijele na dva pristupa:</p>
+<ul>
+  <li><strong>Tetivni prijenosi (Tendons):</strong> Motori su smješteni u podlaktici, a pokret se prenosi visokootpornim sintetičkim nitima (poput Dyneeme). Ovo osigurava laganu šaku, no uvodi problem trošenja i rastezanja tetiva tijekom milijuna radnih ciklusa.</li>
+  <li><strong>Podaktuirani hvatovi (Underactuated hands):</strong> Mehanički sustavi gdje jedan motor pokreće više zglobova prsta kroz pasivne elastične elemente koji se automatski prilagođavaju geometriji predmeta. Ovaj pristup nudi znatno višu pouzdanost i niži trošak, uz manji raspon individualne artikulacije.</li>
+</ul>
+<p>Kritični element manipulacije je <strong>taktilna senzorika</strong>. Bez povratne informacije o sili dodira, robot ne zna drži li kartonsku kutiju čvrsto ili je drobi, niti osjeća klizi li mu uljni metalni vijak iz prstiju. Tehnologije poput vizualno-taktilnih senzora (elastomerni jastučići s internom mikrokamerom koja prati deformaciju površine) pružaju robotu ekvivalent ljudskog osjeta dodira u milimetarskoj rezoluciji.</p>
+
+<h3 id="3-kognitivno-upravljanje-vizualno-jezično-akcijski-modeli-vla">3. Kognitivno upravljanje: Vizualno-jezično-akcijski modeli (VLA)</h3>
+<p>Desetljećima se upravljanje robotima temeljilo na strogom, fragmentiranom inženjerskom cjevovodu:</p>
+
+<div class="vla-architecture-card">
+  <div class="vla-arch-header">
+    <div class="vla-arch-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="16 18 22 12 16 6"></polyline>
+        <polyline points="8 6 2 12 8 18"></polyline>
+      </svg>
+      <span>Evolucija upravljačke arhitekture: Od modularne kaskade do VLA</span>
+    </div>
+    <span class="moravec-badge">Softverska paradigma</span>
+  </div>
+
+  <div class="vla-pipe-block pipe-classic">
+    <div class="vla-pipe-header">
+      <span class="vla-pipe-name">Klasični modularni cjevovod (Tradicionalna robotika)</span>
+      <span class="moravec-status-tag tag-hard">Krhko &amp; Podložno kumulativnim greškama</span>
+    </div>
+    <div class="vla-pipe-steps">
+      <div class="vla-step-node">📷 Percepcija (Senzori)</div>
+      <span class="vla-arrow">➔</span>
+      <div class="vla-step-node">🧩 Segmentacija (3D točke)</div>
+      <span class="vla-arrow">➔</span>
+      <div class="vla-step-node">📝 Simboličko planiranje</div>
+      <span class="vla-arrow">➔</span>
+      <div class="vla-step-node">📐 Inverzna kinematika</div>
+      <span class="vla-arrow">➔</span>
+      <div class="vla-step-node">⚡ Signali motora</div>
+    </div>
+  </div>
+
+  <div class="vla-pipe-block pipe-vla">
+    <div class="vla-pipe-header">
+      <span class="vla-pipe-name">Suvremeni End-to-End VLA model (Vision-Language-Action)</span>
+      <span class="moravec-status-tag tag-easy">Robusno &amp; Semantička generalizacija</span>
+    </div>
+    <div class="vla-pipe-steps">
+      <div class="vla-step-node">🎥 RGB video + 🎙️ Govorni prompt</div>
+      <span class="vla-arrow">➔</span>
+      <div class="vla-step-node vla-hero-node">🧠 Multimodalni VLA Transformer (RT-2 / π₀)</div>
+      <span class="vla-arrow">➔</span>
+      <div class="vla-step-node">⚡ Direktni vektori zglobova @ 50 Hz</div>
+    </div>
+  </div>
+</div>
+<p>Ovaj model pokazao se izuzetno krhkim. Ako segmentacijski algoritam pogrešno identificira rub stola zbog neobične sjene, cijeli sustav doživljava kaskadni slom. Suvremeni proboj donose <strong>VLA modeli (<em>Vision-Language-Action</em>)</strong>, poput Googleovog RT-2 ili Physical Intelligence $\pi_0$.</p>
+<p>VLA modeli uklanjaju međukorake i povezuju percepciju izravno s akcijom (<em>end-to-end learning</em>). Model prima tok slika s kamera i tekstualnu instrukciju (npr. „podigni zeleni odvijač i stavi ga u kutiju s alatom“), te izravno generira kontinuirane vektore upravljanja zglobovima na frekvenciji od 20 do 50 Hz. Zahvaljujući treniranju na gigantskim multimodalnim skupovima podataka, ovi sustavi demonstriraju sposobnost semantičke generalizacije: robot razumije koncept „odvijača“ čak i ako se radi o modelu, boji ili obliku koji nikada ranije nije vidio u svom treningu.</p>
+
+<hr>
+
+<h2 id="5-akceleratori-razvoja">5. Akceleratori razvoja</h2>
+
+<h3 id="1-masivna-paralelna-simulacija-i-sim-to-real-transfer">1. Masivna paralelna simulacija i Sim-to-Real transfer</h3>
+<p>Najveća kočnica u razvoju fizičke inteligencije bio je nedostatak podataka. Dok jezični modeli uče na bilijunima tekstualnih tokena s interneta, roboti moraju fizički djelovati u prostoru kako bi generirali podatke o kontaktu i trenju, a fizičko prikupljanje je sporo, podložno habanju hardvera i opasno za okolinu.</p>
+<p>Rješenje je pronađeno u <strong>masivnoj paralelnoj fizikalnoj simulaciji na GPU klasterima</strong> (alati poput NVIDIA Isaac Sim / Isaac Gym ili MuJoCo). Umjesto jednog fizičkog robota, istraživači u virtualnom prostoru istovremeno pokreću između <strong>$10^4$ i $10^5$ paralelnih instanci</strong>. U takvom okruženju, neuronska mreža u svega nekoliko sati računalnog vremena prolazi kroz ekvivalent desetljeća fizičkog kretanja, isprobavajući milijune varijacija hoda i manipulacije.</p>
+<p>Kako bi znanje stečeno u simulatoru funkcioniralo u stvarnom svijetu, primjenjuje se tehnika <strong>randomizacije domene (<em>Domain Randomization</em>)</strong>. Tijekom simulacijskog treninga algoritamski se nasumično mijenjaju masa tijela, trenje podloge, kašnjenje senzora i rasvjeta. Kada se naučena politika upravljanja prebaci na stvarni fizički hardver (<em>Sim-to-Real transfer</em>), nesavršenosti stvarnog svijeta izgledaju samo kao još jedna varijacija unutar simuliranog raspona, eliminirajući potrebu za dugotrajnim ručnim podešavanjem.</p>
+
+<h3 id="2-teleoperacija">2. Teleoperacija</h3>
+<p>Za zadatke složene fine manipulacije, čisto učenje pokušajima i pogreškama u simulaciji često je nedovoljno jer je prostor mogućih stanja prevelik. Ovdje presudnu ulogu igra <strong>teleoperacija</strong>: ljudski operateri opremljeni VR naočalama, haptičkim rukavicama ili egzoskeletima daljinski upravljaju humanoidom, obavljajući stvarne zadatke.</p>
+<p>Sustav bilježi sve podatke, kutove zglobova, slike s kamera i primijenjene sile. Kroz <strong>imitacijsko učenje (<em>Imitation Learning</em> / <em>Behavioral Cloning</em>)</strong>, neuronska mreža uči mapirati vizualne ulaze na demonstrirane ljudske motoričke odgovore. Prikupljanje nekoliko stotina demonstracija uspješnog slaganja ili montiranja često je dovoljno da model generalizira i samostalno reproducira radnju.</p>
+
+<h3 id="3-kineska-industrijska-vertikala-i-komoditizacija-hardvera">3. Kineska industrijska vertikala i komoditizacija hardvera</h3>
+<p>Nijedna analiza stanja u robotici nije potpuna bez uvida u azijski lanac opskrbe. Kineska industrijska baza, centrirana oko Shenzhena i delte rijeke Yangtze, u potpunosti replicira scenarij viđen u industriji električnih vozila i pametnih telefona:</p>
+<ul>
+  <li><strong>Harmonijski i cikloidni reduktori:</strong> Nekada rezervirani za skupe japanske proizvođače, kineski ekvivalenti srušili su cijenu ovih preciznih sklopova za <strong>više od 70%</strong>.</li>
+  <li><strong>Bezčetkasti motori bez okvira (Frameless BLDC Motors):</strong> Prijenos znanja i kapaciteta iz proizvodnje dronova i pogona za e-vozila omogućio je masovnu ponudu motora visoke gustoće zakretnog momenta po iznimno konkurentnim cijenama.</li>
+</ul>
+<p>Ova vertikalna integracija omogućila je pojavu kompaktnih humanoidnih robota (poput modela Unitree G1) s najavljenom početnom cijenom od približno <strong>16.000 USD</strong>. Time se hardverska barijera ulaska u humanoidnu robotiku drastično smanjuje, omogućujući stotinama istraživačkih timova rad na stvarnim fizičkim platformama.</p>
+
+<hr>
+
+<h2 id="6-pregled-vodećih-platformi-i-njihovih-inženjerskih-filozofija">6. Pregled vodećih platformi i njihovih inženjerskih filozofija</h2>
+
+<h3 id="1-figure-ai-figure-02-paradigma-ai-first-i-velika-partnerstva">1. Figure AI (Figure 02) – Paradigma „AI-first” i velika partnerstva</h3>
+<p>Figure AI pozicionirao se kao jedan od najagresivnijih izazivača, spajajući vrhunsku mehatroniku s izravnom integracijom velikih modela putem partnerstva s OpenAI-jem.</p>
+<ul>
+  <li><strong>Hardverska rafiniranost:</strong> Figure 02 donosi potpuno integriranu kinematsku strukturu s kabelima skrivenim unutar skeleta, baterijskim paketom kapaciteta <strong>2.25 kWh</strong> smještenim u torzu (što omogućuje do <strong>5 h</strong> rada) te onboard računalnim sustavom s tri puta većim kapacitetom zaključivanja u odnosu na prethodnika. Šake robota posjeduju <strong>16 DoF</strong> s integriranom senzorikom sile u svakom prstu, omogućujući manipulaciju s milimetarskom preciznošću.</li>
+  <li><strong>Industrijski poligon:</strong> Kroz suradnju s BMW-om u tvornici Spartanburg (Južna Karolina), Figure je prešao iz faze laboratorijskih demonstracija u fazu validacije na stvarnoj automobilskoj traci, fokusirajući se na umetanje limenih elemenata i rukovanje nosačima karoserije.</li>
+</ul>
+
+<h3 id="2-tesla-optimus-vertikalna-integracija-i-masovna-skalabilnost">2. Tesla Optimus – Vertikalna integracija i masovna skalabilnost</h3>
+<p>Teslin pristup robotu Optimus (Gen 2) odražava proizvodnu i inženjersku matricu električnih vozila: ekstremna vertikalna integracija, eliminacija skupih vanjskih dobavljača i priprema hardvera za masovnu serijsku proizvodnju u milijunskim serijama.</p>
+<ul>
+  <li><strong>Prijenos FSD arhitekture i računalnog vida:</strong> Za razliku od konkurenata koji se oslanjaju na kombinaciju LIDAR-a i RGB-D kamera, Tesla primjenjuje pristup zasnovan isključivo na pasivnom računalnom vidu (<em>Vision-only</em>). Tehnološki stog razvijen za FSD u automobilima, od neuronskih mreža za rekonstrukciju prostora do namjenskih AI čipova, izravno je prenesen u glavu i torzo robota.</li>
+  <li><strong>Namjenski aktuatori:</strong> Umjesto kupovnih motora, Tesla je dizajnirala vlastite rotacijske i linearne pogone prilagođene specifičnim opterećenjima ljudske biomehanike. Robot posjeduje <strong>28 stupnjeva slobode</strong> u tijelu te novu šaku s <strong>11 DoF</strong> i taktilnim senzorima na jagodicama prstiju.</li>
+  <li><strong>Interni poligon:</strong> Tesla posjeduje vlastite Gigatvornice u kojima može rasporediti tisuće robota na jednostavnim transportnim i logističkim zadacima, zatvarajući podatkovnu petlju i ciljajući na dugoročnu proizvodnu cijenu ispod <strong>20.000 USD</strong>.</li>
+</ul>
+
+<h3 id="3-boston-dynamics-electric-atlas-vrhunac-kinematičkog-inženjeringa">3. Boston Dynamics (Electric Atlas) – Vrhunac kinematičkog inženjeringa</h3>
+<p>Boston Dynamics napravio je povijesni zaokret: umirovili su legendarni hidraulički Atlas i predstavili potpuno električnu verziju (<em>Electric Atlas</em>), razvijenu u suradnji s vlasnikom Hyundaijem.</p>
+<ul>
+  <li><strong>Ne-antropomorfna kinematika:</strong> Za razliku od sustava koji striktno oponašaju ograničenja ljudskog kostura, zglobovi Electric Atlasa imaju puni rotacijski opseg od <strong>360°</strong> bez mehaničkih graničnika. Robot se ne mora okretati da bi promijenio smjer hoda niti mijenjati položaj stopala da bi dohvatio objekt iza sebe, on jednostavno rotira trup ili udove za <strong>180°</strong>, izvodeći putanje koje su biološki nemoguće, ali mehanički optimalne i znatno brže.</li>
+  <li><strong>Robusnost za tešku industriju:</strong> Zahvaljujući golemom iskustvu u dinamici, Electric Atlas projektiran je za teške industrijske operacije u automobilskoj industriji, s fokusom na podizanje teških tereta i rad u nepovoljnim okruženjima.</li>
+</ul>
+
+<h3 id="4-agility-robotics-digit-funkcionalni-pragmatizam-u-logistici">4. Agility Robotics (Digit) – Funkcionalni pragmatizam u logistici</h3>
+<p>Agility Robotics odabrao je put funkcionalnog minimalizma: umjesto repliciranja cjelokupne ljudske anatomije, konstruirali su dvonožni stroj optimiziran isključivo za transport standardiziranih skladišnih kutija (totes).</p>
+<ul>
+  <li><strong>Digitigradni hod:</strong> Digit koristi noge s anatomijom sličnom pticama ili mačkama (savijanje unazad), što omogućuje stabilnije težište pri čučnju i podizanju tereta sa samog poda.</li>
+  <li><strong>Stezači umjesto prstiju:</strong> Umjesto kompleksnih šaka s prstima koje se lako kvare, Digit ima jednostavne kontaktne stezače optimizirane za prihvat rubova kutija mase do <strong>16 kg</strong>.</li>
+  <li><strong>Komercijalna primjena:</strong> Zahvaljujući ovom pragmatičnom pristupu, Digit je prva platforma s ugovorima o integraciji u logističkim centrima diva e-trgovine Amazona te logističkog operatera GXO.</li>
+</ul>
+
+<h3 id="5-kineski-val-unitree-agibot-fourier-brzina-iteracije-i-kompresija-troškova">5. Kineski val (Unitree, Agibot, Fourier) – Brzina iteracije i kompresija troškova</h3>
+<p>Kineski proizvođači usvojili su strategiju munjevitog izbacivanja hardvera i agresivne cjenovne politike:</p>
+<ul>
+  <li><strong>Unitree Robotics:</strong> Poznat po četveronožnim robotima, Unitree je modelom H1 postavio brzinske rekorde bipedalnog hoda (<strong>3.3 m/s</strong>), dok je s kompaktnim modelom G1 izazvao tektonske promjene najavljenom cijenom od ~16.000 USD.</li>
+  <li><strong>Agibot (Zhiyuan) i Fourier Intelligence:</strong> Agibot (osnovan od strane bivših inženjera Huaweija) i Fourier (s modelom GR-1) fokusiraju se na modularne industrijske i rehabilitacijske platforme s masovnom lokalnom proizvodnjom aktuatora.</li>
+</ul>
+
+<h3 id="6-1x-technologies-eve-i-neo-meka-aktuacija-i-siguran-suživot-s-ljudima">6. 1X Technologies (Eve i Neo) – Meka aktuacija i siguran suživot s ljudima</h3>
+<p>Norveško-američki startup 1X Technologies (podržan od strane OpenAI-ja) razvija robote prvenstveno namijenjene kućanstvima, uredima i asistenciji:</p>
+<ul>
+  <li><strong>Compliant Actuation (Pasivna popustljivost):</strong> Umjesto teških metalnih zglobova, model Neo koristi tetivni pogon niske inercije. Robot teži svega <strong>30 kg</strong>, a cijela vanjska struktura presvučena je mekim tekstilnim slojem. Ako robot tijekom kretanja dotakne čovjeka, pogoni popuštaju i amortiziraju udarac poput ljudskog mišića, eliminirajući potrebu za zaštitnim sigurnosnim kavezima.</li>
+</ul>
+
+<h3 id="usporedna-tehnička-analiza-vodećih-platformi">Usporedna tehnička analiza vodećih platformi</h3>
+<div class="table-container">
+  <table class="article-table">
+    <thead>
+      <tr>
+        <th>Model / Proizvođač</th>
+        <th>Visina / Masa</th>
+        <th>Tip aktuacije</th>
+        <th>Pristup percepciji</th>
+        <th>Stupnjevi slobode (DoF)</th>
+        <th>Primarno ciljano tržište</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Figure 02</strong><br>(Figure AI)</td>
+        <td>168 cm / 70 kg</td>
+        <td>Elektromehanički (QDD + precizni reduktori)</td>
+        <td>Multimodalne RGB kamere + onboard AI čipovi</td>
+        <td>Tijelo: 30 DoF<br>Šake: 16 DoF po šaci</td>
+        <td>Automobilska industrija, napredna proizvodnja</td>
+      </tr>
+      <tr>
+        <td><strong>Optimus Gen 2</strong><br>(Tesla)</td>
+        <td>173 cm / 57 kg</td>
+        <td>Vlastiti rotacijski i linearni elektromehanički pogoni</td>
+        <td>Pasivni računalni vid (Vision-only / FSD)</td>
+        <td>Tijelo: 28 DoF<br>Šake: 11 DoF po šaci</td>
+        <td>Vlastite Gigatvornice, masovna industrija</td>
+      </tr>
+      <tr>
+        <td><strong>Electric Atlas</strong><br>(Boston Dynamics)</td>
+        <td>150 cm / 65 kg</td>
+        <td>Prilagođeni električni pogoni (360° rotacija)</td>
+        <td>Kamere visoke rezolucije + 3D dubinski senzori</td>
+        <td>Neograničena rotacija na vitalnim zglobovima</td>
+        <td>Teška automobilska industrija, sklapanje</td>
+      </tr>
+      <tr>
+        <td><strong>Digit</strong><br>(Agility Robotics)</td>
+        <td>175 cm / 65 kg</td>
+        <td>Elektromehanički pogoni (digitigradni hod)</td>
+        <td>3D LIDAR + dubinske RGB-D kamere</td>
+        <td>Fokus na trup i noge; šake zamijenjene stezačima</td>
+        <td>Skladišna logistika, transport standardnih kutija</td>
+      </tr>
+      <tr>
+        <td><strong>Unitree G1</strong><br>(Unitree Robotics)</td>
+        <td>127 cm / 35 kg</td>
+        <td>Kompaktni bezčetkasti motori velikog zakretnog momenta</td>
+        <td>3D LIDAR + dubinska kamera</td>
+        <td>Tijelo: 23 do 43 DoF (ovisno o konfiguraciji)</td>
+        <td>Istraživački laboratoriji, edukacija, rani piloti</td>
+      </tr>
+      <tr>
+        <td><strong>Neo</strong><br>(1X Technologies)</td>
+        <td>165 cm / 30 kg</td>
+        <td>Tetivni pogoni visoke popustljivosti (compliant)</td>
+        <td>Multimodalni vid integriran s govornim modelima</td>
+        <td>Biomehanički optimiziran za meke hvatove</td>
+        <td>Kućanstva, asistencija, zdravstvena njega</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr>
+
+<h2 id="7-inženjerska-i-ekonomska-uska-grla">7. Inženjerska i ekonomska uska grla</h2>
+<p>Unatoč impresivnim demonstracijama i eksponencijalnom priljevu rizičnog kapitala, humanoidna robotika suočava se s fundamentalnim ograničenjima fizikalne stvarnosti i industrijske ekonomije. Razlika između kontroliranog laboratorijskog demo-videa i operativnog raspoređivanja na stvarnoj proizvodnoj liniji zahtijeva rješavanje četiriju kritičnih uskih grla:</p>
+
+<h3 id="energetska-autonomija-i-fizikalna-granica-baterija">Energetska autonomija i fizikalna granica baterija</h3>
+<ul>
+  <li><strong>Začarani krug mase:</strong> Povećanje kapaciteta baterije nužno povećava masu robota. Svaki dodatni kilogram zahtijeva snažnije motore i veći radni zakretni moment za održavanje ravnoteže i hod, što proporcionalno povećava baznu potrošnju energije po sekundi.</li>
+  <li><strong>Industrijski ritmus:</strong> Standardna radna smjena traje <strong>8 h</strong>. Suvremeni humanoidi opremljeni su baterijama kapaciteta između <strong>1.5 kWh i 2.5 kWh</strong>. Pri dinamičkom hodu, manipulaciji teretom i konstantnom radu ugrađenih AI računala za inferenciju (koja sama troše između <strong>150 W i 400 W</strong>), realno operativno vrijeme rijetko prelazi <strong>2 do 4 h</strong>.</li>
+  <li><strong>Logistika punjenja:</strong> Autonomno spajanje na punjač zahtijeva stanku od <strong>60 do 90 minuta</strong>. Alternativa je brza zamjena baterijskih paketa (<em>hot-swapping</em>), no to uvodi dodatne mehaničke tolerancije, habanje kontakata i zahtijeva namjensku pomoćnu infrastrukturu.</li>
+</ul>
+
+<h3 id="izazov-pouzdanosti-i-rubnih-slučajeva-the-five-nines-problem">Izazov pouzdanosti i rubnih slučajeva (The "Five Nines" Problem)</h3>
+<p>U digitalnom svijetu softvera, točnost modela od <strong>95% ili 98%</strong> smatra se izvanrednim uspjehom. Ako chatbot generira pogrešnu rečenicu ili aplikacija zastane, šteta se sanira ponovnim slanjem upita. U industrijskoj robotici pravila su neumoljiva:</p>
+
+<div class="fivenines-card">
+  <div class="fivenines-header">
+    <div class="fivenines-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+        <line x1="12" y1="9" x2="12" y2="13"></line>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg>
+      <span>Problem „pet devetki” (The Five Nines Problem): Udar na takt proizvodne trake</span>
+    </div>
+    <span class="moravec-badge">Takt: 1 vozilo / 60 sekundi</span>
+  </div>
+  <div class="fivenines-grid">
+    <div class="fivenines-col fivenines-col-fail">
+      <div class="fivenines-rate">99.0%</div>
+      <div class="fivenines-label">Standard softverskih modela (Nedovoljno)</div>
+      <ul class="fivenines-stats">
+        <li><span>⚠️</span><span><strong>1 pogreška na svakih 100 operacija</strong>, statistički neprihvatljivo za masovnu industriju.</span></li>
+        <li><span>🛑</span><span><strong>Više zastoja po radnoj smjeni:</strong> Svako ispuštanje dijela zaustavlja cijelu liniju.</span></li>
+        <li><span>📉</span><span><strong>Financijska šteta:</strong> Deseci tisuća eura gubitka po svakoj minuti prekida trake.</span></li>
+      </ul>
+    </div>
+    <div class="fivenines-col fivenines-col-pass">
+      <div class="fivenines-rate">99.999%</div>
+      <div class="fivenines-label">Industrijski standard „Five Nines” (Cilj)</div>
+      <ul class="fivenines-stats">
+        <li><span>✅</span><span><strong>1 pogreška na 100.000 operacija</strong>, imperativ za autonomno raspoređivanje.</span></li>
+        <li><span>🏭</span><span><strong>Mjeseci neprekidnog rada:</strong> Integracija bez potrebe za stalnim ljudskim nadzorom.</span></li>
+        <li><span>📈</span><span><strong>Ekonomski ROI:</strong> Potpuna predvidljivost i amortizacija operativnog troška.</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<ul>
+  <li><strong>Cijena zastoja trake:</strong> Na automobilskoj traci koja izbacuje vozilo svakih <strong>60 s</strong>, stopa uspješnosti robota od <strong>99%</strong> znači da će robot pogriješiti jednom u svakih stotinu operacija, odnosno nekoliko puta u jednoj radnoj smjeni. Svako ispuštanje dijela, zaglavljivanje komponente ili fizički sudar može zaustaviti cijeli pogon, generirajući gubitke od desetaka tisuća eura po minuti zastoja.</li>
+  <li><strong>Standard od „pet devetki”:</strong> Industrijski standard zahtijeva pouzdanost na razini od <strong>99.999% (<em>five nines</em>)</strong>. Postizanje ove razine putem probabilističkih neuronskih mreža (poput VLA modela) predstavlja ogroman inženjerski problem, jer modeli inherentno pate od nesigurnosti pri susretu s nepoznatim rubnim slučajevima (<em>edge cases</em>), poput neuobičajenog odsjaja svjetla ili neznatno deformiranog pakiranja.</li>
+  <li><strong>Srednje vrijeme između kvarova (MTBF):</strong> Humanoidni robot posjeduje između <strong>30 i 50 motora</strong>, senzora i zupčanih prijenosa koji rade pod kontinuiranim dinamičkim vibracijama. Statistička vjerojatnost kvara raste s brojem komponenti, čineći održavanje znatno kompleksnijim u odnosu na fiksne robotske ruke čiji MTBF redovito prelazi <strong>50.000 do 80.000 radnih sati</strong>.</li>
+</ul>
+
+<h3 id="ekonomska-jednadžba-capex-opex-i-roi-po-radnom-satu">Ekonomska jednadžba: CAPEX, OPEX i ROI po radnom satu</h3>
+<p>Tržišni uspjeh ne ovisi o tehnološkoj eleganciji, već o čistoj financijskoj računici. Investitori i tvornički menadžeri promatraju ukupni trošak vlasništva (<em>Total Cost of Ownership - TCO</em>) i efektivni trošak rada po satu ($C_h$):</p>
+$C_h = \frac{CAPEX + \sum_{t=1}^N (OPEX_t + C_{\text{održavanje}} + C_{\text{zastoj}})}{T_{\text{operativni sati}}}$
+<p>Da bi humanoid zamijenio ljudskog radnika ili tradicionalnu automatizaciju, $C_h$ mora biti konkurentan bruto cijeni rada:</p>
+<ul>
+  <li><strong>Usporedba sa specijaliziranom automatizacijom:</strong> Konvencionalna robotska ruka montirana na fiksno postolje košta između <strong>25.000 i 50.000 USD</strong>, ima radni vijek od preko deset godina uz minimalno održavanje te postiže submilimetarsku ponovljivost u djeliću sekunde. Ulaganje u dvonožnog robota koji košta preko <strong>100.000 USD</strong> (u ranoj fazi komercijalizacije) ekonomski je neopravdano za sve zadatke koji se mogu riješiti fiksnom rukom ili transporterom.</li>
+  <li><strong>Model „Robots-as-a-Service” (RaaS):</strong> Kako bi se prevladala visoka početna kapitalna barijera (CAPEX), industrija se okreće RaaS modelu. Korisnici plaćaju fiksnu satnicu (npr. <strong>20 – 30 USD/h</strong>) koja uključuje hardver, softverske nadogradnje, osiguranje i održavanje, prebacujući rizik kvarova na proizvođača robota.</li>
+</ul>
+
+<h3 id="sigurnosni-i-regulatorni-okviri">Sigurnosni i regulatorni okviri</h3>
+<p>Temeljno obećanje humanoidnog robota jest kretanje istim hodnicima i rad na istim stanicama s ljudima. Međutim, stroj mase <strong>70 do 80 kg</strong> s metalnim skeletom i motorima koji razvijaju stotine njutnmetara zakretnog momenta predstavlja ozbiljnu kinetičku opasnost.</p>
+<ul>
+  <li><strong>Kinetička energija:</strong> Pri brzini kretanja od $1.5 \text{ m/s}$, kinetička energija tijela robota ($E_k = \frac{1}{2}mv^2$) iznosi između 80 i 90 džula, dovoljno za nanošenje teških ozljeda pri nekontroliranom sudaru.</li>
+  <li><strong>Regulatorni standardi:</strong> Postojeći industrijski standardi (poput <em>ISO 10218</em> za industrijske robote i <em>ISO/TS 15066</em> za kolaborativne robote) strogo ograničavaju brzine i sile u prisutnosti nezaštićenih radnika. Certificiranje autonomnog dvonožnog sustava koji donosi probabilističke odluke putem neuronskih mreža za rad rame uz rame s ljudima zahtijevat će potpuno nove sigurnosne arhitekture: hardverski redundantne kočnice za nuždu (<em>E-stop</em>), vanjske slojeve osjetljive na dodir i mehanički popustljive zglobove.</li>
+</ul>
+
+<hr>
+
+<h2 id="8-zaključak-što-donosi-sljedećih-pet-godina">8. Zaključak: Što donosi sljedećih pet godina?</h2>
+<p>Humanoidna robotika nalazi se na prekretnici identičnoj onoj u kojoj se nalazilo osobno računarstvo kasnih 1970-ih godina: hardver je napokon postao dovoljno robustan i funkcionalan, no tek traži svoje formativne softverske aplikacije i konačne ekonomske modele masovne implementacije. Analiza tehnološkog stanja pokazuje da humanoidi više nisu znanstveno-fantastični kuriozitet niti laboratorijski unikat, već nezaustavljiva konvergencija napredne mehatronike i utjelovljene umjetne inteligencije.</p>
+
+<h3 id="tri-vala-tržišnog-usvajanja">Tri vala tržišnog usvajanja</h3>
+<p>Komercijalna implementacija humanoidnih robota odvijat će se kroz tri jasno definirane faze:</p>
+
+<div class="market-waves-wrapper">
+  <div class="market-wave-card">
+    <div class="market-wave-badge-col">
+      <span class="wave-num">📦</span>
+      <span class="wave-time-tag">2024. – 2026.</span>
+    </div>
+    <div class="market-wave-content">
+      <h4 class="market-wave-title" id="val-1-visokostrukturirana-logistika-i-automobilska-industrija">Val 1: Visokostrukturirana logistika i automobilska industrija</h4>
+      <p class="market-wave-desc">Primjena ograničena na kontrolirana industrijska okruženja s ravnim podovima i standardiziranim kutijama. Poligoni poput BMW-a (Figure 02), Amazona i GXO-a (Digit) te Teslinih Gigatvornica (Optimus). Varijabilnost je niska, a rasterećenje ljudi s fizički napornih zadataka trenutno je isplativo.</p>
+      <div class="market-wave-tags">
+        <span class="market-tag">Fiksna geometrija</span>
+        <span class="market-tag">Prenošenje kutija</span>
+        <span class="market-tag">Automobilske linije</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="market-wave-card">
+    <div class="market-wave-badge-col">
+      <span class="wave-num">🏗️</span>
+      <span class="wave-time-tag">2026. – 2029.</span>
+    </div>
+    <div class="market-wave-content">
+      <h4 class="market-wave-title" id="val-2-polustrukturirana-industrija-gradilišta-i-održavanje">Val 2: Polustrukturirana industrija, gradilišta i održavanje</h4>
+      <p class="market-wave-desc">Sazrijevanjem VLA modela i nultom generalizacijom na neviđene objekte, bipedali ulaze na gradilišta, u reciklažna dvorišta i u inspekciju tehničkih postrojenja. Sposobnost penjanja uz stepenice i rukovanja standardnim ručnim alatom donosi presudnu prednost pred kotačima.</p>
+      <div class="market-wave-tags">
+        <span class="market-tag">Nestrukturirani teren</span>
+        <span class="market-tag">Ručni alati</span>
+        <span class="market-tag">Inspekcija postrojenja</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="market-wave-card">
+    <div class="market-wave-badge-col">
+      <span class="wave-num">🏠</span>
+      <span class="wave-time-tag">2029.+</span>
+    </div>
+    <div class="market-wave-content">
+      <h4 class="market-wave-title" id="val-3-uslužni-sektor-maloprodaja-i-kućna-asistencija">Val 3: Uslužni sektor, maloprodaja i kućna asistencija</h4>
+      <p class="market-wave-desc">Najteži inženjerski i regulatorni korak. Zahtijeva dokazanu pouzdanost „pet devetki”, implementaciju meke i inherentno sigurne aktuacije (poput modela 1X Neo), drastično smanjenje akustične buke i pad maloprodajne cijene na razinu automobila (20.000 – 30.000 USD).</p>
+      <div class="market-wave-tags">
+        <span class="market-tag">Meka aktuacija</span>
+        <span class="market-tag">Suživot s ljudima</span>
+        <span class="market-tag">&lt;30.000 USD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 id="nova-ekonomska-i-demografska-paradigma">Nova ekonomska i demografska paradigma</h3>
+<p>Globalni interes za humanoidnu robotiku nije potaknut pukim tehnološkim entuzijazmom, već neumoljivom demografskom matematikom. Industrijski razvijene ekonomije, posebice Japan, Južna Koreja, Njemačka i Kina, suočavaju se s nezapamćenim starenjem stanovništva i trajnim strukturnim deficitom radne snage u proizvodnim i logističkim zanimanjima.</p>
+<p>U takvoj konstelaciji, humanoidni robot transformira samu prirodu rada: on fizički rad prevodi iz kategorije varijabilnog operativnog troška (plaće radnika) u amortizirajući kapitalni trošak (hardver i softverska licenca). Onog trenutka kada trošak rada humanoida po satu ($C_h$) postane niži od zakonske minimalne satnice ljudskog rada, uz zadržavanje ekvivalentne pouzdanosti, započet će najopsežnija preraspodjela produktivnosti u povijesti industrije.</p>
+
+<h3 id="završna-misao-premošćivanje-posljednje-granice">Završna misao: Premošćivanje posljednje granice</h3>
+<p>Humanoidni robot nije tek još jedan industrijski stroj na tvorničkom podu. On je <strong>konačna točka integracije računalne inteligencije i materijalne stvarnosti</strong>. Nakon što je desetljećima bila zatvorena u silicijskim čipovima podatkovnih centara, inteligencija napokon dobiva ruke, noge i osjetila kako bi stupila u interakciju s fizičkim svijetom koji smo izgradili za sebe.</p>
+<p>Prijelaz iz svijeta bitova u svijet atoma označava početak novog poglavlja tehnološke evolucije, razdoblja u kojem strojevi prestaju biti samo naši digitalni savjetnici i postaju naši fizički suradnici u oblikovanju materijalne stvarnosti.</p>
+    </article>
+
+    <!-- Donji Share Blok -->
+    <div class="reader-share-box">
+      <div class="reader-share-info">
+        <span class="reader-share-label">Podijeli ovaj rad:</span>
+      </div>
+      <div class="reader-share-actions">
+        <button type="button" class="btn-copy-link btn-trigger-copy" aria-label="Kopiraj poveznicu na rad">
+          <span class="copy-tooltip">Poveznica kopirana!</span>
+          <svg class="icon-link" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="copy-btn-text">Kopiraj poveznicu</span>
+        </button>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fhumanoidna-robotika.html&text=Robotika%20%E2%80%93%20New%20Frontier" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fhumanoidna-robotika.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fhumanoidna-robotika.html&quote=Robotika%20%E2%80%93%20New%20Frontier" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Povezani članci sekcija -->
+    
+    <section class="related-articles-section" aria-labelledby="related-heading">
+      <div class="related-header">
+        <span class="related-overline">PREPORUČENO ČITANJE</span>
+        <h3 id="related-heading" class="related-title">Povezani radovi i publikacije</h3>
+      </div>
+      <div class="related-grid">
+        
+      <a href="navier-stokes.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/Navier Stokes.jpg" alt="Navier–Stokes" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 31 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Navier–Stokes</h4>
+          <p class="related-card-excerpt">Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="koliko-vode-trose-podatkovni-centri.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/voda_data_centri.jpg" alt="Koliko vode zapravo troše podatkovni centri?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 11 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Koliko vode zapravo troše podatkovni centri?</h4>
+          <p class="related-card-excerpt">Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="prompt-inzenjering-vs-ai-harnessing.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/Prompt inženjering.png" alt="Prompt inženjering vs. AI harnessing" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 8 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Prompt inženjering vs. AI harnessing</h4>
+          <p class="related-card-excerpt">Analiza evolucije interakcije s jezičnim modelima, prelaska s tradicionalnog prompt inženjeringa na AI harnessing te integracije kognitivnih modula u automatizirane, agentne radne procese.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      </div>
+    </section>
+
+    <!-- Fusnota i povratak -->
+    <footer class="reader-footer">
+      <a href="../index.html" class="btn-read-article">&larr; Povratak na popis sažetaka</a>
+    </footer>
+    </div>
     <!-- Sekcija komentara (Article Comments & Discussion) -->
     <section id="comments-section" class="comments-section" aria-labelledby="comments-title">
       <!-- Sadržaj komentara renderira js/comments.js -->
@@ -246,9 +1241,9 @@
     </div>
   </footer>
 
-  <script>window.PRELOADED_ARTICLE_ID = "humanoidna-robotika";</script>
-  <script src="../js/article.js?v=20260911_1"></script>
-  <script src="../js/comments.js?v=20260919_1"></script>
-  <script src="../js/newsletter.js?v=20260831_1"></script>
+  <script>window.PRELOADED_ARTICLE_ID = "humanoidna-robotika";window.PRELOADED_ARTICLE_DATA = {"id":"humanoidna-robotika","title":"Robotika – New Frontier","title_en":"Humanoid Robotics – The New Frontier","category":"AI i tehnologija","category_en":"AI & Tech","date":"4. listopada 2026.","readTime":"22 min čitanja","readTime_en":"22 min read","image":"img/robotika.jpg","excerpt":"Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.","excerpt_en":"Why Moravec's paradox is the defining challenge of our era, how VLA models and massive parallel simulation are emancipating AI into the physical world, and who leads the global race between Tesla, Figure, Boston Dynamics, and China.","wordCount":4460,"wordCount_en":4498};window.PRELOADED_ARTICLES_INDEX = [{"id":"navier-stokes","title":"Navier–Stokes","title_en":"Navier–Stokes","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"17. rujna 2026.","readTime":"⏱ 31 min čitanja","readTime_en":"⏱ 32 min read","wordCount":6011,"wordCount_en":6211,"image":"img/Navier Stokes.jpg","excerpt":"Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.","excerpt_en":"From Hilbert's 23 problems to the Clay Mathematics Institute's million-dollar prize: What the Navier–Stokes equations actually describe, what finite-time singularity means, and how OpenAI's agent swarm and Lean formal verification shook mathematics to its core."},{"id":"koliko-vode-trose-podatkovni-centri","title":"Koliko vode zapravo troše podatkovni centri?","title_en":"How Much Water Do Data Centers Actually Consume?","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tech","date":"23. kolovoza 2026.","readTime":"⏱ 11 min čitanja","readTime_en":"⏱ 12 min read","wordCount":2169,"wordCount_en":2202,"image":"img/voda_data_centri.jpg","excerpt":"Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.","excerpt_en":"A thermodynamic and physical analysis of data center water consumption – covering direct and indirect footprints, WUE and PUE metrics, liquid cooling, and comparisons with other industries."},{"id":"prompt-inzenjering-vs-ai-harnessing","title":"Prompt inženjering vs. AI harnessing","title_en":"Prompt Engineering vs. AI Harnessing","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"20. srpnja 2026.","readTime":"⏱ 8 min čitanja","readTime_en":"⏱ 8 min read","wordCount":1548,"wordCount_en":1449,"image":"img/Prompt inženjering.png","doi":"doi:10.1038/s41586-026-09511-x","excerpt":"Analiza evolucije interakcije s jezičnim modelima, prelaska s tradicionalnog prompt inženjeringa na AI harnessing te integracije kognitivnih modula u automatizirane, agentne radne procese.","excerpt_en":"An analysis of the evolution of LLM interaction, shifting from traditional prompt engineering to AI harnessing and integrating cognitive modules into automated agentic workflows."}];</script>
+  <script src="../js/article.js?v=20261017_1"></script>
+  <script src="../js/comments.js?v=20261017_1"></script>
+  <script src="../js/newsletter.js?v=20261017_1"></script>
 </body>
 </html>

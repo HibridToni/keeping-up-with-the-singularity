@@ -19,11 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
   setupReadingProgressBar();
   setupFloatingReaderToolbar(typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr');
 
-  window.addEventListener('languageChanged', () => {
+  window.addEventListener('languageChanged', async () => {
     stopSpeechSynthesis();
     const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
     setupFloatingReaderToolbar(currentLang);
     if (cachedArticle) {
+      if (currentLang === 'en' && !cachedArticle.content_en) {
+        await ensureEnglishContentLoaded(cachedArticle);
+      }
       const container = document.getElementById('article-reader-container');
       if (container) {
         renderArticleContent(container, cachedArticle, cachedAllArticles);
@@ -36,13 +39,64 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Calculates estimated reading time based on actual content word count
+ * Lazily loads full English article content from individual article JSON when user switches to English
+ * @param {Object} article
+ * @returns {Promise<Object>}
+ */
+async function ensureEnglishContentLoaded(article) {
+  if (!article || article.content_en) return article;
+  try {
+    const isInsideArticlesDir = window.location.pathname.includes('/articles/');
+    const singleJsonPath = isInsideArticlesDir
+      ? `${encodeURIComponent(article.id)}.json`
+      : `articles/${encodeURIComponent(article.id)}.json`;
+    const res = await fetch(singleJsonPath);
+    if (res.ok) {
+      const fullData = await res.json();
+      if (fullData && fullData.content_en) {
+        article.content_en = fullData.content_en;
+      }
+      if (fullData && fullData.content && !article.content) {
+        article.content = fullData.content;
+      }
+    }
+  } catch (err) {
+    console.warn('Nemoguće dohvatiti engleski sadržaj članka:', err);
+  }
+  return article;
+}
+
+/**
+ * Calculates estimated reading time based on actual content word count or precomputed index metadata
  * (standard 200 words per minute for scientific/technical articles)
  * @param {string} content
  * @param {string} lang
+ * @param {Object} [article=null]
  * @returns {string} Formatted reading time string
  */
-function calculateReadingTime(content, lang = 'hr') {
+function calculateReadingTime(content, lang = 'hr', article = null) {
+  if (article) {
+    if (lang === 'en') {
+      if (article.content_en && typeof article.content_en === 'string') {
+        content = article.content_en;
+      } else if (typeof article.wordCount_en === 'number' && article.wordCount_en > 0) {
+        const mins = Math.max(1, Math.ceil(article.wordCount_en / 200));
+        return `⏱ ${mins} min read`;
+      } else if (article.readTime_en) {
+        return article.readTime_en.startsWith('⏱') ? article.readTime_en : `⏱ ${article.readTime_en}`;
+      }
+    } else {
+      if (article.content && typeof article.content === 'string') {
+        content = article.content;
+      } else if (typeof article.wordCount === 'number' && article.wordCount > 0) {
+        const mins = Math.max(1, Math.ceil(article.wordCount / 200));
+        return `⏱ ${mins} min čitanja`;
+      } else if (article.readTime) {
+        return article.readTime.startsWith('⏱') ? article.readTime : `⏱ ${article.readTime}`;
+      }
+    }
+  }
+
   if (!content || typeof content !== 'string') {
     return lang === 'en' ? '⏱ 3 min read' : '⏱ 3 min čitanja';
   }
@@ -53,7 +107,33 @@ function calculateReadingTime(content, lang = 'hr') {
 }
 
 /**
- * Main function to load and render article details
+ * Hydrates interactive widgets, math formulas, TOC, TTS, and comments on an article container
+ * @param {HTMLElement} container
+ * @param {Object} article
+ * @param {string} currentLang
+ */
+function hydrateArticleInteractiveFeatures(container, article, currentLang) {
+  const title = (currentLang === 'en' && article.title_en) ? article.title_en : (article.title || 'Naslov rada nedostupan');
+  const summaryText = (currentLang === 'en' && (article.excerpt_en || article.summary_en))
+    ? (article.excerpt_en || article.summary_en)
+    : (article.excerpt || article.summary || title);
+
+  updateOpenGraphMeta(article, title, summaryText, currentLang);
+  setupTTSController(article, currentLang);
+  setupCopyLinkListeners(currentLang);
+  renderMathInContainer(container);
+  initTableOfContents(currentLang);
+  initReynoldsCalculator(currentLang);
+  setupReadingProgressBar();
+  setupFloatingReaderToolbar(currentLang);
+
+  if (typeof window.initComments === 'function' && article && article.id) {
+    window.initComments(article.id);
+  }
+}
+
+/**
+ * Main function to load and render article details (supports SSG zero-fetch hydration)
  */
 async function loadArticleDetail() {
   const container = document.getElementById('article-reader-container');
@@ -76,9 +156,51 @@ async function loadArticleDetail() {
     return;
   }
 
+  // Fast path: Use SSG preloaded data & pre-rendered DOM without any network request for default language (HR)
+  if (typeof window !== 'undefined' && window.PRELOADED_ARTICLE_DATA && String(window.PRELOADED_ARTICLE_DATA.id) === String(articleId)) {
+    cachedArticle = window.PRELOADED_ARTICLE_DATA;
+    cachedAllArticles = Array.isArray(window.PRELOADED_ARTICLES_INDEX) ? window.PRELOADED_ARTICLES_INDEX : [];
+
+    const existingReaderBody = document.getElementById('reader-body');
+    if (!cachedArticle.content && existingReaderBody) {
+      cachedArticle.content = existingReaderBody.innerHTML;
+    }
+
+    if (container.getAttribute('data-ssg-rendered') === 'true' && container.getAttribute('data-ssg-lang') === currentLang && existingReaderBody) {
+      hydrateArticleInteractiveFeatures(container, cachedArticle, currentLang);
+      return;
+    }
+
+    if (currentLang === 'en' && !cachedArticle.content_en) {
+      await ensureEnglishContentLoaded(cachedArticle);
+    }
+
+    renderArticleContent(container, cachedArticle, cachedAllArticles);
+    return;
+  }
+
+  // Fallback path: Fetch individual article JSON + lightweight index, or full articles.json
   try {
-    const jsonPath = window.location.pathname.includes('/articles/') ? '../articles.json' : 'articles.json';
-    const response = await fetch(jsonPath);
+    const isInsideArticlesDir = window.location.pathname.includes('/articles/');
+    const singleJsonPath = isInsideArticlesDir ? `${encodeURIComponent(articleId)}.json` : `articles/${encodeURIComponent(articleId)}.json`;
+    const indexJsonPath = isInsideArticlesDir ? '../articles-index.json' : 'articles-index.json';
+
+    const [singleRes, indexRes] = await Promise.all([
+      fetch(singleJsonPath).catch(() => null),
+      fetch(indexJsonPath).catch(() => null)
+    ]);
+
+    if (singleRes && singleRes.ok) {
+      const article = await singleRes.json();
+      const articlesIndex = (indexRes && indexRes.ok) ? await indexRes.json() : [article];
+      cachedAllArticles = Array.isArray(articlesIndex) ? articlesIndex : [article];
+      cachedArticle = article;
+      renderArticleContent(container, article, cachedAllArticles);
+      return;
+    }
+
+    const fullJsonPath = isInsideArticlesDir ? '../articles.json' : 'articles.json';
+    const response = await fetch(fullJsonPath);
     if (!response.ok) {
       throw new Error(`Pogreška pri učitavanju: ${response.status} ${response.statusText}`);
     }
@@ -122,7 +244,7 @@ function renderArticleContent(container, article, allArticles = []) {
   }
 
   // Dynamic calculated reading time based on full content
-  const readTime = calculateReadingTime(contentHTML, currentLang);
+  const readTime = calculateReadingTime(contentHTML, currentLang, article);
   const doi = article.doi || '';
   const image = article.image || '';
 
@@ -145,10 +267,6 @@ function renderArticleContent(container, article, allArticles = []) {
   const xAria = currentLang === 'en' ? 'Share on X (Twitter)' : 'Podijeli na X-u (Twitter)';
   const linkedinAria = currentLang === 'en' ? 'Share on LinkedIn' : 'Podijeli na LinkedInu';
 
-  // Update document title, Open Graph, Twitter Cards and Schema.org JSON-LD for crawlers
-  const summaryText = article.excerpt || article.summary || title;
-  updateOpenGraphMeta(article, title, summaryText, currentLang);
-
   const isInsideArticlesDir = window.location.pathname.includes('/articles/');
   const homeUrl = isInsideArticlesDir ? '../index.html' : 'index.html';
 
@@ -168,7 +286,7 @@ function renderArticleContent(container, article, allArticles = []) {
 
   const coverHeroHTML = resolvedImage ? `
     <div class="article-cover-wrapper">
-      <img src="${escapeHTML(resolvedImage)}" alt="${escapeHTML(title)}" class="article-cover-hero" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+      <img src="${escapeHTML(resolvedImage)}" alt="${escapeHTML(title)}" class="article-cover-hero" fetchpriority="high" decoding="async" onerror="this.closest('.article-cover-wrapper').style.display='none'">
     </div>
   ` : '';
 
@@ -181,7 +299,7 @@ function renderArticleContent(container, article, allArticles = []) {
     </div>
   ` : '';
 
-  if (videoHTML) {
+  if (videoHTML && !contentHTML.includes('article-video-container')) {
     if (contentHTML.includes('</p>')) {
       contentHTML = contentHTML.replace('</p>', `</p>${videoHTML}`);
     } else {
@@ -192,6 +310,7 @@ function renderArticleContent(container, article, allArticles = []) {
   // Related articles section HTML
   const relatedArticlesHTML = renderRelatedArticles(article, allArticles.length > 0 ? allArticles : cachedAllArticles, currentLang);
 
+  container.setAttribute('data-ssg-lang', currentLang);
   container.innerHTML = `
     <!-- Link za povratak -->
     <a href="${homeUrl}" class="back-link">${backLinkText}</a>
@@ -352,27 +471,7 @@ function renderArticleContent(container, article, allArticles = []) {
     </footer>
   `;
 
-  // Attach Audio Controller events & Copy link listeners
-  setupTTSController(article, currentLang);
-  setupCopyLinkListeners(currentLang);
-
-  // Render KaTeX math formulas if present
-  renderMathInContainer(container);
-
-  // Initialize Table of Contents (TOC)
-  initTableOfContents(currentLang);
-
-  // Initialize Reynolds Number Interactive Calculator
-  initReynoldsCalculator(currentLang);
-
-  // Setup / update Reading Progress Bar & Floating Toolbar
-  setupReadingProgressBar();
-  setupFloatingReaderToolbar(currentLang);
-
-  // Initialize Article Comments System
-  if (typeof window.initComments === 'function' && article && article.id) {
-    window.initComments(article.id);
-  }
+  hydrateArticleInteractiveFeatures(container, article, currentLang);
 }
 
 /**
@@ -444,8 +543,8 @@ function renderRelatedArticles(currentArticle, allArticles, currentLang) {
     const excerpt = (currentLang === 'en' && (item.excerpt_en || item.summary_en)) 
       ? (item.excerpt_en || item.summary_en) 
       : (item.excerpt || item.summary || '');
-    const rawContent = (currentLang === 'en' && item.content_en) ? item.content_en : (item.content || excerpt);
-    const readTime = calculateReadingTime(rawContent, currentLang);
+    const rawContent = (currentLang === 'en' && item.content_en) ? item.content_en : (item.content || '');
+    const readTime = calculateReadingTime(rawContent, currentLang, item);
     const isInsideArticlesDir = window.location.pathname.includes('/articles/');
     const itemUrl = isInsideArticlesDir ? `${encodeURIComponent(item.id)}.html` : `articles/${encodeURIComponent(item.id)}.html`;
     let relatedImage = item.image || '';
@@ -455,7 +554,7 @@ function renderRelatedArticles(currentArticle, allArticles, currentLang) {
 
     const mediaHTML = relatedImage ? `
       <div class="related-card-media">
-        <img src="${escapeHTML(relatedImage)}" alt="${escapeHTML(title)}" class="related-card-thumb" onerror="this.parentElement.style.display='none'">
+        <img src="${escapeHTML(relatedImage)}" alt="${escapeHTML(title)}" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
       </div>
     ` : '';
 

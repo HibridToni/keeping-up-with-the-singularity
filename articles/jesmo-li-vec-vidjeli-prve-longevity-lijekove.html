@@ -85,13 +85,13 @@
   <link rel="manifest" href="../manifest.json">
   <link rel="apple-touch-icon" href="../img/logo.png">
 
-  <link rel="stylesheet" href="../style.css?v=20260911_1">
+  <link rel="stylesheet" href="../style.css?v=20261017_1">
   <!-- KaTeX for math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script src="../js/theme.js?v=20260911_1"></script>
-  <script src="../js/lang.js?v=20260911_1"></script>
+  <script src="../js/theme.js?v=20261017_1"></script>
+  <script src="../js/lang.js?v=20261017_1"></script>
   <script src="../js/pwa.js"></script>
 </head>
 <body>
@@ -129,12 +129,663 @@
 
   <!-- GLAVNI SPREMNIK - CENTRIRANI STUPAC ZA ČITANJE (max 800px) -->
   <main class="main-container">
-    <div class="article-reader-container" id="article-reader-container">
-      <div class="loading-state">
-        <p data-i18n="article.loading">Učitavanje sadržaja rada...</p>
+    <div class="article-reader-container" id="article-reader-container" data-ssg-rendered="true" data-ssg-lang="hr">
+    <!-- Link za povratak -->
+    <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
+
+    <!-- Zaglavlje rada -->
+    <header class="reader-header">
+      <div class="reader-meta">
+        <span class="card-category">Longevity</span>
+      </div>
+
+      <h1 class="reader-title">Jesmo li već vidjeli prve Longevity lijekove?</h1>
+
+      <div class="reader-submeta">
+        <div class="reader-submeta-info">
+          <time class="card-date" datetime="2. rujna 2026.">2. rujna 2026.</time>
+          <span class="card-read-time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            ⏱ 19 min čitanja
+          </span>
+          
+        </div>
+
+        <div class="share-buttons">
+          <button type="button" class="share-btn share-copy btn-trigger-copy" aria-label="Kopiraj poveznicu na rad" title="Kopiraj poveznicu na rad">
+            <span class="copy-tooltip">Poveznica kopirana!</span>
+            <svg class="icon-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fjesmo-li-vec-vidjeli-prve-longevity-lijekove.html&text=Jesmo%20li%20ve%C4%87%20vidjeli%20prve%20Longevity%20lijekove%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fjesmo-li-vec-vidjeli-prve-longevity-lijekove.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fjesmo-li-vec-vidjeli-prve-longevity-lijekove.html&quote=Jesmo%20li%20ve%C4%87%20vidjeli%20prve%20Longevity%20lijekove%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+    <div class="article-cover-wrapper">
+      <img src="../img/GLP_lijekovi.jpg" alt="Jesmo li već vidjeli prve Longevity lijekove?" class="article-cover-hero" fetchpriority="high" decoding="async" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+    </div>
+  
+    </header>
+
+    <!-- Audio Player Bar (Preslušavanje članka) -->
+    <div class="audio-player-bar" id="audio-player-bar" aria-label="Slušaj članak">
+      <div class="audio-controls-left">
+        <button id="tts-play-btn" class="audio-btn audio-btn-play" aria-label="Pokreni čitanje" title="Pokreni čitanje">
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+        </button>
+        <button id="tts-stop-btn" class="audio-btn audio-btn-stop" aria-label="Zaustavi čitanje" title="Zaustavi čitanje" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="audio-status-container">
+        <span class="audio-status-pulse" id="tts-status-pulse"></span>
+        <span id="tts-status-text" class="audio-status-text">Slušaj članak</span>
+      </div>
+
+      <div class="audio-right-controls">
+        <div class="audio-voice-controls" id="audio-voice-controls">
+          <label for="tts-voice-select" class="voice-label" title="Odabir glasa za čitanje">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span class="voice-label-text">Glas:</span>
+          </label>
+          <select id="tts-voice-select" class="audio-voice-select" aria-label="Odabir glasa za čitanje">
+            <option value="">Najbolji prirodni glas</option>
+          </select>
+        </div>
+
+        <div class="audio-speed-controls">
+          <span class="speed-label">Brzina:</span>
+          <div class="speed-options">
+            <button class="speed-btn active" data-speed="1.0">1x</button>
+            <button class="speed-btn" data-speed="1.25">1.25x</button>
+            <button class="speed-btn" data-speed="1.5">1.5x</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Table of Contents (Sadržaj rada) Container -->
+    <div id="article-toc-container" class="article-toc-wrapper">
+    <nav class="article-toc-card" aria-label="Sadržaj članka">
+      <div class="article-toc-header">
+        <div class="article-toc-title-group">
+          <svg class="article-toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h2 class="article-toc-title">Sadržaj rada</h2>
+          <span class="article-toc-badge">21</span>
+        </div>
+        <button type="button" class="article-toc-toggle-btn" id="toc-toggle-btn" aria-expanded="true" aria-controls="article-toc-body" aria-label="Sakrij">
+          <span class="toc-toggle-text">Sakrij</span>
+          <svg class="toc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="article-toc-body" id="article-toc-body">
+        <ol class="article-toc-list">
+          
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#evolucija-receptora-od-mono-do-trostrukih-agonista" class="article-toc-link" data-toc-target="evolucija-receptora-od-mono-do-trostrukih-agonista">
+          <span class="toc-link-text">Evolucija receptora: Od mono do trostrukih agonista</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#semaglutid-ozempic-wegovy-mono-agonist-i-utišavanje-moždanog-signala-gladi" class="article-toc-link" data-toc-target="semaglutid-ozempic-wegovy-mono-agonist-i-utišavanje-moždanog-signala-gladi">
+          <span class="toc-link-text">Semaglutid (Ozempic / Wegovy) – Mono-agonist i utišavanje moždanog signala gladi</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#tirzepatid-mounjaro-zepbound-dualni-agonist-sinergija-glp-1-i-gip-a" class="article-toc-link" data-toc-target="tirzepatid-mounjaro-zepbound-dualni-agonist-sinergija-glp-1-i-gip-a">
+          <span class="toc-link-text">Tirzepatid (Mounjaro / Zepbound) – Dualni agonist: Sinergija GLP-1 i GIP-a</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#retatrutid-trostruki-agonist-triple-g-i-prelazak-na-termogenezu" class="article-toc-link" data-toc-target="retatrutid-trostruki-agonist-triple-g-i-prelazak-na-termogenezu">
+          <span class="toc-link-text">Retatrutid – Trostruki agonist (&quot;Triple G&quot;) i prelazak na termogenezu</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#komparativni-pregled-triju-generacija-molekula" class="article-toc-link" data-toc-target="komparativni-pregled-triju-generacija-molekula">
+          <span class="toc-link-text">Komparativni pregled triju generacija molekula</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#tehnološki-skok-prelazak-s-injekcija-na-pametne-oralne-molekule" class="article-toc-link" data-toc-target="tehnološki-skok-prelazak-s-injekcija-na-pametne-oralne-molekule">
+          <span class="toc-link-text">Tehnološki skok: Prelazak s injekcija na &quot;pametne&quot; oralne molekule</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#biološka-barijera-zašto-je-želudac-neprijatelj-peptida" class="article-toc-link" data-toc-target="biološka-barijera-zašto-je-želudac-neprijatelj-peptida">
+          <span class="toc-link-text">Biološka barijera: Zašto je želudac neprijatelj peptida</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#nepeptidna-revolucija-pojava-sintetskih-malih-molekula-orforglipron" class="article-toc-link" data-toc-target="nepeptidna-revolucija-pojava-sintetskih-malih-molekula-orforglipron">
+          <span class="toc-link-text">Nepeptidna revolucija: Pojava sintetskih malih molekula (Orforglipron)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#što-kažu-podaci-može-li-tableta-parirati-igli" class="article-toc-link" data-toc-target="što-kažu-podaci-može-li-tableta-parirati-igli">
+          <span class="toc-link-text">Što kažu podaci: Može li tableta parirati igli?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#skalabilnost-za-masovnu-dugovječnost-od-ekskluzivnog-tretmana-do-javnozdravstvenog-standarda" class="article-toc-link" data-toc-target="skalabilnost-za-masovnu-dugovječnost-od-ekskluzivnog-tretmana-do-javnozdravstvenog-standarda">
+          <span class="toc-link-text">Skalabilnost za masovnu dugovječnost: Od ekskluzivnog tretmana do javnozdravstvenog standarda</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#najveća-mana-terapije-i-rješenje-sarkopenija-vs-miostatinski-kokteli" class="article-toc-link" data-toc-target="najveća-mana-terapije-i-rješenje-sarkopenija-vs-miostatinski-kokteli">
+          <span class="toc-link-text">Najveća mana terapije i rješenje: Sarkopenija vs. Miostatinski kokteli</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#inducirana-sarkopenija-i-problem-nemasne-mase" class="article-toc-link" data-toc-target="inducirana-sarkopenija-i-problem-nemasne-mase">
+          <span class="toc-link-text">Inducirana sarkopenija i problem nemasne mase</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#blokada-miostatina-i-aktivina" class="article-toc-link" data-toc-target="blokada-miostatina-i-aktivina">
+          <span class="toc-link-text">Blokada miostatina i aktivina</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#složeni-kokteli-u-razvoju" class="article-toc-link" data-toc-target="složeni-kokteli-u-razvoju">
+          <span class="toc-link-text">Složeni kokteli u razvoju</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#100-selektivni-gubitak-visceralne-masti" class="article-toc-link" data-toc-target="100-selektivni-gubitak-visceralne-masti">
+          <span class="toc-link-text">100% selektivni gubitak visceralne masti</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#jesu-li-ovo-stvarni-longevity-lijekovi" class="article-toc-link" data-toc-target="jesu-li-ovo-stvarni-longevity-lijekovi">
+          <span class="toc-link-text">Jesu li ovo stvarni longevity lijekovi?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#argumenti-za-neupitna-moć-metaboličkog-i-vaskularnog-štita" class="article-toc-link" data-toc-target="argumenti-za-neupitna-moć-metaboličkog-i-vaskularnog-štita">
+          <span class="toc-link-text">Argumenti ZA: Neupitna moć metaboličkog i vaskularnog štita</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#argumenti-protiv-zašto-glp-1-agonisti-nisu-rapamicin" class="article-toc-link" data-toc-target="argumenti-protiv-zašto-glp-1-agonisti-nisu-rapamicin">
+          <span class="toc-link-text">Argumenti PROTIV: Zašto GLP-1 agonisti nisu Rapamicin</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#presuda-metabolički-štit-kao-temelj-dugovječnosti" class="article-toc-link" data-toc-target="presuda-metabolički-štit-kao-temelj-dugovječnosti">
+          <span class="toc-link-text">Presuda: Metabolički štit kao temelj dugovječnosti</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#pogled-u-budućnost" class="article-toc-link" data-toc-target="pogled-u-budućnost">
+          <span class="toc-link-text">Pogled u budućnost</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#zaključak-jesmo-li-vidjeli-prve-longevity-lijekove" class="article-toc-link" data-toc-target="zaključak-jesmo-li-vidjeli-prve-longevity-lijekove">
+          <span class="toc-link-text">Zaključak: Jesmo li vidjeli prve Longevity lijekove?</span>
+        </a>
+      </li>
+        </ol>
+      </div>
+    </nav></div>
+
+    <!-- Puni HTML Sadržaj Članka -->
+    <article class="reader-body" id="reader-body">
+      <p>Desetljećima je javnozdravstveni diskurs o pretilosti i metaboličkom sindromu bio zarobljen u pojednostavljenoj mantri o "snazi volje" i elementarnoj termodinamičkoj jednadžbi unosa i potrošnje kalorija. No, suvremena biologija počela je razotkrivati drugu istinu: ljudsko tijelo jednostavno nije evolucijski dizajnirano za svijet neograničene dostupnosti visokokalorične hrane. Naš mozak i hormonalni sustav razvijeni su u uvjetima konstantne nestašice, s evolucijskim mehanizmima koji svaki gubitak masnog tkiva tumače kao alarmantan signal za preživljavanje, aktivirajući snažnu biokemijsku glad i usporavajući bazalni metabolizam.</p>
+<p>Pojavom prve generacije GLP-1 agonista, a osobito njihovom eksplozijom kroz semaglutid (<em>Ozempic, Wegovy</em>), a potom i dualni agonist tirzepatid (<em>Mounjaro, Zepbound</em>), slika se počinje radikalno mijenjati. Ono što je započelo kao farmakološko rješenje za kontrolu glikemije u bolesnika s dijabetesom tipa 2, transformiralo se u najznačajniji biološki proboj 21. stoljeća na području kardiometaboličkog zdravlja. Po prvi put u povijesti medicine imamo molekule koje mogu ciljano ugasiti tzv. <em>food noise</em> – neprestanu pozadinsku buku gladi u hipotalamusu – i resetirati biološku točku ravnoteže tjelesne mase (<em>set point</em>).</p>
+<p>Međutim, s dolaskom još potentnijih trostrukih agonista poput retatrutida, prelazak s tjednih injekcija na stabilne oralne tablete (orforglipron), te razvojem složenih koktela koji blokiraju miostatin radi očuvanja mišića, rasprava se premješta s pukog gubitka kilograma na pitanje dugovječnosti (<em>longevity</em>).</p>
+<p>Pretjerana visceralna masnoća i kronična inzulinska rezistencija primarni su pokretači četiriju vodećih uzroka prerane smrti u modernom svijetu:</p>
+<ul>
+  <li><strong>Kardiovaskularnih bolesti</strong> (ateroskleroza, infarkt miokarda, moždani udar),</li>
+  <li><strong>Metaboličkih poremećaja i masne jetre</strong> (MASH / MASLD, ciroza),</li>
+  <li><strong>Neurodegenerativnih procesa</strong> (poput Alzheimerove i Parkinsonove bolesti),</li>
+  <li><strong>Brojnih oblika malignih bolesti</strong> povezanih s kroničnim upalnim stanjem.</li>
+</ul>
+<p>Eliminacijom tih patologija, inkretinski lijekovi nedvojbeno dramatično produžuju godine provedene u zdravlju (<em>healthspan</em>). No, postavlja se središnje pitanje koje dijeli znanstvenu zajednicu: <strong>predstavljaju li ove molekule stvarne geroprotektore – lijekove koji izravno usporavaju fundamentalni stanični sat starenja – ili djeluju isključivo kao snažan metabolički štit protiv toksičnosti modernog stila života?</strong></p>
+<p>U nastavku detaljno analiziramo biokemijske mehanizme koji stoje iza ove revolucije, granice njihova djelovanja na starenje, problem gubitka mišićne mase te tehnologije koje tek stupaju na scenu.</p>
+
+<hr>
+
+<h3 id="evolucija-receptora-od-mono-do-trostrukih-agonista">Evolucija receptora: Od mono do trostrukih agonista</h3>
+<p>Kako bismo razumjeli zašto ove molekule izazivaju toliku promjenu paradigme, moramo zaviriti u biokemijsku arhitekturu crijevno-moždane osi (<em>gut-brain axis</em>). Inkretini su polipeptidni hormoni koje probavni sustav luči unutar nekoliko minuta nakon unosa nutrijenata. Njihov primarni evolucijski zadatak bio je pripremiti organizam za obradu energije: pojačati lučenje inzulina, usporiti probavni trakt kako bi se nutrijenti optimalno apsorbirali te poslati signal mozgu da je hrane bilo dovoljno.</p>
+<p>Razvoj farmakologije na ovom polju nije bio slučajan skok, već metodička eskalacija: od oponašanja jednog hormona do simultanog aktiviranja tri različita metabolička prekidača.</p>
+
+<h4 id="semaglutid-ozempic-wegovy-mono-agonist-i-utišavanje-moždanog-signala-gladi">Semaglutid (Ozempic / Wegovy) – Mono-agonist i utišavanje moždanog signala gladi</h4>
+<p>Semaglutid je sintetski peptid koji oponaša prirodni hormon GLP-1 (<em>Glucagon-Like Peptide-1</em>), no s važnom strukturnom modifikacijom: vezivanjem na albumin u plazmi njegov je poluživot u tijelu produljen s nekoliko minuta (koliko traje prirodni endogeni GLP-1 prije nego što ga enzim DPP-4 razgradi) na otprilike tjedan dana.</p>
+<p>Njegov mehanizam djeluje na tri ključne razine:</p>
+<ol>
+  <li><strong>Središnji živčani sustav (Hipotalamus i moždano deblo):</strong> Semaglutid prolazi krvno-moždanu barijeru u područjima poput <em>area postrema</em> i arkuatne jezgre hipotalamusa. Izravno aktivira neurone sitosti (POMC/CART) i inhibira neurone gladi (NPY/AgRP). Rezultat je dramatično smanjenje tzv. <em>food noisea</em> – kompulzivne, intruzivne želje za hranom.</li>
+  <li><strong>Gastrointestinalni trakt:</strong> Odgađa pražnjenje želuca (<em>gastric emptying</em>). Hrana ostaje dulje u želucu, što šalje mehaničke i kemijske signale sitosti prema mozgu.</li>
+  <li><strong>Endokrini pankreas:</strong> Potiče lučenje inzulina iz beta-stanica, ali isključivo u prisutnosti povišene glukoze u krvi (glukozno-ovisno djelovanje), uz istovremenu supresiju lučenja glukagona iz alfa-stanica.</li>
+</ol>
+<p>U kliničkim ispitivanjima (program STEP), semaglutid u dozi od 2,4 mg tjedno doveo je do prosječnog gubitka od oko 15% ukupne tjelesne mase. Ipak, mono-terapija GLP-1 receptorom ima svoja biološka ograničenja: kod značajnog broja pacijenata dolazi do platoa, a povećanje doze često je limitirano gastrointestinalnim nuspojavama (mučnina, povraćanje, opstipacija).</p>
+
+<h4 id="tirzepatid-mounjaro-zepbound-dualni-agonist-sinergija-glp-1-i-gip-a">Tirzepatid (Mounjaro / Zepbound) – Dualni agonist: Sinergija GLP-1 i GIP-a</h4>
+<p>Sljedeći evolucijski korak bilo je prepoznavanje uloge drugog velikog inkretinskog hormona – GIP-a (<em>Glucose-Dependent Insulinotropic Polypeptide</em>). Godinama se smatralo da je GIP "lipogeni" hormon koji potiče nakupljanje masti i da bi njegova blokada bila bolji put. No, tirzepatid je dokazao suprotno: istovremena aktivacija oba receptora djeluje sinergijski.</p>
+<p>Tirzepatid je jedinstvena molekula koja ima afinitet prema oba receptora, s time da je njegova aktivnost na GIP receptoru čak i jača nego na GLP-1 receptoru.</p>
+<p>Zašto je dodavanje GIP-a promijenilo pravila igre?</p>
+<ul>
+  <li><strong>Metaboličko reprogramiranje masnog tkiva:</strong> GIP poboljšava perfuziju i osjetljivost masnog tkiva na inzulin, potiče skladištenje lipida u sigurno potkožno tkivo umjesto u ektopična mjesta (poput jetre, srca i skeletnih mišića) te smanjuje sistemsku upalu masnog tkiva.</li>
+  <li><strong>Središnja sinergija i bolja tolerancija:</strong> GIP receptori u mozgu djeluju komplementarno s GLP-1 na centre za kontrolu apetita, ali istovremeno ublažavaju signale mučnine koje izaziva sam GLP-1. To omogućuje primjenu viših efektivnih doza uz manju incidenciju nepodnošenja terapije.</li>
+</ul>
+<p>U kliničkim studijama (program SURMOUNT), tirzepatid je postigao prosječan gubitak mase od 20% do čak 22,5%, čime se farmakoterapija po prvi put po učinkovitosti približila rezultatima barijatrijske kirurgije.</p>
+
+<h4 id="retatrutid-trostruki-agonist-triple-g-i-prelazak-na-termogenezu">Retatrutid – Trostruki agonist ("Triple G") i prelazak na termogenezu</h4>
+<p>Dok su semaglutid i tirzepatid primarno usmjereni na smanjenje unosa energije (supresiju apetita), retatrutid u jednadžbu uvodi treću komponentu: <strong>aktivno povećanje potrošnje energije</strong>.</p>
+<p>Retatrutid je trostruki agonist koji simultano stimulira tri srodna receptora:</p>
+<ul>
+  <li><strong>GLP-1</strong> (kontrola apetita i inzulina),</li>
+  <li><strong>GIP</strong> (metaboličko zdravlje masnog tkiva i sinergija sitosti),</li>
+  <li><strong>Glukagonski receptor (GCGR)</strong> (potrošnja energije i metabolizam jetre).</li>
+</ul>
+<p><strong>Paradoks glukagona: Zašto stimulirati hormon koji podiže šećer?</strong></p>
+<p>Glukagon je u udžbenicima fiziologije desetljećima opisan kao "antagonist inzulina" koji podiže razinu glukoze u krvi stimulirajući glikogenolizu u jetri. Međutim, glukagon posjeduje i druga, iznimno snažna metabolička svojstva:</p>
+<ul>
+  <li>Snažno stimulira oksidaciju masnih kiselina u jetri (lipolizu).</li>
+  <li>Povećava potrošnju energije u mirovanju (<em>resting energy expenditure</em>) putem aktivacije smeđeg masnog tkiva i jetrene termogeneze.</li>
+  <li>Izravno smanjuje lipogenezu (<em>de novo</em> sintezu masti) u jetrenim stanicama.</li>
+</ul>
+<p>Genijalnost retatrutida leži u biokemijskoj ravnoteži: snažna stimulacija GLP-1 i GIP receptora sprječava glukagon da izazove hiperglikemiju, dok glukagonska komponenta "otključava" ubrzanu razgradnju masti u jetri i podiže bazalni metabolizam.</p>
+<p>Rezultati Faze II kliničkih ispitivanja (objavljeni u <em>The New England Journal of Medicine</em>) pokazali su prosječan gubitak tjelesne mase od preko 24% do 26% unutar 48 tjedana, pri čemu pacijenti na najvišim dozama još nisu dosegnuli plato. Još impresivniji je učinak na jetru: preko 85–90% pacijenata s nealkoholnom masnom bolešću jetre (MASLD/MASH) postiglo je potpunu normalizaciju razine jetrene masti.</p>
+
+<h4 id="komparativni-pregled-triju-generacija-molekula">Komparativni pregled triju generacija molekula</h4>
+<div class="table-container">
+  <table class="article-table">
+    <thead>
+      <tr>
+        <th>Parametar</th>
+        <th>1. Generacija: Semaglutid</th>
+        <th>2. Generacija: Tirzepatid</th>
+        <th>3. Generacija: Retatrutid</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Trgovački nazivi</strong></td>
+        <td>Ozempic, Wegovy, Rybelsus</td>
+        <td>Mounjaro, Zepbound</td>
+        <td>U razvoju (Faza III)</td>
+      </tr>
+      <tr>
+        <td><strong>Molekularna meta</strong></td>
+        <td>GLP-1R (Mono-agonist)</td>
+        <td>GLP-1R + GIPR (Dualni agonist)</td>
+        <td>GLP-1R + GIPR + GCGR (Trostruki agonist)</td>
+      </tr>
+      <tr>
+        <td><strong>Prosječan gubitak mase</strong></td>
+        <td>~15%</td>
+        <td>~20 – 22,5%</td>
+        <td>&gt;24 – 26%+ (plato još nepoznat)</td>
+      </tr>
+      <tr>
+        <td><strong>Mehanizam djelovanja</strong></td>
+        <td>Supresija apetita + usporena probava</td>
+        <td>Supresija apetita + poboljšanje funkcije masnog tkiva</td>
+        <td>Supresija apetita + aktivno povećanje bazalne potrošnje (termogeneza)</td>
+      </tr>
+      <tr>
+        <td><strong>Učinak na masnu jetru (MASH)</strong></td>
+        <td>Umjeren do dobar</td>
+        <td>Vrlo visok</td>
+        <td>Gotovo potpuna eliminacija jetrene masti</td>
+      </tr>
+      <tr>
+        <td><strong>Glavni izazovi</strong></td>
+        <td>Gastrointestinalne nuspojave, plato mršavljenja</td>
+        <td>Potreba za trajnom primjenom, gubitak mišića</td>
+        <td>Povećanje frekvencije srca u mirovanju, gubitak nemasne mase</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr>
+
+<h3 id="tehnološki-skok-prelazak-s-injekcija-na-pametne-oralne-molekule">Tehnološki skok: Prelazak s injekcija na "pametne" oralne molekule</h3>
+<p>Iako su tjedne potkožne injekcije revolucionirale medicinu, one predstavljaju značajnu psihološku, logističku i ekonomsku prepreku za masovnu primjenu. Brizgalice zahtijevaju strogi "hladni lanac" (<em>cold chain</em>) skladištenja, sterilne uvjete i visoke troškove proizvodnje bioloških peptida. Ako ove molekule trebaju postati temelj dugovječnosti i preventivne kardiometaboličke medicine za stotine milijuna ljudi, farmakoterapija mora prijeći u format jednostavne, stabilne tablete.</p>
+<p>Međutim, pretvaranje peptida u oralni lijek bio je jedan od najtežih inženjerskih izazova u povijesti biokemije.</p>
+
+<h4 id="biološka-barijera-zašto-je-želudac-neprijatelj-peptida">Biološka barijera: Zašto je želudac neprijatelj peptida</h4>
+<p>Ljudski probavni sustav savršeno je optimiziran stroj za razgradnju bjelančevina. Čim peptidna molekula uđe u želudac, suočava se s ekstremno niskim pH želučane kiseline i agresivnim proteolitičkim enzimima (poput pepsina) koji kidaju peptidne veze, pretvarajući funkcionalni hormon u bezopasne, ali metabolički neaktivne aminokiseline. Čak i ako dio molekule preživi enzimski napad, njezina veličina i hidrofilna priroda sprječavaju prolazak kroz lipidne membrane crijevnog epitela.</p>
+<p>Prvi pokušaj premošćivanja ovog problema bio je oralni semaglutid (Rybelsus). Kako bi se omogućila apsorpcija, semaglutid je spojen s apsorpcijskim pojačivačem nazvanim SNAC (salcaprozat natrij). SNAC lokalno neutralizira želučanu kiselinu u mikromiljeu oko tablete i privremeno fluidizira membranu stanica želučane sluznice, omogućujući pasivni prolazak intaktnog semaglutida u krvotok.</p>
+<p>Iako je to bio izniman farmaceutski uspjeh, ova tehnologija ima ozbiljna praktična i biološka ograničenja:</p>
+<ul>
+  <li><strong>Minimalna bioraspoloživost:</strong> Manje od 1% unesenog semaglutida uspijeva prijeći u cirkulaciju, dok se preostalih 99% uništi u probavnom traktu.</li>
+  <li><strong>Ekstremno strogi režim uzimanja:</strong> Tableta se mora uzeti odmah nakon buđenja, na prazan želudac, s točno minimalnom količinom vode (do 120 ml), nakon čega pacijent mora čekati najmanje 30 do 60 minuta prije konzumacije bilo kakve hrane, kave ili drugih lijekova. Bilo kakvo odstupanje drastično ruši ionako nisku apsorpciju.</li>
+</ul>
+<p>Zbog tih faktora, oralni semaglutid u praksi rijetko postiže potentnost i metaboličke efekte usporedive s visokim dozama tjednih injekcija.</p>
+
+<h4 id="nepeptidna-revolucija-pojava-sintetskih-malih-molekula-orforglipron">Nepeptidna revolucija: Pojava sintetskih malih molekula (Orforglipron)</h4>
+<p>Prava prekretnica u oralnoj terapiji ne leži u "pakiranju" peptida u skupe zaštitne kapsule, već u potpunom redizajnu same molekule. Umjesto dugačkih aminokiselinskih lanaca, znanstvenici su razvili nepeptidne male molekule (<em>small molecule GLP-1 receptor agonists</em>), među kojima prednjači <strong>orforglipron</strong>.</p>
+<p>Za razliku od semaglutida ili tirzepatida, orforglipron nije protein. Riječ je o sintetskoj organskoj molekuli znatno manje mase i drugačije prostorne konfiguracije, koja je dizajnirana tako da se izravno veže na specifično alosteričko ili ortosteričko mjesto GLP-1 receptora i izazove identičnu unutarstaničnu signalnu kaskadu kao i prirodni hormon.</p>
+<p>Ova promjena arhitekture donosi ključne prednosti:</p>
+<ul>
+  <li><strong>Otpornost na probavne enzime:</strong> Budući da nema peptidnih veza, želučana kiselina i proteaze ne prepoznaju je kao hranu. Molekula prolazi kroz želudac netaknuta.</li>
+  <li><strong>Visoka i stabilna bioraspoloživost:</strong> Mala molekula bez problema prolazi crijevnu barijeru i ulazi u portalni optok.</li>
+  <li><strong>Fleksibilnost bez restrikcija:</strong> Može se uzimati u bilo koje doba dana, s hranom ili bez nje, uz vodu ili druge napitke, bez opasnosti od pada koncentracije u plazmi.</li>
+  <li><strong>Stabilnost na sobnoj temperaturi:</strong> Ne zahtijeva hladnjake, što dramatično pojednostavljuje globalnu distribuciju, skladištenje i primjenu.</li>
+</ul>
+
+<h4 id="što-kažu-podaci-može-li-tableta-parirati-igli">Što kažu podaci: Može li tableta parirati igli?</h4>
+<p>U kliničkim ispitivanjima Faze II objavljenima u <em>The New England Journal of Medicine</em>, orforglipron je u najvišim dozama postigao prosječan gubitak tjelesne mase od 14,7% do 15% unutar 36 tjedana. Važno je napomenuti da krivulja mršavljenja u tom razdoblju još nije dosegnula plato, što sugerira da bi u dužim studijama Faze III (poput programa ATTAIN) učinak mogao biti potpuno usporediv s injekcijskim semaglutidom.</p>
+<p>Osim gubitka mase, zabilježena su i identična kardiometabolička poboljšanja: normalizacija glikiranog hemoglobina (HbA1c), sniženje sistoličkog krvnog tlaka te povoljne promjene u lipidnom profilu (pad triglicerida i poboljšanje omjera lipoproteina).</p>
+
+<h4 id="skalabilnost-za-masovnu-dugovječnost-od-ekskluzivnog-tretmana-do-javnozdravstvenog-standarda">Skalabilnost za masovnu dugovječnost: Od ekskluzivnog tretmana do javnozdravstvenog standarda</h4>
+<p>Gledano kroz prizmu dugovječnosti i preventivne medicine, prelazak na male molekule nosi goleme društvene i ekonomske implikacije:</p>
+<ul>
+  <li><strong>Dramatično niži troškovi sinteze:</strong> Proizvodnja sintetskih malih molekula odvija se kroz standardne procese kemijske sinteze, koji su višestruko jeftiniji i jednostavniji za skaliranje od bioreaktorskih procesa i rekombinantne DNA tehnologije potrebne za peptide.</li>
+  <li><strong>Dostupnost u primarnoj prevenciji:</strong> Danas su GLP-1 lijekovi zbog visoke cijene i globalnih nestašica često rezervirani samo za teške oblike pretilosti ili uznapredovali dijabetes. Jeftina, stabilna tableta omogućit će rano interveniranje – u fazama blage inzulinske rezistencije, preddijabetesa ili početnog nakupljanja visceralne masti, mnogo prije nego što nastupe ireverzibilna vaskularna oštećenja.</li>
+</ul>
+<p>Tableta poput orforgliprona uklanja prepreku straha od igle i logistiku brizgalica, čineći metaboličku zaštitu dostupnom širokoj populaciji. No, bez obzira primjenjuju li se inkretini putem injekcije ili tablete, svi oni dijele jednu biološku Ahilovu petu: <strong>rizik od ubrzanog gubitka mišićnog tkiva</strong>.</p>
+
+<hr>
+
+<h3 id="najveća-mana-terapije-i-rješenje-sarkopenija-vs-miostatinski-kokteli">Najveća mana terapije i rješenje: Sarkopenija vs. Miostatinski kokteli</h3>
+<p>Mišićna masa služi kao primarni spremnik za odlaganje glukoze (odgovoran za više od 80% postprandijalnog unosa glukoze posredovanog inzulinom), glavni generator bazalnog metabolizma i izvor signalnih molekula nazvanih miokini koji moduliraju upalu, rad mozga i zdravlje kostiju. Niska mišićna masa i pad mišićne jakosti u starijoj dobi snažnije koreliraju sa svim uzrocima smrtnosti (<em>all-cause mortality</em>) nego sam indeks tjelesne mase (BMI).</p>
+<p>Upravo ovdje leži najozbiljnija dilema trenutačne generacije inkretinske farmakoterapije.</p>
+
+<h4 id="inducirana-sarkopenija-i-problem-nemasne-mase">Inducirana sarkopenija i problem nemasne mase</h4>
+<p>Kada organizam izložimo drastičnom kalorijskom deficitu, što je primarni mehanizam putem kojeg semaglutid i tirzepatid djeluju, tijelo ne razgrađuje isključivo trigliceride iz masnog tkiva. U stanju negativne energetske bilance aktivira se i razgradnja vlastitih proteina:</p>
+<ul>
+  <li>U kliničkim studijama (DEXA analize u programima STEP i SURMOUNT), između <strong>25% i čak 40%</strong> ukupne izgubljene mase čini nemasna masa (<em>lean body mass - LBM</em>), koja primarno obuhvaća skeletne mišiće, vezivno tkivo i koštanu gustoću.</li>
+  <li>Iako je određeni postotak gubitka nemasne mase fiziološki neizbježan (manje tijelo zahtijeva manje potpornog tkiva), brzina i opseg ovog gubitka kod brzog farmakološkog mršavljenja bez adekvatnog unosa proteina i treninga s opterećenjem mogu izazvati jatrogenu (lijekom induciranu) sarkopeniju.</li>
+</ul>
+<p>Posljedice su višestruke i dugoročne:</p>
+<ol>
+  <li><strong>Usporavanje bazalnog metabolizma:</strong> Gubitak mišića smanjuje dnevnu potrošnju kalorija u mirovanju, što brzo dovodi do metaboličkog platoa.</li>
+  <li><strong>Opasnost od "rebound" efekta:</strong> Ako pacijent prekine terapiju, vraćeni kilogrami u pravilu se sastoje od gotovo 100% masnog tkiva, ostavljajući osobu s lošijim omjerom mišića i masti nego prije početka liječenja (<em>sarcopenic obesity</em>).</li>
+  <li><strong>Gubitak funkcionalne rezerve:</strong> U populaciji iznad 50 ili 60 godina, gubitak mišićne snage drastično povećava rizik od padova, prijeloma i gubitka samostalnosti, što je izravno suprotno temeljnim ciljevima <em>healthspana</em>.</li>
+</ol>
+
+<h4 id="blokada-miostatina-i-aktivina">Blokada miostatina i aktivina</h4>
+<p>Kako bi riješile ovaj problem, farmaceutske tvrtke prestale su promatrati mršavljenje kroz prizmu samo jednog lijeka i ušle u eru razvoja kombiniranih bioloških terapija. Cilj je jednostavan, ali radikalan: <strong>spojiti inkretine s molekulama koje istovremeno stimuliraju mišićnu hipertrofiju ili u potpunosti blokiraju razgradnju mišićnih vlakana</strong>.</p>
+<p>Ključ ovog pristupa leži u signalnom putu miostatina i aktivina (dio TGF-β superfamilije).</p>
+<p>Miostatin (GDF-8) je endogeni protein koji funkcionira kao biološka "ručna kočnica" mišićnog rasta:</p>
+<ul>
+  <li>Vezivanjem na ActRIIB (<em>Activin Type IIB</em>) receptore na površini mišićnih stanica, miostatin i srodni aktivin A pokreću unutarstanične signale (SMAD2/3 put) koji inhibiraju sintezu proteina i aktiviraju ubikvitin-proteasomski sustav za razgradnju mišića.</li>
+  <li>U prirodi, genetske mutacije koje inaktiviraju miostatin rezultiraju fenomenom "dvostruke muskulature" (<em>double muscling</em>) kod goveda (npr. pasmina Belgian Blue) i rijetkih pojedinaca, stvarajući iznimnu mišićnu masu uz minimalne postotke masti.</li>
+</ul>
+<p>Inhibicijom ove signalne kaskade pomoću monoklonskih protutijela ili "zamki za ligande" (<em>ligand traps</em>), stanice skeletnih mišića oslobađaju se inhibicije, što omogućuje sintezu mišićnih proteina čak i u uvjetima kalorijskog deficita.</p>
+
+<h4 id="složeni-kokteli-u-razvoju">Složeni kokteli u razvoju</h4>
+<p>Nekoliko naprednih kombinacija trenutačno prolazi kroz klinička ispitivanja:</p>
+<ul>
+  <li><strong>Bimagrumab (Versanis Bio / Eli Lilly):</strong> Potpuno humano monoklonsko protutijelo koje se izravno veže na ActRIIA i ActRIIB receptore, kompetitivno blokirajući i miostatin i aktivin. U Fazi II kod pacijenata s dijabetesom tipa 2, monoterapija bimagrumabom dovela je do gubitka od oko 20% masnog tkiva uz istovremeni porast nemasne mase za 3,6% do 4,5% bez ikakve dijete. Danas se bimagrumab u studiji BELIEVE testira u izravnoj kombinaciji sa semaglutidom.</li>
+  <li><strong>Trevogrumab i Garetosmab (Regeneron):</strong> Razvija strategiju temeljenu na vlastitom anti-miostatin protutijelu (trevogrumab) u kombinaciji s anti-aktivin A protutijelom (garetosmab). U programu Faze II primjenjuju se zajedno sa semaglutidom radi potpunog eliminiranja gubitka mišića.</li>
+  <li><strong>Taldefgrobep alfa (Biohaven):</strong> Rekombinantni protein treće generacije koji djeluje kao visoko specifičan inhibitor miostatina, razvijan kao dodatak standardnim GLP-1/GIP režimima za očuvanje snage i volumena mišića.</li>
+</ul>
+
+<h4 id="100-selektivni-gubitak-visceralne-masti">100% selektivni gubitak visceralne masti</h4>
+<div class="table-container">
+  <table class="article-table">
+    <thead>
+      <tr>
+        <th>Terapijski pristup</th>
+        <th>Učinak na masno tkivo</th>
+        <th>Učinak na mišićnu masu</th>
+        <th>Metabolički utjecaj</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Klasična kalorijska restrikcija</strong></td>
+        <td>Smanjenje (-10% do -15%)</td>
+        <td>Značajan gubitak (-20% do -30% od ukupnog pada)</td>
+        <td>Pad bazalnog metabolizma, pojačan apetit</td>
+      </tr>
+      <tr>
+        <td><strong>Monoterapija inkretinima (GLP-1 / GIP)</strong></td>
+        <td>Masivan gubitak (-15% do -25%)</td>
+        <td>Značajan pad (-25% do -40% nemasne mase)</td>
+        <td>Izvrstan kardiometabolički reset, rizik od sarkopenije</td>
+      </tr>
+      <tr>
+        <td><strong>Kombinacija: Inkretin + Anti-miostatin</strong></td>
+        <td>Maksimalan, ubrzan gubitak masti</td>
+        <td>Netaknuta ili povećana mišićna masa (+3% do +5%)</td>
+        <td>Maksimalno očuvan metabolizam, trajna inzulinska osjetljivost</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>Uklanjanjem sarkopenije iz jednadžbe rješava se najveći medicinski i longevity prigovor inkretinskim terapijama. No, čak i ako postignemo savršen sastav tijela i idealne metaboličke markere, ostaje temeljno pitanje: djeluju li ovi lijekovi izravno na stanične uzroke starenja ili samo popravljaju štetu uzrokovanu modernim načinom života?</p>
+
+<hr>
+
+<h3 id="jesu-li-ovo-stvarni-longevity-lijekovi">Jesu li ovo stvarni longevity lijekovi?</h3>
+<p>Kako bismo precizno odgovorili na ovo pitanje, moramo razdvojiti dva pojma koja se u javnom prostoru često poistovjećuju: <strong>produljenje zdravlja (healthspan)</strong> i <strong>produljenje apsolutnog biološkog vijeka (lifespan)</strong>.</p>
+<p>Ako dugovječnost promatramo kroz prizmu uklanjanja prepreka koje nas prerano ubijaju, inkretini su bez sumnje najučinkovitiji farmakološki alati u povijesti. No, ako dugovječnost definiramo kao intervenciju u stanični mehanizam biološkog sata – u rangu onoga što gerontolozi nazivaju geroprotekcijom – slika postaje znatno složenija.</p>
+
+<h4 id="argumenti-za-neupitna-moć-metaboličkog-i-vaskularnog-štita">Argumenti ZA: Neupitna moć metaboličkog i vaskularnog štita</h4>
+<p>Pretilost i inzulinska rezistencija nisu izolirani estetski ili mehanički problemi; oni su primarni akceleratori staničnog starenja. Kronični višak energije stvara mitohondrijski stres, masivno povećava razinu reaktivnih kisikovih spojeva (ROS) i potiče stvaranje uznapredovalih produkata glikacije (AGEs) koji oštećuju kolagen i krvne žile.</p>
+<p>Uklanjanjem tog opterećenja, inkretinski lijekovi demonstriraju učinke koji daleko prelaze puko smanjenje kilograma:</p>
+<ul>
+  <li><strong>Izravna kardiovaskularna i renalna zaštita:</strong> Studija <em>SELECT</em> (provedena na više od 17.500 pacijenata) pokazala je da semaglutid smanjuje rizik od teških kardiovaskularnih incidenata za 20%. Ključan uvid bio je taj da se kardiovaskularna korist pojavila vrlo rano nakon početka terapije, znatno prije nego što su pacijenti izgubili većinu tjelesne mase, što upućuje na izravno protuupalno djelovanje na endotel krvnih žila. Studija <em>FLOW</em> pokazala je smanjenje progresije kronične bubrežne bolesti za čak 24%.</li>
+  <li><strong>Gašenje sistemskog upalnog požara (inflammaging):</strong> Kronična upala niske razine jedan je od temeljnih stupova starenja (<em>Hallmarks of Aging</em>). Inkretinska terapija dovodi do rapidnog pada visokoosjetljivog C-reaktivnog proteina (hs-CRP) i proupalnih citokina (TNF-α, IL-6).</li>
+  <li><strong>Neuroprotekcija i usporavanje neurodegeneracije:</strong> GLP-1 receptori gusto su raspoređeni u hipokampusu i moždanoj kori. U pretkliničkim modelima potiču neurogenezu, smanjuju nakupljanje amiloidnih plakova i hiperfosforilaciju tau proteina. U tijeku su velika klinička ispitivanja Faze III (programi <em>EVOKE</em> i <em>EVOKE Plus</em>) koja ispituju može li semaglutid usporiti kognitivno propadanje u ranoj fazi Alzheimerove bolesti.</li>
+</ul>
+
+<h4 id="argumenti-protiv-zašto-glp-1-agonisti-nisu-rapamicin">Argumenti PROTIV: Zašto GLP-1 agonisti nisu Rapamicin</h4>
+<p>Unatoč impresivnim podacima, postoji oštra biološka granica između uklanjanja metaboličkog tereta i izravnog usporavanja biološkog sata:</p>
+<ul>
+  <li><strong>Izostanak izravnog djelovanja na primarne mehanizme starenja:</strong> Pravi geroprotektori, poput rapamicina (inhibitor mTORC1 puta) ili senolitika, djeluju izravno na stanične mehanizme popravka DNK, stimulaciju autofagije i očuvanje telomera neovisno o tjelesnoj masi. Kod vitkih, metabolički zdravih životinjskih modela u programu ispitivanja intervencija za dugovječnost (ITP), rapamicin konzistentno produžuje maksimalni životni vijek. Inkretinski agonisti kod zdravih i vitkih jedinki ne pokazuju takav inherentni učinak.</li>
+  <li><strong>Problem cjeloživotne ovisnosti i metabolički "taksametar":</strong> Prestanak uzimanja GLP-1 ili dualnih agonista u pravilu rezultira brzim povratkom izgubljene težine (podaci studije STEP-1 extension pokazuju povratak dvije trećine mase unutar godinu dana) i poništavanjem postignutih benefita. Ove molekule ne mijenjaju genetski kod niti trajno popravljaju neuronske krugove; one funkcioniraju kao stalan vanjski signal. Čim se signal ugasi, organizam se vraća na svoju evolucijski programiranu točku preživljavanja.</li>
+</ul>
+
+<h4 id="presuda-metabolički-štit-kao-temelj-dugovječnosti">Presuda: Metabolički štit kao temelj dugovječnosti</h4>
+<div class="table-container">
+  <table class="article-table">
+    <thead>
+      <tr>
+        <th>Dimenzija dugovječnosti</th>
+        <th>Učinak inkretina (Semaglutid / Tirzepatid / Retatrutid)</th>
+        <th>Učinak klasičnih geroprotektora (npr. Rapamicin / Senolitici)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Utjecaj na Healthspan</strong></td>
+        <td>Izniman (revolucionaran) – drastično smanjuje kardiovaskularne, jetrene i metaboličke uzroke smrti</td>
+        <td>Umjeren do visok (još u fazi kliničkih dokazivanja na ljudima)</td>
+      </tr>
+      <tr>
+        <td><strong>Utjecaj na maksimalni Lifespan</strong></td>
+        <td>Minimalan do neutralan – omogućuje dosezanje prirodnog biološkog potencijala, ali ga ne pomiče</td>
+        <td>Dokazan u životinjskim modelima – produžuje medijan i maksimalni životni vijek</td>
+      </tr>
+      <tr>
+        <td><strong>Primarni biološki cilj</strong></td>
+        <td>Crijevno-moždana os, inzulinska senzitivnost, regulacija apetita i termogeneza</td>
+        <td>Autofagija, popravak staničnih oštećenja, supresija stanične senescencije</td>
+      </tr>
+      <tr>
+        <td><strong>Profil korisnika</strong></td>
+        <td>Osobe s metaboličkim poremećajima, prekomjernom masnoćom i upalom</td>
+        <td>Preventivna primjena kod zdravih jedinki radi usporavanja staničnog sata</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr>
+
+<h3 id="pogled-u-budućnost">Pogled u budućnost</h3>
+<p>Dok današnja farmakologija usavršava tjedne injekcije i dnevne tablete, laboratoriji novog vala razvijaju platforme koje bi mogle potpuno eliminirati potrebu za svakodnevnim ili tjednim intervencijama. Cilj je dugoročno biološko reprogramiranje.</p>
+
+<p><strong>1. Konjugati protutijela i peptida ultra-dugog djelovanja</strong><br>
+Najistaknutiji primjer je maridebart cafraglutide (AMG 133 / <em>MariTide</em>) tvrtke Amgen. Riječ je o bispecifičnoj molekuli koja kombinira aktivaciju GLP-1 receptora s blokadom (antagonizmom) GIP receptora, spojenoj na monoklonsko protutijelo. Poluživot se mjeri u tjednima, što omogućuje primjenu jednom mjesečno ili čak jednom u nekoliko mjeseci. Klinička ispitivanja pokazuju da pacijenti zadržavaju postignuti gubitak tjelesne mase mjesecima nakon posljednje doze, otvarajući mogućnost "pulsnog" doziranja.</p>
+
+<p><strong>2. Tehnologija male interferirajuće RNA (siRNA)</strong><br>
+Umjesto stalnog unosa proteina ili kemijskih spojeva koji se vežu na receptore, siRNA molekule ulaze izravno u stanice jetre (hepatocite) i selektivno razgrađuju glasničku RNA (mRNA) odgovornu za sintezu specifičnih metaboličkih proteina (poput gena <em>INHBE</em> ili <em>ANGPTL3</em>). Jednokratna injekcija siRNA mogla bi osigurati metaboličku zaštitu kroz šest do dvanaest mjeseci.</p>
+
+<p><strong>3. Genska i epigenetska terapija hipotalamusa</strong><br>
+Krajnji horizont metaboličke medicine predstavlja ideja trajnog reprogramiranja neuronskih krugova. Istražuju se lipidne nanočestice (LNP) i virusni vektori (AAV) koji mogu dopremiti epigenetske editore do specifičnih populacija neurona u hipotalamusu (poput POMC neurona), trajno povećavajući njihovu osjetljivost na endogene signale sitosti. Cilj je jednokratnim zahvatom trajno prebrisati evolucijski zapis gladi koji modernog čovjeka tjera na prejedanje u okruženju obilja.</p>
+
+<blockquote>
+  <p>„Priča o semaglutidu, tirzepatidu, retatrutidu i njihovim nasljednicima nije priča o pukoj taštini ili brzom mršavljenju. To je priča o biološkoj adaptaciji: farmakološkom odgovoru na civilizacijsku krizu uzrokovanu neskladom između naših prapovijesnih gena i modernog prehrambenog okruženja.“</p>
+</blockquote>
+
+<h3 id="zaključak-jesmo-li-vidjeli-prve-longevity-lijekove">Zaključak: Jesmo li vidjeli prve Longevity lijekove?</h3>
+<p>Ako dugovječnost mjerimo isključivo staničnim biološkim satom i mehanizmima popravka DNK poput onih koje cilja rapamicin, odgovor je: <strong>ne izravno</strong>. Ovi lijekovi ne zaustavljaju starenje stanica u vakuumu.</p>
+<p>Međutim, ako dugovječnost definiramo kroz realnost modernog svijeta – u kojem velika većina populacije ne umire od starosti staničnog koda, već od vaskularnog i metaboličkog kolapsa uzrokovanog inzulinskom rezistencijom, kroničnom upalom i visceralnim masnim tkivom – tada su inkretinske molekule <strong>najmoćniji longevity štit koji je čovječanstvo ikada razvilo</strong>.</p>
+<p>Uklanjanjem primarnih ubojica današnjice, rješavanjem problema sarkopenije kroz blokatore miostatina te prelaskom na dostupne oralne i dugodjelujuće formate, ove molekule omogućuju pojedincu da dosegne svoj puni genetski potencijal zdravlja (<em>healthspan</em>).</p>
+<p>One možda ne nude vječnu mladost, ali kupuju ono najvrjednije: <strong>desetljeća vitalnog, funkcionalnog i metabolički čistog života</strong> do sljedećeg velikog znanstvenog napretka.</p>
+    </article>
+
+    <!-- Donji Share Blok -->
+    <div class="reader-share-box">
+      <div class="reader-share-info">
+        <span class="reader-share-label">Podijeli ovaj rad:</span>
+      </div>
+      <div class="reader-share-actions">
+        <button type="button" class="btn-copy-link btn-trigger-copy" aria-label="Kopiraj poveznicu na rad">
+          <span class="copy-tooltip">Poveznica kopirana!</span>
+          <svg class="icon-link" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="copy-btn-text">Kopiraj poveznicu</span>
+        </button>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fjesmo-li-vec-vidjeli-prve-longevity-lijekove.html&text=Jesmo%20li%20ve%C4%87%20vidjeli%20prve%20Longevity%20lijekove%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fjesmo-li-vec-vidjeli-prve-longevity-lijekove.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fjesmo-li-vec-vidjeli-prve-longevity-lijekove.html&quote=Jesmo%20li%20ve%C4%87%20vidjeli%20prve%20Longevity%20lijekove%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Povezani članci sekcija -->
+    
+    <section class="related-articles-section" aria-labelledby="related-heading">
+      <div class="related-header">
+        <span class="related-overline">PREPORUČENO ČITANJE</span>
+        <h3 id="related-heading" class="related-title">Povezani radovi i publikacije</h3>
+      </div>
+      <div class="related-grid">
+        
+      <a href="yamanaka-faktori-resetiranje-bioloskog-sata.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/yamanaka.png" alt="Resetiranje biološkog sata: Što su Yamanaka faktori" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">Longevity</span>
+            <span class="related-read-time">⏱ 7 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Resetiranje biološkog sata: Što su Yamanaka faktori</h4>
+          <p class="related-card-excerpt">Pregled znanstvenog proboja Shinyje Yamanake i OSKM proteina koji su dokazali da je stanična diferencijacija reverzibilan proces – od iPSC tehnologije i autologne medicine do parcijalnog reprogramiranja za pomlađivanje tkiva.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="peptidi-bolski-signalni-sustavi.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/peptidi.png.png" alt="Peptidi: Biološki signalni molekularni sustavi" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">Longevity</span>
+            <span class="related-read-time">⏱ 6 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Peptidi: Biološki signalni molekularni sustavi</h4>
+          <p class="related-card-excerpt">Pregled uloge peptida u modernoj medicini – od GLP-1 metaboličke revolucije i regenerativnih spojeva BPC-157 i TB-500 do rejuvenacije, GHK-Cu i primjene umjetne inteligencije u dizajnu de novo peptida.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="alphafold-nobel-nagrada.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/Alphafold.png" alt="AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">Longevity</span>
+            <span class="related-read-time">⏱ 10 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?</h4>
+          <p class="related-card-excerpt">Kratki pregled kako je DeepMindov AlphaFold riješio 50 godina star problem savijanja proteina, osvojio Nobelovu nagradu i otvorio novu eru u dizajniranju sintetičkih enzima za pomlađivanje tkiva.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      </div>
+    </section>
+
+    <!-- Fusnota i povratak -->
+    <footer class="reader-footer">
+      <a href="../index.html" class="btn-read-article">&larr; Povratak na popis sažetaka</a>
+    </footer>
+    </div>
     <!-- Sekcija komentara (Article Comments & Discussion) -->
     <section id="comments-section" class="comments-section" aria-labelledby="comments-title">
       <!-- Sadržaj komentara renderira js/comments.js -->
@@ -246,9 +897,9 @@
     </div>
   </footer>
 
-  <script>window.PRELOADED_ARTICLE_ID = "jesmo-li-vec-vidjeli-prve-longevity-lijekove";</script>
-  <script src="../js/article.js?v=20260911_1"></script>
-  <script src="../js/comments.js?v=20260919_1"></script>
-  <script src="../js/newsletter.js?v=20260831_1"></script>
+  <script>window.PRELOADED_ARTICLE_ID = "jesmo-li-vec-vidjeli-prve-longevity-lijekove";window.PRELOADED_ARTICLE_DATA = {"id":"jesmo-li-vec-vidjeli-prve-longevity-lijekove","title":"Jesmo li već vidjeli prve Longevity lijekove?","title_en":"Have We Already Seen the First Longevity Drugs?","date":"2. rujna 2026.","category":"Longevity","categorySlug":"longevity","category_en":"Longevity","image":"img/GLP_lijekovi.jpg","readTime":"14 min čitanja","readTime_en":"14 min read","summary":"Analiza inkretinske revolucije – od semaglutida i tirzepatida do retatrutida i orforgliprona: djeluju li GLP-1 agonisti kao stvarni geroprotektori ili metabolički štit protiv modernog načina života?","summary_en":"An analysis of the incretin revolution – from semaglutide and tirzepatide to retatrutide and orforglipron: do GLP-1 agonists act as true geroprotectors or as a metabolic shield against modern lifestyles?","excerpt":"Analiza inkretinske revolucije – od semaglutida i tirzepatida do retatrutida i orforgliprona: djeluju li GLP-1 agonisti kao stvarni geroprotektori ili metabolički štit protiv modernog načina života?","excerpt_en":"An analysis of the incretin revolution – from semaglutide and tirzepatide to retatrutide and orforglipron: do GLP-1 agonists act as true geroprotectors or as a metabolic shield against modern lifestyles?","wordCount":3614,"wordCount_en":3230};window.PRELOADED_ARTICLES_INDEX = [{"id":"yamanaka-faktori-resetiranje-bioloskog-sata","title":"Resetiranje biološkog sata: Što su Yamanaka faktori","title_en":"Resetting the Biological Clock: What Are Yamanaka Factors","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"2. kolovoza 2026.","readTime":"⏱ 7 min čitanja","readTime_en":"⏱ 8 min read","wordCount":1290,"wordCount_en":1427,"image":"img/yamanaka.png","excerpt":"Pregled znanstvenog proboja Shinyje Yamanake i OSKM proteina koji su dokazali da je stanična diferencijacija reverzibilan proces – od iPSC tehnologije i autologne medicine do parcijalnog reprogramiranja za pomlađivanje tkiva.","excerpt_en":"An overview of Shinya Yamanaka's scientific breakthrough and OSKM proteins that proved cellular differentiation is a reversible process – from iPSC technology and autologous medicine to partial reprogramming for tissue rejuvenation."},{"id":"peptidi-bolski-signalni-sustavi","title":"Peptidi: Biološki signalni molekularni sustavi","title_en":"Peptides: Biological Signaling Molecular Systems","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"27. srpnja 2026.","readTime":"⏱ 6 min čitanja","readTime_en":"⏱ 6 min read","wordCount":1009,"wordCount_en":1174,"image":"img/peptidi.png.png","video":"video/peptidi.mp4","excerpt":"Pregled uloge peptida u modernoj medicini – od GLP-1 metaboličke revolucije i regenerativnih spojeva BPC-157 i TB-500 do rejuvenacije, GHK-Cu i primjene umjetne inteligencije u dizajnu de novo peptida.","excerpt_en":"An overview of the role of peptides in modern medicine – from the GLP-1 metabolic revolution and regenerative compounds BPC-157 and TB-500 to rejuvenation, GHK-Cu, and the application of artificial intelligence in de novo peptide design."},{"id":"alphafold-nobel-nagrada","title":"AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?","title_en":"AlphaFold – The First Nobel Prize Not Won by a Human?","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"24. srpnja 2026.","readTime":"⏱ 10 min čitanja","readTime_en":"⏱ 9 min read","wordCount":1816,"wordCount_en":1758,"image":"img/Alphafold.png","doi":"doi:10.1038/s41586-026-09855-3","excerpt":"Kratki pregled kako je DeepMindov AlphaFold riješio 50 godina star problem savijanja proteina, osvojio Nobelovu nagradu i otvorio novu eru u dizajniranju sintetičkih enzima za pomlađivanje tkiva.","excerpt_en":"A brief overview of how DeepMind's AlphaFold solved the 50-year-old protein folding problem, won a Nobel Prize, and opened a new era in designing synthetic enzymes for tissue rejuvenation."}];</script>
+  <script src="../js/article.js?v=20261017_1"></script>
+  <script src="../js/comments.js?v=20261017_1"></script>
+  <script src="../js/newsletter.js?v=20261017_1"></script>
 </body>
 </html>

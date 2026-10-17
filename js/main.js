@@ -28,22 +28,26 @@ document.addEventListener('DOMContentLoaded', () => {
  * Initializes the application
  */
 async function initApp() {
-  cachedArticles = await fetchArticles('articles.json');
+  cachedArticles = await fetchArticles('articles-index.json', 'articles.json');
   renderArticles(cachedArticles);
   setupNavigation();
 }
 
 /**
- * Asynchronously fetches article data from JSON file
- * @param {string} url - Path to articles JSON file
+ * Asynchronously fetches article data from lightweight index JSON file (with fallback to full articles.json)
+ * @param {string} url - Path to lightweight articles index JSON file
+ * @param {string} [fallbackUrl='articles.json'] - Fallback path to full articles JSON file
  * @returns {Promise<Array>} List of article objects
  */
-async function fetchArticles(url) {
+async function fetchArticles(url, fallbackUrl = 'articles.json') {
   const container = document.getElementById('articles-grid');
   if (!container) return []; // Guard for pages without articles grid
 
   try {
-    const response = await fetch(url);
+    let response = await fetch(url);
+    if (!response.ok && fallbackUrl && fallbackUrl !== url) {
+      response = await fetch(fallbackUrl);
+    }
     if (!response.ok) {
       throw new Error(`Mrežna pogreška pri učitavanju: ${response.status} ${response.statusText}`);
     }
@@ -51,8 +55,8 @@ async function fetchArticles(url) {
     return Array.isArray(data) ? data : [];
   } catch (error) {
     console.error('Pogreška pri učitavanju članaka:', error);
-    if (container) {
-      renderErrorState(container, 'Nije moguće učitati podatke iz "articles.json". Provjerite poslužitelj i datoteku.');
+    if (container && !container.children.length) {
+      renderErrorState(container, 'Nije moguće učitati podatke iz "articles-index.json". Provjerite poslužitelj i datoteku.');
     }
     return [];
   }
@@ -194,12 +198,35 @@ function setupPagination() {
 }
 
 /**
- * Calculates estimated reading time based on actual content word count
+ * Calculates estimated reading time based on actual content word count or precomputed index metadata
  * @param {string} content
  * @param {string} lang
+ * @param {Object} [article=null]
  * @returns {string} Formatted reading time string
  */
-function calculateReadingTime(content, lang = 'hr') {
+function calculateReadingTime(content, lang = 'hr', article = null) {
+  if (article) {
+    if (lang === 'en') {
+      if (article.content_en && typeof article.content_en === 'string') {
+        content = article.content_en;
+      } else if (typeof article.wordCount_en === 'number' && article.wordCount_en > 0) {
+        const mins = Math.max(1, Math.ceil(article.wordCount_en / 200));
+        return `⏱ ${mins} min read`;
+      } else if (article.readTime_en) {
+        return article.readTime_en.startsWith('⏱') ? article.readTime_en : `⏱ ${article.readTime_en}`;
+      }
+    } else {
+      if (article.content && typeof article.content === 'string') {
+        content = article.content;
+      } else if (typeof article.wordCount === 'number' && article.wordCount > 0) {
+        const mins = Math.max(1, Math.ceil(article.wordCount / 200));
+        return `⏱ ${mins} min čitanja`;
+      } else if (article.readTime) {
+        return article.readTime.startsWith('⏱') ? article.readTime : `⏱ ${article.readTime}`;
+      }
+    }
+  }
+
   if (!content || typeof content !== 'string') {
     return lang === 'en' ? '⏱ 3 min read' : '⏱ 3 min čitanja';
   }
@@ -230,8 +257,8 @@ function createArticleCard(article) {
   
   const date = article.date || 'Nepoznat datum';
   
-  const rawContent = (currentLang === 'en' && article.content_en) ? article.content_en : (article.content || excerpt);
-  const readTime = calculateReadingTime(rawContent, currentLang);
+  const rawContent = (currentLang === 'en' && article.content_en) ? article.content_en : (article.content || '');
+  const readTime = calculateReadingTime(rawContent, currentLang, article);
 
   const doi = article.doi || '';
   const articleUrl = `articles/${encodeURIComponent(article.id)}.html`;
@@ -242,7 +269,7 @@ function createArticleCard(article) {
   const mediaHTML = image ? `
     <div class="article-card-media">
       <a href="${articleUrl}" tabindex="-1" aria-hidden="true">
-        <img src="${escapeHTML(image)}" alt="${escapeHTML(title)}" class="article-card-thumb" onerror="this.closest('.article-card-media').style.display='none'">
+        <img src="${escapeHTML(image)}" alt="${escapeHTML(title)}" class="article-card-thumb" loading="lazy" decoding="async" onerror="this.closest('.article-card-media').style.display='none'">
       </a>
     </div>
   ` : '';
@@ -368,6 +395,7 @@ function matchesSearchQuery(article, normalizedQuery) {
     article.summary_en,
     article.excerpt,
     article.excerpt_en,
+    article.headingsText,
     article.readTime,
     article.doi
   ];

@@ -3,7 +3,7 @@
  * Provides offline reading, background caching, and fast asset delivery.
  */
 
-const CACHE_NAME = 'singularity-pwa-v2';
+const CACHE_NAME = 'singularity-pwa-v3';
 
 // Static core assets to pre-cache immediately on install
 const PRECACHE_ASSETS = [
@@ -13,20 +13,22 @@ const PRECACHE_ASSETS = [
   '/article.html',
   '/o-autoru.html',
   '/style.css',
-  '/style.css?v=20260823_1',
-  '/js/theme.js?v=20260823_1',
-  '/js/lang.js?v=20260823_1',
-  '/js/main.js?v=20260823_1',
-  '/js/category.js?v=20260823_1',
-  '/js/article.js?v=20260823_1',
+  '/style.css?v=20261017_1',
+  '/js/theme.js?v=20261017_1',
+  '/js/lang.js?v=20261017_1',
+  '/js/main.js?v=20261017_1',
+  '/js/category.js?v=20261017_1',
+  '/js/article.js?v=20261017_1',
+  '/js/comments.js?v=20261017_1',
+  '/js/newsletter.js?v=20261017_1',
   '/js/pwa.js',
-  '/articles.json',
+  '/articles-index.json',
   '/manifest.json',
   '/img/logo.png',
   '/img/icon.svg'
 ];
 
-// Install event: Pre-cache core shell & articles data
+// Install event: Pre-cache core shell & lightweight articles index
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -78,7 +80,7 @@ self.addEventListener('fetch', (event) => {
           const cachedResponse = await caches.match(request);
           if (cachedResponse) return cachedResponse;
 
-          if (url.pathname.includes('article.html')) {
+          if (url.pathname.includes('article.html') || url.pathname.includes('/articles/')) {
             return (await caches.match('/article.html')) || (await caches.match('/'));
           }
           if (url.pathname.includes('category.html')) {
@@ -90,8 +92,8 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 2. Data request (articles.json): Stale-While-Revalidate
-  if (url.pathname.endsWith('articles.json')) {
+  // 2. Data requests (articles-index.json, articles/*.json, articles.json): Stale-While-Revalidate
+  if (url.pathname.endsWith('.json') && !url.pathname.endsWith('manifest.json')) {
     event.respondWith(
       caches.open(CACHE_NAME).then((cache) => {
         return cache.match(request).then((cachedResponse) => {

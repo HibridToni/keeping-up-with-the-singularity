@@ -85,13 +85,13 @@
   <link rel="manifest" href="../manifest.json">
   <link rel="apple-touch-icon" href="../img/logo.png">
 
-  <link rel="stylesheet" href="../style.css?v=20260911_1">
+  <link rel="stylesheet" href="../style.css?v=20261017_1">
   <!-- KaTeX for math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script src="../js/theme.js?v=20260911_1"></script>
-  <script src="../js/lang.js?v=20260911_1"></script>
+  <script src="../js/theme.js?v=20261017_1"></script>
+  <script src="../js/lang.js?v=20261017_1"></script>
   <script src="../js/pwa.js"></script>
 </head>
 <body>
@@ -129,12 +129,299 @@
 
   <!-- GLAVNI SPREMNIK - CENTRIRANI STUPAC ZA ČITANJE (max 800px) -->
   <main class="main-container">
-    <div class="article-reader-container" id="article-reader-container">
-      <div class="loading-state">
-        <p data-i18n="article.loading">Učitavanje sadržaja rada...</p>
+    <div class="article-reader-container" id="article-reader-container" data-ssg-rendered="true" data-ssg-lang="hr">
+    <!-- Link za povratak -->
+    <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
+
+    <!-- Zaglavlje rada -->
+    <header class="reader-header">
+      <div class="reader-meta">
+        <span class="card-category">Longevity</span>
+      </div>
+
+      <h1 class="reader-title">AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?</h1>
+
+      <div class="reader-submeta">
+        <div class="reader-submeta-info">
+          <time class="card-date" datetime="24. srpnja 2026.">24. srpnja 2026.</time>
+          <span class="card-read-time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            ⏱ 10 min čitanja
+          </span>
+          <span class="card-doi">doi:10.1038/s41586-026-09855-3</span>
+        </div>
+
+        <div class="share-buttons">
+          <button type="button" class="share-btn share-copy btn-trigger-copy" aria-label="Kopiraj poveznicu na rad" title="Kopiraj poveznicu na rad">
+            <span class="copy-tooltip">Poveznica kopirana!</span>
+            <svg class="icon-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Falphafold-nobel-nagrada.html&text=AlphaFold%20%E2%80%93%20prva%20Nobelova%20nagrada%20koju%20nije%20dobio%20%C4%8Dovjek%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Falphafold-nobel-nagrada.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Falphafold-nobel-nagrada.html&quote=AlphaFold%20%E2%80%93%20prva%20Nobelova%20nagrada%20koju%20nije%20dobio%20%C4%8Dovjek%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+    <div class="article-cover-wrapper">
+      <img src="../img/Alphafold.png" alt="AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?" class="article-cover-hero" fetchpriority="high" decoding="async" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+    </div>
+  
+    </header>
+
+    <!-- Audio Player Bar (Preslušavanje članka) -->
+    <div class="audio-player-bar" id="audio-player-bar" aria-label="Slušaj članak">
+      <div class="audio-controls-left">
+        <button id="tts-play-btn" class="audio-btn audio-btn-play" aria-label="Pokreni čitanje" title="Pokreni čitanje">
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+        </button>
+        <button id="tts-stop-btn" class="audio-btn audio-btn-stop" aria-label="Zaustavi čitanje" title="Zaustavi čitanje" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="audio-status-container">
+        <span class="audio-status-pulse" id="tts-status-pulse"></span>
+        <span id="tts-status-text" class="audio-status-text">Slušaj članak</span>
+      </div>
+
+      <div class="audio-right-controls">
+        <div class="audio-voice-controls" id="audio-voice-controls">
+          <label for="tts-voice-select" class="voice-label" title="Odabir glasa za čitanje">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span class="voice-label-text">Glas:</span>
+          </label>
+          <select id="tts-voice-select" class="audio-voice-select" aria-label="Odabir glasa za čitanje">
+            <option value="">Najbolji prirodni glas</option>
+          </select>
+        </div>
+
+        <div class="audio-speed-controls">
+          <span class="speed-label">Brzina:</span>
+          <div class="speed-options">
+            <button class="speed-btn active" data-speed="1.0">1x</button>
+            <button class="speed-btn" data-speed="1.25">1.25x</button>
+            <button class="speed-btn" data-speed="1.5">1.5x</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Table of Contents (Sadržaj rada) Container -->
+    <div id="article-toc-container" class="article-toc-wrapper">
+    <nav class="article-toc-card" aria-label="Sadržaj članka">
+      <div class="article-toc-header">
+        <div class="article-toc-title-group">
+          <svg class="article-toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h2 class="article-toc-title">Sadržaj rada</h2>
+          <span class="article-toc-badge">8</span>
+        </div>
+        <button type="button" class="article-toc-toggle-btn" id="toc-toggle-btn" aria-expanded="true" aria-controls="article-toc-body" aria-label="Sakrij">
+          <span class="toc-toggle-text">Sakrij</span>
+          <svg class="toc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="article-toc-body" id="article-toc-body">
+        <ol class="article-toc-list">
+          
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#zašto-je-ovo-uopće-bilo-teško" class="article-toc-link" data-toc-target="zašto-je-ovo-uopće-bilo-teško">
+          <span class="toc-link-text">Zašto je ovo uopće bilo teško?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#anfinsenova-dogma-i-levinthalov-paradoks" class="article-toc-link" data-toc-target="anfinsenova-dogma-i-levinthalov-paradoks">
+          <span class="toc-link-text">Anfinsenova dogma i Levinthalov paradoks</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#zašto-je-3d-oblik-proteina-uopće-toliko-važan" class="article-toc-link" data-toc-target="zašto-je-3d-oblik-proteina-uopće-toliko-važan">
+          <span class="toc-link-text">Zašto je 3D oblik proteina uopće toliko važan?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#kako-je-alphafold-razbio-šifru" class="article-toc-link" data-toc-target="kako-je-alphafold-razbio-šifru">
+          <span class="toc-link-text">Kako je AlphaFold razbio šifru?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#arhitektura-iza-modela" class="article-toc-link" data-toc-target="arhitektura-iza-modela">
+          <span class="toc-link-text">Arhitektura iza modela</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#realni-utjecaj-na-svijet-što-alphafold-znači-za-nas" class="article-toc-link" data-toc-target="realni-utjecaj-na-svijet-što-alphafold-znači-za-nas">
+          <span class="toc-link-text">Realni utjecaj na svijet (što AlphaFold znači za nas?)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#primjene-u-praksi" class="article-toc-link" data-toc-target="primjene-u-praksi">
+          <span class="toc-link-text">Primjene u praksi:</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#fundamentalna-otkrića-kroz-povijest" class="article-toc-link" data-toc-target="fundamentalna-otkrića-kroz-povijest">
+          <span class="toc-link-text">Fundamentalna otkrića kroz povijest</span>
+        </a>
+      </li>
+        </ol>
+      </div>
+    </nav></div>
+
+    <!-- Puni HTML Sadržaj Članka -->
+    <article class="reader-body" id="reader-body">
+      <p>Jedan od zahtjevnijih povijesnih izazova moderne znanosti donedavno je predstavljao protein folding problem (problem savijanja proteina). Znanstveno je bilo poznato kako trodimenzionalni oblik proteina izravno određuje njegovu biološku funkciju u organizmu. Poznavanje točnog oblika proteina potencijalno je otvaralo golemu lepezu mogućnosti za razvoj novih lijekova. Međutim, postojao je matematički i fizikalni zid. Izračunati kako se taj polipeptidni lanac fizikalno savija u prostoru koristeći tradicionalne metode i klasična računala bilo je gotovo nemoguće. Dugo je godina dešifriranje strukture jednog jedinog proteina u laboratorijskom eksperimentu smatrano vrhunskim postignućem. U mnogim slučajevima, rad na samo jednom proteinu trajao je i dulje od uobičajenih 4 do 5 godina doktorskog studija, a otključavanje potencijala za pronalazak novih lijekova izgledalo je iznimno daleko.</p><p>Kako bi se uopće mogao objektivno mjeriti napredak u rješavanju ovog problema, 1994. godine pokrenut je CASP (Critical Assessment of protein Structure Prediction). To je dvogodišnje znanstveno natjecanje i takozvani "slijepi test", koji je ubrzo postao poznat kao neslužbena Olimpijada za sklapanje proteina. Znanstvene skupine iz cijelog svijeta dobivale bi sekvence aminokiselina čije su 3D strukture u laboratorijima upravo eksperimentalno otkrivene, ali još nisu bile javno objavljene. Njihov je zadatak bio da isključivo pomoću računalnih modela predvide točan oblik proteina. Desetljećima je napredak na CASP-u bio iznimno spor i inkrementalan; točnost modela godinama je stagnirala na razinama daleko ispod onih potrebnih za praktičnu primjenu u medicini i biologiji.</p><p>Na natjecanju CASP 2020. godine, DeepMind predstavlja AlphaFold 2 i ostvaruje povijesni rezultat. Pogodio je strukture proteina s marginom pogreške manjom od širine jednog atoma, s prosječnom ocjenom znatno iznad 90. Time je službeno proglašeno da je 50 godina star problem savijanja proteina riješen. Nastavno na to, u ljeto 2022. godine AlphaFold je predvidio 3D strukturu za više od 200 milijuna proteina. Algoritam je u nekoliko tjedana izračunao oblike za gotovo sve poznate proteine u biologiji, od bakterija i biljaka do ljudskog organizma. Rad koji bi ljudskoj civilizaciji, dosadašnjim tempom, oduzeo milijune godina i milijarde radnih sati, izveden je u računalnom oblaku. Posljedično, Švedska kraljevska akademija je u listopadu 2024. godine dodijelila Nobelovu nagradu za kemiju Demisu Hassabisu i Johnu Jumperu (uz Davida Bakera).</p><p>Zlatne medalje u Stockholmu preuzeli su ljudi u frakovima, no ostalo je pitanje tko je zapravo iznio najteži teret. Po prvi put moglo se osjetiti kako je na izrazito zahtjevnom znanstvenom području računalni program prešao put iz alata za obradu podataka u potencijalno kreativni alat za nova znanstvena otkrića.</p><h3 id="zašto-je-ovo-uopće-bilo-teško">Zašto je ovo uopće bilo teško?</h3><p>Da bi se u potpunosti mogao razumjeti razmjer postignuća AlphaFolda, potrebno se vratiti korak unatrag i detaljnije prikazati zašto je biologija više od pola stoljeća bila statična na ovom pitanju. Priča počinje početkom 1970-ih godina s radom američkog biokemičara Christiana Anfinsena.</p><h4 id="anfinsenova-dogma-i-levinthalov-paradoks">Anfinsenova dogma i Levinthalov paradoks</h4><p>Anfinsen je u svojim pokusima pokazao da je cjelokupna informacija potrebna za oblikovanje trodimenzionalne strukture proteina već sadržana u njegovom primarnom, linearnom slijedu (sekvenci) aminokiselina. To je saznanje postalo poznato kao Anfinsenova dogma: ako znate točan redoslijed aminokiselina, u teoriji biste trebali moći predvidjeti konačni 3D oblik proteina jer se on prirodno savija u stanje s najnižom slobodnom energijom (termodinamički minimum).</p><p>Međutim, ubrzo se pojavio teorijski zid. Američki fizičar Cyrus Levinthal izračunao je da prosječan protein ima toliko fleksibilnih veza i stupnjeva slobode da bi, kada bi nasumično isprobavao sve moguće oblike prije nego što pronađe onaj s najnižom energijom, taj proces trajao dulje od starosti samog svemira. To je postalo poznato kao Levinthalov paradoks:</p><ul><li>Teoretski broj mogućih konformacija za prosječan protein iznosi oko 10³⁰⁰.</li><li>Za usporedbu, ukupan broj atoma u cijelom poznatom svemiru procjenjuje se na "samo" oko 10⁸⁰.</li><li>U prirodi se, međutim, proteini savijaju u milisekundama ili mikrosekundama.</li></ul><p>Priroda je očito imala elegantne fizikalne prečace i pravila koje ljudska računala i klasični matematički modeli desetljećima nisu uspijevali dešifrirati.</p><h4 id="zašto-je-3d-oblik-proteina-uopće-toliko-važan">Zašto je 3D oblik proteina uopće toliko važan?</h4><p>U molekularnoj biologiji vrijedi pravilo: struktura određuje funkciju. Proteini nisu statične niti u stanici; oni su mikroskopski zupčanici, nosači, receptori i alati imunološkog sustava:</p><ul><li><strong>Enzimi:</strong> Djeluju kao biološki katalizatori koji razgrađuju hranu ili dupliciraju DNA. Njihov aktivni dio funkcionira po principu "ključa i brave".</li><li><strong>Antitijela:</strong> Prepoznaju patogene (viruse i bakterije) tako što se fizikalno savršeno "naslanjaju" na površinske proteine uljeza.</li><li><strong>Receptori:</strong> Smješteni na površini stanica, primaju signale (poput hormona) i fizikalnim promjenama oblika prenose poruke u unutrašnjost stanice.</li></ul><p>Ako ne znate točan trodimenzionalni oblik proteina, pokušaj dizajniranja novog lijeka nalikuje izradi zamjenskog ključa za bravu koju nikada niste vidjeli, i to u potpunom mraku. Tradicionalno se do tog oblika dolazilo eksperimentalno – dugotrajnim procesima poput kristalografije rendgenskim zrakama ili krio-elektronske mikroskopije (Cryo-EM). Ti procesi traju mjesecima ili godinama i koštaju stotine tisuća eura po pojedinačnom proteinu.</p><p>Bez brzog načina predviđanja 3D strukture, razvoj novih lijekova i razumijevanje temeljnih uzroka mnogih bolesti (poput Alzheimerove i Parkinsonove bolesti, gdje se proteini pogrešno savijaju i stvaraju toksične nakupine) bili su izrazito usporeni.</p><h3 id="kako-je-alphafold-razbio-šifru">Kako je AlphaFold razbio šifru?</h3><p>Nakon desetljeća sporih i minimalnih pomaka, iskorak se dogodio na natjecanju CASP. Da bi se do kraja shvatio razmjer revolucije, važno je shvatiti kako se točnost modela mjerila: rezultati su se iskazivali u takozvanom GDT (Global Distance Test) indeksu od 0 do 100. Sve iznad 90 bodova smatralo se eksperimentalno točnim, točkom u kojoj računalna predikcija postaje jednako pouzdana kao i mukotrpni višemjesečni rad u laboratoriju.</p><p>Godinama su najbolji računalni modeli jedva dostizali 30 ili 40 bodova na težim proteinima. A onda se 2018. godine na natjecanju CASP13 pojavio Googleov DeepMind sa svojom prvom verzijom AlphaFold 1. Pobijedili su s vidljivom razlikom, no pravi potres dogodio se dvije godine kasnije, na natjecanju CASP14 u studenom 2020. godine.</p><p>DeepMind je predstavio potpunom novu, iz temelja redizajniranu arhitekturu: AlphaFold 2.</p><p>Rezultati su šokirali organizatore i sudionike. AlphaFold 2 postigao je prosječnu ocjenu iznad 92.4 GDT za sve zadane proteine. Na najtežim, dotad potpuno nepoznatim strukturama, odstupanje njegovih atomskih pozicija u prosjeku je bilo manje od 1.6 Å, što odgovara širini jednog jedinog atoma vodika. Znanstvenici koji su desetljećima radili na slijepim testovima javno su priznali: "Problem savijanja proteina je riješen."</p><h4 id="arhitektura-iza-modela">Arhitektura iza modela</h4><p>Kako je timu iz DeepMinda, predvođenom Demisom Hassabisom i Johnom Jumperom, uspjelo ono što generacijama biofizičara nije? Odločeno je napustiti klasičnu fizikalnu simulaciju. Umjesto da računalu zadaju stotine fizikalnih i kemijskih jednadžbi o privlačenju i odbijanju naboja te ga puste da nasumično računa sve sile (što vodi izravno u Levinthalov paradoks), oni su problem pretvorili u problem prepoznavanja uzoraka pomoću dubokog strojnog učenja.</p><p>AlphaFold 2 objedinjuje nekoliko inovacija:</p><ol><li><strong>Evolucijski otisak prsta (Koevolucija):</strong> AlphaFold ne gleda protein u izolaciji. On traži njegovu sekvencu u biološkim bazama podataka i uspoređuje je sa sličnim proteinima iz tisuća drugih organizama (bakterija, biljaka, sisavaca). Ako se tijekom milijuna godina evolucije aminokiselina na poziciji 15 promijeni, a istovremeno se u svim tim organizmima koordinirano promijeni i aminokiselina na poziciji 180, to je jasan biološki signal da se te dvije aminokiseline u 3D prostoru moraju fizički dodirivati.</li><li><strong>Transformeri i Attention Mechanism:</strong> AlphaFold 2 koristi prilagođenu Transformer arhitekturu optimiziranu za prostor i biologiju. Pomoću mehanizma pažnje, algoritam istovremeno analizira sve aminokiseline u lancu i dinamiku među njima.</li><li><strong>Protein Data Bank (PDB):</strong> AlphaFold je treniran na PDB-u, javnoj bazi u kojoj su biolozi kroz proteklih 50 godina prikupili oko 170.000 struktura proteina. Ovdje je vidljiva jasna paralela s uspješnosti modela u polju programiranja zbog dostupnosti velikim open-source bazama podataka.</li></ol><h3 id="realni-utjecaj-na-svijet-što-alphafold-znači-za-nas">Realni utjecaj na svijet (što AlphaFold znači za nas?)</h3><p>Kada se raspravlja o novim tehnološkim probojima, opravdano se postavlja pitanje koliko je riječ o teorijskoj fascinaciji, a koliko o nečemu što opipljivo mijenja ljudske živote. AlphaFold je u svega nekoliko godina prešao put od akademskog rada do alata koji se svakodnevno koristi u tisućama laboratorija širom svijeta.</p><p>Najznačajniji strateški potez DeepMinda, u suradnji s Europskim laboratorijem za molekularnu biologiju (EMBL-EBI), bila je odluka da se cijela AlphaFold Protein Structure Database učini u potpunosti besplatnom i javno dostupnom svima. Preko 2 milijuna znanstvenika iz 190 zemalja već aktivno koristi ovu bazu.</p><p>Javna objava ove baze podataka bila je u potpunosti besplatna, što uvelike narušava narativ o 'zločestim' korporativnim tehnološkim divovima.</p><h4 id="primjene-u-praksi">Primjene u praksi:</h4><ul><li><strong>Brži razvoj lijekova i borba protiv superbakterija:</strong> Istraživači koriste AlphaFold za ubrzano projektiranje cjepiva protiv malarije te za traženje novih načina blokiranja bakterija otpornih na postojeće antibiotike.</li><li><strong>Sintetička biologija i razgradnja plastike:</strong> Koristi se za dizajn i "poboljšanje" prirodnih enzima (poput PETaze) kako bi višestruko brže razgrađivali plastičnu ambalažu u bioreaktorima.</li><li><strong>Razumijevanje rijetkih i genetskih bolesti:</strong> Omogućuje točan uvid kako samo jedna mutacija aminokiseline deformira trodimenzionalni oblik proteina.</li><li><strong>Poljoprivreda i klimatske promjene:</strong> Stvaranje otpornijih vrsta usjeva koji mogu preživjeti suše i ekstremne temperature.</li></ul><p>Nedavni primjer na ovom polju je istraživanje objavljeno u znanstvenom časopisu Nature Communications (srpanj 2026.). Znanstvenici iz biotehnološke tvrtke Revel Pharmaceuticals, u suradnji s istraživačima s EPFL-a i Calica, demonstrirali su kako se spajanjem AI modeliranja i usmjerene evolucije može stvoriti potpuno novi, sintetički enzim koji napada i popravlja molekularna oštećenja nastala starenjem.</p><p>Tijekom desetljeća ljudskog života, dugovječni proteini u našim tkivima (poput kolagena u koži i krvnim žilama) izloženi su takozvanoj nekontroliranoj glikaciji. Šećeri iz krvi spontano reagiraju s proteinima i stvaraju toksične unakrsne veze zvane AGEs (Advanced Glycation End-products). Najčešći među njima je spoj nazvan CML (N-epsilon-carboxymethyl-lysine) koji djeluje poput kemijskog ljepila: ukrućuje stijenke arterija, smanjuje elastičnost kože i uzrokuje kronične upale. Desetljećima se u biokemijskoj literaturi smatralo da je to akumulirano oštećenje permanentno.</p><p>Kako bi riješili ten problem, istraživači su uzeli enzim glikozilnu oksidazu iz tla i odlučili ga preoblikovati. Koristeći AlphaFold i alate za molekularno modeliranje, stvorili su novu specifičnu molekulu nazvanu CMLase koja napada isključivo CML, ostavljajući okolno zdravo tkivo netaknutim.</p><p>Rezultati laboratorijskih testova novostvorenog enzima CMLase na doniranim ljudskim tkivima:</p><ul><li><strong>Koža starijih donora:</strong> Na tkivu kože donora starijih od 70 godina, enzim je u nekoliko sati razgradio i uklonio više od 55% akumuliranih markera kemijskog starenja. Količina oštećenja biološki je spuštena na razine kakve se uobičajeno nalaze u koži 31-godišnjaka.</li><li><strong>Arterije i krvožilni sustav:</strong> Na uzorku aorte 75-godišnjeg donora, CMLase je smanjio prisutnost istog markera starenja za više od 70%, vraćajući tkivu dio elastičnosti.</li></ul><p>Antiage kreme mogle bi u budućnosti dobiti priličan upgrade.</p><h3 id="fundamentalna-otkrića-kroz-povijest">Fundamentalna otkrića kroz povijest</h3><p>Promatramo li povijest kroz prizmu napretka, uočavamo uzorak: fundamentalna znanstvena otkrića u početku često djeluju kao apstraktne intelektualne vježbe rezervirane za kabinete teoretičara, no u konačnici postaju primarni pokretači društvenih transformacija i gospodarskog rasta.</p><p>Kada je Isaac Newton u 17. stoljeću formulirao zakone gibanja i opće gravitacije, njegov primarni cilj nije bio graditi industrijska postrojenja. Međutim, njegova su otkrića stvorila temelje klasične mehanike i fizike bez kojih bi Prva industrijska revolucija, parni strojevi i moderna infrastruktura bili nezamislivi.</p><p>Dva stoljeća kasnije, Albert Einstein je svojom teorijom relativnosti i konceptima kvantne fizike iz temelja izmijenio razumijevanje prostora, vremena i energije. Danas, bez izračuna opće teorije relativnosti globalni GPS sustavi ne bi mogli funkcionirati, a čitave industrije poluvodiča, telekomunikacija i laserske tehnologije počivaju na tom skoku.</p><p>Primjena umjetne inteligencije u potrazi za novim znanstvenim idejama u sebi skriva potencijal za još jednim takvim skokom u nepoznato. Ova Nobelova nagrada možda je samo prvi domino u toj priči.</p>
+    </article>
+
+    <!-- Donji Share Blok -->
+    <div class="reader-share-box">
+      <div class="reader-share-info">
+        <span class="reader-share-label">Podijeli ovaj rad:</span>
+      </div>
+      <div class="reader-share-actions">
+        <button type="button" class="btn-copy-link btn-trigger-copy" aria-label="Kopiraj poveznicu na rad">
+          <span class="copy-tooltip">Poveznica kopirana!</span>
+          <svg class="icon-link" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="copy-btn-text">Kopiraj poveznicu</span>
+        </button>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Falphafold-nobel-nagrada.html&text=AlphaFold%20%E2%80%93%20prva%20Nobelova%20nagrada%20koju%20nije%20dobio%20%C4%8Dovjek%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Falphafold-nobel-nagrada.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Falphafold-nobel-nagrada.html&quote=AlphaFold%20%E2%80%93%20prva%20Nobelova%20nagrada%20koju%20nije%20dobio%20%C4%8Dovjek%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Povezani članci sekcija -->
+    
+    <section class="related-articles-section" aria-labelledby="related-heading">
+      <div class="related-header">
+        <span class="related-overline">PREPORUČENO ČITANJE</span>
+        <h3 id="related-heading" class="related-title">Povezani radovi i publikacije</h3>
+      </div>
+      <div class="related-grid">
+        
+      <a href="jesmo-li-vec-vidjeli-prve-longevity-lijekove.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/GLP_lijekovi.jpg" alt="Jesmo li već vidjeli prve Longevity lijekove?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">Longevity</span>
+            <span class="related-read-time">⏱ 19 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Jesmo li već vidjeli prve Longevity lijekove?</h4>
+          <p class="related-card-excerpt">Analiza inkretinske revolucije – od semaglutida i tirzepatida do retatrutida i orforgliprona: djeluju li GLP-1 agonisti kao stvarni geroprotektori ili metabolički štit protiv modernog načina života?</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="yamanaka-faktori-resetiranje-bioloskog-sata.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/yamanaka.png" alt="Resetiranje biološkog sata: Što su Yamanaka faktori" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">Longevity</span>
+            <span class="related-read-time">⏱ 7 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Resetiranje biološkog sata: Što su Yamanaka faktori</h4>
+          <p class="related-card-excerpt">Pregled znanstvenog proboja Shinyje Yamanake i OSKM proteina koji su dokazali da je stanična diferencijacija reverzibilan proces – od iPSC tehnologije i autologne medicine do parcijalnog reprogramiranja za pomlađivanje tkiva.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="peptidi-bolski-signalni-sustavi.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/peptidi.png.png" alt="Peptidi: Biološki signalni molekularni sustavi" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">Longevity</span>
+            <span class="related-read-time">⏱ 6 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Peptidi: Biološki signalni molekularni sustavi</h4>
+          <p class="related-card-excerpt">Pregled uloge peptida u modernoj medicini – od GLP-1 metaboličke revolucije i regenerativnih spojeva BPC-157 i TB-500 do rejuvenacije, GHK-Cu i primjene umjetne inteligencije u dizajnu de novo peptida.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      </div>
+    </section>
+
+    <!-- Fusnota i povratak -->
+    <footer class="reader-footer">
+      <a href="../index.html" class="btn-read-article">&larr; Povratak na popis sažetaka</a>
+    </footer>
+    </div>
     <!-- Sekcija komentara (Article Comments & Discussion) -->
     <section id="comments-section" class="comments-section" aria-labelledby="comments-title">
       <!-- Sadržaj komentara renderira js/comments.js -->
@@ -246,9 +533,9 @@
     </div>
   </footer>
 
-  <script>window.PRELOADED_ARTICLE_ID = "alphafold-nobel-nagrada";</script>
-  <script src="../js/article.js?v=20260911_1"></script>
-  <script src="../js/comments.js?v=20260919_1"></script>
-  <script src="../js/newsletter.js?v=20260831_1"></script>
+  <script>window.PRELOADED_ARTICLE_ID = "alphafold-nobel-nagrada";window.PRELOADED_ARTICLE_DATA = {"id":"alphafold-nobel-nagrada","title":"AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?","title_en":"AlphaFold – The First Nobel Prize Not Won by a Human?","date":"24. srpnja 2026.","category":"Longevity","categorySlug":"longevity","readTime":"12 min čitanja","doi":"doi:10.1038/s41586-026-09855-3","image":"img/Alphafold.png","summary":"Kratki pregled kako je DeepMindov AlphaFold riješio 50 godina star problem savijanja proteina, osvojio Nobelovu nagradu i otvorio novu eru u dizajniranju sintetičkih enzima za pomlađivanje tkiva.","summary_en":"A brief overview of how DeepMind's AlphaFold solved the 50-year-old protein folding problem, won a Nobel Prize, and opened a new era in designing synthetic enzymes for tissue rejuvenation.","excerpt":"Kratki pregled kako je DeepMindov AlphaFold riješio 50 godina star problem savijanja proteina, osvojio Nobelovu nagradu i otvorio novu eru u dizajniranju sintetičkih enzima za pomlađivanje tkiva.","excerpt_en":"A brief overview of how DeepMind's AlphaFold solved the 50-year-old protein folding problem, won a Nobel Prize, and opened a new era in designing synthetic enzymes for tissue rejuvenation.","category_en":"Longevity","wordCount":1816,"wordCount_en":1758};window.PRELOADED_ARTICLES_INDEX = [{"id":"jesmo-li-vec-vidjeli-prve-longevity-lijekove","title":"Jesmo li već vidjeli prve Longevity lijekove?","title_en":"Have We Already Seen the First Longevity Drugs?","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"2. rujna 2026.","readTime":"⏱ 19 min čitanja","readTime_en":"⏱ 17 min read","wordCount":3614,"wordCount_en":3230,"image":"img/GLP_lijekovi.jpg","excerpt":"Analiza inkretinske revolucije – od semaglutida i tirzepatida do retatrutida i orforgliprona: djeluju li GLP-1 agonisti kao stvarni geroprotektori ili metabolički štit protiv modernog načina života?","excerpt_en":"An analysis of the incretin revolution – from semaglutide and tirzepatide to retatrutide and orforglipron: do GLP-1 agonists act as true geroprotectors or as a metabolic shield against modern lifestyles?"},{"id":"yamanaka-faktori-resetiranje-bioloskog-sata","title":"Resetiranje biološkog sata: Što su Yamanaka faktori","title_en":"Resetting the Biological Clock: What Are Yamanaka Factors","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"2. kolovoza 2026.","readTime":"⏱ 7 min čitanja","readTime_en":"⏱ 8 min read","wordCount":1290,"wordCount_en":1427,"image":"img/yamanaka.png","excerpt":"Pregled znanstvenog proboja Shinyje Yamanake i OSKM proteina koji su dokazali da je stanična diferencijacija reverzibilan proces – od iPSC tehnologije i autologne medicine do parcijalnog reprogramiranja za pomlađivanje tkiva.","excerpt_en":"An overview of Shinya Yamanaka's scientific breakthrough and OSKM proteins that proved cellular differentiation is a reversible process – from iPSC technology and autologous medicine to partial reprogramming for tissue rejuvenation."},{"id":"peptidi-bolski-signalni-sustavi","title":"Peptidi: Biološki signalni molekularni sustavi","title_en":"Peptides: Biological Signaling Molecular Systems","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"27. srpnja 2026.","readTime":"⏱ 6 min čitanja","readTime_en":"⏱ 6 min read","wordCount":1009,"wordCount_en":1174,"image":"img/peptidi.png.png","video":"video/peptidi.mp4","excerpt":"Pregled uloge peptida u modernoj medicini – od GLP-1 metaboličke revolucije i regenerativnih spojeva BPC-157 i TB-500 do rejuvenacije, GHK-Cu i primjene umjetne inteligencije u dizajnu de novo peptida.","excerpt_en":"An overview of the role of peptides in modern medicine – from the GLP-1 metabolic revolution and regenerative compounds BPC-157 and TB-500 to rejuvenation, GHK-Cu, and the application of artificial intelligence in de novo peptide design."}];</script>
+  <script src="../js/article.js?v=20261017_1"></script>
+  <script src="../js/comments.js?v=20261017_1"></script>
+  <script src="../js/newsletter.js?v=20261017_1"></script>
 </body>
 </html>

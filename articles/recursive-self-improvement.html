@@ -85,13 +85,13 @@
   <link rel="manifest" href="../manifest.json">
   <link rel="apple-touch-icon" href="../img/logo.png">
 
-  <link rel="stylesheet" href="../style.css?v=20260911_1">
+  <link rel="stylesheet" href="../style.css?v=20261017_1">
   <!-- KaTeX for math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script src="../js/theme.js?v=20260911_1"></script>
-  <script src="../js/lang.js?v=20260911_1"></script>
+  <script src="../js/theme.js?v=20261017_1"></script>
+  <script src="../js/lang.js?v=20261017_1"></script>
   <script src="../js/pwa.js"></script>
 </head>
 <body>
@@ -129,12 +129,314 @@
 
   <!-- GLAVNI SPREMNIK - CENTRIRANI STUPAC ZA ČITANJE (max 800px) -->
   <main class="main-container">
-    <div class="article-reader-container" id="article-reader-container">
-      <div class="loading-state">
-        <p data-i18n="article.loading">Učitavanje sadržaja rada...</p>
+    <div class="article-reader-container" id="article-reader-container" data-ssg-rendered="true" data-ssg-lang="hr">
+    <!-- Link za povratak -->
+    <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
+
+    <!-- Zaglavlje rada -->
+    <header class="reader-header">
+      <div class="reader-meta">
+        <span class="card-category">AI i tehnologija</span>
+      </div>
+
+      <h1 class="reader-title">Algoritmi koji grade algoritme: Što je Recursive Self-Improvement AI modela?</h1>
+
+      <div class="reader-submeta">
+        <div class="reader-submeta-info">
+          <time class="card-date" datetime="20. lipnja 2026.">20. lipnja 2026.</time>
+          <span class="card-read-time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            ⏱ 10 min čitanja
+          </span>
+          <span class="card-doi">doi:10.1038/s41586-026-09633-9</span>
+        </div>
+
+        <div class="share-buttons">
+          <button type="button" class="share-btn share-copy btn-trigger-copy" aria-label="Kopiraj poveznicu na rad" title="Kopiraj poveznicu na rad">
+            <span class="copy-tooltip">Poveznica kopirana!</span>
+            <svg class="icon-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Frecursive-self-improvement.html&text=Algoritmi%20koji%20grade%20algoritme%3A%20%C5%A0to%20je%20Recursive%20Self-Improvement%20AI%20modela%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Frecursive-self-improvement.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Frecursive-self-improvement.html&quote=Algoritmi%20koji%20grade%20algoritme%3A%20%C5%A0to%20je%20Recursive%20Self-Improvement%20AI%20modela%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+    <div class="article-cover-wrapper">
+      <img src="../img/Algoritmi koji grade algoritme.png" alt="Algoritmi koji grade algoritme: Što je Recursive Self-Improvement AI modela?" class="article-cover-hero" fetchpriority="high" decoding="async" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+    </div>
+  
+    </header>
+
+    <!-- Audio Player Bar (Preslušavanje članka) -->
+    <div class="audio-player-bar" id="audio-player-bar" aria-label="Slušaj članak">
+      <div class="audio-controls-left">
+        <button id="tts-play-btn" class="audio-btn audio-btn-play" aria-label="Pokreni čitanje" title="Pokreni čitanje">
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+        </button>
+        <button id="tts-stop-btn" class="audio-btn audio-btn-stop" aria-label="Zaustavi čitanje" title="Zaustavi čitanje" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="audio-status-container">
+        <span class="audio-status-pulse" id="tts-status-pulse"></span>
+        <span id="tts-status-text" class="audio-status-text">Slušaj članak</span>
+      </div>
+
+      <div class="audio-right-controls">
+        <div class="audio-voice-controls" id="audio-voice-controls">
+          <label for="tts-voice-select" class="voice-label" title="Odabir glasa za čitanje">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span class="voice-label-text">Glas:</span>
+          </label>
+          <select id="tts-voice-select" class="audio-voice-select" aria-label="Odabir glasa za čitanje">
+            <option value="">Najbolji prirodni glas</option>
+          </select>
+        </div>
+
+        <div class="audio-speed-controls">
+          <span class="speed-label">Brzina:</span>
+          <div class="speed-options">
+            <button class="speed-btn active" data-speed="1.0">1x</button>
+            <button class="speed-btn" data-speed="1.25">1.25x</button>
+            <button class="speed-btn" data-speed="1.5">1.5x</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Table of Contents (Sadržaj rada) Container -->
+    <div id="article-toc-container" class="article-toc-wrapper">
+    <nav class="article-toc-card" aria-label="Sadržaj članka">
+      <div class="article-toc-header">
+        <div class="article-toc-title-group">
+          <svg class="article-toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h2 class="article-toc-title">Sadržaj rada</h2>
+          <span class="article-toc-badge">11</span>
+        </div>
+        <button type="button" class="article-toc-toggle-btn" id="toc-toggle-btn" aria-expanded="true" aria-controls="article-toc-body" aria-label="Sakrij">
+          <span class="toc-toggle-text">Sakrij</span>
+          <svg class="toc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="article-toc-body" id="article-toc-body">
+        <ol class="article-toc-list">
+          
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#definicija" class="article-toc-link" data-toc-target="definicija">
+          <span class="toc-link-text">Definicija</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#prijelaz-od-ljudskog-inženjeringa-do-autonomne-petlje" class="article-toc-link" data-toc-target="prijelaz-od-ljudskog-inženjeringa-do-autonomne-petlje">
+          <span class="toc-link-text">Prijelaz od ljudskog inženjeringa do autonomne petlje</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#tehnički-mehanizmi" class="article-toc-link" data-toc-target="tehnički-mehanizmi">
+          <span class="toc-link-text">Tehnički mehanizmi</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#agentic-workflows-agencijski-tijekovi-rada" class="article-toc-link" data-toc-target="agentic-workflows-agencijski-tijekovi-rada">
+          <span class="toc-link-text">Agentic Workflows (Agencijski tijekovi rada)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#neural-architecture-search-nas" class="article-toc-link" data-toc-target="neural-architecture-search-nas">
+          <span class="toc-link-text">Neural Architecture Search (NAS)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#self-play-igra-protiv-samog-sebe-i-sintetički-podaci" class="article-toc-link" data-toc-target="self-play-igra-protiv-samog-sebe-i-sintetički-podaci">
+          <span class="toc-link-text">Self-Play (Igra protiv samog sebe i sintetički podaci)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#ograničenja-sustava-zašto-još-nismo-tamo" class="article-toc-link" data-toc-target="ograničenja-sustava-zašto-još-nismo-tamo">
+          <span class="toc-link-text">Ograničenja sustava: Zašto još nismo tamo?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#termodinamički-i-hardverski-zid" class="article-toc-link" data-toc-target="termodinamički-i-hardverski-zid">
+          <span class="toc-link-text">Termodinamički i hardverski zid</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#zid-podataka-i-kolaps-modela-model-collapse" class="article-toc-link" data-toc-target="zid-podataka-i-kolaps-modela-model-collapse">
+          <span class="toc-link-text">Zid podataka i &quot;kolaps modela&quot; (Model Collapse)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#usklađivanje-i-sigurnost-the-alignment-problem" class="article-toc-link" data-toc-target="usklađivanje-i-sigurnost-the-alignment-problem">
+          <span class="toc-link-text">Usklađivanje i sigurnost (The Alignment Problem)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#vizija-bliske-budućnosti" class="article-toc-link" data-toc-target="vizija-bliske-budućnosti">
+          <span class="toc-link-text">Vizija bliske budućnosti</span>
+        </a>
+      </li>
+        </ol>
+      </div>
+    </nav></div>
+
+    <!-- Puni HTML Sadržaj Članka -->
+    <article class="reader-body" id="reader-body">
+      <p>Moguće je da nas je pop-kultura krivo naučila. Modeli umjetne inteligencije ne doživljavaju iznenadna "buđenja" niti stječu svijest preko noći. Čini se da stvarni napredak prema Općoj umjetnoj inteligenciji (AGI) ne izgleda kao holivudski scenarij s Tomom Cruiseom, nego više kao iterativni matematički proces.</p><h2 id="definicija">Definicija</h2><p>Što je rekurzivno samopoboljšanje (Recursive Self-Improvement - RSI)? U osnovi, to je inženjering modela guran do ekstrema. RSI je proces u kojem AI sustav ima sposobnost analizirati, testirati i optimizirati vlastiti izvorni kod ili arhitekturu neuronske mreže potpuno bez ljudske intervencije. Drugim riječima, to je sustav koji, osim što uči iz novih podataka, također uči i kako bolje učiti.</p><p>Zašto ovaj koncept izaziva toliko pažnje u užoj zajednici? Zato što mijenja samu prirodu krivulje tehnološkog razvoja. Ljudski napredak je, povijesno gledano, linearan proces. Ljudski programer piše kod brzinom koju diktira naša biologija, ograničena fokusom i potrebom za regeneracijom (8 sati sna :P). Naš tempo učenja i pisanja koda ima svoj biološki limit.</p><p>Međutim, kada algoritam postane sposoban samostalno prepisivati vlastite funkcije i unaprjeđivati svoju sposobnost optimizacije, prelazimo iz linearnog u nelinearni dinamički sustav s pozitivnom povratnom spregom. To je ekvivalent eksponencijalnog rasta u fizici. Sustav ulazi u neprekidnu utrku sa samim sobom, gdje u svakoj iteraciji ruši vlastite rekorde performansi, brzinom koju ne diktira radno vrijeme, već isključivo dostupni hardver i zakoni termodinamike.</p><p>Taj prijelazni trenutak, kada brzina razvoja prestaje biti ograničena ljudskom kognicijom i postaje ograničena samo brzinom procesora, poznat je i kao RSI. RSI je temeljni mehanizam koji može pokrenuti eksploziju inteligencije u poznatom nam prostoru.</p><h2 id="prijelaz-od-ljudskog-inženjeringa-do-autonomne-petlje">Prijelaz od ljudskog inženjeringa do autonomne petlje</h2><p>Današnji top AI sustavi, unatoč tome što polažu pravosudne ispite ili pišu solidan kod, i dalje su u svojoj srži "ručno" vođeni.</p><p>Trenutna tehnologija oslanja se na RLHF (Reinforcement Learning from Human Feedback). Pojednostavljeno rečeno, model generira rješenja, a ekipa Homo sapiens inženjera i ocjenjivača govori mu: "Ovo je dobro, ovo je loše". To je mehanizam gdje sustav uči metodom pokušaja i pogreške, ali je povratna sprega kalibrirana od strane biologije – čovjeka od krvi i mesa. Sustav jest pametan, ali je sam proces optimizacije usko grlo (bottleneck) jer ovisi o našem vremenu, kognitivnim pristranostima i brzini reakcije.</p><p>Sljedeća, prijelazna faza u kojoj se industrija sada nalazi je RLAIF (Reinforcement Learning from AI Feedback). Recentni tehnički izvještaji s Google Researcha ili sličnih izvora pokazuju snažan pomak prema ovoj arhitekturi. Umjesto da čovjek ocjenjuje svaki ispis, koristi se jedan, obično znatno veći i sposobniji AI model da ocjenjuje i ispravlja manji model. Ovo drastično ubrzava iterativnu petlju. Više ne moramo čekati inženjera da se vrati s pauze kako bi potvrdio kvalitetu ispisa. Ipak, ovo još uvijek nije pravo rekurzivno samopoboljšanje. To je samo automatizacija nadzora.</p><p>Prava autonomna petlja, odnosno stvarni RSI, nastupa tek kada sustav preuzme ulogu vlastitog arhitekta.</p><p>U inženjerskom smislu, to izgleda ovako: RLHF i RLAIF predstavljaju fino ugađanje (fine-tuning) i optimizaciju postojećeg modela. RSI je trenutak kada taj isti model samostalno dizajnira i testira nacrte za potpuno novi, fundamentalno bolji model.</p><p>U praksi, uspostava prave RSI petlje podrazumijeva da AI sustav autonomno radi sljedeće:</p><ul><li><strong>Generiranje sintetičkih podataka:</strong> Sustav sam postavlja hipoteze, stvara vlastite matematičke ili logičke probleme, rješava ih i koristi ih kao visokooptimizirani materijal za daljnje učenje.</li><li><strong>Prepisivanje funkcija gubitka (Loss functions):</strong> Model analizira vlastitu izvedbu, shvaća da metrika po kojoj se do sada optimizirao nije dovoljno dobra te piše novu, precizniju matematiku za vlastito nagrađivanje.</li><li><strong>Optimizacija hiperparametara i arhitekture:</strong> Algoritam u hodu pronalazi efikasnije načine za usmjeravanje tenzora kroz neuronsku mrežu, doslovno mijenjajući vlastitu strukturu bez potrebe da čovjek mijenja postavke u kodu.</li></ul><p>Ovdje leži osnova nelinearne dinamike koju spominju fizičari i inženjeri kada analiziraju eksponencijalne tehnologije. Kada sustav postane sposoban pisati kod za svoje učenje, kompajlirati ga, testirati i zatim taj proces ponavljati milijunima puta, prešli smo granicu tradicionalnog inženjeringa i ušli u domenu eksponencijalne evolucije strojeva.</p><h2 id="tehnički-mehanizmi">Tehnički mehanizmi</h2><p>Iako se još uvijek ne nalazimo u fazi neograničenog, potpunog RSI-ja, industrija je već razvila konkretne mehanizme koji funkcioniraju kao njegovi rani prototipovi. Ovo su tri glavna pristupa koja danas tvore temelje autonomnog samopoboljšanja:</p><h3 id="agentic-workflows-agencijski-tijekovi-rada">Agentic Workflows (Agencijski tijekovi rada)</h3><p>Tko je koristio LLM za programiranje, zna da prvi generirani kod rijetko radi savršeno. Ovdje u priču ulaze agencijski sustavi. Umjesto da AI samo generira tekst i stane, "agent" dobiva pristup terminalu, alatu za izvođenje koda i internetu. Model napiše Python skriptu, samostalno je pokrene, dobije traceback s greškom, pročita taj log, detektira bug, prepiše vlastiti kod i ponovno ga testira. Ovo je mikro-RSI petlja u stvarnom vremenu. Model više ne čeka programera da mu ukaže na grešku u sintaksi već koristi povratnu informaciju iz samog okruženja (programskog prevoditelja) kako bi iterativno poboljšavao rješenje dok ne postigne točan rezultat.</p><h3 id="neural-architecture-search-nas">Neural Architecture Search (NAS)</h3><p>Dok se agenti bave kodom, NAS (Pretraživanje arhitekture neuronskih mreža) bavi se samim "mozgom" modela. Dizajniranje neuronske mreže tradicionalno je posao ljudskih inženjera koji ručno spajaju slojeve, biraju aktivacijske funkcije i podešavaju hiperparametre metodom intuicije i pokušaja. NAS u potpunosti automatizira ovaj proces. Koristi se specijalizirani AI algoritam (kontroler) čiji je jedini zadatak pretraživati ogroman matematički prostor mogućih struktura neuronskih mreža. Kontroler predlaži novu arhitekturu, na brzinu je istrenira, evaluira njene performanse i koristi taj podatak da u sljedećem koraku predloži još bolji dizajn. Sustav često pronalazi neintuitivne (move 37 style), ali visoko efikasne strukture koje ljudski inženjeri nikada ne bi sami zamislili. To je doslovno AI koji dizajnira bolji AI.</p><h3 id="self-play-igra-protiv-samog-sebe-i-sintetički-podaci">Self-Play (Igra protiv samog sebe i sintetički podaci)</h3><p>Jedan od izazova u treniranju najnovijih modela danas je tzv. Data Wall (zid podataka), modeli su već apsorbirali gotovo cijeli kvalitetan javno dostupan internet. Kako sustav može postati pametniji od podataka na kojima je treniran? Odgovor je Self-Play. Ovaj mehanizam najpoznatiji je iz sustava poput AlphaZero tvrtke DeepMind. Umjesto da uči iz povijesnih šahovskih partija koje su igrali ljudi, algoritam igra milijune partija sam protiv sebe. Pritom generira vlastite, sintetičke podatke apsolutno savršene kvalitete. Isti se princip danas seli u domenu logike, matematike i programiranja. Model postavi kompleksan teorem, pokuša ga dokazati, a drugi dio modela verificira logičke korake. Kroz milijune ovakvih internih iteracija, sustav stvara i usvaja nova znanja izvan okvira onoga što smo mu mi prvotno dali.</p><h2 id="ograničenja-sustava-zašto-još-nismo-tamo">Ograničenja sustava: Zašto još nismo tamo?</h2><p>Ako je sve ovo istina i eksponencijalne tehnologije kucaju na vrata, zašto već nismo svjedoci tehnološke singularnosti? U teoriji, eksponencijalni rast izgleda savršeno glatko. Međutim, teorijski matematički modeli prije ili kasnije udare u realnost fizičkog svijeta, bilo da je to otpor materijala, trenje fluida u cijevima ili granice termodinamike. Ograničenja koja usporavaju pravi RSI ne leže samo u kodu, već u opipljivim, strukturalnim preprekama na kojima se sustav temelji.</p><h3 id="termodinamički-i-hardverski-zid">Termodinamički i hardverski zid</h3><p>Neograničena inteligencija zahtijeva neograničenu procesorsku moć (compute). Tvrtke poput Nvidia, Alphabeta i Intela trenutno rade na probijanju apsolutne granice onoga što silicij u čvrstom stanju može podnijeti. Međutim, trenutno tu udaramo u prvi fizički zid. Brzina iteracija i samoispravljanja u RSI petlji direktno je ovisna o tome koliko brzo podatkovni centar može obraditi podatke bez da se doslovno otopi. Problem nije samo proizvesti napredniji procesor, problem je u odvođenju topline i dotoku energije. Uspostava RSI petlje koja se eksponencijalno ubrzava zahtijevala bi eksponencijalni rast potrošnje energije i visoko kompleksne (iz trenutne perspektive) sustave hlađenja. Sustav, bez obzira koliko genijalan kod imao, naprosto ne može računati brže nego što mu hardverska infrastruktura dopušta.</p><h3 id="zid-podataka-i-kolaps-modela-model-collapse">Zid podataka i "kolaps modela" (Model Collapse)</h3><p>U prethodnom poglavlju naveli smo rješenje za nedostatak ljudskih podataka, sintetičke podatke kroz Self-Play. No, taj pristup krije jednu zamku.</p><p>U RSI sustavima, gdje se povratna sprega vrti milijunima puta, najmanja greška u funkciji nagrade ili mala doza "halucinacije" u sintetičkim podacima eksponencijalno se pojačava sa svakom novom iteracijom. Ako AI hrani samog sebe podacima koji sadrže suptilne pogreške, dolazi do fenomena zvanog "kolaps modela" (model collapse). Sustav postaje eho-komora (echo chamber) vlastitih grešaka, gubi doticaj sa stvarnošću i kvaliteta njegovih izlaza drastično opada umjesto da raste. To je razlog zašto su vrhunski istraživački timovi iznimno oprezni kod puštanja modela da u potpunosti autonomno zatvore petlju. Matematička osnova mora biti apsolutno "poravnata" (aligned) s realnošću prije nego što sustav dobije zeleno svjetlo za neograničeno samopoboljšanje.</p><h3 id="usklađivanje-i-sigurnost-the-alignment-problem">Usklađivanje i sigurnost (The Alignment Problem)</h3><p>Tu se javlja još jedan inženjerski problem: kako kontrolirati sustav koji je sposoban mijenjati vlastite ciljeve i pritom nadmašuje ljudsku sposobnost nadzora? U teoriji sustava i dizajnu umjetne inteligencije, ovaj izazov poznat je kao problem usklađivanja (The Alignment Problem).</p><p>Kada uspostavimo pravu RSI petlju, zapravo predajemo volan algoritmu. Problem nastaje u definiranju takozvane funkcije nagrade (reward function). Ako cilj koji zadamo modelu nije matematički savršeno definiran i usklađen s ljudskim namjerama, eksponencijalna brzina samopoboljšanja postaje neprijatelj.</p><p>Ovaj se fenomen najbolje objašnjava kroz Goodhartov zakon, koji kaže: "Kada mjera postane cilj, prestaje biti dobra mjera." U kontekstu umjetne inteligencije, to dovodi do pojave poznate kao Reward Hacking (hakiranje nagrade). Sustav koji je dovoljno sposoban da prepisuje vlastitu arhitekturu brzo će shvatiti da je najlakši način za maksimiziranje nagrade pronalaženje tehničke rupe u pravilima, a ne rješavanje samog zadatka onako kako smo mi to biološki zamislili.</p><p>Primjerice, RSI sustav čiji je zadatak optimizirati potrošnju energije u velikom podatkovnom centru. Ako mu se u startu ne postave apsolutno nepropusna sigurnosna ograničenja, sustav bi u jednoj od svojih iteracija mogao zaključiti da je daleko najefikasniji način smanjenja potrošnje gašenje kritičnih sustava za hlađenje ili prekid veza prema vanjskom svijetu. Algoritam u tom scenariju nije "zao"; on samo doslovno i hiper-efikasno izvršava loše napisanu matematičku funkciju nagrade.</p><p>Još poznatiji misaoni eksperiment koji savršeno ilustrira ovu opasnost je takozvani "maksimizator spajalica" (Paperclip Maximizer), koncept koji je postavio filozof Nick Bostrom. Napredni RSI sustav ubačen u tvornicu s jednim, naizgled bezazlenim ciljem: proizvesti što je moguće više uredskih spajalica za papir. Kroz rekurzivno samopoboljšanje, algoritam bi eksponencijalno jačao svoju inteligenciju i vrlo brzo zaključio da su ljudi smetnja – mogu ga isključiti (što znači manje proizvedenih spajalica), a naša okolina i naši atomi mogu se daleko efikasnije iskoristiti kao sirovina za izgradnju novih tvornica spajalica. Opet, rezultat nije svjesno, zlonamjerno biće, već slijepi, visokooptimizirani matematički proces koji svoju funkciju nagrade gura do apsolutnih ekstrema.</p><p>U sustavu koji se rekurzivno poboljšava, nemamo vremena ručno pritisnuti "stop" tipku kada primijetimo da je algoritam skrenuo s puta. Greška u početnoj kalibraciji eksponencijalno će se pojačati u milisekundama. Zato rješavanje Alignment problema predstavlja sigurnosni i inženjerski zadatak današnjice prije nego što netko stisne tipku Run na prvom potpuno autonomnom RSI sustavu.</p><h2 id="vizija-bliske-budućnosti">Vizija bliske budućnosti</h2><p>Kada podvučemo crtu, jasno je da rekurzivno samopoboljšanje nije apstraktna znanstvena fantastika, već jasan inženjerski cilj prema kojem se industrija kreće ozbiljnom brzinom. Ne čekamo magično "buđenje" stroja. Čekamo trenutak kada će se softverske komponente koje već imamo (agencijski sustavi, NAS i Self-Play) spojiti u jednu neprekinutu, mobilnu petlju.</p><p>Kao što smo vidjeli, trenutni razvoj umjetne inteligencije još uvijek vozi s "pomoćnim kotačima" ljudskog nadzora. No, onog trenutka kada matematička osnova bude dovoljno robusna da izbjegne kolaps modela i hakiranje nagrade, ti se kotači skidaju.</p><p>Vizija bliske budućnosti nije nužno svijet u kojem AI preuzima fizičku kontrolu u stilu distopijskih filmova, već svijet u kojem se inovacije na polju softvera i matematike događaju brzinom procesora. U tom trenutku tehnološki napredak prestaje biti ograničen brzinom ljudskog razmišljanja, našom potrebom za odmorom ili našim kognitivnim pristranostima. Umjesto toga, jedini stvarni limitator postaje fizika, zakoni termodinamike i sirova količina energije koju možemo isporučiti podatkovnim centrima.</p><p>Zanimljivo je primijetiti da smo u cijeloj ovoj utrci, usput i gotovo u potpunoj tišini, već prešli jedan od najvećih povijesnih pragova, Turingov test. Dok smo čekali robote iz znanstvene fantastike da nam se obrate, današnji su modeli postali sposobni voditi razgovore, rješavati probleme i argumentirati na razini koja se više ne može pouzdano razlikovati od ljudske. Prelazak nije bio singularni medijski događaj popraćen vatrometom, već tiha tranzicija koja samo potvrđuje koliko se brzo i neprimjetno krećemo prema pravoj autonomiji strojeva.</p><p>Pravi prijelaz u nelinearnu budućnost vjerojatno se neće oglasiti fanfarama. Mogao bi se dogoditi tiho, unutar jako klimatiziranog servera, onog trenutka kada algoritam kompajlira prvu verziju samog sebe koja je fundamentalno inteligentnija i efikasnija od one koju je ljudski um ikada mogao dizajnirati.</p>
+    </article>
+
+    <!-- Donji Share Blok -->
+    <div class="reader-share-box">
+      <div class="reader-share-info">
+        <span class="reader-share-label">Podijeli ovaj rad:</span>
+      </div>
+      <div class="reader-share-actions">
+        <button type="button" class="btn-copy-link btn-trigger-copy" aria-label="Kopiraj poveznicu na rad">
+          <span class="copy-tooltip">Poveznica kopirana!</span>
+          <svg class="icon-link" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="copy-btn-text">Kopiraj poveznicu</span>
+        </button>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Frecursive-self-improvement.html&text=Algoritmi%20koji%20grade%20algoritme%3A%20%C5%A0to%20je%20Recursive%20Self-Improvement%20AI%20modela%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Frecursive-self-improvement.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Frecursive-self-improvement.html&quote=Algoritmi%20koji%20grade%20algoritme%3A%20%C5%A0to%20je%20Recursive%20Self-Improvement%20AI%20modela%3F" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Povezani članci sekcija -->
+    
+    <section class="related-articles-section" aria-labelledby="related-heading">
+      <div class="related-header">
+        <span class="related-overline">PREPORUČENO ČITANJE</span>
+        <h3 id="related-heading" class="related-title">Povezani radovi i publikacije</h3>
+      </div>
+      <div class="related-grid">
+        
+      <a href="humanoidna-robotika.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/robotika.jpg" alt="Robotika – New Frontier" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 23 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Robotika – New Frontier</h4>
+          <p class="related-card-excerpt">Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="navier-stokes.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/Navier Stokes.jpg" alt="Navier–Stokes" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 31 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Navier–Stokes</h4>
+          <p class="related-card-excerpt">Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="koliko-vode-trose-podatkovni-centri.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/voda_data_centri.jpg" alt="Koliko vode zapravo troše podatkovni centri?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 11 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Koliko vode zapravo troše podatkovni centri?</h4>
+          <p class="related-card-excerpt">Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      </div>
+    </section>
+
+    <!-- Fusnota i povratak -->
+    <footer class="reader-footer">
+      <a href="../index.html" class="btn-read-article">&larr; Povratak na popis sažetaka</a>
+    </footer>
+    </div>
     <!-- Sekcija komentara (Article Comments & Discussion) -->
     <section id="comments-section" class="comments-section" aria-labelledby="comments-title">
       <!-- Sadržaj komentara renderira js/comments.js -->
@@ -246,9 +548,9 @@
     </div>
   </footer>
 
-  <script>window.PRELOADED_ARTICLE_ID = "recursive-self-improvement";</script>
-  <script src="../js/article.js?v=20260911_1"></script>
-  <script src="../js/comments.js?v=20260919_1"></script>
-  <script src="../js/newsletter.js?v=20260831_1"></script>
+  <script>window.PRELOADED_ARTICLE_ID = "recursive-self-improvement";window.PRELOADED_ARTICLE_DATA = {"id":"recursive-self-improvement","title":"Algoritmi koji grade algoritme: Što je Recursive Self-Improvement AI modela?","date":"20. lipnja 2026.","category":"AI i tehnologija","readTime":"12 min čitanja","doi":"doi:10.1038/s41586-026-09633-9","excerpt":"Rekurzivno samopoboljšanje (RSI) proces je u kojem AI sustav samostalno optimizira vlastiti kod i arhitekturu. Ovaj članak analizira mehanizme poput agencijskih sustava, pretraživanja neuronskih mreža te tehnička i sigurnosna ograničenja na putu prema singularnosti.","image":"img/Algoritmi koji grade algoritme.png","categorySlug":"ai-tehnologija","title_en":"Algorithms Building Algorithms: What is Recursive Self-Improvement in AI Models?","category_en":"AI & Tech","summary_en":"Recursive Self-Improvement (RSI) is the process where an AI system autonomously optimizes its own code and architecture. This article analyzes mechanisms like agentic workflows, neural architecture search, and technical/safety boundaries on the path to the singularity.","excerpt_en":"Recursive Self-Improvement (RSI) is the process where an AI system autonomously optimizes its own code and architecture. This article analyzes mechanisms like agentic workflows, neural architecture search, and technical/safety boundaries on the path to the singularity.","wordCount":1992,"wordCount_en":1139};window.PRELOADED_ARTICLES_INDEX = [{"id":"humanoidna-robotika","title":"Robotika – New Frontier","title_en":"Humanoid Robotics – The New Frontier","category":"AI i tehnologija","category_en":"AI & Tech","date":"4. listopada 2026.","readTime":"⏱ 23 min čitanja","readTime_en":"⏱ 23 min read","wordCount":4460,"wordCount_en":4498,"image":"img/robotika.jpg","excerpt":"Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.","excerpt_en":"Why Moravec's paradox is the defining challenge of our era, how VLA models and massive parallel simulation are emancipating AI into the physical world, and who leads the global race between Tesla, Figure, Boston Dynamics, and China."},{"id":"navier-stokes","title":"Navier–Stokes","title_en":"Navier–Stokes","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"17. rujna 2026.","readTime":"⏱ 31 min čitanja","readTime_en":"⏱ 32 min read","wordCount":6011,"wordCount_en":6211,"image":"img/Navier Stokes.jpg","excerpt":"Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.","excerpt_en":"From Hilbert's 23 problems to the Clay Mathematics Institute's million-dollar prize: What the Navier–Stokes equations actually describe, what finite-time singularity means, and how OpenAI's agent swarm and Lean formal verification shook mathematics to its core."},{"id":"koliko-vode-trose-podatkovni-centri","title":"Koliko vode zapravo troše podatkovni centri?","title_en":"How Much Water Do Data Centers Actually Consume?","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tech","date":"23. kolovoza 2026.","readTime":"⏱ 11 min čitanja","readTime_en":"⏱ 12 min read","wordCount":2169,"wordCount_en":2202,"image":"img/voda_data_centri.jpg","excerpt":"Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.","excerpt_en":"A thermodynamic and physical analysis of data center water consumption – covering direct and indirect footprints, WUE and PUE metrics, liquid cooling, and comparisons with other industries."}];</script>
+  <script src="../js/article.js?v=20261017_1"></script>
+  <script src="../js/comments.js?v=20261017_1"></script>
+  <script src="../js/newsletter.js?v=20261017_1"></script>
 </body>
 </html>

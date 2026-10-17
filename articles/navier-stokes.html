@@ -85,13 +85,13 @@
   <link rel="manifest" href="../manifest.json">
   <link rel="apple-touch-icon" href="../img/logo.png">
 
-  <link rel="stylesheet" href="../style.css?v=20260911_1">
+  <link rel="stylesheet" href="../style.css?v=20261017_1">
   <!-- KaTeX for math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script src="../js/theme.js?v=20260911_1"></script>
-  <script src="../js/lang.js?v=20260911_1"></script>
+  <script src="../js/theme.js?v=20261017_1"></script>
+  <script src="../js/lang.js?v=20261017_1"></script>
   <script src="../js/pwa.js"></script>
 </head>
 <body>
@@ -129,12 +129,936 @@
 
   <!-- GLAVNI SPREMNIK - CENTRIRANI STUPAC ZA ČITANJE (max 800px) -->
   <main class="main-container">
-    <div class="article-reader-container" id="article-reader-container">
-      <div class="loading-state">
-        <p data-i18n="article.loading">Učitavanje sadržaja rada...</p>
+    <div class="article-reader-container" id="article-reader-container" data-ssg-rendered="true" data-ssg-lang="hr">
+    <!-- Link za povratak -->
+    <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
+
+    <!-- Zaglavlje rada -->
+    <header class="reader-header">
+      <div class="reader-meta">
+        <span class="card-category">AI i tehnologija</span>
+      </div>
+
+      <h1 class="reader-title">Navier–Stokes</h1>
+
+      <div class="reader-submeta">
+        <div class="reader-submeta-info">
+          <time class="card-date" datetime="17. rujna 2026.">17. rujna 2026.</time>
+          <span class="card-read-time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            ⏱ 31 min čitanja
+          </span>
+          
+        </div>
+
+        <div class="share-buttons">
+          <button type="button" class="share-btn share-copy btn-trigger-copy" aria-label="Kopiraj poveznicu na rad" title="Kopiraj poveznicu na rad">
+            <span class="copy-tooltip">Poveznica kopirana!</span>
+            <svg class="icon-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fnavier-stokes.html&text=Navier%E2%80%93Stokes" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fnavier-stokes.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fnavier-stokes.html&quote=Navier%E2%80%93Stokes" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+    <div class="article-cover-wrapper">
+      <img src="../img/Navier Stokes.jpg" alt="Navier–Stokes" class="article-cover-hero" fetchpriority="high" decoding="async" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+    </div>
+  
+    </header>
+
+    <!-- Audio Player Bar (Preslušavanje članka) -->
+    <div class="audio-player-bar" id="audio-player-bar" aria-label="Slušaj članak">
+      <div class="audio-controls-left">
+        <button id="tts-play-btn" class="audio-btn audio-btn-play" aria-label="Pokreni čitanje" title="Pokreni čitanje">
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+        </button>
+        <button id="tts-stop-btn" class="audio-btn audio-btn-stop" aria-label="Zaustavi čitanje" title="Zaustavi čitanje" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="audio-status-container">
+        <span class="audio-status-pulse" id="tts-status-pulse"></span>
+        <span id="tts-status-text" class="audio-status-text">Slušaj članak</span>
+      </div>
+
+      <div class="audio-right-controls">
+        <div class="audio-voice-controls" id="audio-voice-controls">
+          <label for="tts-voice-select" class="voice-label" title="Odabir glasa za čitanje">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span class="voice-label-text">Glas:</span>
+          </label>
+          <select id="tts-voice-select" class="audio-voice-select" aria-label="Odabir glasa za čitanje">
+            <option value="">Najbolji prirodni glas</option>
+          </select>
+        </div>
+
+        <div class="audio-speed-controls">
+          <span class="speed-label">Brzina:</span>
+          <div class="speed-options">
+            <button class="speed-btn active" data-speed="1.0">1x</button>
+            <button class="speed-btn" data-speed="1.25">1.25x</button>
+            <button class="speed-btn" data-speed="1.5">1.5x</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Table of Contents (Sadržaj rada) Container -->
+    <div id="article-toc-container" class="article-toc-wrapper">
+    <nav class="article-toc-card" aria-label="Sadržaj članka">
+      <div class="article-toc-header">
+        <div class="article-toc-title-group">
+          <svg class="article-toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h2 class="article-toc-title">Sadržaj rada</h2>
+          <span class="article-toc-badge">17</span>
+        </div>
+        <button type="button" class="article-toc-toggle-btn" id="toc-toggle-btn" aria-expanded="true" aria-controls="article-toc-body" aria-label="Sakrij">
+          <span class="toc-toggle-text">Sakrij</span>
+          <svg class="toc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="article-toc-body" id="article-toc-body">
+        <ol class="article-toc-list">
+          
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#1-što-su-to-milenijski-problemi-i-otkud-tu-navierstokes" class="article-toc-link" data-toc-target="1-što-su-to-milenijski-problemi-i-otkud-tu-navierstokes">
+          <span class="toc-link-text">1. Što su to Milenijski problemi i otkud tu Navier–Stokes</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#2-što-zapravo-opisuje-navierstokes" class="article-toc-link" data-toc-target="2-što-zapravo-opisuje-navierstokes">
+          <span class="toc-link-text">2. Što zapravo opisuje Navier–Stokes</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#temeljni-stupovi-dinamike-fluida" class="article-toc-link" data-toc-target="temeljni-stupovi-dinamike-fluida">
+          <span class="toc-link-text">Temeljni stupovi dinamike fluida</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#zašto-je-navierstokes-bitan" class="article-toc-link" data-toc-target="zašto-je-navierstokes-bitan">
+          <span class="toc-link-text">Zašto je Navier–Stokes bitan?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#reynoldsov-broj" class="article-toc-link" data-toc-target="reynoldsov-broj">
+          <span class="toc-link-text">Reynoldsov broj</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#3-što-je-to-singularnost-finite-time-blow-up-i-zašto-matematika-puca" class="article-toc-link" data-toc-target="3-što-je-to-singularnost-finite-time-blow-up-i-zašto-matematika-puca">
+          <span class="toc-link-text">3. Što je to singularnost (finite-time blow-up) i zašto matematika puca?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#što-točno-znači-glatko-rješenje" class="article-toc-link" data-toc-target="što-točno-znači-glatko-rješenje">
+          <span class="toc-link-text">Što točno znači „glatko rješenje“?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#anatomija-sloma-što-je-to-finite-time-blow-up" class="article-toc-link" data-toc-target="anatomija-sloma-što-je-to-finite-time-blow-up">
+          <span class="toc-link-text">Anatomija sloma: Što je to finite-time blow-up?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#srž-problema-rastezanje-vrtloga-vortex-stretching" class="article-toc-link" data-toc-target="srž-problema-rastezanje-vrtloga-vortex-stretching">
+          <span class="toc-link-text">Srž problema — Rastezanje vrtloga (Vortex Stretching)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#ako-matematika-puca-zašto-se-voda-u-čaši-ne-raspada" class="article-toc-link" data-toc-target="ako-matematika-puca-zašto-se-voda-u-čaši-ne-raspada">
+          <span class="toc-link-text">Ako matematika puca, zašto se voda u čaši ne raspada?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#4-dosadašnji-povijesni-pomaci" class="article-toc-link" data-toc-target="4-dosadašnji-povijesni-pomaci">
+          <span class="toc-link-text">4. Dosadašnji povijesni pomaci</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#vremenska-crta-lova-na-singularnost-1822-2026" class="article-toc-link" data-toc-target="vremenska-crta-lova-na-singularnost-1822-2026">
+          <span class="toc-link-text">Vremenska crta lova na singularnost (1822. – 2026.)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#5-ai-proboj-openai-tvrdnja-10000-agenata-i-uloga-leana" class="article-toc-link" data-toc-target="5-ai-proboj-openai-tvrdnja-10000-agenata-i-uloga-leana">
+          <span class="toc-link-text">5. AI proboj — OpenAI tvrdnja, 10.000 agenata i uloga Leana</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#usporedna-matrica-feffermanovih-tvrdnji-clay-millennium-prize" class="article-toc-link" data-toc-target="usporedna-matrica-feffermanovih-tvrdnji-clay-millennium-prize">
+          <span class="toc-link-text">Usporedna matrica Feffermanovih tvrdnji (Clay Millennium Prize)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#6-ljudski-rad-etika-i-optužbe-za-curenje-ideja" class="article-toc-link" data-toc-target="6-ljudski-rad-etika-i-optužbe-za-curenje-ideja">
+          <span class="toc-link-text">6. Ljudski rad, etika i optužbe za curenje ideja</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#7-nova-era-znanosti-dvogodišnji-sat-instituta-clay" class="article-toc-link" data-toc-target="7-nova-era-znanosti-dvogodišnji-sat-instituta-clay">
+          <span class="toc-link-text">7. Nova era znanosti — Dvogodišnji sat Instituta Clay</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#što-ovo-znači-za-inženjere-i-cfd-simulacije" class="article-toc-link" data-toc-target="što-ovo-znači-za-inženjere-i-cfd-simulacije">
+          <span class="toc-link-text">Što ovo znači za inženjere i CFD simulacije?</span>
+        </a>
+      </li>
+        </ol>
+      </div>
+    </nav></div>
+
+    <!-- Puni HTML Sadržaj Članka -->
+    <article class="reader-body" id="reader-body">
+      <h2 id="1-što-su-to-milenijski-problemi-i-otkud-tu-navierstokes">1. Što su to Milenijski problemi i otkud tu Navier–Stokes</h2>
+<p>Kada je David Hilbert na Međunarodnom kongresu matematičara u Parizu 1900. godine predstavio svoj glasoviti popis od 23 neriješena problema, zacrtao je istraživački put matematike za cijelo 20. stoljeće. Točno stotinu godina kasnije, u svibnju 2000. godine — ponovno u Parizu — privatni matematički institut <em>Clay Mathematics Institute</em> (CMI) odlučio je ponoviti povijest. Proglasili su sedam „Milenijskih problema“ (<em>Millennium Prize Problems</em>), definiravši ih kao najizazovnije i najvažnije matematičke zagonetke našeg doba.</p>
+<p>Kako bi privukli pažnju šire javnosti i naglasili kolosalnu težinu izazova, osnivači su uz svaki problem vezali nagradu od točno milijun dolara. U matematičkim krugovima novac je bio sporedan; rješavanje bilo kojeg od ovih problema značilo je trenutni ulazak u povijest uz bok Newtonu, Euleru i Gaussu.</p>
+<p>Tih sedam izazova obuhvatilo je vrh teorijske misli:</p>
+<ol>
+  <li><strong>Poincaréova hipoteza:</strong> Pitanje iz topologije o geometrijskom karakteru trodimenzionalnih mnogostrukosti — pita se je li svaki zatvoreni 3D prostor bez rupa zapravo samo deformirana sfera. To je do danas jedini službeno priznati i riješeni Milenijski problem. Ruski matematičar Grigori Perelman dokazao ga je u seriji radova 2002. i 2003. godine koristeći Riccijev tok, a potom je 2006. odbio Fieldsovu medalju te 2010. i nagradu od milijun dolara, povukavši se iz javnog života.</li>
+  <li><strong>P naspram NP ($P \text{ vs } NP$):</strong> Središnje pitanje teorijskog računarstva. Pita se može li se svaki problem čije se rješenje može brzo računalno <em>provjeriti</em> također jednako brzo i <em>pronaći</em>.</li>
+  <li><strong>Riemannova hipoteza:</strong> Najslavniji neriješeni problem čiste matematike. Tvrdi da sve netrivijalne nultočke Riemannove zeta-funkcije $\zeta(s)$ leže na kritičnom pravcu $\text{Re}(s) = \frac{1}{2}$, što bi otključalo konačnu raspodjelu prim-brojeva.</li>
+  <li><strong>Yang–Mills teorija i maseni procjep:</strong> Problem na granici diferencijalne geometrije i kvantne fizike, koji traži strogu matematičku formulaciju kvantne teorije polja i objašnjenje zašto nositelji jakih nuklearnih sila posjeduju masu.</li>
+  <li><strong>Hodgeova pretpostavka:</strong> Duboko pitanje na razmeđi algebarske geometrije i diferencijalne topologije, koje istražuje u kojoj se mjeri topološki oblici mogu rekonstruirati pomoću algebarskih jednadžbi.</li>
+  <li><strong>Pretpostavka Bircha i Swinnerton-Dyera:</strong> Izazov iz teorije brojeva koji povezuje broj racionalnih točaka na eliptičkim krivuljama s analitičkim ponašanjem odgovarajuće L-funkcije.</li>
+  <li><strong>Navier–Stokesova egzistencija i glatkoća:</strong> Pitanje postojanja i pravilnosti rješenja temeljnih parcijalnih diferencijalnih jednadžbi dinamike fluida u trodimenzionalnom prostoru.</li>
+</ol>
+<p>Neki će primijetiti kako Navier–Stokesov problem odskače od preostalih šest. Dok se Riemann bavi suptilnom geometrijom apstraktnih brojeva, a Hodge višedimenzionalnim kompleksnim mnogostrukostima, Navier–Stokesove jednadžbe opisuju svijet koji možemo dodirnuti i kretati se kroz njega. One modeliraju kovitlanje zraka preko avionskih krila, turbulencije u mlaznim motorima, strujanje krvi kroz srčane zaliske, riječne brzace i ciklonalne vrtloge.</p>
+<p>Claude-Louis Navier postavio je temelje ovih jednadžbi 1822. godine dodavši viskoznost u Eulerove jednadžbe idealnog fluida, a George Gabriel Stokes ih je 1845. fizikalno i matematički usavršio. Inženjeri i meteorolozi ih već desetljećima svakodnevno integriraju kroz numeričke simulacije mehanike fluida (CFD). Te simulacije rade izvanredno dobro u praksi. Avioni lete, mostovi podnose orkanske udare, a vremenske prognoze postaju sve preciznije.</p>
+<p>No, tu leži duboki znanstveni paradoks: <strong>koristimo jednadžbe za koje matematika punih 180 godina nije uspjela dokazati da su fundamentalno stabilne.</strong></p>
+<p>Numerička simulacija diskretizira prostor u konačne ćelije ili mreže. U stvarnosti, mehanika kontinuuma pretpostavlja da je fluid neprekinut medij. Pitanje Instituta Clay glasilo je: <em>Ako krenemo s potpuno glatkim, fizikalno razumnim početnim stanjem konačne energije u trodimenzionalnom prostoru, jamče li Navier–Stokesove jednadžbe da će rješenje ostati glatko i definirano za sva vremena ($t \to \infty$), ili u nekom konačnom trenutku brzina ili vrtložnost fluida mogu divergirati u beskonačnost?</em></p>
+<p>Pojava takvog beskonačnog skoka naziva se singularnost ili matematički slom (<em>finite-time blow-up</em>). Ako singularnost postoji, to znači da standardni model kontinuuma u nekom trenutku jednostavno prestaje davati fizikalno smislene odgovore.</p>
+<p>Nedavni događaji nedvojbeno su zatresli matematičku zajednicu. OpenAI je iznio tvrdnju kako je riješio Navier–Stokesa koristeći interni model razvijen za napredno matematičko rezoniranje. Vijest da je sustav paralelnih AI agenata uspio konstruirati rigorozan protuprimjer glatkoći, dokazujući nastanak singularnosti i verificirajući svaki logički korak u formalnom jeziku Lean, označava točku prijeloma. Ako tvrdnja izdrži recenziju i dvogodišnji probni rok koji nalaže Institut Clay, Navier–Stokes ući će u povijest kao <strong>prvi Milenijski problem koji je srušila umjetna inteligencija</strong>.</p>
+<p>Da sve ne bi ostalo samo na suhim formulama, pobrinuli su se neovisni akademski istraživači koji su paralelno radili na srodnim teorijskim probojima. Ova tema u međuvremenu je prerasla u žestok sukob oko intelektualnog vlasništva, etike treniranja AI modela na radovima aktivnih matematičara i temeljnog filozofskog pitanja: priznajemo li dokaz ako ga nijedan ljudski um više nije kadar u cijelosti pročitati i intuitivno obuhvatiti?</p>
+
+<hr>
+
+<h2 id="2-što-zapravo-opisuje-navierstokes">2. Što zapravo opisuje Navier–Stokes</h2>
+<p>Kako bi se bolje razumjelo zašto je ovaj problem toliko zaokupio matematičare i fizičare, potrebno je skinuti sloj apstrakcije i pogledati što ove jednadžbe zapravo predstavljaju. U svojoj biti, Navier–Stokesove jednadžbe nisu ništa drugo doli Newtonov drugi zakon gibanja ($F = ma$) prilagođen tekućinama i plinovima.</p>
+<p>Kada proučavamo kretanje krute biljarske kugle, zadatak je relativno jednostavan: kugla ima fiksnu masu, jasan centar mase i kreće se kao cjelina. No tekućina nema stalan oblik. Ona teče, rasteže se, presavija se preko same sebe, kovitla i gubi energiju kroz unutrašnje trenje. Umjesto praćenja izoliranog tijela, moramo promatrati svaku beskonačno malu točku u neprekinutom mediju (kontinuumu) i pitati se: koje sve sile djeluju na sićušni djelić fluida u svakom trenutku vremena?</p>
+<p>Za nestlačiv fluid (poput vode ili zraka pri brzinama znatno manjim od brzine zvuka), Navier–Stokesov sustav u vektorskom obliku glasi:</p>
+$\rho \left( \frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla)\mathbf{u} \right) = -\nabla p + \mu \Delta \mathbf{u} + \mathbf{f}$
+<p>uz temeljni uvjet nestlačivosti (očuvanja mase):</p>
+$\nabla \cdot \mathbf{u} = 0$
+<p>Iza ovih simbola krije se koreografija fizikalnih zakona. Ako jednadžbu podijelimo s gustoćom $\rho$ i uvedemo kinematičku viskoznost $\nu = \frac{\mu}{\rho}$, sustav poprima standardni oblik:</p>
+<div class="equation-breakdown-wrapper">
+  <div class="equation-breakdown-title">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="16" x2="12" y2="12"></line>
+      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+    </svg>
+    <span>Analiza Navier–Stokesove jednadžbe</span>
+  </div>
+  <div class="equation-breakdown-math">
+    $\textcolor{#38bdf8}{\frac{\partial \mathbf{u}}{\partial t}} + \textcolor{#f97316}{(\mathbf{u} \cdot \nabla)\mathbf{u}} = \textcolor{#a855f7}{-\frac{1}{\rho}\nabla p} + \textcolor{#10b981}{\nu \Delta \mathbf{u}} + \frac{1}{\rho}\mathbf{f}$
+  </div>
+  <div class="equation-cards-grid">
+    <div class="eq-card eq-card-blue">
+      <div class="eq-card-header">
+        <span class="eq-card-symbol">$\frac{\partial \mathbf{u}}{\partial t}$</span>
+        <span class="eq-card-tag">Vrijeme</span>
+      </div>
+      <div class="eq-card-title">Lokalno ubrzanje</div>
+      <p class="eq-card-desc">Vremenska promjena brzine u fiksnoj točki prostora. Opisuje koliko se tok ubrzava ili usporava iz sekunde u sekundu.</p>
+    </div>
+
+    <div class="eq-card eq-card-orange">
+      <div class="eq-card-header">
+        <span class="eq-card-symbol">$(\mathbf{u} \cdot \nabla)\mathbf{u}$</span>
+        <span class="eq-card-tag">Kaos &amp; Vrtlozi</span>
+      </div>
+      <div class="eq-card-title">Nelinearna konvekcija</div>
+      <p class="eq-card-desc">Srce turbulencije. Fluid nosi vlastiti zamah; množenje brzine s vlastitim gradijentom stvara i rasteže vrtloge u prostoru.</p>
+    </div>
+
+    <div class="eq-card eq-card-purple">
+      <div class="eq-card-header">
+        <span class="eq-card-symbol">$-\frac{1}{\rho}\nabla p$</span>
+        <span class="eq-card-tag">Tlačna sila</span>
+      </div>
+      <div class="eq-card-title">Gradijent tlaka</div>
+      <p class="eq-card-desc">Fluid bježi iz područja visokog u područje niskog tlaka, stvarajući aerodinamički uzgon na krilima ili potisak mlaza.</p>
+    </div>
+
+    <div class="eq-card eq-card-green">
+      <div class="eq-card-header">
+        <span class="eq-card-symbol">$\nu \Delta \mathbf{u}$</span>
+        <span class="eq-card-tag">Stabilizator</span>
+      </div>
+      <div class="eq-card-title">Viskozna difuzija</div>
+      <p class="eq-card-desc">Unutrašnje trenje fluida. Laplaceov operator izglađuje oštre skokove, guši nepravilnosti i pretvara kinetičku energiju u toplinu.</p>
+    </div>
+  </div>
+</div>
+
+<h3 id="temeljni-stupovi-dinamike-fluida">Temeljni stupovi dinamike fluida</h3>
+<ol>
+  <li><strong>Lokalno ubrzanje ($\frac{\partial \mathbf{u}}{\partial t}$):</strong> Predstavlja izravnu vremensku promjenu brzine u fiksnoj točki prostora. Ako stojite na riječnom mostu i mjerite brzinu vode točno ispod sebe, ovaj član opisuje koliko se ta brzina ubrzava ili usporava iz sekunde u sekundu.</li>
+  <li><strong>Nelinearna konvekcija (($\mathbf{u} \cdot \nabla)\mathbf{u}$):</strong> Ovo je srce cijelog problema, matematički generator kaosa i turbulencije. Ovaj član opisuje advekciju — činjenicu da sam fluid, krećući se kroz prostor, sa sobom nosi i prenosi vlastitu brzinu i zamah. Riječ je o <strong>nelinearnom</strong> članu jer se brzina $\mathbf{u}$ množi s vlastitim prostornim gradijentom $\nabla \mathbf{u}$. U praksi, konvekcija uzima velike vrtloge i drobi ih u sve manje i brže vrtloge, koncentrirajući energiju u mikroskopskim zonama. Upravo je ovaj član odgovoran za to što su jednadžbe izuzetno teške za analitičko rješavanje.</li>
+  <li><strong>Gradijent tlaka ($-\frac{1}{\rho}\nabla p$):</strong> Tekućina prirodno bježi iz zona visokog tlaka prema zonama niskog tlaka. Kada stisnete tubu paste za zube ili kada zrak ubrzava preko zakrivljenog gornjeg dijela avionskog krila stvarajući uzgon, gradijent tlaka je sila koja diktira smjer tog gibanja.</li>
+  <li><strong>Viskozna difuzija ($\nu \Delta \mathbf{u}$):</strong> Ovo je faktor smirenja, unutrašnje trenje fluida. Laplaceov operator $\Delta = \nabla^2$ (zbroj drugih prostornih derivacija) izglađuje oštre skokove u brzini, koči nagla ubrzanja i pretvara kinetičku energiju kretanja u toplinu. Što je fluid viskozniji (poput meda ili motornog ulja), ovaj je član dominantniji i fluid teče mirno i predvidljivo.</li>
+  <li><strong>Uvjet nestlačivosti ($\nabla \cdot \mathbf{u} = 0$):</strong> Divergencija vektorskog polja brzine mora biti jednaka nuli. Drugim riječima: u bilo koji zamišljeni volumen u tekućini mora ući točno onoliko mase koliko iz njega izađe. Tekućina se ne može sabiti u manji prostor niti se unutar nje može stvoriti praznina.</li>
+</ol>
+
+<h3 id="zašto-je-navierstokes-bitan">Zašto je Navier–Stokes bitan?</h3>
+<p>Brojne grane moderne civilizacije ovise o ovim jednadžbama:</p>
+<ul>
+  <li><strong>Zrakoplovstvo i svemirski letovi:</strong> Konstrukcija trupa aviona, optimizacija oblika krila za stvaranje uzgona uz minimalan otpor zraka i simulacija ponašanja raketa pri prolasku kroz gornje slojeve atmosfere.</li>
+  <li><strong>Meteorologija i klimatologija:</strong> Globalni modeli cirkulacije atmosfere i oceana (poput praćenja Golfske struje, nastajanja uragana ili dugoročnih klimatskih projekcija) u osnovi su masivne numeričke simulacije Navier–Stokesovih jednadžbi na rotirajućoj sferi.</li>
+  <li><strong>Medicina i kardiovaskularni sustav:</strong> Modeliranje pulsnog protoka krvi kroz koronarne arterije, simulacija stresa na stijenke aorte kod aneurizmi te optimizacija dizajna umjetnih srčanih zalizaka.</li>
+  <li><strong>Automobilska industrija i energetika:</strong> Smanjenje aerodinamičkog otpora radi uštede goriva, optimizacija rotora vjetroelektrana te hlađenje nuklearnih reaktora tekućim metalima ili vodom pod visokim tlakom.</li>
+</ul>
+
+<h3 id="reynoldsov-broj">Reynoldsov broj</h3>
+<p>Temeljni fizikalni omjer koji određuje hoće li fluid teći mirno ili upasti u kaos naziva se <strong>Reynoldsov broj</strong> ($Re$):</p>
+$Re = \frac{u L}{\nu} = \frac{\rho u L}{\mu}$
+<p>gdje je $u$ karakteristična brzina toka, $L$ karakteristična duljina objekta, a $\nu$ kinematička viskoznost.</p>
+
+<div class="reynolds-calc-wrapper" id="reynolds-calculator">
+  <div class="reynolds-calc-header">
+    <div class="reynolds-calc-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+      </svg>
+      <span>Interaktivni kalkulator: Reynoldsov broj (Re)</span>
+    </div>
+    <div class="reynolds-calc-formula">Re = (u · L) / ν</div>
+  </div>
+
+  <div class="reynolds-presets-label">Stvarni primjeri iz prirode i tehnologije:</div>
+  <div class="reynolds-presets-row">
+    <button type="button" class="reynolds-preset-btn" data-preset="microbe">🦠 Bakterija u vodi</button>
+    <button type="button" class="reynolds-preset-btn active" data-preset="faucet">🚰 Mlaz slavine</button>
+    <button type="button" class="reynolds-preset-btn" data-preset="car">🚗 Auto (120 km/h)</button>
+    <button type="button" class="reynolds-preset-btn" data-preset="plane">✈️ Boeing 737</button>
+    <button type="button" class="reynolds-preset-btn" data-preset="lava">🌋 Tok lave</button>
+  </div>
+
+  <div class="reynolds-inputs-grid">
+    <div class="reynolds-input-group">
+      <label class="reynolds-input-label" for="re-fluid">Fluid (medij):</label>
+      <select id="re-fluid" class="reynolds-input-control">
+        <option value="1e-6" selected>Voda (20°C)</option>
+        <option value="1.5e-5">Zrak (20°C)</option>
+        <option value="2.5e-4">Motorno ulje (SAE 30)</option>
+        <option value="1.2e-3">Glicerin / Med</option>
+        <option value="0.1">Bazaltna lava</option>
+        <option value="custom">Prilagođena viskoznost...</option>
+      </select>
+    </div>
+
+    <div class="reynolds-input-group">
+      <label class="reynolds-input-label" for="re-velocity">Brzina toka u (m/s):</label>
+      <input type="number" id="re-velocity" class="reynolds-input-control" value="1.5" min="0.000001" step="any">
+    </div>
+
+    <div class="reynolds-input-group">
+      <label class="reynolds-input-label" for="re-length">Karakteristična duljina L (m):</label>
+      <input type="number" id="re-length" class="reynolds-input-control" value="0.015" min="0.000001" step="any">
+    </div>
+
+    <div class="reynolds-input-group" id="re-custom-visc-group" style="display: none;">
+      <label class="reynolds-input-label" for="re-viscosity">Kinematička viskoznost ν (m²/s):</label>
+      <input type="number" id="re-viscosity" class="reynolds-input-control" value="1e-6" min="1e-12" step="any">
+    </div>
+  </div>
+
+  <div class="reynolds-result-card">
+    <div class="reynolds-result-top">
+      <span class="reynolds-result-label">Izračunati Reynoldsov broj:</span>
+      <span id="re-result-val" class="reynolds-result-number">22.500</span>
+      <span id="re-regime-badge" class="reynolds-regime-badge status-pill regime-turbulent">Turbulentni tok</span>
+    </div>
+
+    <div class="reynolds-meter-container">
+      <div class="reynolds-meter-track">
+        <div id="re-meter-needle" class="reynolds-meter-needle" style="left: 64%;"></div>
+      </div>
+      <div class="reynolds-meter-labels">
+        <span>10⁻⁴ (Laminarno)</span>
+        <span>Re = 2.300 (Prijelaz)</span>
+        <span>Re &gt; 4.000 (Turbulencija)</span>
+        <span>10⁹</span>
+      </div>
+    </div>
+
+    <p id="re-regime-desc" class="reynolds-regime-desc"><strong>Nelinearna konvekcija dominira:</strong> Nelinearni član (<strong>u</strong> · ∇)<strong>u</strong> nadvladava viskoznost. Vrtložne niti nekontrolirano se rastežu i kaskadno drobe u kaos malih vrtloga.</p>
+  </div>
+</div>
+<p>Kada je $Re$ nizak (strujanje lave ili kretanje bakterije kroz vodu), viskoznost dominira, pegla nepravilnosti i tok je uredan, slojevit i predvidljiv (<strong>laminaran</strong>). No kada brzine narastu ili dimenzije postanu velike (brzi mlazni avioni, orkanski vjetrovi), Reynoldsov broj skače na desetke milijuna. Nelinearni član preuzima kontrolu, viskoznost više ne stiže prigušiti nestabilnosti, i fluid eruptira u <strong>turbulenciju</strong> — splet kaotičnih, isprepletenih vrtloga koji se neprestano rastežu i prenose energiju.</p>
+<p>I upravo se tu nalazi pitanje Instituta Clay: <strong>može li u tom rastezanju nelinearnost nadvladati viskoznost do te mjere da brzina u jednoj jedinoj točki postane beskonačna?</strong></p>
+
+<hr>
+
+<h2 id="3-što-je-to-singularnost-finite-time-blow-up-i-zašto-matematika-puca">3. Što je to singularnost (finite-time blow-up) i zašto matematika puca?</h2>
+<p>Kako bismo shvatili zašto se matematičari već dva stoljeća lome na ovom problemu, krenimo od točnog zahtjeva koji je Institut Clay postavio pred svijet. Pitanje se ne bavi time možemo li jednadžbe riješiti približno na superračunalu. Pitanje traži apsolutnu pravilnost kontinuiranog prostora.</p>
+
+<h3 id="što-točno-znači-glatko-rješenje">Što točno znači „glatko rješenje“?</h3>
+<p>U matematičkoj analizi, glatkoća (<em>smoothness</em>) označava funkciju koja nema skokova, lomova, oštrih šiljaka ili prekida. Preciznije, rješenje $\mathbf{u}(x, t)$ mora pripadati klasi $C^\infty$, što znači da ga možemo derivirati beskonačno mnogo puta po svakoj prostornoj koordinati i po vremenu, a da svaka derivacija ostane konačna i neprekinuta.</p>
+<p>Institut Clay zadao je vrlo jasne početne uvjete:</p>
+<ol>
+  <li><strong>Fizikalno razuman početak:</strong> U početnom trenutku $t = 0$, fluid miruje u beskonačnosti ili njegova brzina vrlo brzo opada prema nuli kako se udaljavamo u beskonačnost.</li>
+  <li><strong>Konačna kinetička energija:</strong> Ukupna energija fluida u cijelom trodimenzionalnom prostoru $\mathbb{R}^3$ u početnom je trenutku strogo konačna:</li>
+</ol>
+$E(0) = \frac{1}{2} \int_{\mathbb{R}^3} |\mathbf{u}_0(x)|^2 \, dx < \infty$
+<p>Izazov glasi: <strong>Postoji li za svako takvo glatko početno stanje glatko rješenje za sva vremena ($t \in [0, \infty)$)</strong>, ili postoji barem jedno početno stanje koje u nekom konačnom vremenu $T^*$ dovede do sloma glatkoće?</p>
+
+<h3 id="anatomija-sloma-što-je-to-finite-time-blow-up">Anatomija sloma: Što je to finite-time blow-up?</h3>
+<p>Matematički slom u konačnom vremenu (<em>finite-time blow-up</em>) događa se ako u nekom specifičnom trenutku $T^*$ brzina fluida ili njezine prostorne derivacije postanu beskonačne:</p>
+$\lim_{t \to T^{*-}} \sup_{x \in \mathbb{R}^3} |\mathbf{u}(x, t)| = \infty \quad \text{ili} \quad \lim_{t \to T^{*-}} \|\nabla \mathbf{u}(\cdot, t)\|_{L^\infty} = \infty$
+<p>Zamislite to kao točku u prostoru u kojoj se fluid kreće beskonačno brzo, ili točku u kojoj su sile smicanja beskonačne. U tom trenutku $T^*$, derivacije u parcijalnim diferencijalnim jednadžbama više nisu definirane. Matematički aparat se ruši: diferencijalni račun prestaje funkcionirati, a Navier–Stokesove jednadžbe prestaju davati bilo kakav smislen odgovor o tome što se događa u trenutku $t \ge T^*$.</p>
+
+<h3 id="srž-problema-rastezanje-vrtloga-vortex-stretching">Srž problema — Rastezanje vrtloga (Vortex Stretching)</h3>
+<p>Zašto je ovaj problem rješiv u dvodimenzionalnom svijetu, a izrazito težak u našem trodimenzionalnom? Odgovor leži u rotaciji fluida, odnosno vektoru <strong>vrtložnosti</strong>:</p>
+$\boldsymbol{\omega} = \nabla \times \mathbf{u}$
+<p>Ako primijenimo operator rotacije ($\nabla \times$) na cijelu Navier–Stokesovu jednadžbu, dobivamo jednadžbu dinamike vrtložnosti:</p>
+$\frac{\partial \boldsymbol{\omega}}{\partial t} + (\mathbf{u} \cdot \nabla)\boldsymbol{\omega} = (\boldsymbol{\omega} \cdot \nabla)\mathbf{u} + \nu \Delta \boldsymbol{\omega}$
+<p>Usporedimo li ovu jednadžbu s originalnom, vidimo da je tlak $p$ potpuno nestao, ali se pojavio presudan član $(\boldsymbol{\omega} \cdot \nabla)\mathbf{u}$ — <strong>član rastezanja vrtložnih niti</strong>.</p>
+<ul>
+  <li><strong>U dvije dimenzije (2D):</strong> Vektor vrtložnosti uvijek je okomit na ravninu gibanja. To znači da je član rastezanja vrtloga identički jednak nuli: $(\boldsymbol{\omega} \cdot \nabla)\mathbf{u} = 0$. Vrtložnost se u ravnini ne može rastezati; ona se samo pasivno prenosi i guši viskoznošću. Zbog toga su Olga Ladyzhenskaya i Jean Leray još sredinom 20. stoljeća dokazali da u 2D prostoru singularnost <strong>nikada ne može nastati</strong>. Rješenja u 2D uvijek ostaju savršeno glatka.</li>
+  <li><strong>U tri dimenzije (3D):</strong> Vrtložne niti mogu se slobodno savijati, zapetljavati i rastezati u prostoru. Kada se vrtložna nit rastegne duž svoje osi, njezin se promjer zbog očuvanja mase mora smanjiti. Poput klizačice na ledu koja privlači ruke uz tijelo kako bi se vrtjela drastično brže (očuvanje kutnog momenta), stanjenje vrtložne niti tjera fluid da rotira sve brže.</li>
+</ul>
+<div class="vortex-loop-wrapper">
+  <div class="vortex-loop-header">
+    <div class="vortex-loop-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+      </svg>
+      <span>Krug pozitivne povratne sprege (Vortex Stretching)</span>
+    </div>
+    <span class="vortex-loop-badge">Ciklus turbulencije</span>
+  </div>
+
+  <div class="vortex-steps-grid">
+    <div class="vortex-step-card">
+      <div class="vortex-step-num">1</div>
+      <div class="vortex-step-icon">🌪️</div>
+      <div class="vortex-step-title">Rastezanje niti</div>
+      <p class="vortex-step-desc">Strujanje fluida rasteže vrtložnu nit duž osi pod utjecajem člana $(\boldsymbol{\omega} \cdot \nabla)\mathbf{u}$.</p>
+    </div>
+
+    <div class="vortex-step-card">
+      <div class="vortex-step-num">2</div>
+      <div class="vortex-step-icon">🎯</div>
+      <div class="vortex-step-title">Suženje promjera</div>
+      <p class="vortex-step-desc">Zbog nestlačivosti ($\nabla \cdot \mathbf{u} = 0$), rastezanjem se promjer poprečnog presjeka vrtloga naglo sužava.</p>
+    </div>
+
+    <div class="vortex-step-card">
+      <div class="vortex-step-num">3</div>
+      <div class="vortex-step-icon">⚡</div>
+      <div class="vortex-step-title">Eksplozija rotacije</div>
+      <p class="vortex-step-desc">Kao klizačica koja privlači ruke, očuvanje kutnog momenta tjera fluid na sve bržu rotaciju ($\lVert\boldsymbol{\omega}\rVert \uparrow$).</p>
+    </div>
+
+    <div class="vortex-step-card">
+      <div class="vortex-step-num">4</div>
+      <div class="vortex-step-icon">📈</div>
+      <div class="vortex-step-title">Strmiji gradijenti</div>
+      <p class="vortex-step-desc">Ekstremna brzina rotacije sabija se u mikro-područje stvarajući goleme gradijente smicanja ($\lVert\nabla \mathbf{u}\rVert \uparrow$).</p>
+    </div>
+
+    <div class="vortex-step-card">
+      <div class="vortex-step-num">5</div>
+      <div class="vortex-step-icon">💥</div>
+      <div class="vortex-step-title">Još jače rastezanje</div>
+      <p class="vortex-step-desc">Strmiji gradijenti uzrokuju još intenzivnije rastezanje — krug se zatvara i eksponencijalno ubrzava!</p>
+    </div>
+  </div>
+
+  <div class="vortex-loop-feedback-bar">
+    <div class="vortex-loop-feedback-text">
+      <span>🔄</span>
+      <span>Povratna petlja: Korak 5 ponovno pokreće Korak 1 sa znatno višom energijom koncentriranom u manjoj točki</span>
+    </div>
+    <span class="vortex-loop-feedback-badge">Potencijalni Finite-Time Blow-up</span>
+  </div>
+
+  <div class="vortex-brake-card">
+    <div class="vortex-brake-icon">🛡️</div>
+    <div class="vortex-brake-content">
+      <div class="vortex-brake-title">Prirodna kočnica: Viskozna difuzija ($\nu \Delta \boldsymbol{\omega}$)</div>
+      <p class="vortex-brake-desc">Jedina fizikalna sila koja se suprotstavlja ovom krugu jest unutrašnje trenje. Laplaceov operator nastoji raspršiti energiju vrtloga prema van i pretvoriti je u toplinu. <strong>Pitanje Milenijskog problema glasi:</strong> može li viskoznost u 3D prostoru uvijek raspršiti energiju dovoljno brzo, ili krug rastezanja u konačnom vremenu stvara matematički beskonačnu vrtložnost?</p>
+    </div>
+  </div>
+</div>
+<p>Godine 1984. matematičari J. Thomas Beale, Tosio Kato i Andrew Majda postavili su teorem (BKM kriterij) koji je postao standard za detekciju singularnosti. Dokazali su da je nastanak singularnosti u trenutku $T^*$ moguć <strong>ako i samo ako</strong> integral maksimalne vrtložnosti divergira:</p>
+$\int_0^{T^*} \|\boldsymbol{\omega}(\cdot, t)\|_{L^\infty} \, dt = \infty$
+<p>Drugim riječima, brzina fluida ne može tek tako tiho pobjeći u beskonačnost; ako singularnost nastaje, vrtložnost mora eksplodirati. BKM kriterij dao je istraživačima precizan cilj: tražite li singularnost, morate pronaći konfiguraciju vrtloga u kojoj se rotacija koncentrira brže nego što je viskoznost uspijeva ugasiti.</p>
+
+<h3 id="ako-matematika-puca-zašto-se-voda-u-čaši-ne-raspada">Ako matematika puca, zašto se voda u čaši ne raspada?</h3>
+<p>Čest nesporazum među laicima jest pomisao da bi dokaz singularnosti značio kako stvarna voda u prirodi u nekom trenutku može eksplodirati ili stvoriti crnu rupu. Stvarnost je sasvim drukčija i otkriva granice fizikalnog modeliranja.</p>
+<p>Navier–Stokesove jednadžbe temelje se na hipotezi kontinuuma — pretpostavci da je materija neprekinuta i glatka na svim prostornim skalama. No voda nije kontinuum. Voda se sastoji od diskretnih molekula $\text{H}_2\text{O}$ čiji je promjer oko $0{,}3 \text{ nm}$, a prosječna udaljenost između sudara molekula je konačna.</p>
+<p>Ako Navier–Stokesove jednadžbe proizvedu singularnost, to znači da bi se ekstremna brzina i gradijenti koncentrirali na skali manjoj od međumolekularnih udaljenosti. U toj točki hipoteza kontinuuma prestaje vrijediti (Knudsenov broj postaje prevelik). Klasična mehanika fluida tu mora prepustiti riječ molekularnoj dinamici i statističkoj fizici.</p>
+<p>Dokaz singularnosti stoga ne bi uništio fiziku, ali bi bio ozbiljno upozorenje klasičnoj matematici: dokazao bi da najslavniji model mehanike fluida u povijesti znanosti nosi u sebi inherentnu nestabilnost zbog koje jednadžbe same sebe tjeraju u zonu gdje gube fizikalni smisao.</p>
+
+<hr>
+
+<h2 id="4-dosadašnji-povijesni-pomaci">4. Dosadašnji povijesni pomaci</h2>
+<p>Prije nego što su se u priču uključili AI modeli i računalni klasteri, Navier–Stokes je punih devet desetljeća slovio kao jedno od najtežih područja analitičke matematike. Riječ je o problemu koji je privlačio vodeće umove, donio niz parcijalnih teorija, ali i pokopao mnoge preuranjene tvrdnje o konačnom rješenju.</p>
+<p>Kada je francuski matematičar Jean Leray 1934. godine objavio svoj rad u časopisu <em>Acta Mathematica</em>, shvatio je da se izravnim metodama ne može dokazati postojanje savršeno glatkih rješenja. Zato je ponudio radikalnu ideju koja je trajno promijenila parcijalne diferencijalne jednadžbe: <strong>ako ne možemo dokazati postojanje klasičnih rješenja, redefinirajmo što „rješenje“ uopće znači</strong>.</p>
+<p>Leray je uveo koncept tzv. <strong>slabih rješenja</strong> (<em>weak solutions</em>, koje je sam nazivao <em>turbulentnim rješenjima</em>). Umjesto da zahtijeva da derivacije funkcioniraju točku po točku, pomnožio je jednadžbu glatkim testnim funkcijama i integrirao je po prostoru i vremenu. Kroz parcijalnu integraciju, derivacije su s nepoznatog, potencijalno divljeg toka fluida prebačene na mirnije testne funkcije.</p>
+<p>Leray (a kasnije i Eberhard Hopf 1951. za ograničene domene) dokazao je postojanje globalnih slabih rješenja s konačnom energijom za sva vremena:</p>
+$\sup_{t \ge 0} \int_{\mathbb{R}^3} |\mathbf{u}(x, t)|^2 \, dx + 2\nu \int_0^\infty \int_{\mathbb{R}^3} |\nabla \mathbf{u}(x, t)|^2 \, dx \, dt \le \int_{\mathbb{R}^3} |\mathbf{u}_0(x)|^2 \, dx$
+<p>No tu postoji prepreka: <strong>Leray nije uspio dokazati jesu li ta slaba rješenja jedinstvena, niti jesu li glatka.</strong> Slaba rješenja mogu imati pukotine i skokove, a energija im može neobjašnjivo disipirati čak i brže nego što to nalaže viskoznost. Pitanje jesu li Leray-Hopfova slaba rješenja zapravo glatka rješenja ostalo je otvoreno desetljećima.</p>
+<p>Ako glatkoća zaista puca i stvara se singularnost, kako ona izgleda? Može li se cijeli ocean odjednom raspasti, ili se lom događa duž neke fronte?</p>
+<p>Godine 1982. trio analitičara — <strong>Luis Caffarelli, Robert Kohn i Louis Nirenberg (CKN)</strong> — objavio je rezultat koji je obilježio mehaniku fluida. Razvili su teoriju parcijalne regularnosti i dokazali da je za prikladna slaba rješenja jednodimenzionalna Hausdorffova mjera singularnog skupa u prostor-vremenu jednaka nuli:</p>
+$\mathcal{H}^1(S) = 0$
+<p>Ovaj teorem ima izuzetno geometrijsko značenje:</p>
+<ul>
+  <li>Singularnosti Navier–Stokesa ne mogu formirati liniju u prostoru.</li>
+  <li>Ne mogu postojati neprekidno kroz neko vremensko razdoblje.</li>
+  <li>Ako singularnost uopće nastane u trodimenzionalnom prostoru, ona mora biti <strong>prolazna, izolirana točka u prostoru i vremenu</strong> — mikroskopski, trenutni bljesak u kojem matematika puca. CKN teorem suzio je prostor za postojanje singularnosti na teorijski minimum.</li>
+</ul>
+<p>Jedan od najutjecajnijih živućih matematičara, dobitnik Fieldsove medalje Terence Tao, godinama je analizirao zašto standardne analitičke tehnike (energetske nejednakosti, Sobolevovi prostori, harmonijska analiza) redovito udaraju u zid.</p>
+<p>Godine 2016. Tao je objavio rad koji je promijenio filozofiju pristupa. Umjesto da pokušava dokazati glatkoću, postavio je pitanje: <em>Mogu li nelinearni članovi Navier–Stokesa djelovati poput logičkog kruga i namjerno usmjeriti energiju prema slomu?</em></p>
+<p>Tao je konstruirao modificiranu, „usrednjenu“ verziju Navier–Stokesovih jednadžbi koja je zadržala sve poznate zakone očuvanja (očuvanje energije, identičnu skalu i simetrije), ali je u njoj nelinearni član bio blago izmijenjen. U tom sustavu Tao je uspio <strong>dokazati nastanak singularnosti u konačnom vremenu</strong> (<em>blow-up</em>).</p>
+<p>Njegov rezultat donio je dva važna zaključka:</p>
+<ol>
+  <li>Pokazao je da samo očuvanje energije i dimenzijska analiza <strong>nisu dovoljni</strong> da spriječe nastanak singularnosti.</li>
+  <li>Poslao je signal da bi, ako singularnost želimo spriječiti ili dokazati, bilo nužno iskoristiti specifičnu geometrijsku strukturu originalnog nelinearnog člana $(\mathbf{u} \cdot \nabla)\mathbf{u}$, a ne samo njegove opće analitičke integrale.</li>
+</ol>
+<p>Paralelno s teorijskom analizom, razvijao se i pristup računalno potpomognutih dokaza (<em>computer-assisted proofs</em>). Ako je Navier–Stokes pretežak zbog viskoznosti, logičan međukorak su <strong>3D Eulerove jednadžbe</strong> — Navier–Stokes bez viskoznog člana ($\nu = 0$).</p>
+<p>Godine 2022. matematičar Thomas Hou s Caltecha, zajedno s Jiajieom Chenom, objavio je rad u kojem su <strong>dokazali nastanak singularnosti u konačnom vremenu za 3D Eulerove jednadžbe s rubom</strong>.</p>
+<p>Njihov pristup bio je spoj analize i visoko preciznog računanja:</p>
+<ul>
+  <li>Pomoću računala pronašli su profil toka koji je iznimno blizu točke urušavanja (singularni samootpadajući profil).</li>
+  <li>Zatim su strogim matematičkim teoremima i procjenama intervala dokazali da numerička aproksimacija ne pati od grešaka zaokruživanja, već da u njezinoj neposrednoj blizini doista leži egzaktno, glatko rješenje koje u konačnom trenutku kolabira u beskonačnost.</li>
+</ul>
+<p>Ovaj rad Thomasa Houa bio je neposredan dokaz da mehanika fluida može proizvesti singularnost ako nema trenja, te je postao presudna odskočna daska za timove koji su željeli provjeriti može li se sličan mehanizam konstruirati i uz prisutnost viskoznosti.</p>
+<p>Institut Clay i recenzenti vodećih časopisa godinama su primali radove s tvrdnjama o rješenju Navier–Stokesa. Gotovo svi su pali:</p>
+<ul>
+  <li><strong>Slučaj Mukhtarbaya Otelbayeva (2014.):</strong> Ugledni kazahstanski matematičar objavio je rad od stotinu stranica tvrdeći da je dokazao globalno postojanje i glatkoću. Čim je rad preveden na engleski i stavljen pod povećalo svjetske zajednice, pronađen je logički procjep u procjeni operatora na funkcijskim prostorima.</li>
+  <li><strong>Problem skrivenih pretpostavki:</strong> Mnogi autori tvrdili su da su dokazali glatkoću tako što bi uveli pomoćnu ogradu (<em>a priori estimate</em>), no ispostavilo bi se da su nesvjesno pretpostavili ono što su tek trebali dokazati — klasična kružna logika.</li>
+  <li><strong>Težina verifikacije:</strong> Ovi dokazi često broje stotine stranica gustih nejednakosti u parcijalnim diferencijalnim jednadžbama. Ljudskim recenzentima potrebni su mjeseci, ponekad i godine, samo da verificiraju jesu li sve konstante u procjenama invarijantne na skaliranje.</li>
+</ul>
+<p>Upravo je to iscrpljujuće nasljeđe stvorilo podlogu za idući korak: ako su ljudski recenzenti spori i skloni previdima u moru od stotina stranica procjena, što bi se dogodilo kada bi se u dokazivanje uključili sustavi umjetne inteligencije opremljeni formalnim provjerivačima koda?</p>
+
+<h3 id="vremenska-crta-lova-na-singularnost-1822-2026">Vremenska crta lova na singularnost (1822. – 2026.)</h3>
+<div class="timeline-container">
+  <div class="timeline-item">
+    <div class="timeline-marker"></div>
+    <div class="timeline-content">
+      <div class="timeline-header">
+        <span class="timeline-year">1822.</span>
+        <span class="timeline-author">Claude-Louis Navier</span>
+      </div>
+      <p class="timeline-desc">Uvođenje unutrašnjeg trenja (viskoznosti) u Eulerove jednadžbe gibanja fluida, stvarajući temelje fizike realnih nestlačivih tekućina.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-marker"></div>
+    <div class="timeline-content">
+      <div class="timeline-header">
+        <span class="timeline-year">1845.</span>
+        <span class="timeline-author">George Gabriel Stokes</span>
+      </div>
+      <p class="timeline-desc">Egzaktno matematičko i fizikalno izvođenje tenzora viskoznog naprezanja, definirajući standardni oblik Navier–Stokesovog sustava kakav koristimo danas.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-marker"></div>
+    <div class="timeline-content">
+      <div class="timeline-header">
+        <span class="timeline-year">1934.</span>
+        <span class="timeline-author">Jean Leray</span>
+      </div>
+      <p class="timeline-desc">Uvođenje koncepta slabih ("turbulentnih") rješenja i dokaz postojanja globalnih rješenja s konačnom energijom, ostavljajući pitanje glatkoće i jedinstvenosti otvorenim.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-marker"></div>
+    <div class="timeline-content">
+      <div class="timeline-header">
+        <span class="timeline-year">1982.</span>
+        <span class="timeline-author">Luis Caffarelli, Robert Kohn i Louis Nirenberg (CKN)</span>
+      </div>
+      <p class="timeline-desc">Dokaz teorije parcijalne regularnosti: singularni skup u prostor-vremenu ima jednodimenzionalnu mjeru nula ($\mathcal{H}^1 = 0$) — singularnost može biti samo izolirana točka.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-marker"></div>
+    <div class="timeline-content">
+      <div class="timeline-header">
+        <span class="timeline-year">2016.</span>
+        <span class="timeline-author">Terence Tao</span>
+      </div>
+      <p class="timeline-desc">Konstrukcija usrednjenog Navier–Stokesovog modela; matematički dokaz da samo očuvanje energije i skaliranje nisu dovoljni za sprječavanje konačnog sloma (<em>blow-up</em>).</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-marker"></div>
+    <div class="timeline-content">
+      <div class="timeline-header">
+        <span class="timeline-year">2022.</span>
+        <span class="timeline-author">Thomas Hou i Jiajie Chen</span>
+      </div>
+      <p class="timeline-desc">Računalno potpomognut egzaktan analitički dokaz nastanka singularnosti u konačnom vremenu za 3D Eulerove jednadžbe idealnog fluida ($\nu = 0$) s rubom.</p>
+    </div>
+  </div>
+  <div class="timeline-item timeline-item-active">
+    <div class="timeline-marker"></div>
+    <div class="timeline-content">
+      <div class="timeline-header">
+        <span class="timeline-year">Rujan 2026.</span>
+        <span class="timeline-author">OpenAI &amp; nezavisni istraživači</span>
+      </div>
+      <p class="timeline-desc">Konstrukcija protuprimjera glatkoći za Navier–Stokesa uz forsiranje pomoću roja od 10.000 AI agenata i verifikaciju u Lean 4 jeziku; pokretanje dvogodišnjeg sata Instituta Clay.</p>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<h2 id="5-ai-proboj-openai-tvrdnja-10000-agenata-i-uloga-leana">5. AI proboj — OpenAI tvrdnja, 10.000 agenata i uloga Leana</h2>
+<p>Početkom rujna ove godine, matematički svijet iznenadila je novost na polju primjene umjetne inteligencije. Iz laboratorija OpenAI-ja stigla je objava: njihov novi interni model, razvijen specifično za duboko matematičko rezoniranje, riješio je Navier–Stokesov problem postojanja i glatkoće.</p>
+<p>Umjesto usamljene genijalnosti jednog čovjeka koji godinama u tišini ispisuje bilježnice, poput Andrewa Wilesa s Fermatovim teoremom ili Grigorija Perelmana s Poincaréovom hipotezom, rješenje je isporučio sustav od približno 10.000 paralelnih AI agenata.</p>
+<p>Prema izvještaju OpenAI-ja, aktivnost je pokrenuta 1. rujna 2026., nakon što su se u istraživačkim krugovima proširile vijesti da su neovisni akademski timovi pred probojem na Milenijskim problemima. OpenAI je odlučio usmjeriti cjelokupnu dostupnu računsku infrastrukturu na ovaj problem.</p>
+<p>Za napad na Navier–Stokesa korištena je orkestrirana skupina agenata podijeljena na specijalizirane module: jedni su generirali teorijske hipoteze i strategije napada, drugi su provodili analitičke izračune i provjeravali invarijantnost procjena, treći su pisali kôd za numeričku simulaciju rubnih profila, dok su četvrti djelovali kao analitički filteri tražeći logičke rupe u predloženim koracima. Tijekom kontinuiranog rada, agenti su međusobno razmijenili oko <strong>2,7 milijuna poruka</strong> i generirali <strong>130 milijardi izlaznih tokena</strong>. Analitički dokaz iskristalizirao se u <strong>88 sati</strong> neprekidnog strojnog rada (5. rujna 2026.). Računski trošak ovog višednevnog sprinta procjenjuje se na između 10 i više od 20 milijuna dolara.</p>
+<p>OpenAI nije dokazao da su Navier–Stokesove jednadžbe uvijek stabilne. Upravo suprotno: sustav je pronašao <strong>protuprimjer glatkoći</strong>, dokazujući nastanak singularnosti u konačnom vremenu (<em>finite-time blow-up</em>). Time su potvrdili izjave tipa „C“ i „D“ u službenoj formulaciji Instituta Clay (slom glatkoće za forsirane i periodičke sustave). No, tu leži bitna matematička ograda: dokazivanje singularnosti uz prisutnost vanjskog forsiranja ($\mathbf{f} \neq 0$) u očima matematičara nije identično rješavanju neforsiranog sustava ($\mathbf{f} = 0$, tvrdnje A i B). Vanjska sila može služiti kao mehanizam koji neprestano unosi energiju točno na skale gdje se vrtlog rasteže, što dio zajednice smatra zaobilaženjem izvornog fizikalnog pitanja disipacije.</p>
+
+<h3 id="usporedna-matrica-feffermanovih-tvrdnji-clay-millennium-prize">Usporedna matrica Feffermanovih tvrdnji (Clay Millennium Prize)</h3>
+<p>Kako bi se točno razumjelo koje je aspekte problema OpenAI-jev model napao, a što je i dalje ostalo otvoreno, službena formulacija Charlesa Feffermana za Clay Mathematics Institute dijeli problem na četiri precizne tvrdnje:</p>
+<div class="table-container">
+  <table class="article-table">
+    <thead>
+      <tr>
+        <th>Tvrdnja</th>
+        <th>Domena</th>
+        <th>Vanjska sila</th>
+        <th>Cilj</th>
+        <th>Trenutni status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Tvrdnja (A)</strong></td>
+        <td>$\mathbb{R}^3$ (Euklidski prostor)</td>
+        <td>$\mathbf{f} = 0$ (Bez forsirane sile)</td>
+        <td>Dokazati globalnu glatkoću ($C^\infty, \forall t \ge 0$)</td>
+        <td><span class="status-pill status-pill-open">🔴 Netaknuto / Otvoreno</span></td>
+      </tr>
+      <tr>
+        <td><strong>Tvrdnja (B)</strong></td>
+        <td>$\mathbb{T}^3$ (Periodički 3-torus)</td>
+        <td>$\mathbf{f} = 0$ (Bez forsirane sile)</td>
+        <td>Dokazati globalnu glatkoću ($C^\infty, \forall t \ge 0$)</td>
+        <td><span class="status-pill status-pill-open">🔴 Netaknuto / Otvoreno</span></td>
+      </tr>
+      <tr>
+        <td><strong>Tvrdnja (C)</strong></td>
+        <td>$\mathbb{R}^3$ (Euklidski prostor)</td>
+        <td>$\mathbf{f} \neq 0$ (Glatka vanjska sila)</td>
+        <td>Dokazati slom glatkoće (<em>Blow-up</em>)</td>
+        <td><span class="status-pill status-pill-review">🟡 Napadnuto / U provjeri (OpenAI &amp; Lean)</span></td>
+      </tr>
+      <tr>
+        <td><strong>Tvrdnja (D)</strong></td>
+        <td>$\mathbb{T}^3$ (Periodički 3-torus)</td>
+        <td>$\mathbf{f} \neq 0$ (Glatka vanjska sila)</td>
+        <td>Dokazati slom glatkoće (<em>Blow-up</em>)</td>
+        <td><span class="status-pill status-pill-review">🟡 Napadnuto / U provjeri (AI &amp; akademski radovi)</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<p>Kako izgleda rješenje koje je model pronašao?</p>
+<p>AI je konstruirao specifičnu, iznimno složenu geometriju fluida koja kreće iz potpuno mirnog i glatkog početnog stanja. Pod utjecajem pažljivo konstruirane, glatke vanjske sile $\mathbf{f}$, fluid razvija vrtlog koji spiralno uvire prema središnjoj točki dok se istovremeno rasteže duž svoje simetrične osi.</p>
+<p>OpenAI je rad službeno objavio u utorak, 8. rujna 2026. godine. Sam dokument broji 166 stranica gustog analitičkog teksta, popraćenog repozitorijem koda za formalnu provjeru. Da je OpenAI objavio samo standardni rad u LaTeX-u, provjera bi trajala godinama. Kao što je pokazao slučaj Otelbayeva, ljudskim recenzentima trebali bi mjeseci samo da pročitaju tekst, a sumnja u previde visjela bi nad radom unedogled.</p>
+<p>Umjesto toga, nakon 88 sati nalaženja dokaza, sustav je proveo dodatnih 17 sati prevodeći svaki pojedini korak u formalni dokazivački jezik Lean 4.</p>
+<p>Lean je interaktivni dokazivač teorema i formalni programski jezik koji se oslanja na strogu matematičku logiku. Kada se matematički dokaz napiše u Leanu, računalni program koji provjerava dokaz (tzv. <em>kernel</em>) provjerava slijedi li svaki korak iz prethodnog prema aksiomima logike. Taj kernel broji tek nekoliko stotina linija koda i potpuno je transparentan. U ljudskim radovima autori često napišu „trivijalno slijedi da...“ ili „sličnim postupkom dobivamo...“, gdje se ponekad kriju greške. U Leanu nema prečaca. Ako i najmanja nejednakost nije u potpunosti dokazana, kôd se jednostavno ne može prevesti.</p>
+
+<div class="lean-code-card">
+  <div class="lean-code-header">
+    <div class="lean-header-left">
+      <div class="mac-dots">
+        <span class="mac-dot dot-red"></span>
+        <span class="mac-dot dot-yellow"></span>
+        <span class="mac-dot dot-green"></span>
+      </div>
+      <div class="lean-tab">
+        <span class="lean-tab-icon">∀</span>
+        <span>NavierStokes/Blowup.lean</span>
+      </div>
+    </div>
+    <div class="lean-header-right">
+      <div class="lean-status-badge">
+        <span class="lean-status-pulse"></span>
+        <span>Lean 4 Kernel: Verified (0 axioms violated)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="lean-code-container">
+    <pre class="lean-code-pre"><code><span class="lk-kw">import</span> Mathlib.Analysis.InnerProductSpace.Basic
+<span class="lk-kw">import</span> Mathlib.Analysis.Calculus.FDeriv.Add
+
+<span class="lk-kw">open</span> Real MeasureTheory Filter Topology
+
+<span class="lk-kw">namespace</span> NavierStokes
+
+<span class="lk-comment">/-- 
+  Tvrdnja (C): Postojanje glatke sile f i glatkih početnih uvjeta u R³
+  koji generiraju singularnost (slom glatkoće) u konačnom vremenu T* &lt; ∞.
+-/</span>
+<span class="lk-kw">theorem</span> finite_time_blowup_exists :
+  <span class="lk-sym">∃</span> (f : ℝ × (<span class="lk-type">ℝ³</span> <span class="lk-sym">→</span> <span class="lk-type">ℝ³</span>) <span class="lk-sym">→</span> <span class="lk-type">ℝ³</span>) (u₀ : <span class="lk-type">ℝ³</span> <span class="lk-sym">→</span> <span class="lk-type">ℝ³</span>),
+    SmoothForce f <span class="lk-sym">∧</span> SmoothInitialData u₀ <span class="lk-sym">∧</span>
+    <span class="lk-sym">∃</span> (T_star : ℝ) (hT : T_star &gt; <span class="lk-num">0</span>),
+      <span class="lk-sym">∀</span> (u : ℝ × <span class="lk-type">ℝ³</span> <span class="lk-sym">→</span> <span class="lk-type">ℝ³</span>),
+        IsSolution u f u₀ <span class="lk-sym">→</span>
+        <span class="lk-fn">Tendsto</span> (<span class="lk-kw">fun</span> t <span class="lk-sym">=&gt;</span> <span class="lk-fn">∫</span> x, <span class="lk-sym">‖</span><span class="lk-fn">curl</span> (u t) x<span class="lk-sym">‖</span>² ) (<span class="lk-type">𝓝[&lt;]</span> T_star) <span class="lk-type">atTop</span> <span class="lk-sym">:=</span> <span class="lk-kw">by</span>
+  <span class="lk-comment">-- Formalna redukcija preko Beale-Kato-Majda kriterija</span>
+  <span class="lk-cmd">intro</span> u_sol h_sol
+  <span class="lk-cmd">have</span> h_enstrophy : UnboundedEnstrophy u_sol T_star <span class="lk-sym">:=</span> <span class="lk-kw">by</span>
+    <span class="lk-cmd">apply</span> vortex_stretching_collapse f u₀
+    <span class="lk-cmd">exact</span> hT
+  <span class="lk-cmd">exact</span> BealeKatoMajda_criterion h_enstrophy</code></pre>
+  </div>
+
+  <div class="lean-annotations">
+    <div class="lean-anno-item">
+      <div class="lean-anno-icon">🎯</div>
+      <div class="lean-anno-content">
+        <span class="lean-anno-title">Stroga tipizacija &amp; Kvantifikatori</span>
+        <p class="lean-anno-desc">Zapis <code>∃ f u₀ ... ∀ u</code> postavlja egzistenciju protuprimjera: postoji glatka sila $f$ i početno polje brzine $u_0$ koje vodi do kolapsa.</p>
+      </div>
+    </div>
+    <div class="lean-anno-item">
+      <div class="lean-anno-icon">💥</div>
+      <div class="lean-anno-content">
+        <span class="lean-anno-title">Eksplozija enstrofije (Blow-up)</span>
+        <p class="lean-anno-desc"><code>Tendsto (...) (𝓝[&lt;] T_star) atTop</code> formalno izriče da integral kvadrata vrtložnosti $|
+abla 	imes mathbf{u}|^2$ nekontrolirano bježi u $+infty$ kada $t 	o T^*$.</p>
+      </div>
+    </div>
+    <div class="lean-anno-item">
+      <div class="lean-anno-icon">🛡️</div>
+      <div class="lean-anno-content">
+        <span class="lean-anno-title">BKM kriterij &amp; Kernel</span>
+        <p class="lean-anno-desc">Koristi se slavni <em>Beale-Kato-Majda</em> teorem. Leanov kernel odbija bilo kakav prečac — svaki korak je provjeren do temeljnih aksioma.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>Činjenica da je dokaz formalno verificiran u Leanu uklonila je većinu uobičajenih tehničkih nedoumica s kojima se susreću recenzenti. Nema sumnje je li neka procjena točna ili je napravljena pogreška u predznaku integrala.</p>
+<p>Ipak, iako je verifikacija u Leanu golem korak, matematičari su odmah istaknuli razliku: Lean provjerava samo slijedi li zaključak iz zadanih premisa, ali ne može sam procijeniti jesu li zadane premise identične problemu koji traži Institut Clay.</p>
+<p>Je li definicija glatke sile $\mathbf{f}$ koju je AI unio u Lean doista u potpunosti usklađena s fizikalnim i matematičkim ograničenjima Milenijskog problema, ili je sila konstruirana tako da unosi energiju točno na način koji forsira singularnost? Jesu li granični uvjeti i funkcijski prostori postavljeni bez skrivenih singularnosti u samoj sili?</p>
+<p>Dokaz je bez sumnje logički valjan računalni program. No je li on doista riješio Navier–Stokesov problem onako kako su ga zamislili utemeljitelji i Institut Clay, pitanje je na koje računalni kernel ne daje odgovor, već zahtijeva ljudski uvid.</p>
+<p>Ovaj proboj označio je prijelaz umjetne inteligencije na polju matematike — iz statusa pomoćnog asistenta u status autonomnog graditelja složenih teorijskih konstrukcija. No umjesto općeg slavlja, ovaj je događaj istog trenutka otvorio nove rasprave: odakle je AI zapravo dobio presudnu ideju za ovaj dokaz?</p>
+
+<hr>
+
+<h2 id="6-ljudski-rad-etika-i-optužbe-za-curenje-ideja">6. Ljudski rad, etika i optužbe za curenje ideja</h2>
+<p>Objavu OpenAI-ja nije dočekao ujedinjeni pljesak matematičke zajednice. Umjesto trijumfa čiste znanosti, trenutak u kojem se pojavila tvrdnja o rješenju jednog od najpoznatijih problema pretvorio se u oštar institucionalni i etički sukob. U središtu tog prijepora našla su se dva imena: Tristan Buckmaster s Instituta Courant (NYU) i Levent Alpöge (povezan s Harvardom, IAS-om i istraživačkim timom Anthropica).</p>
+<p>Tristan Buckmaster već je godinama slovio kao jedan od najinovativnijih analitičara na području mehanike fluida. Njegov rad na primjeni konveksne integracije (metode koju su izvorno razvili Camillo De Lellis i László Székelyhidi Jr.) već je ranije dokazao postojanje slabih rješenja koja krše fizikalne zakone očuvanja. Mjesecima su Buckmaster i Alpöge (koji je na ovom istraživanju radio u osobnom znanstvenom svojstvu, neovisno o svom angažmanu u Anthropicu) pripremali teren za finalni napad na problem: oslanjajući se na temelje koje su postavili Diego Córdoba i Luis Martínez-Zoroa, demonstrirali su nastanak singularnosti na 3D Eulerovim jednadžbama uz pomoć specifičnih tehnika forsiranja vanjskom silom.</p>
+<p>Njihov je rad bio duboko analitički, postupan i dugotrajan — onakav kakav se na sveučilištima vodio desetljećima. No, početkom rujna 2026. istraživačke krugove potresla je vijest da je OpenAI pokrenuo masivni agentski klaster upravo u trenutku kada su se u akademskim kuloarima pojavile prve verzije i rasprave o njihovim tehnikama. Potaknut dojavama iz zajednice da su detalji njihova pristupa procurili prema OpenAI-ju, Buckmaster je u noći 8. rujna, tek nekoliko sati prije službene korporativne objave, izašao u javnost s izjavom o prioritetu.</p>
+<p>Dok je akademskom dvojcu trebalo nekoliko mjeseci da ručno ispišu i usklade stotine stranica gustih analitičkih procjena, OpenAI je u igru uveo model i procesnu snagu vrijednu desetke milijuna dolara. U samo 88 sati, roj od 10.000 agenata preuzeo je konceptualnu jezgru problema, paralelnim pretraživanjem optimizirao parametre i formalizirao rezultat u Leanu — pretekavši ljude u samoj završnici.</p>
+<p>Postavilo se neugodno pitanje: je li OpenAI-jev model doista samostalno izveo strategiju napada na Navier–Stokesa iz prvih principa, ili je sustav prepoznao, sintetizirao i dovršio ideje koje su aktivni istraživači unosili u komercijalne alate za asistenciju u programiranju i istraživanju? Koriste li istraživači nesvjesno AI pomoćnike (poput naprednih programerskih modela) za provjeru tehničkih međukoraka, pružajući time poslužiteljima uvid u još neobjavljene matematičke hipoteze? Predstavnici OpenAI-ja branili su se tvrdnjom da je njihov sustav radio autonomno, potaknut isključivo javno dostupnom literaturom (uključujući radove Thomasa Houa i Terencea Taoa), te da je model sam generirao topološku konfiguraciju vrtložnog kolapsa kroz učenje s potkrepljenjem (<em>reinforcement learning</em>) i pretragu stabla dokaza. No sumnja je ostala prisutna u akademskim raspravama.</p>
+<p>U raspravu o dubljim epistemološkim posljedicama uključio se i sam Terence Tao. Kao vodeći svjetski matematičar i pionir formalizacije matematike u Leanu, ponudio je slikovito viđenje granice između računalnog izvođenja i ljudskog razumijevanja:</p>
+
+<div class="scientific-quote-card">
+  <div class="scientific-quote-content">
+    <div class="scientific-quote-text">
+      „To je poput posjedovanja strojeva koji umjesto vas dižu utege u teretani.“
+    </div>
+    <div class="scientific-quote-author">
+      <div class="quote-author-avatar">TT</div>
+      <div class="quote-author-info">
+        <span class="quote-author-name">Terence Tao</span>
+        <span class="quote-author-title">Dobitnik Fieldsove medalje &amp; profesor matematike na UCLA</span>
+      </div>
+      <span class="quote-context-tag">Filozofija AI dokaza</span>
+    </div>
+  </div>
+</div>
+<p>Tao je time upozorio na razliku između sintaktičke ispravnosti koda i stvarnog ljudskog razumijevanja. Matematika nikada nije bila samo niz formalno točnih tvrdnji, nego potraga za konceptualnim uzrokom pojava. Ako računalni sustav isporuči dokaz od stotina stranica ili milijuna linija koda koji potvrđuje singularnost, a nijedan analitičar ne razvije intuiciju o tome <em>zašto</em> se fluid urušava i kako taj mehanizam preslikati na druge jednadžbe, postavlja se pitanje jesmo li problem doista riješili ili smo samo konstruirali neprozirnu crnu kutiju.</p>
+<p>Ova situacija stvorila je i pravni presedan pred kojim se našao Institut Clay. Pravilnik Zaklade postavljen 2000. godine bio je skrojen isključivo za individualne znanstvenike:</p>
+<ul>
+  <li>Dokaz mora biti objavljen u vodećem recenziranom matematičkom časopisu.</li>
+  <li>Znanstvena zajednica mora ga temeljito secirati tijekom dvogodišnjeg probnog roka.</li>
+  <li>Nagrada od milijun dolara i priznanje dodjeljuju se autoru dokaza.</li>
+</ul>
+<p>OpenAI je financijsku stranu priče razriješio naglasivši u samoj objavi da se <strong>odriče novčane nagrade od milijun dolara</strong> te da je neće potraživati od Instituta Clay. No, time etičko pitanje nije zatvoreno. Novac je uklonjen sa stola, ali ostaje otvoreno pitanje autorstva i znanstvenog prioriteta: pripada li povijesna zasluga inženjerima koji su osmislili upite, samom korporativnom sustavu, autonomnim procesima ili matematičarima poput Buckmastera, Alpögea, Córdobe i Taoa, bez čijih teorijskih temelja stroj ne bi imao od čega poći?</p>
+
+<hr>
+
+<h2 id="7-nova-era-znanosti-dvogodišnji-sat-instituta-clay">7. Nova era znanosti — Dvogodišnji sat Instituta Clay</h2>
+<p>Nakon što su se slegli prvi dojmovi i nakon što su splasnuli bombastični naslovi, pred istraživačkom zajednicom ostala je stvarnost procedure. Objavljivanje koda u Leanu i izdavanje tehničkog izvještaja ne znače automatsko rješavanje Milenijskog problema. Pravilnik Instituta Clay je jasan: rok za provjeru iznosi pune dvije godine.</p>
+<p>Kada je Grigori Perelman postavio svoje radove na arXiv, trebale su gotovo četiri godine da neovisni timovi u detalje raspišu svaki korak Riccijevog toka s kirurgijom.</p>
+<p>U slučaju Navier–Stokesa i OpenAI-jevog dokaza, taj dvogodišnji probni rok imat će drukčiju prirodu. Recenzenti neće morati trošiti godine tražeći algebarske pogreške u koracima — to je posao koji je Lean 4 već odradio. Umjesto toga, rasprava će se voditi na <strong>semantičkoj razini</strong>:</p>
+<ul>
+  <li><em>Je li vanjska sila $\mathbf{f}$ bila odveć glatka, ali istovremeno neprirodno fokusirana?</em></li>
+  <li><em>Odgovaraju li granični uvjeti točno onome što je postavio CMI, ili je AI iskoristio tehničku rupu u tekstu problema koja matematički dopušta slom, ali odstupa od izvornog duha fizike fluida?</em></li>
+</ul>
+
+<h3 id="što-ovo-znači-za-inženjere-i-cfd-simulacije">Što ovo znači za inženjere i CFD simulacije?</h3>
+<p>Za inženjere aerodinamike, hidraulike i meteorologe koji svakodnevno vode simulacije dinamike fluida, pojava matematičke singularnosti neće promijeniti uobičajenu inženjersku praksu, barem ne u neposrednom smislu.</p>
+<p>Avioni neće početi padati s neba, niti će prognoze vremena postati neupotrebljive. Stvarni fizikalni fluidi nisu neprekinuti matematički kontinuum; oni se sastoje od molekula. Mnogo prije nego što bi vrtložnost u stvarnom toku zraka ili vode dosegla točku matematičkog beskonačnog skoka, na snagu stupaju molekularni sudari, disipacija na atomskoj skali i stohastički efekti koji fizički raspršuju energiju.</p>
+<p>Ipak, za inženjere numeričke mehanike fluida (CFD) ovaj proboj donosi vrijedne spoznaje. Kada CFD simulacija „eksplodira“ (divergira prema beskonačnim vrijednostima), to se desetljećima automatski pripisivalo lošoj prostornoj mreži, neadekvatnom vremenskom koraku ili greškama diskretizacije (poput narušavanja Courant–Friedrichs–Lewy uvjeta). Dokaz singularnosti upozorava da u ekstremnim režimima sam kontinuirani matematički model u pozadini može biti taj koji stvara divergenciju. Razumijevanje mehanizma kojim se vrtlozi rastežu i samopojačavaju pružit će numeričarima smjernice za kreiranje stabilnijih algoritama turbulencije (poput naprednijih LES modela), koji mogu prepoznati zone urušavanja i primijeniti fizikalno utemeljene korekcije.</p>
+<p>Bez obzira na to hoće li OpenAI-jev protuprimjer u potpunosti izdržati dvogodišnji probni rok ili će pasti na semantičkim finesama definicije sile, jedno je neosporno: povijest znanosti zakoračila je u novu fazu.</p>
+<p>Nalazimo se na pragu ere u kojoj dokazivanje više nije isključiva domena usamljenog istraživača zatvorenog u sobi s kredom i pločom.</p>
+<p>Navier–Stokesove jednadžbe su punih 180 godina prkosile najbistrijim umovima čovječanstva, skrivajući tajnu o tome krije li se u kovitlanju dima i vode red ili sjeme kaosa. Činjenica da je odgovor, ili barem njegov najozbiljniji nacrt dosad, došao iz sinergije dubokih ideja ljudskih analitičara i računske snage rojeva umjetne inteligencije, označava kraj jednog dugog povijesnog poglavlja i početak novog doba potrage za temeljnim zakonima prirode.</p>
+    </article>
+
+    <!-- Donji Share Blok -->
+    <div class="reader-share-box">
+      <div class="reader-share-info">
+        <span class="reader-share-label">Podijeli ovaj rad:</span>
+      </div>
+      <div class="reader-share-actions">
+        <button type="button" class="btn-copy-link btn-trigger-copy" aria-label="Kopiraj poveznicu na rad">
+          <span class="copy-tooltip">Poveznica kopirana!</span>
+          <svg class="icon-link" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="copy-btn-text">Kopiraj poveznicu</span>
+        </button>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fnavier-stokes.html&text=Navier%E2%80%93Stokes" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fnavier-stokes.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fnavier-stokes.html&quote=Navier%E2%80%93Stokes" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Povezani članci sekcija -->
+    
+    <section class="related-articles-section" aria-labelledby="related-heading">
+      <div class="related-header">
+        <span class="related-overline">PREPORUČENO ČITANJE</span>
+        <h3 id="related-heading" class="related-title">Povezani radovi i publikacije</h3>
+      </div>
+      <div class="related-grid">
+        
+      <a href="humanoidna-robotika.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/robotika.jpg" alt="Robotika – New Frontier" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 23 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Robotika – New Frontier</h4>
+          <p class="related-card-excerpt">Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="koliko-vode-trose-podatkovni-centri.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/voda_data_centri.jpg" alt="Koliko vode zapravo troše podatkovni centri?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 11 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Koliko vode zapravo troše podatkovni centri?</h4>
+          <p class="related-card-excerpt">Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="prompt-inzenjering-vs-ai-harnessing.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/Prompt inženjering.png" alt="Prompt inženjering vs. AI harnessing" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 8 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Prompt inženjering vs. AI harnessing</h4>
+          <p class="related-card-excerpt">Analiza evolucije interakcije s jezičnim modelima, prelaska s tradicionalnog prompt inženjeringa na AI harnessing te integracije kognitivnih modula u automatizirane, agentne radne procese.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      </div>
+    </section>
+
+    <!-- Fusnota i povratak -->
+    <footer class="reader-footer">
+      <a href="../index.html" class="btn-read-article">&larr; Povratak na popis sažetaka</a>
+    </footer>
+    </div>
     <!-- Sekcija komentara (Article Comments & Discussion) -->
     <section id="comments-section" class="comments-section" aria-labelledby="comments-title">
       <!-- Sadržaj komentara renderira js/comments.js -->
@@ -246,9 +1170,9 @@
     </div>
   </footer>
 
-  <script>window.PRELOADED_ARTICLE_ID = "navier-stokes";</script>
-  <script src="../js/article.js?v=20260911_1"></script>
-  <script src="../js/comments.js?v=20260919_1"></script>
-  <script src="../js/newsletter.js?v=20260831_1"></script>
+  <script>window.PRELOADED_ARTICLE_ID = "navier-stokes";window.PRELOADED_ARTICLE_DATA = {"id":"navier-stokes","title":"Navier–Stokes","title_en":"Navier–Stokes","date":"17. rujna 2026.","category":"AI i tehnologija","categorySlug":"ai-tehnologija","category_en":"AI & Tech","image":"img/Navier Stokes.jpg","readTime":"26 min čitanja","readTime_en":"27 min read","summary":"Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.","summary_en":"From Hilbert's 23 problems to the Clay Mathematics Institute's million-dollar prize: What the Navier–Stokes equations actually describe, what finite-time singularity means, and how OpenAI's agent swarm and Lean formal verification shook mathematics to its core.","excerpt":"Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.","excerpt_en":"From Hilbert's 23 problems to the Clay Mathematics Institute's million-dollar prize: What the Navier–Stokes equations actually describe, what finite-time singularity means, and how OpenAI's agent swarm and Lean formal verification shook mathematics to its core.","wordCount":6011,"wordCount_en":6211};window.PRELOADED_ARTICLES_INDEX = [{"id":"humanoidna-robotika","title":"Robotika – New Frontier","title_en":"Humanoid Robotics – The New Frontier","category":"AI i tehnologija","category_en":"AI & Tech","date":"4. listopada 2026.","readTime":"⏱ 23 min čitanja","readTime_en":"⏱ 23 min read","wordCount":4460,"wordCount_en":4498,"image":"img/robotika.jpg","excerpt":"Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.","excerpt_en":"Why Moravec's paradox is the defining challenge of our era, how VLA models and massive parallel simulation are emancipating AI into the physical world, and who leads the global race between Tesla, Figure, Boston Dynamics, and China."},{"id":"koliko-vode-trose-podatkovni-centri","title":"Koliko vode zapravo troše podatkovni centri?","title_en":"How Much Water Do Data Centers Actually Consume?","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tech","date":"23. kolovoza 2026.","readTime":"⏱ 11 min čitanja","readTime_en":"⏱ 12 min read","wordCount":2169,"wordCount_en":2202,"image":"img/voda_data_centri.jpg","excerpt":"Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.","excerpt_en":"A thermodynamic and physical analysis of data center water consumption – covering direct and indirect footprints, WUE and PUE metrics, liquid cooling, and comparisons with other industries."},{"id":"prompt-inzenjering-vs-ai-harnessing","title":"Prompt inženjering vs. AI harnessing","title_en":"Prompt Engineering vs. AI Harnessing","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"20. srpnja 2026.","readTime":"⏱ 8 min čitanja","readTime_en":"⏱ 8 min read","wordCount":1548,"wordCount_en":1449,"image":"img/Prompt inženjering.png","doi":"doi:10.1038/s41586-026-09511-x","excerpt":"Analiza evolucije interakcije s jezičnim modelima, prelaska s tradicionalnog prompt inženjeringa na AI harnessing te integracije kognitivnih modula u automatizirane, agentne radne procese.","excerpt_en":"An analysis of the evolution of LLM interaction, shifting from traditional prompt engineering to AI harnessing and integrating cognitive modules into automated agentic workflows."}];</script>
+  <script src="../js/article.js?v=20261017_1"></script>
+  <script src="../js/comments.js?v=20261017_1"></script>
+  <script src="../js/newsletter.js?v=20261017_1"></script>
 </body>
 </html>

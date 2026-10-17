@@ -85,13 +85,13 @@
   <link rel="manifest" href="../manifest.json">
   <link rel="apple-touch-icon" href="../img/logo.png">
 
-  <link rel="stylesheet" href="../style.css?v=20260911_1">
+  <link rel="stylesheet" href="../style.css?v=20261017_1">
   <!-- KaTeX for math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script src="../js/theme.js?v=20260911_1"></script>
-  <script src="../js/lang.js?v=20260911_1"></script>
+  <script src="../js/theme.js?v=20261017_1"></script>
+  <script src="../js/lang.js?v=20261017_1"></script>
   <script src="../js/pwa.js"></script>
 </head>
 <body>
@@ -129,12 +129,324 @@
 
   <!-- GLAVNI SPREMNIK - CENTRIRANI STUPAC ZA ČITANJE (max 800px) -->
   <main class="main-container">
-    <div class="article-reader-container" id="article-reader-container">
-      <div class="loading-state">
-        <p data-i18n="article.loading">Učitavanje sadržaja rada...</p>
+    <div class="article-reader-container" id="article-reader-container" data-ssg-rendered="true" data-ssg-lang="hr">
+    <!-- Link za povratak -->
+    <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
+
+    <!-- Zaglavlje rada -->
+    <header class="reader-header">
+      <div class="reader-meta">
+        <span class="card-category">Longevity</span>
+      </div>
+
+      <h1 class="reader-title">Resetiranje biološkog sata: Što su Yamanaka faktori</h1>
+
+      <div class="reader-submeta">
+        <div class="reader-submeta-info">
+          <time class="card-date" datetime="2. kolovoza 2026.">2. kolovoza 2026.</time>
+          <span class="card-read-time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            ⏱ 7 min čitanja
+          </span>
+          
+        </div>
+
+        <div class="share-buttons">
+          <button type="button" class="share-btn share-copy btn-trigger-copy" aria-label="Kopiraj poveznicu na rad" title="Kopiraj poveznicu na rad">
+            <span class="copy-tooltip">Poveznica kopirana!</span>
+            <svg class="icon-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fyamanaka-faktori-resetiranje-bioloskog-sata.html&text=Resetiranje%20biolo%C5%A1kog%20sata%3A%20%C5%A0to%20su%20Yamanaka%20faktori" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fyamanaka-faktori-resetiranje-bioloskog-sata.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fyamanaka-faktori-resetiranje-bioloskog-sata.html&quote=Resetiranje%20biolo%C5%A1kog%20sata%3A%20%C5%A0to%20su%20Yamanaka%20faktori" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+    <div class="article-cover-wrapper">
+      <img src="../img/yamanaka.png" alt="Resetiranje biološkog sata: Što su Yamanaka faktori" class="article-cover-hero" fetchpriority="high" decoding="async" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+    </div>
+  
+    </header>
+
+    <!-- Audio Player Bar (Preslušavanje članka) -->
+    <div class="audio-player-bar" id="audio-player-bar" aria-label="Slušaj članak">
+      <div class="audio-controls-left">
+        <button id="tts-play-btn" class="audio-btn audio-btn-play" aria-label="Pokreni čitanje" title="Pokreni čitanje">
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+        </button>
+        <button id="tts-stop-btn" class="audio-btn audio-btn-stop" aria-label="Zaustavi čitanje" title="Zaustavi čitanje" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="audio-status-container">
+        <span class="audio-status-pulse" id="tts-status-pulse"></span>
+        <span id="tts-status-text" class="audio-status-text">Slušaj članak</span>
+      </div>
+
+      <div class="audio-right-controls">
+        <div class="audio-voice-controls" id="audio-voice-controls">
+          <label for="tts-voice-select" class="voice-label" title="Odabir glasa za čitanje">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span class="voice-label-text">Glas:</span>
+          </label>
+          <select id="tts-voice-select" class="audio-voice-select" aria-label="Odabir glasa za čitanje">
+            <option value="">Najbolji prirodni glas</option>
+          </select>
+        </div>
+
+        <div class="audio-speed-controls">
+          <span class="speed-label">Brzina:</span>
+          <div class="speed-options">
+            <button class="speed-btn active" data-speed="1.0">1x</button>
+            <button class="speed-btn" data-speed="1.25">1.25x</button>
+            <button class="speed-btn" data-speed="1.5">1.5x</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Table of Contents (Sadržaj rada) Container -->
+    <div id="article-toc-container" class="article-toc-wrapper">
+    <nav class="article-toc-card" aria-label="Sadržaj članka">
+      <div class="article-toc-header">
+        <div class="article-toc-title-group">
+          <svg class="article-toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h2 class="article-toc-title">Sadržaj rada</h2>
+          <span class="article-toc-badge">13</span>
+        </div>
+        <button type="button" class="article-toc-toggle-btn" id="toc-toggle-btn" aria-expanded="true" aria-controls="article-toc-body" aria-label="Sakrij">
+          <span class="toc-toggle-text">Sakrij</span>
+          <svg class="toc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="article-toc-body" id="article-toc-body">
+        <ol class="article-toc-list">
+          
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#rušenje-biološke-dogme" class="article-toc-link" data-toc-target="rušenje-biološke-dogme">
+          <span class="toc-link-text">Rušenje biološke dogme</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#što-su-zapravo-oskm-proteini" class="article-toc-link" data-toc-target="što-su-zapravo-oskm-proteini">
+          <span class="toc-link-text">Što su zapravo OSKM proteini?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#brisanje-stanične-memorije" class="article-toc-link" data-toc-target="brisanje-stanične-memorije">
+          <span class="toc-link-text">Brisanje stanične memorije</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#zašto-su-yamanaka-faktori-izazvali-revoluciju" class="article-toc-link" data-toc-target="zašto-su-yamanaka-faktori-izazvali-revoluciju">
+          <span class="toc-link-text">Zašto su Yamanaka faktori izazvali revoluciju</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#etički-preokret-kraj-ovisnosti-o-embrijima" class="article-toc-link" data-toc-target="etički-preokret-kraj-ovisnosti-o-embrijima">
+          <span class="toc-link-text">Etički preokret: Kraj ovisnosti o embrijima</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#savršeni-imunitet-era-autologne-personalizirane-medicine" class="article-toc-link" data-toc-target="savršeni-imunitet-era-autologne-personalizirane-medicine">
+          <span class="toc-link-text">Savršeni imunitet: Era autologne (personalizirane) medicine</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#demokratizacija-i-ubrzanje-znanosti" class="article-toc-link" data-toc-target="demokratizacija-i-ubrzanje-znanosti">
+          <span class="toc-link-text">Demokratizacija i ubrzanje znanosti</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#primjena" class="article-toc-link" data-toc-target="primjena">
+          <span class="toc-link-text">Primjena</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#modeliranje-bolesti-i-ispitivanje-lijekova-in-vitro" class="article-toc-link" data-toc-target="modeliranje-bolesti-i-ispitivanje-lijekova-in-vitro">
+          <span class="toc-link-text">Modeliranje bolesti i ispitivanje lijekova in vitro</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#regenerativna-medicina-i-obnova-oštećenih-tkiva" class="article-toc-link" data-toc-target="regenerativna-medicina-i-obnova-oštećenih-tkiva">
+          <span class="toc-link-text">Regenerativna medicina i obnova oštećenih tkiva</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-sub-item" data-level="h4">
+        <a href="#parcijalno-reprogramiranje-pomlađivanje-i-longevity-medicina" class="article-toc-link" data-toc-target="parcijalno-reprogramiranje-pomlađivanje-i-longevity-medicina">
+          <span class="toc-link-text">Parcijalno reprogramiranje: Pomlađivanje i longevity medicina</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#izazovi-prije-šire-primjene" class="article-toc-link" data-toc-target="izazovi-prije-šire-primjene">
+          <span class="toc-link-text">Izazovi prije šire primjene</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#pogled-u-budućnost-medicine" class="article-toc-link" data-toc-target="pogled-u-budućnost-medicine">
+          <span class="toc-link-text">Pogled u budućnost medicine</span>
+        </a>
+      </li>
+        </ol>
+      </div>
+    </nav></div>
+
+    <!-- Puni HTML Sadržaj Članka -->
+    <article class="reader-body" id="reader-body">
+      <h3 id="rušenje-biološke-dogme">Rušenje biološke dogme</h3><p>Desetljećima je u razvojnoj biologiji vrijedilo jedno od najnefleksibilnijih pravila: diferencijacija stanica je jednosmjerna ulica. Kada se iz stanica zametka razvije specijalizirana stanica, bilo da je riječ o neuronu koji prenosi električne impulse, stanici kože koja stvara zaštitnu barijeru ili stanici srčanog mišića koja periodički kuca, njezin je put smatran konačnim i ireverzibilnim.</p><p>Znanstvenici su taj proces često vizualizirali kao kuglicu koja se kotrlja niz strmu planinu. Jednom kada se kuglica smjesti u najdublju dolinu (određeni tip stanice), njezin povratak na vrh činio se biološki nemogućim. Smatralo se da je stanični identitet trajno zaključan.</p><p>Međutim, 2006. godine, ta temeljna biološka dogma doživjela je spektakularan slom.</p><p>Japanski znanstvenik Shinya Yamanaka, zajedno sa svojim timom na Sveučilištu u Kyotu, usudio se postaviti pitanje koje je većina smatrala teorijski nemogućim: je li moguće stanični sat vratiti unazad?</p><p>Odgovor koji je ponudio protresao je same temelje biomedicine. Yamanaka je dokazao da je proces staničnog sazrijevanja potpuno reverzibilan. Pokazao je da se obična, zrela stanica odraslog čovjeka (poput stanice kože) može reprogramirati i doslovno vratiti na "tvorničke postavke" – u stanje u kojem ponovno ima potencijal postati bilo koji tip tkiva u ljudskom tijelu.</p><p>Ovo otkriće, za koje je Yamanaka 2012. godine nagrađen Nobelovom nagradom za fiziologiju ili medicinu, nije bilo samo teorijska pobjeda nad dotadašnjim shvaćanjem biologije. Ono je označilo početak nove ere u kojoj stanični identitet više nije nepromjenjiva sudbina, već stanje koje možemo kontrolirati, obnavljati i usmjeravati.</p><h3 id="što-su-zapravo-oskm-proteini">Što su zapravo OSKM proteini?</h3><p>Kako bi se uistinu razumjela važnost ovog otkrića, potrebno je zaviriti u mehanizam kojim stanice čuvaju svoj identitet. Svaka stanica u našem tijelu, bilo da je to stanica oka ili stanica jetre, sadrži potpuno isti genetski kod (odnosno istu DNK). Ono što čini stanicu kože različitom od neurona nije sam zapis, već to koji su geni u njoj "uključeni", a koji "isključeni". Taj sustav molekularnih prekidača i oznaka naziva se epigenom.</p><p>Tijekom staničnog sazrijevanja, epigenetske oznake čvrsto zaključavaju nepotrebne gene. Yamanaka i njegov tim shvatili su da, žele li stanicu vratiti u prvobitno, nespecijalizirano stanje, moraju pronaći molekularne ključeve koji mogu otključati te epigenetske brave.</p><p>Nakon godina testiranja stotina genetskih kombinacija, Yamanaka je došao do zapanjujuće jednostavne formule: bila su dovoljna samo četiri transkripcijska proteina da se zrela stanica vrati u stanje matične stanice. Ti su proteini u znanstvenoj zajednici postali poznati pod zajedničkim nazivom Yamanaka faktori ili akronimom OSKM:</p><ul><li><strong>Oct3/4 (Octamer-binding transcription factor 3/4):</strong> Glavni čuvar pluripotencije. Ovaj protein sprječava stanicu da se diferencira i drži širom otvorena vrata prema svim mogućim staničnim putanjama.</li><li><strong>Sox2 (SRY-box 2):</strong> Djeluje u bliskom partnerstvu s Oct4. Zajedno tvore stabilan kompleks koji kontrolira ekspresiju gena zaduženih za održavanje neograničenog potencijala stanice.</li><li><strong>Klf4 (Kruppel-like factor 4):</strong> Regulira stanični ciklus, potiče preživljavanje stanice tijekom procesa reprogramiranja i pomaže u održavanju stanične samoobnove.</li><li><strong>c-Myc:</strong> Djeluje poput molekularnog "otvarača". c-Myc opušta zbijenu strukturu kromatina (DNK pakiranja), omogućujući ostalim faktorima lak pristup genetskom kodu. Također drastično ubrzava diobu stanica, iako zahtijeva oprez jer je ujedno i poznati onkogen.</li></ul><h4 id="brisanje-stanične-memorije">Brisanje stanične memorije</h4><p>Kada se ova četiri proteina unesu u običnu stanicu kože (fibroblast), započinje fascinantan proces:</p><ol><li>Proteini se vežu za specifične regije DNK i počinju brisati epigenetsko pamćenje stanice.</li><li>Stanica postupno gubi svoju specifičnu funkciju, tj. prestaje se ponašati kao stanica kože.</li><li>U roku od nekoliko tjedana, stanica se transformira u induciranu pluripotentnu matičnu stanicu (iPSC).</li></ol><p>Pojam pluripotencija označava sposobnost stanice da se razvije u bilo koji od više od 200 tipova stanica u ljudskom tijelu, od kardiomiocita u srcu do fotoreceptora u mrežnici oka. Yamanaka faktori su time dokazali da je stanični identitet zapravo samo softver koji se po potrebi može ponovno formatirati.</p><h3 id="zašto-su-yamanaka-faktori-izazvali-revoluciju">Zašto su Yamanaka faktori izazvali revoluciju</h3><p>Otkriće Yamanaka faktora nije imalo samo teorijski odjek u laboratorijima. Ono je momentalno premostilo neke od najvećih slijepih ulica u koje je moderna medicina upala početkom 21. stoljeća.</p><h4 id="etički-preokret-kraj-ovisnosti-o-embrijima">Etički preokret: Kraj ovisnosti o embrijima</h4><p>Prije 2006. godine, jedini poznati izvor pluripotentnih matičnih stanica bili su rani ljudski embriji (blastociste). Istraživanja embrijskih matičnih stanica bila su obavijena žestokim etičkim, pravnim i vjerskim debatama, jer je izdvajanje stanica značilo uništenje embrija. Zbog toga su istraživanja u mnogim zemljama bila strogo ograničena ili potpuno zabranjena. Yamanaka faktori su u potpunosti eliminirali potrebu za korištenjem embrija. Znanstvenici su dobili mogućnost stvoriti neograničene količine pluripotentnih stanica iz običnog uzorka krvi ili male biopsije kože odraslog čovjeka.</p><h4 id="savršeni-imunitet-era-autologne-personalizirane-medicine">Savršeni imunitet: Era autologne (personalizirane) medicine</h4><p>Jedan od najvećih izazova klasične transplantacijske medicine jest odbacivanje tkiva. Kada pacijentu presadite stanice ili organ druge osobe (alogenična transplantacija), njegov imunološki sustav to prepoznaje kao strano tijelo i napada ga. S induciranim pluripotentnim matičnim stanicama (iPSC), taj problem nestaje. Budući da se stanice uzimaju iz tijela samog pacijenta, reprogramiraju i potom pretvaraju u željeno tkivo, vraćeno tkivo nosi identičan genetski kod i imunološke oznake. Imunološki sustav ga prepoznaje kao vlastito, čime se eliminira rizik od odbacivanja.</p><h4 id="demokratizacija-i-ubrzanje-znanosti">Demokratizacija i ubrzanje znanosti</h4><p>Dobivanje embrijskih stanica zahtijevalo je složena odobrenja i visoke troškove. Yamanaka tehnologija oslanjala se na četiri definirana proteina i standardne laboratorijske protokole, što je omogućilo istraživačima diljem svijeta da započnu vlastita istraživanja matičnih stanica.</p><h3 id="primjena">Primjena</h3><p>Sposobnost pretvaranja zrelih stanica u pluripotentne matične stanice preoblikovala je teorijska razmatranja u konkretna medicinska rješenja. Primjena Yamanaka faktora danas se odvija na tri glavna fronta:</p><h4 id="modeliranje-bolesti-i-ispitivanje-lijekova-in-vitro">Modeliranje bolesti i ispitivanje lijekova in vitro</h4><p>Prije era iPSC stanica, proučavanje razvoja neurodegenerativnih bolesti u živim ljudskim stanicama bilo je gotovo nemoguće.</p><ul><li><strong>"Bolest u petrijevoj zdjelici":</strong> uzimaju se stanice kože pacijenta koji boluje od specifičnog poremećaja (npr. ALS-a ili Huntingtonove bolesti), reprogramiraju u iPSC stanice, a zatim ih se u laboratoriju usmjerava da se razviju u neurone.</li><li><strong>Brže i sigurnije testiranje lijekova:</strong> Na tim se neuronima mogu testirati tisuće potencijalnih lijekova u stvarnom vremenu bez opasnosti za pacijenta.</li></ul><h4 id="regenerativna-medicina-i-obnova-oštećenih-tkiva">Regenerativna medicina i obnova oštećenih tkiva</h4><ul><li><strong>Očne bolesti i sljepoća:</strong> U Japanu su pacijentima s teškom makularnom degeneracijom presađeni slojevi stanica mrežnice uzgojeni iz iPSC-a, čime je zaustavljen gubitak vida.</li><li><strong>Kardiologija:</strong> Proizvodnja funkcionalnih kardiomiocita (stanica srčanog mišića) koji se apliciraju na oštećeno područje nakon srčanog udara.</li><li><strong>3D organoidi i mini-organi:</strong> Uzgoj mikroskopske strukture mozga, bubrega ili jetre u petrijevoj zdjelici radi proučavanja staničnih interakcija.</li></ul><h4 id="parcijalno-reprogramiranje-pomlađivanje-i-longevity-medicina">Parcijalno reprogramiranje: Pomlađivanje i longevity medicina</h4><p>Ako se OSKM proteini u stanicama aktiviraju na vrlo kratko vrijeme (tzv. prolazno ili pulsno reprogramiranje), stanica ne stigne izgubiti svoj identitet – stanica kože i dalje ostaje stanica kože. Međutim, epigenetski sat stanice se vrati unazad.</p><ul><li><strong>Resetiranje epigenetske dobi:</strong> Parcijalno reprogramiranje čisti epigenetske oznake i molekularni šum nakupljen starenjem.</li><li><strong>Revolucionarni pokusi:</strong> Pokusi na miševima pokazali su da se kratkotrajnom aktivacijom Yamanaka faktora mogu regenerirati oštećeni očni živci, obnoviti mišićna masa starih jedinki i produžiti njihov životni vijek.</li><li><strong>Budućnost medicine starenja:</strong> Biotehnološke investicije (poput Altos Labs) usmjerene su na pretvaranje parcijalnog reprogramiranja u sigurne terapije protiv artritisa, kardiovaskularnih i neurodegenerativnih bolesti.</li></ul><h3 id="izazovi-prije-šire-primjene">Izazovi prije šire primjene</h3><p>Unatoč golemom potencijalu, reprogramiranje stanica nosi znatne biološke izazove:</p><ul><li><strong>Onkogeni rizik i opasnost od teratoma:</strong> c-Myc je poznati onkogen. Ako se stanica reprogramira do stanja potpune pluripotencije unutar žive jedinke bez precizne kontrole, postoji rizik od nastanka teratoma.</li><li><strong>Izazov dostave do ciljanih tkiva:</strong> Potrebno je osigurati dostavu faktora u točno određene organe unutar tijela koristeći sigurnije metode poput sintetske mRNA i lipidnih nanočestica.</li><li><strong>Tanka linija parcijalnog reprogramiranja:</strong> Premalo izlaganja neće učinkovito očistiti nakupljeni epigenetski šum, dok predugo izlaganje uzrokuje da stanica izgubi svoj identitet.</li><li><strong>Akumulacija izvornih mutacija u DNK:</strong> Reprogramiranje resetira epigenetski sat, ali ne popravlja automatski mutacije u samom slijedu nukleotida DNK koje su se nakupile tijekom života.</li></ul><h3 id="pogled-u-budućnost-medicine">Pogled u budućnost medicine</h3><p>Yamanaka faktori promijenili su način na koji gledamo na biologiju starenja i staničnog identiteta. Saznanje da stanična specijalizacija nije jednosmjerna ulica otvorilo je jedno od najuzbudljivijih poglavlja u povijesti medicine. Savladavanje prepreka u dostavi i kontroli reprogramiranja vodi nas prema eri u kojoj medicina neće samo ublažavati simptome kroničnih bolesti, već će moći aktivno regenerirati ljudsko tijelo na staničnoj razini.</p>
+    </article>
+
+    <!-- Donji Share Blok -->
+    <div class="reader-share-box">
+      <div class="reader-share-info">
+        <span class="reader-share-label">Podijeli ovaj rad:</span>
+      </div>
+      <div class="reader-share-actions">
+        <button type="button" class="btn-copy-link btn-trigger-copy" aria-label="Kopiraj poveznicu na rad">
+          <span class="copy-tooltip">Poveznica kopirana!</span>
+          <svg class="icon-link" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="copy-btn-text">Kopiraj poveznicu</span>
+        </button>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fyamanaka-faktori-resetiranje-bioloskog-sata.html&text=Resetiranje%20biolo%C5%A1kog%20sata%3A%20%C5%A0to%20su%20Yamanaka%20faktori" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fyamanaka-faktori-resetiranje-bioloskog-sata.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fyamanaka-faktori-resetiranje-bioloskog-sata.html&quote=Resetiranje%20biolo%C5%A1kog%20sata%3A%20%C5%A0to%20su%20Yamanaka%20faktori" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Povezani članci sekcija -->
+    
+    <section class="related-articles-section" aria-labelledby="related-heading">
+      <div class="related-header">
+        <span class="related-overline">PREPORUČENO ČITANJE</span>
+        <h3 id="related-heading" class="related-title">Povezani radovi i publikacije</h3>
+      </div>
+      <div class="related-grid">
+        
+      <a href="jesmo-li-vec-vidjeli-prve-longevity-lijekove.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/GLP_lijekovi.jpg" alt="Jesmo li već vidjeli prve Longevity lijekove?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">Longevity</span>
+            <span class="related-read-time">⏱ 19 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Jesmo li već vidjeli prve Longevity lijekove?</h4>
+          <p class="related-card-excerpt">Analiza inkretinske revolucije – od semaglutida i tirzepatida do retatrutida i orforgliprona: djeluju li GLP-1 agonisti kao stvarni geroprotektori ili metabolički štit protiv modernog načina života?</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="peptidi-bolski-signalni-sustavi.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/peptidi.png.png" alt="Peptidi: Biološki signalni molekularni sustavi" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">Longevity</span>
+            <span class="related-read-time">⏱ 6 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Peptidi: Biološki signalni molekularni sustavi</h4>
+          <p class="related-card-excerpt">Pregled uloge peptida u modernoj medicini – od GLP-1 metaboličke revolucije i regenerativnih spojeva BPC-157 i TB-500 do rejuvenacije, GHK-Cu i primjene umjetne inteligencije u dizajnu de novo peptida.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="alphafold-nobel-nagrada.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/Alphafold.png" alt="AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">Longevity</span>
+            <span class="related-read-time">⏱ 10 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?</h4>
+          <p class="related-card-excerpt">Kratki pregled kako je DeepMindov AlphaFold riješio 50 godina star problem savijanja proteina, osvojio Nobelovu nagradu i otvorio novu eru u dizajniranju sintetičkih enzima za pomlađivanje tkiva.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      </div>
+    </section>
+
+    <!-- Fusnota i povratak -->
+    <footer class="reader-footer">
+      <a href="../index.html" class="btn-read-article">&larr; Povratak na popis sažetaka</a>
+    </footer>
+    </div>
     <!-- Sekcija komentara (Article Comments & Discussion) -->
     <section id="comments-section" class="comments-section" aria-labelledby="comments-title">
       <!-- Sadržaj komentara renderira js/comments.js -->
@@ -246,9 +558,9 @@
     </div>
   </footer>
 
-  <script>window.PRELOADED_ARTICLE_ID = "yamanaka-faktori-resetiranje-bioloskog-sata";</script>
-  <script src="../js/article.js?v=20260911_1"></script>
-  <script src="../js/comments.js?v=20260919_1"></script>
-  <script src="../js/newsletter.js?v=20260831_1"></script>
+  <script>window.PRELOADED_ARTICLE_ID = "yamanaka-faktori-resetiranje-bioloskog-sata";window.PRELOADED_ARTICLE_DATA = {"id":"yamanaka-faktori-resetiranje-bioloskog-sata","title":"Resetiranje biološkog sata: Što su Yamanaka faktori","title_en":"Resetting the Biological Clock: What Are Yamanaka Factors","date":"2. kolovoza 2026.","category":"Longevity","categorySlug":"longevity","category_en":"Longevity","readTime":"7 min čitanja","readTime_en":"7 min read","image":"img/yamanaka.png","summary":"Pregled znanstvenog proboja Shinyje Yamanake i OSKM proteina koji su dokazali da je stanična diferencijacija reverzibilan proces – od iPSC tehnologije i autologne medicine do parcijalnog reprogramiranja za pomlađivanje tkiva.","summary_en":"An overview of Shinya Yamanaka's scientific breakthrough and OSKM proteins that proved cellular differentiation is a reversible process – from iPSC technology and autologous medicine to partial reprogramming for tissue rejuvenation.","excerpt":"Pregled znanstvenog proboja Shinyje Yamanake i OSKM proteina koji su dokazali da je stanična diferencijacija reverzibilan proces – od iPSC tehnologije i autologne medicine do parcijalnog reprogramiranja za pomlađivanje tkiva.","excerpt_en":"An overview of Shinya Yamanaka's scientific breakthrough and OSKM proteins that proved cellular differentiation is a reversible process – from iPSC technology and autologous medicine to partial reprogramming for tissue rejuvenation.","wordCount":1290,"wordCount_en":1427};window.PRELOADED_ARTICLES_INDEX = [{"id":"jesmo-li-vec-vidjeli-prve-longevity-lijekove","title":"Jesmo li već vidjeli prve Longevity lijekove?","title_en":"Have We Already Seen the First Longevity Drugs?","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"2. rujna 2026.","readTime":"⏱ 19 min čitanja","readTime_en":"⏱ 17 min read","wordCount":3614,"wordCount_en":3230,"image":"img/GLP_lijekovi.jpg","excerpt":"Analiza inkretinske revolucije – od semaglutida i tirzepatida do retatrutida i orforgliprona: djeluju li GLP-1 agonisti kao stvarni geroprotektori ili metabolički štit protiv modernog načina života?","excerpt_en":"An analysis of the incretin revolution – from semaglutide and tirzepatide to retatrutide and orforglipron: do GLP-1 agonists act as true geroprotectors or as a metabolic shield against modern lifestyles?"},{"id":"peptidi-bolski-signalni-sustavi","title":"Peptidi: Biološki signalni molekularni sustavi","title_en":"Peptides: Biological Signaling Molecular Systems","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"27. srpnja 2026.","readTime":"⏱ 6 min čitanja","readTime_en":"⏱ 6 min read","wordCount":1009,"wordCount_en":1174,"image":"img/peptidi.png.png","video":"video/peptidi.mp4","excerpt":"Pregled uloge peptida u modernoj medicini – od GLP-1 metaboličke revolucije i regenerativnih spojeva BPC-157 i TB-500 do rejuvenacije, GHK-Cu i primjene umjetne inteligencije u dizajnu de novo peptida.","excerpt_en":"An overview of the role of peptides in modern medicine – from the GLP-1 metabolic revolution and regenerative compounds BPC-157 and TB-500 to rejuvenation, GHK-Cu, and the application of artificial intelligence in de novo peptide design."},{"id":"alphafold-nobel-nagrada","title":"AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?","title_en":"AlphaFold – The First Nobel Prize Not Won by a Human?","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"24. srpnja 2026.","readTime":"⏱ 10 min čitanja","readTime_en":"⏱ 9 min read","wordCount":1816,"wordCount_en":1758,"image":"img/Alphafold.png","doi":"doi:10.1038/s41586-026-09855-3","excerpt":"Kratki pregled kako je DeepMindov AlphaFold riješio 50 godina star problem savijanja proteina, osvojio Nobelovu nagradu i otvorio novu eru u dizajniranju sintetičkih enzima za pomlađivanje tkiva.","excerpt_en":"A brief overview of how DeepMind's AlphaFold solved the 50-year-old protein folding problem, won a Nobel Prize, and opened a new era in designing synthetic enzymes for tissue rejuvenation."}];</script>
+  <script src="../js/article.js?v=20261017_1"></script>
+  <script src="../js/comments.js?v=20261017_1"></script>
+  <script src="../js/newsletter.js?v=20261017_1"></script>
 </body>
 </html>
