@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { optimizeImages } from './optimize-images.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -564,7 +565,9 @@ function buildHomeArticleCardHTML(article, index) {
         </article>`;
 }
 
-export function generateStaticPages() {
+export async function generateStaticPages() {
+  await optimizeImages();
+
   console.log('======================================================');
   console.log('  GENERIRANJE STATIČKIH STRANICA ČLANAKA & INDEKSA (SSG)');
   console.log('======================================================\n');

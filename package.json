@@ -4,6 +4,7 @@
   "description": "Scientific Insights & Physics Journal - Web Publication and Newsletter Dispatcher",
   "type": "module",
   "scripts": {
+    "optimize:images": "node scripts/optimize-images.js",
     "build": "node scripts/generate-static-pages.js",
     "serve": "node scripts/serve.js",
     "notify": "node scripts/notify-subscribers.js",
@@ -24,5 +25,8 @@
   "license": "ISC",
   "dependencies": {
     "nodemailer": "^9.1.1"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
   }
 }

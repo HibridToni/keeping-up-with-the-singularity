@@ -24,6 +24,7 @@ const PRECACHE_ASSETS = [
   '/js/pwa.js',
   '/articles-index.json',
   '/manifest.json',
+  '/img/logo.webp',
   '/img/logo.png',
   '/img/icon.svg'
 ];
