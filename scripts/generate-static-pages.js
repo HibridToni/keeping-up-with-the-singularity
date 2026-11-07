@@ -447,6 +447,65 @@ function buildStaticArticleBodyHTML(article, allArticlesIndex) {
 }
 
 /**
+ * Generates Featured / Hero HTML card for the latest article on index.html
+ */
+function buildFeaturedHeroCardHTML(article) {
+  if (!article) return '';
+  const title = article.title || 'Naslov rada nedostupan';
+  const category = article.category || 'Općenito';
+  const excerpt = article.excerpt || article.summary || 'Kratki uvod i sažetak rada trenutačno nisu dostupni.';
+  const date = article.date || 'Nepoznat datum';
+  const readTime = article.readTime || '⏱ 3 min čitanja';
+  const doi = article.doi || '';
+  const articleUrl = `articles/${encodeURIComponent(article.id)}.html`;
+  const image = article.image || '';
+  const ctaAria = `Pročitaj istaknuti rad: ${title}`;
+
+  const mediaHTML = image ? `
+          <div class="featured-hero-media">
+            <a href="${articleUrl}" tabindex="-1" aria-hidden="true">
+              <img src="${escapeHTML(image)}" alt="${escapeHTML(title)}" class="featured-hero-img" fetchpriority="high" decoding="async" onerror="this.closest('.featured-hero-media').style.display='none'">
+            </a>
+          </div>` : '';
+
+  return `
+        <article class="featured-hero-card" id="featured-card-${escapeHTML(String(article.id))}">
+          ${mediaHTML}
+          <div class="featured-hero-content">
+            <div class="featured-hero-top">
+              <div class="featured-badges-row">
+                <span class="featured-pulse-badge">
+                  <span class="featured-pulse-dot"></span>
+                  <span>NAJNOVIJI RAD</span>
+                </span>
+                <span class="card-category">${escapeHTML(category)}</span>
+                <time class="card-date" datetime="${escapeHTML(date)}">${escapeHTML(date)}</time>
+              </div>
+              <h2 class="featured-hero-title">
+                <a href="${articleUrl}">${escapeHTML(title)}</a>
+              </h2>
+              <p class="featured-hero-excerpt">${escapeHTML(excerpt)}</p>
+            </div>
+            <div class="featured-hero-footer">
+              <div class="card-info">
+                <span class="card-read-time">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  ${escapeHTML(readTime)}
+                </span>
+                ${doi ? `<span class="card-doi">${escapeHTML(doi)}</span>` : ''}
+              </div>
+              <a href="${articleUrl}" class="btn-featured-read" aria-label="${escapeHTML(ctaAria)}">
+                Pročitaj istaknuti rad &rarr;
+              </a>
+            </div>
+          </div>
+        </article>`;
+}
+
+/**
  * Generates HTML card for index.html pre-rendering
  */
 function buildHomeArticleCardHTML(article, index) {
@@ -720,11 +779,21 @@ export function generateStaticPages() {
     console.log(`✅ [${generatedCount}/${articles.length}] articles/${id}.html (+ articles/${id}.json)`);
   });
 
-  // 3. Ugradi inicijalnih 6 kartica u index.html za trenutni prikaz (SSG)
+  // 3. Ugradi Featured Hero karticu i inicijalnih 6 kartica u index.html za trenutni prikaz (SSG)
   if (fs.existsSync(indexHtmlPath)) {
     let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
+
+    const featuredHeroHtml = articlesIndex.length > 0 ? buildFeaturedHeroCardHTML(articlesIndex[0]) : '';
+    const featuredPattern = /(<div\s+id="featured-article-container"\s+class="featured-article-container"[^>]*>)[\s\S]*?(<\/div>\s*\n\s*<\/section>)/i;
+    if (featuredPattern.test(indexHtml)) {
+      indexHtml = indexHtml.replace(
+        featuredPattern,
+        `$1\n        <!-- Istaknuti Hero rad pred-renderiran putem SSG-a (scripts/generate-static-pages.js) -->${featuredHeroHtml}\n      $2`
+      );
+    }
+
     const initialCards = articlesIndex
-      .slice(0, HOME_PAGE_SIZE)
+      .slice(1, 1 + HOME_PAGE_SIZE)
       .map((art, idx) => buildHomeArticleCardHTML(art, idx))
       .join('\n');
 
@@ -742,8 +811,24 @@ export function generateStaticPages() {
       `<span id="articles-count" class="articles-count">${articlesIndex.length} ${summaryLabel}</span>`
     );
 
+    const aiCount = articlesIndex.filter(a => {
+      const slug = (a.categorySlug || '').toLowerCase();
+      const cat = (a.category || '').toLowerCase();
+      return slug === 'ai-tehnologija' || slug === 'ai-tech' || cat.includes('ai');
+    }).length;
+    const lonCount = articlesIndex.filter(a => {
+      const slug = (a.categorySlug || '').toLowerCase();
+      const cat = (a.category || '').toLowerCase();
+      return slug === 'longevity' || cat.includes('longevity');
+    }).length;
+
+    indexHtml = indexHtml
+      .replace(/<span\s+class="filter-pill-count"\s+id="count-filter-all">[^<]*<\/span>/i, `<span class="filter-pill-count" id="count-filter-all">${articlesIndex.length}</span>`)
+      .replace(/<span\s+class="filter-pill-count"\s+id="count-filter-ai">[^<]*<\/span>/i, `<span class="filter-pill-count" id="count-filter-ai">${aiCount}</span>`)
+      .replace(/<span\s+class="filter-pill-count"\s+id="count-filter-longevity">[^<]*<\/span>/i, `<span class="filter-pill-count" id="count-filter-longevity">${lonCount}</span>`);
+
     fs.writeFileSync(indexHtmlPath, indexHtml, 'utf8');
-    console.log(`\n🏠 Ažuriran index.html s ${Math.min(HOME_PAGE_SIZE, articlesIndex.length)} pred-renderiranih SSG kartica.`);
+    console.log(`\n🏠 Ažuriran index.html s pred-renderiranim Hero člankom i ${Math.min(HOME_PAGE_SIZE, Math.max(0, articlesIndex.length - 1))} SSG kartica u mreži.`);
   }
 
   console.log(`\n🎉 Uspješno generirano ${generatedCount} statičkih članaka u mapi "articles/".`);

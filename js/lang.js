@@ -20,8 +20,18 @@ const translations = {
     "category.meta_prefix": "Kategorija • ",
     "category.default_desc": "Pregled objavljenih sažetaka radova i analiza iz odabrane tematske kategorije.",
 
-    // Section Headers
+    // Section Headers & Filters
     "section.short_texts": "KRATKI TEKSTOVI",
+    "featured.badge": "NAJNOVIJE IZDANJE",
+    "featured.cta": "Pročitaj cjelovitu analizu →",
+    "filter.all": "Sve",
+    "filter.ai": "AI i tehnologija",
+    "filter.longevity": "Longevity",
+    "sort.label": "Sortiraj:",
+    "sort.newest": "Najnovije",
+    "sort.longest": "Najduže analize",
+    "sort.shortest": "Najkraće čitanje",
+    "search.kbd_tooltip": "Pritisnite / za brzu pretragu",
 
     // Buttons & UI
     "btn.read_article": "Pročitaj rad →",
@@ -190,8 +200,18 @@ const translations = {
     "category.meta_prefix": "Category • ",
     "category.default_desc": "An overview of published research summaries and analyses from the selected thematic category.",
 
-    // Section Headers
+    // Section Headers & Filters
     "section.short_texts": "SHORT ARTICLES",
+    "featured.badge": "LATEST ISSUE",
+    "featured.cta": "Read full analysis →",
+    "filter.all": "All",
+    "filter.ai": "AI & Tech",
+    "filter.longevity": "Longevity",
+    "sort.label": "Sort by:",
+    "sort.newest": "Newest first",
+    "sort.longest": "Longest reads",
+    "sort.shortest": "Shortest reads",
+    "search.kbd_tooltip": "Press / to search",
 
     // Buttons & UI
     "btn.read_article": "Read article →",

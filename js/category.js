@@ -4,11 +4,13 @@ let currentCategoryArticlesList = [];
 let displayedCategoryCount = 0;
 let currentCategoryTitle = '';
 let currentCategorySearchQuery = '';
+let currentCategorySortOrder = 'newest';
 
 document.addEventListener('DOMContentLoaded', () => {
   initCategoryPage();
   setupResponsiveNav();
   setupSearch();
+  setupSort();
   setupPagination();
   if (typeof updateActiveNavLink === 'function') {
     updateActiveNavLink();
@@ -92,11 +94,75 @@ async function initCategoryPage(resetPagination = true) {
   });
 
   cachedCategoryArticles = filteredArticles;
-  if (currentCategorySearchQuery && currentCategorySearchQuery.trim()) {
-    handleSearch(currentCategorySearchQuery, resetPagination);
-  } else {
-    renderCategoryArticles(filteredArticles, catTitle, '', resetPagination);
+  applyCategoryFiltersAndRender(resetPagination);
+}
+
+/**
+ * Returns numeric word count for sorting articles by length
+ * @param {Object} article
+ * @param {string} lang
+ * @returns {number}
+ */
+function getArticleWordCount(article, lang = 'hr') {
+  if (!article) return 0;
+  if (lang === 'en' && typeof article.wordCount_en === 'number' && article.wordCount_en > 0) {
+    return article.wordCount_en;
   }
+  if (typeof article.wordCount === 'number' && article.wordCount > 0) {
+    return article.wordCount;
+  }
+  const readTimeStr = (lang === 'en' && article.readTime_en) ? article.readTime_en : (article.readTime || '');
+  const match = String(readTimeStr).match(/(\d+)/);
+  if (match) {
+    return parseInt(match[1], 10) * 200;
+  }
+  return 0;
+}
+
+/**
+ * Sorts an array of category articles without mutating the original array
+ * @param {Array} articles
+ * @param {string} sortOrder - 'newest' | 'longest' | 'shortest'
+ * @returns {Array}
+ */
+function sortCategoryArticlesList(articles, sortOrder) {
+  if (!Array.isArray(articles)) return [];
+  if (!sortOrder || sortOrder === 'newest') {
+    return [...articles];
+  }
+  const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
+  return [...articles].sort((a, b) => {
+    const wordsA = getArticleWordCount(a, currentLang);
+    const wordsB = getArticleWordCount(b, currentLang);
+    return sortOrder === 'longest' ? (wordsB - wordsA) : (wordsA - wordsB);
+  });
+}
+
+/**
+ * Applies active search query and sort order on the category page
+ * @param {boolean} [resetPagination=true]
+ */
+function applyCategoryFiltersAndRender(resetPagination = true) {
+  const normalized = normalizeSearchText(currentCategorySearchQuery);
+  const filtered = normalized
+    ? cachedCategoryArticles.filter(article => matchesSearchQuery(article, normalized))
+    : cachedCategoryArticles;
+
+  const sorted = sortCategoryArticlesList(filtered, currentCategorySortOrder);
+  renderCategoryArticles(sorted, currentCategoryTitle, currentCategorySearchQuery, resetPagination);
+}
+
+/**
+ * Attaches sort select event listener on the category page
+ */
+function setupSort() {
+  const sortSelect = document.getElementById('article-sort-select');
+  if (!sortSelect) return;
+
+  sortSelect.addEventListener('change', (e) => {
+    currentCategorySortOrder = e.target.value || 'newest';
+    applyCategoryFiltersAndRender(true);
+  });
 }
 
 async function fetchArticles(url, fallbackUrl = 'articles.json') {
@@ -459,12 +525,22 @@ function renderEmptySearchState(container, query) {
     resetBtn.addEventListener('click', () => {
       const searchInput = document.getElementById('article-search');
       const clearBtn = document.getElementById('search-clear-btn');
+      const kbdHint = document.getElementById('search-kbd-hint');
+      const sortSelect = document.getElementById('article-sort-select');
+
+      currentCategorySortOrder = 'newest';
+      if (sortSelect) {
+        sortSelect.value = 'newest';
+      }
       if (searchInput) {
         searchInput.value = '';
         searchInput.focus();
       }
       if (clearBtn) {
         clearBtn.style.display = 'none';
+      }
+      if (kbdHint) {
+        kbdHint.style.display = '';
       }
       handleSearch('');
     });
@@ -525,47 +601,69 @@ function matchesSearchQuery(article, normalizedQuery) {
  */
 function handleSearch(query, resetPagination = true) {
   currentCategorySearchQuery = query;
-  const normalized = normalizeSearchText(query);
-  if (!normalized) {
-    renderCategoryArticles(cachedCategoryArticles, currentCategoryTitle, '', resetPagination);
-    return;
-  }
-
-  const filtered = cachedCategoryArticles.filter(article => matchesSearchQuery(article, normalized));
-  renderCategoryArticles(filtered, currentCategoryTitle, query, resetPagination);
+  applyCategoryFiltersAndRender(resetPagination);
 }
 
 /**
- * Attaches search input and clear button listeners
+ * Attaches search input, clear button, and keyboard shortcut ('/' or Ctrl+K) listeners
  */
 function setupSearch() {
   const searchInput = document.getElementById('article-search');
   const clearBtn = document.getElementById('search-clear-btn');
+  const kbdHint = document.getElementById('search-kbd-hint');
 
   if (!searchInput) return;
 
+  const updateSearchUi = (val) => {
+    const hasText = Boolean(val && val.trim());
+    if (clearBtn) {
+      clearBtn.style.display = hasText ? 'block' : 'none';
+    }
+    if (kbdHint) {
+      kbdHint.style.display = hasText ? 'none' : '';
+    }
+  };
+
   searchInput.addEventListener('input', (e) => {
     const query = e.target.value;
-    if (clearBtn) {
-      clearBtn.style.display = query.trim() ? 'block' : 'none';
-    }
+    updateSearchUi(query);
     handleSearch(query);
   });
 
   searchInput.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       searchInput.value = '';
-      if (clearBtn) clearBtn.style.display = 'none';
+      updateSearchUi('');
       handleSearch('');
+      searchInput.blur();
     }
   });
 
   if (clearBtn) {
     clearBtn.addEventListener('click', () => {
       searchInput.value = '';
-      clearBtn.style.display = 'none';
+      updateSearchUi('');
       searchInput.focus();
       handleSearch('');
     });
   }
+
+  // Global keyboard shortcut: '/' or Ctrl+K / Cmd+K to focus search bar
+  document.addEventListener('keydown', (e) => {
+    const activeTag = document.activeElement ? document.activeElement.tagName : '';
+    const isInputFocused = activeTag === 'INPUT' || activeTag === 'TEXTAREA' || activeTag === 'SELECT' || (document.activeElement && document.activeElement.isContentEditable);
+
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+      return;
+    }
+
+    if (e.key === '/' && !isInputFocused && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+  });
 }
