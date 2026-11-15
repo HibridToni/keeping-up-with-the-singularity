@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get('id');
+      if (id) {
+        window.location.replace('articles/' + encodeURIComponent(id) + '.html' + (window.location.hash || ''));
+      }
+    })();
+  </script>
+    <title>Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima - Keeping up with the singularity</title>
+  <meta name="description" content="Zašto spajanje GIS-a s klasičnim EPANET modelom ne čini digitalni blizanac, kako hibridni fizikalno informirani modeli (PINN i grafovske neuronske mreže) rješavaju problem estimacije stanja u stvarnom vremenu te gdje u praksi zapinju projekti na stvarnim vodovodnim mrežama.">
+  <meta name="author" content="Keeping up with the singularity">
+
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Keeping up with the singularity">
+  <meta property="og:title" content="Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima">
+  <meta property="og:description" content="Zašto spajanje GIS-a s klasičnim EPANET modelom ne čini digitalni blizanac, kako hibridni fizikalno informirani modeli (PINN i grafovske neuronske mreže) rješavaju problem estimacije stanja u stvarnom vremenu te gdje u praksi zapinju projekti na stvarnim vodovodnim mrežama.">
+  <meta property="og:image" content="https://keeping-up-singularity.web.app/img/digitalni_blizanci.webp">
+  <meta property="og:image:alt" content="Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://keeping-up-singularity.web.app/articles/digitalni-blizanci-vodoopskrbnih-sustava.html">
+  <meta property="og:locale" content="hr_HR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="article:section" content="AI i tehnologija">
+  <meta property="article:published_time" content="15. studenoga 2026.">
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima">
+  <meta name="twitter:description" content="Zašto spajanje GIS-a s klasičnim EPANET modelom ne čini digitalni blizanac, kako hibridni fizikalno informirani modeli (PINN i grafovske neuronske mreže) rješavaju problem estimacije stanja u stvarnom vremenu te gdje u praksi zapinju projekti na stvarnim vodovodnim mrežama.">
+  <meta name="twitter:image" content="https://keeping-up-singularity.web.app/img/digitalni_blizanci.webp">
+  <meta name="twitter:image:alt" content="Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima">
+
+  <!-- Canonical Link -->
+  <link rel="canonical" href="https://keeping-up-singularity.web.app/articles/digitalni-blizanci-vodoopskrbnih-sustava.html">
+
+  <!-- Schema.org JSON-LD Structured Data for Crawlers & Rich Search Results -->
+  <script type="application/ld+json" id="jsonld-article-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima",
+    "description": "Zašto spajanje GIS-a s klasičnim EPANET modelom ne čini digitalni blizanac, kako hibridni fizikalno informirani modeli (PINN i grafovske neuronske mreže) rješavaju problem estimacije stanja u stvarnom vremenu te gdje u praksi zapinju projekti na stvarnim vodovodnim mrežama.",
+    "image": "https://keeping-up-singularity.web.app/img/digitalni_blizanci.webp",
+    "url": "https://keeping-up-singularity.web.app/articles/digitalni-blizanci-vodoopskrbnih-sustava.html",
+    "datePublished": "15. studenoga 2026.",
+    "articleSection": "AI i tehnologija",
+    "inLanguage": "hr",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://keeping-up-singularity.web.app/articles/digitalni-blizanci-vodoopskrbnih-sustava.html"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Keeping up with the singularity",
+      "url": "https://keeping-up-singularity.web.app/o-autoru.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Keeping up with the singularity",
+      "url": "https://keeping-up-singularity.web.app",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://keeping-up-singularity.web.app/img/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <!-- PWA & Mobile Web App Meta -->
+  <meta name="theme-color" content="#030712">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Singularity">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="apple-touch-icon" href="../img/logo.png">
+
+  <link rel="stylesheet" href="../style.css?v=20261108">
+  <!-- KaTeX for math formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="../js/theme.js?v=20261108"></script>
+  <script src="../js/lang.js?v=20261108"></script>
+  <script src="../js/pwa.js"></script>
+</head>
+<body>
+
+  <!-- FIKSNA NAVIGACIJSKA TRAKA -->
+  <header>
+    <nav class="navbar" aria-label="Glavna navigacija">
+      <div class="nav-container">
+        <a href="../index.html" class="nav-brand">
+          <img src="../img/logo.webp" alt="Horizont Događaja Logo" class="site-logo" width="36" height="36" decoding="async">
+          <span class="brand-title">Keeping up with the singularity</span>
+          <span class="brand-subtitle">PHYSICS &amp; TECH JOURNAL</span>
+        </a>
+
+        <!-- Hamburger Toggle za mobilne uređaje -->
+        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Otvori navigacijski izbornik" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="../index.html" class="nav-link" id="nav-pocetna" data-i18n="nav.home">Početna</a></li>
+          <li><a href="../category.html?cat=ai-tehnologija" class="nav-link" id="nav-ai" data-i18n="nav.ai">AI i tehnologija</a></li>
+          <li><a href="../category.html?cat=longevity" class="nav-link" id="nav-longevity" data-i18n="nav.longevity">Longevity</a></li>
+          <!-- <li><a href="../o-autoru.html" class="nav-link" id="nav-autor" data-i18n="nav.author">O autoru</a></li> -->
+          <li><button id="lang-toggle" class="lang-btn" aria-label="Promijeni jezik">ENG</button></li>
+          <li><button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">🌓</button></li>
+        </ul>
+      </div>
+      <!-- Reading Progress Bar -->
+      <div id="reading-progress-bar" class="reading-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Napredak čitanja"></div>
+    </nav>
+  </header>
+
+  <!-- GLAVNI SPREMNIK - CENTRIRANI STUPAC ZA ČITANJE (max 800px) -->
+  <main class="main-container">
+    <div class="article-reader-container" id="article-reader-container" data-ssg-rendered="true" data-ssg-lang="hr">
+    <!-- Link za povratak -->
+    <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
+
+    <!-- Zaglavlje rada -->
+    <header class="reader-header">
+      <div class="reader-meta">
+        <span class="card-category">AI i tehnologija</span>
+      </div>
+
+      <h1 class="reader-title">Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima</h1>
+
+      <div class="reader-submeta">
+        <div class="reader-submeta-info">
+          <time class="card-date" datetime="15. studenoga 2026.">15. studenoga 2026.</time>
+          <span class="card-read-time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            ⏱ 23 min čitanja
+          </span>
+          
+        </div>
+
+        <div class="share-buttons">
+          <button type="button" class="share-btn share-copy btn-trigger-copy" aria-label="Kopiraj poveznicu na rad" title="Kopiraj poveznicu na rad">
+            <span class="copy-tooltip">Poveznica kopirana!</span>
+            <svg class="icon-link" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fdigitalni-blizanci-vodoopskrbnih-sustava.html&text=Arhitektura%20i%20primjena%20digitalnih%20blizanaca%20u%20vodoopskrbnim%20sustavima" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fdigitalni-blizanci-vodoopskrbnih-sustava.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fdigitalni-blizanci-vodoopskrbnih-sustava.html&quote=Arhitektura%20i%20primjena%20digitalnih%20blizanaca%20u%20vodoopskrbnim%20sustavima" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+    <div class="article-cover-wrapper">
+      <img src="../img/digitalni_blizanci.webp" alt="Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima" class="article-cover-hero" fetchpriority="high" decoding="async" onerror="this.closest('.article-cover-wrapper').style.display='none'">
+    </div>
+  
+    </header>
+
+    <!-- Audio Player Bar (Preslušavanje članka) -->
+    <div class="audio-player-bar" id="audio-player-bar" aria-label="Slušaj članak">
+      <div class="audio-controls-left">
+        <button id="tts-play-btn" class="audio-btn audio-btn-play" aria-label="Pokreni čitanje" title="Pokreni čitanje">
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+        </button>
+        <button id="tts-stop-btn" class="audio-btn audio-btn-stop" aria-label="Zaustavi čitanje" title="Zaustavi čitanje" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="audio-status-container">
+        <span class="audio-status-pulse" id="tts-status-pulse"></span>
+        <span id="tts-status-text" class="audio-status-text">Slušaj članak</span>
+      </div>
+
+      <div class="audio-right-controls">
+        <div class="audio-voice-controls" id="audio-voice-controls">
+          <label for="tts-voice-select" class="voice-label" title="Odabir glasa za čitanje">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span class="voice-label-text">Glas:</span>
+          </label>
+          <select id="tts-voice-select" class="audio-voice-select" aria-label="Odabir glasa za čitanje">
+            <option value="">Najbolji prirodni glas</option>
+          </select>
+        </div>
+
+        <div class="audio-speed-controls">
+          <span class="speed-label">Brzina:</span>
+          <div class="speed-options">
+            <button class="speed-btn active" data-speed="1.0">1x</button>
+            <button class="speed-btn" data-speed="1.25">1.25x</button>
+            <button class="speed-btn" data-speed="1.5">1.5x</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table of Contents (Sadržaj rada) Container -->
+    <div id="article-toc-container" class="article-toc-wrapper">
+    <nav class="article-toc-card" aria-label="Sadržaj članka">
+      <div class="article-toc-header">
+        <div class="article-toc-title-group">
+          <svg class="article-toc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h2 class="article-toc-title">Sadržaj rada</h2>
+          <span class="article-toc-badge">20</span>
+        </div>
+        <button type="button" class="article-toc-toggle-btn" id="toc-toggle-btn" aria-expanded="true" aria-controls="article-toc-body" aria-label="Sakrij">
+          <span class="toc-toggle-text">Sakrij</span>
+          <svg class="toc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="article-toc-body" id="article-toc-body">
+        <ol class="article-toc-list">
+          
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#simulacijski-model-naspram-digitalnog-blizanca" class="article-toc-link" data-toc-target="simulacijski-model-naspram-digitalnog-blizanca">
+          <span class="toc-link-text">Simulacijski model naspram digitalnog blizanca</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#od-izračuna-s-poznatim-ulazima-do-kontinuirane-estimacije-stanja" class="article-toc-link" data-toc-target="od-izračuna-s-poznatim-ulazima-do-kontinuirane-estimacije-stanja">
+          <span class="toc-link-text">Od izračuna s poznatim ulazima do kontinuirane estimacije stanja</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#anatomija-digitalnog-blizanca-podatkovni-slojevi-i-integracija" class="article-toc-link" data-toc-target="anatomija-digitalnog-blizanca-podatkovni-slojevi-i-integracija">
+          <span class="toc-link-text">Anatomija digitalnog blizanca: Podatkovni slojevi i integracija</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#statički-i-kvazi-statički-sloj-podaci-o-infrastrukturi" class="article-toc-link" data-toc-target="statički-i-kvazi-statički-sloj-podaci-o-infrastrukturi">
+          <span class="toc-link-text">Statički i kvazi-statički sloj (Podaci o infrastrukturi)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#dinamički-sloj-telemetrija-i-iot-senzori" class="article-toc-link" data-toc-target="dinamički-sloj-telemetrija-i-iot-senzori">
+          <span class="toc-link-text">Dinamički sloj (Telemetrija i IoT senzori)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#problem-prljavih-podataka-s-terena" class="article-toc-link" data-toc-target="problem-prljavih-podataka-s-terena">
+          <span class="toc-link-text">Problem „prljavih” podataka s terena</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#analitička-jezgra" class="article-toc-link" data-toc-target="analitička-jezgra">
+          <span class="toc-link-text">Analitička jezgra</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#fizikalni-temelj-i-ograničenja-klasičnog-pristupa" class="article-toc-link" data-toc-target="fizikalni-temelj-i-ograničenja-klasičnog-pristupa">
+          <span class="toc-link-text">Fizikalni temelj i ograničenja klasičnog pristupa</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#zamka-čistog-strojnog-učenja-crna-kutija" class="article-toc-link" data-toc-target="zamka-čistog-strojnog-učenja-crna-kutija">
+          <span class="toc-link-text">Zamka čistog strojnog učenja („Crna kutija”)</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#hibridni-pristup-umjetna-inteligencija-koja-poštuje-zakone-hidraulike" class="article-toc-link" data-toc-target="hibridni-pristup-umjetna-inteligencija-koja-poštuje-zakone-hidraulike">
+          <span class="toc-link-text">Hibridni pristup: Umjetna inteligencija koja poštuje zakone hidraulike</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#operativna-primjena-i-mjerljivi-učinci-u-pogonu" class="article-toc-link" data-toc-target="operativna-primjena-i-mjerljivi-učinci-u-pogonu">
+          <span class="toc-link-text">Operativna primjena i mjerljivi učinci u pogonu</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#smanjenje-neprihodovane-vode-nrw-i-brza-lokalizacija-skrivenih-kvarova" class="article-toc-link" data-toc-target="smanjenje-neprihodovane-vode-nrw-i-brza-lokalizacija-skrivenih-kvarova">
+          <span class="toc-link-text">Smanjenje neprihodovane vode (NRW) i brza lokalizacija skrivenih kvarova</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#dinamičko-upravljanje-tlakom-i-energetska-optimizacija-crpnih-stanica" class="article-toc-link" data-toc-target="dinamičko-upravljanje-tlakom-i-energetska-optimizacija-crpnih-stanica">
+          <span class="toc-link-text">Dinamičko upravljanje tlakom i energetska optimizacija crpnih stanica</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#praćenje-kvalitete-vode-i-hidrauličke-starosti-u-mreži" class="article-toc-link" data-toc-target="praćenje-kvalitete-vode-i-hidrauličke-starosti-u-mreži">
+          <span class="toc-link-text">Praćenje kvalitete vode i hidrauličke starosti u mreži</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#brze-operativne-simulacije-što-ako-scenariji-u-dispečerskom-centru" class="article-toc-link" data-toc-target="brze-operativne-simulacije-što-ako-scenariji-u-dispečerskom-centru">
+          <span class="toc-link-text">Brze operativne simulacije („Što ako” scenariji) u dispečerskom centru</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#stvarnost-na-terenu-zašto-projekti-digitalnih-blizanaca-propadaju" class="article-toc-link" data-toc-target="stvarnost-na-terenu-zašto-projekti-digitalnih-blizanaca-propadaju">
+          <span class="toc-link-text">Stvarnost na terenu - Zašto projekti digitalnih blizanaca propadaju?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#problem-opservabilnosti-gdje-i-koliko-senzora-postaviti" class="article-toc-link" data-toc-target="problem-opservabilnosti-gdje-i-koliko-senzora-postaviti">
+          <span class="toc-link-text">Problem opservabilnosti: Gdje i koliko senzora postaviti?</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#brownfield-nasljeđe-i-nepouzdan-katastar" class="article-toc-link" data-toc-target="brownfield-nasljeđe-i-nepouzdan-katastar">
+          <span class="toc-link-text">„Brownfield” nasljeđe i nepouzdan katastar</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h3">
+        <a href="#kibernetička-sigurnost-i-povjerenje-operatera" class="article-toc-link" data-toc-target="kibernetička-sigurnost-i-povjerenje-operatera">
+          <span class="toc-link-text">Kibernetička sigurnost i povjerenje operatera</span>
+        </a>
+      </li>
+      <li class="article-toc-item toc-main-item" data-level="h2">
+        <a href="#zaključak-razvojni-put-prema-autonomnim-sustavima" class="article-toc-link" data-toc-target="zaključak-razvojni-put-prema-autonomnim-sustavima">
+          <span class="toc-link-text">Zaključak: Razvojni put prema autonomnim sustavima</span>
+        </a>
+      </li>
+        </ol>
+      </div>
+    </nav></div>
+
+    <!-- Puni HTML Sadržaj Članka -->
+    <article class="reader-body" id="reader-body">
+      <p>U suvremenoj hidrotehničkoj praksi pojam <em>digitalnog blizanca</em> (engl. <em>Digital Twin</em>) postao je jedna od najčešće korištenih, ali i najčešće pogrešno interpretiranih krilatica. Većina javnih isporučitelja vodnih usluga danas raspolaže geografskim informacijskim sustavom (GIS), sustavom daljinskog nadzora i upravljanja (SCADA) te matematičkim hidrauličkim modelom razvodne mreže izrađenim u okruženju EPANET-a ili njegovih komercijalnih nadogradnji. Međutim, spajanje katastra cjevovoda iz GIS-a s hidrauličkim modelom koji je jednokratno kalibriran na temelju terenskih mjerenja <strong>ne čini digitalni blizanac</strong>.</p>
+<p>U više od $90\%$ komunalnih društava takav konvencionalni hidraulički model predstavlja tek „zamrznutu sliku” sustava u trenutku provedbe mjernih kampanja. Onog trenutka kada operater u dispečerskom centru promijeni radnu točku crpnog agregata, kada interventna ekipa na terenu privremeno priguši ili zatvori sekcijski zasun radi sanacije kvara ili kada nastupi sezonsko vršno opterećenje, statički model prestaje odgovarati stvarnom hidrauličkom stanju u cjevovodu.</p>
+
+<h3 id="simulacijski-model-naspram-digitalnog-blizanca">Simulacijski model naspram digitalnog blizanca</h3>
+<p>Da bi se inženjerski precizno definirao digitalni blizanac vodoopskrbnog sustava, nužno je povući oštru granicu između <strong>izvanmrežne (engl. <em>offline</em>) simulacije</strong> i <strong>živog kibernetičko-fizikalnog sustava</strong>. Klasični hidraulički model rješava sustav jednadžbi očuvanja mase u čvorovima i očuvanja energije u dionicama pod pretpostavkom unaprijed zadanih, determinističkih rubnih uvjeta:</p>
+<ul>
+  <li>fiksne topologije i nepromjenjive pozicije ventila,</li>
+  <li>statički procijenjenih koeficijenata apsolutne hrapavosti stijenke cijevi ($k_s$ u Darcy-Weisbachovoj jednadžbi) ili bezdimenzionalnih koeficijenata hrapavosti ($C_{\text{HW}}$ prema Hazen-Williamsu),</li>
+  <li>tipskih bezdimenzionalnih dijagrama satnih varijacija potrošnje (engl. <em>demand patterns</em>) dobivenih agregiranjem povijesnih obračunskih podataka.</li>
+</ul>
+<p>Takav je model vrijedan alat za koncepcijsko rješenje, dimenzioniranje novih magistralnih cjevovoda, vodosprema i crpnih stanica ili provjeru propusne moći hidrantske mreže, no u operativnom vođenju sustava njegova je upotrebna vrijednost ograničena.</p>
+<p>Nasuprot tome, pravi digitalni blizanac čine tri povezane komponente u kontinuiranoj interakciji:</p>
+<ol>
+  <li><strong>Fizički vodoopskrbni sustav:</strong> Zahvati vode, kondicioniranje, vodospreme, crpne stanice, regulatori tlaka (PRV), zasuni i tlačna distribucijska mreža s pripadajućom mjernom opremom.</li>
+  <li><strong>Dinamički virtualni pandan (Analitička jezgra):</strong> Spregnuti deterministički (fizikalni) i podatkovni (engl. <em>data-driven</em>) model koji kontinuirano reproducira hidrauličko i kvalitativno stanje sustava.</li>
+  <li><strong>Neprekidni dvosmjerni podatkovni tok u stvarnom (ili bliskom stvarnom) vremenu:</strong> Kontinuirana asimilacija telemetrijskih podataka iz SCADA sustava, pametnih vodomjera (AMI/AMR) i IoT senzora izravno u analitičku jezgru ($\text{Fizički sustav} \rightarrow \text{Blizanac}$) te povratno slanje optimiziranih upravljačkih naloga ili operativnih preporuka prema izvršnim elementima na terenu ($\text{Blizanac} \rightarrow \text{Fizički sustav}$).</li>
+</ol>
+
+<h3 id="od-izračuna-s-poznatim-ulazima-do-kontinuirane-estimacije-stanja">Od izračuna s poznatim ulazima do kontinuirane estimacije stanja</h3>
+<p>Sa stajališta numeričkog modeliranja, prijelaz s klasičnog modela na digitalni blizanac mijenja samu prirodu matematičkog problema. U klasičnom produljenom dinamičkom proračunu (EPS – <em>Extended Period Simulation</em>) u svakom vremenskom koraku $\Delta t$ traži se vektor stanja sustava $\mathbf{x}(t)$ – koji obuhvaća pijezometarske visine u čvorovima $\mathbf{H}(t)$ i protoke u granama mreže $\mathbf{Q}(t)$ – kao izravna funkcija poznate geometrije, fiksnog vektora parametara hrapavosti $\mathbf{\theta}$ i pretpostavljenog vektora čvorne potrošnje $\mathbf{d}(t)$:</p>
+$
+\mathbf{F}\big(\mathbf{x}(t), \, \mathbf{d}(t), \, \mathbf{\theta}, \, \mathbf{u}(t)\big) = \mathbf{0}
+$
+<p>gdje vektor $\mathbf{u}(t)$ predstavlja zadane upravljačke varijable (npr. status crpnih agregata i zadani izlazni tlak na PRV ventilima).</p>
+<p>U stvarnom pogonu, međutim, točna trenutna potrošnja u svakom pojedinom čvoru $\mathbf{d}(t)$ i stvarna hidraulička otpornost dionica $\mathbf{\theta}(t)$ (uključujući prigušene zasune i lokalne inkrustacije) nisu izravno mjerljive veličine. Digitalni blizanac stoga problem postavlja inverzno – kao kontinuirani postupak <strong>estimacije stanja sustava</strong> (engl. <em>Real-Time State Estimation</em>) i asimilacije podataka. Na temelju vektora mjerenja u stvarnom vremenu $\mathbf{z}(t)$ s ograničenog broja senzora tlaka i protoka u mreži:</p>
+$
+\mathbf{z}(t) = \mathbf{h}\big(\mathbf{x}(t)\big) + \mathbf{\varepsilon}(t)
+$
+<p>analitička jezgra blizanca u svakom vremenskom koraku minimizira odstupanje (rezidual) između telemetrijskih očitanja na terenu i simuliranih fizikalnih veličina, uzimajući u obzir mjerni šum senzora $\mathbf{\varepsilon}(t)$. Time sustav u stvarnom vremenu rekonstruira kompletnu sliku tlakova, brzina tečenja ($v$) i linijskih gubitaka ($\Delta H_{\text{lin}}$) u tisućama čvorova i dionica na kojima uopće ne postoji mjerna oprema.</p>
+<p>Ovakav pristup donosi temeljni zaokret u upravljanju vodnokomunalnom infrastrukturom. Umjesto reaktivnog održavanja – koje se svodi na sanaciju puknuća tek nakon izbijanja vode na površinu ili pada tlaka kod potrošača – te periodičnog inženjerskog planiranja, digitalni blizanac omogućuje:</p>
+<ul>
+  <li><strong>Trenutnu detekciju i prostornu lokalizaciju skrivenih gubitaka (NRW):</strong> Prepoznavanje anomalija u noćnim i dnevnim hidrogramima protoka i odstupanjima tlaka unutar pojedinih mjernih zona (DMA) puno prije nego što kvar postane vidljiv na terenu.</li>
+  <li><strong>Prediktivno energetsko i hidrauličko vođenje sustava:</strong> Dinamičko podešavanje izlaznih tlakova na redukcijskim ventilima prema trenutnom tlaku u kritičnom čvoru mreže te optimizaciju rada crpnih stanica s frekvencijskom regulacijom prema prognozi potrošnje i tarifnim modelima električne energije.</li>
+  <li><strong>Provođenje brzih operativnih scenarija („Što ako” analize):</strong> Trenutnu provjeru hidrauličkih posljedica ispada magistralnog cjevovoda ili crpnog agregata na raspoložive zalihe vode u vodospremama i osiguranje minimalnog potrebnog tlaka u mreži.</li>
+</ul>
+<p>Izvedba funkcionalnog digitalnog blizanca u konačnici nije pitanje nabave komercijalnog softverskog paketa, već složen inženjerski pothvat koji zahtijeva rješavanje problema kvalitete telemetrijskih podataka, optimalnog rasporeda senzora (opservabilnosti mreže) te spajanja klasičnih fizikalnih zakona tečenja pod tlakom s naprednim algoritmima strojnog učenja. U nastavku rada detaljno se obrađuje podatkovna arhitektura blizanca, matematička jezgra zasnovana na hibridnim fizikalno informiranim modelima (PINN i grafovske neuronske mreže) te realna tehničko-operativna ograničenja pri implementaciji na postojećim (<em>brownfield</em>) vodoopskrbnim sustavima.</p>
+
+<hr>
+
+<h2 id="anatomija-digitalnog-blizanca-podatkovni-slojevi-i-integracija">Anatomija digitalnog blizanca: Podatkovni slojevi i integracija</h2>
+<p>Da bi digitalni blizanac u svakom trenutku vjerno prikazivao stanje u cjevovodima, mora neprekidno povlačiti i spajati podatke iz različitih baza koje u vodovodima često funkcioniraju odvojeno. U praksi se arhitektura modela oslanja na tri razine: statičke podatke o mreži, dinamičke podatke s terenskih mjerenja te sustav za provjeru i čišćenje tih podataka prije nego što uđu u hidraulički proračun.</p>
+
+<h3 id="statički-i-kvazi-statički-sloj-podaci-o-infrastrukturi">Statički i kvazi-statički sloj (Podaci o infrastrukturi)</h3>
+<p>Ovaj sloj predstavlja „kostur” modela. Riječ je o podacima o fizičkoj mreži koji se ne mijenjaju iz minute u minutu, već prilikom rekonstrukcija cjevovoda, priključenja novih potrošača ili intervencija na terenu:</p>
+<ul>
+  <li><strong>Geografski informacijski sustav (GIS):</strong> Iz GIS-a se izravno preuzima geometrija i topologija mreže – kako su čvorovi (spojevi cijevi, vodospreme, crpne stanice) međusobno povezani dionicama cjevovoda. Uz samu prostornu trasu, za proračun su neophodni točni unutarnji promjeri ($D$), duljine dionica ($L$), materijali cijevi (duktil, PEHD, PVC, čelik, lijevano željezo), starost cjevovoda te nadmorske visine (kote) čvorova.</li>
+  <li><strong>Evidencija radnih naloga i održavanja (ERP / CMMS):</strong> U operativnom radu ovo je često najslabija karika. Kada terenska ekipa izađe na sanaciju kvara i privremeno zatvori ili priguši sekcijski zasun, taj podatak mora odmah biti vidljiv u sustavu. Samo jedan zatvoreni zasun na granici mjerne zone (DMA) za koji model „misli” da je otvoren potpuno će iskriviti sliku tlakova i protoka u cijelom naselju. Isto vrijedi i za povijest puknuća po dionicama, koja pomaže pri procjeni stanja i dotrajalosti cjevovoda.</li>
+  <li><strong>Sustav obračuna potrošnje (CIS):</strong> Podaci o lokacijama vodomjera i vrstama potrošača (kućanstva, industrija, hoteli, bolnice) služe da se ukupna potrošnja vode pravilno rasporedi po čvorovima mreže u onim dijelovima sustava koji još nisu pokriveni daljinskim očitanjem.</li>
+</ul>
+
+<h3 id="dinamički-sloj-telemetrija-i-iot-senzori">Dinamički sloj (Telemetrija i IoT senzori)</h3>
+<p>Dinamički sloj daje „puls” statičkoj mreži iz GIS-a. Preko njega blizanac u kratkim vremenskim koracima (najčešće svakih $1$ do $15$ minuta) dobiva stvarnu sliku o tome što se događa u pogonu:</p>
+<ul>
+  <li><strong>SCADA sustav:</strong> Glavni izvor podataka s velikih objekata – izvorišta, uređaja za kondicioniranje, crpnih stanica, vodosprema i ulaznih okana u pojedine DMA zone. Iz SCADA-e se kontinuirano preuzimaju protoci ($Q$), ulazni i izlazni tlakovi ($p$), razine vode u vodospremama ($h_{\text{VS}}$), statusi i frekvencije rada crpki, potrošnja električne energije te položaji regulacijskih ventila (PRV).</li>
+  <li><strong>Daljinsko očitanje vodomjera (AMI / AMR):</strong> Pametni vodomjeri kod krajnjih potrošača znatno olakšavaju rad s modelom. Umjesto da inženjeri nagađaju kako se mijenja potrošnja kroz dan pomoću tipskih krivulja, AMI sustav daje stvarno izmjerenu potrošnju iz sata u sat. Kada za neku DMA zonu znamo točan ulazni protok iz SCADA-e ($Q_{\text{ulaz}}$) i zbroj svih očitanja pametnih vodomjera unutar te zone ($d_{\text{mjer}}$), iz osnovne bilance vode odmah se vidi koliki dio odlazi na stvarne gubitke i curenja ($q_{\text{gub}}$):
+
+$
+Q_{\text{ulaz}}(t) = \sum d_{\text{mjer}}(t) + q_{\text{gub}}(t)
+$</li>
+  <li><strong>Dodatni IoT senzori u mreži:</strong> Budući da se SCADA obično nalazi samo na glavnim objektima, u samu razvodnu mrežu (često na podzemne ili nadzemne hidrante te u revizijska okna) postavljaju se baterijski logeri tlaka i šuma koji podatke šalju putem mobilnih mreža (NB-IoT, LoRaWAN). Uz njih se koriste i brzi senzori tlaka za bilježenje vodnih udara te <em>online</em> sonde koje prate kvalitetu vode u mreži (rezidualni klor, mutnoća, temperatura).</li>
+</ul>
+
+<h3 id="problem-prljavih-podataka-s-terena">Problem „prljavih” podataka s terena</h3>
+<p>Svatko tko je radio sa SCADA podacima u vodovodu zna da mjerenja s terena nikada nisu savršena. Ako u hidraulički model u stvarnom vremenu pustimo sirove podatke sa senzora, proračun će se srušiti ili će blizanac izbacivati lažne alarme o puknućima. U svakodnevnom pogonu najčešće se javljaju četiri problema:</p>
+<ol>
+  <li><strong>Prekidi komunikacije i „zamrznute” vrijednosti:</strong> Zbog gubitka signala iz udaljenog okna, podaci prestanu stizati ili SCADA satima ponavlja zadnju zapamćenu brojku (engl. <em>flatlining</em>).</li>
+  <li><strong>Bježanje (pomak) senzora:</strong> Zbog taloženja kamenca, prljavštine, prisutnosti zraka u cijevi ili starenja elektronike, mjerač protoka ili tlaka počne postupno pokazivati više ili niže vrijednosti od stvarnih.</li>
+  <li><strong>Lažni skokovi u mjerenjima:</strong> Kratkotrajne nerealne vrijednosti koje nastaju zbog električnih smetnji (npr. kod uključivanja frekvencijskih pretvarača na crpkama) ili trenutnih oscilacija u cijevi.</li>
+  <li><strong>Neusklađeni satovi na uređajima:</strong> Ako sat na ulaznom mjeraču protoka u DMA zonu žuri ili kasni samo nekoliko minuta u odnosu na senzor tlaka na kraju mreže, model će uspoređivati podatke iz dva različita trenutka i pogrešno zaključiti da je u cjevovodu porastao otpor ili nastalo puknuće.</li>
+</ol>
+<p>Zbog toga digitalni blizanac prije samog hidrauličkog izračuna mora imati automatski filtar koji čisti i priprema podatke:</p>
+<ul>
+  <li><strong>Usklađivanje vremena:</strong> Sva mjerenja s različitih uređaja (SCADA, IoT logeri, vodomjeri) svode se na isti vremenski korak (npr. svakih $5$ ili $15$ minuta), a satovi na opremi moraju biti sinkronizirani.</li>
+  <li><strong>Logičke i fizikalne provjere:</strong> Sustav odmah odbacuje očitanja koja su fizikalno nemoguća – primjerice, negativan tlak tamo gdje ne može biti vakuuma, protok koji prelazi maksimalni kapacitet cijevi ili podatak da razina vode u vodospremi raste dok su sve ulazne crpke ugašene.</li>
+  <li><strong>Uklanjanje kratkotrajnih smetnji:</strong> Matematički filtri automatski režu izolirane „šiljke” u mjerenjima koji traju svega nekoliko sekundi, ali pritom paze da ne izbrišu stvarni nagli pad tlaka koji ukazuje na pravo puknuće cjevovoda.</li>
+  <li><strong>Premošćivanje rupa u podacima:</strong> Kada neki senzor privremeno ostane bez signala, sustav ne staje s radom, već nedostajuću vrijednost privremeno procjenjuje na temelju povijesnog trenda i očitanja sa susjednih senzora u istoj zoni. Istovremeno, algoritmi (poput Kalmanovog filtra) kontinuirano zaglađuju mjerni šum i prate počinje li neki senzor postupno „lagati”.</li>
+</ul>
+<p>Na kraju ovog koraka, svaki podatak koji ulazi u model dobiva svoju <strong>ocjenu pouzdanosti</strong>. Ako je neki senzor sumnjiv ili je vrijednost procijenjena zbog prekida veze, model će mu vjerovati manje nego provjerenom mjeraču na crpnoj stanici. Tako se sprječava da jedan pokvareni senzor na terenu sruši točnost cijelog digitalnog blizanca.</p>
+
+<hr>
+
+<h2 id="analitička-jezgra">Analitička jezgra</h2>
+<p>Nakon što su podaci s terena očišćeni i posloženi, preuzima ih analitička jezgra digitalnog blizanca. U inženjerskoj praksi danas se često vodi rasprava treba li se moderan blizanac temeljiti na klasičnim hidrauličkim jednadžbama ili na umjetnoj inteligenciji (strojnom učenju). Iskustvo pokazuje da nijedan od ta dva pristupa sam za sebe nije dovoljan za pouzdano vođenje vodoopskrbnog sustava u stvarnom vremenu, već rješenje leži u njihovom spajanju.</p>
+
+<h3 id="fizikalni-temelj-i-ograničenja-klasičnog-pristupa">Fizikalni temelj i ograničenja klasičnog pristupa</h3>
+<p>Svaki ozbiljan model vodoopskrbne mreže počiva na dva osnovna zakona hidraulike koje rješavaju alati poput EPANET-a:</p>
+<ol>
+  <li><strong>Zakon očuvanja mase u čvorovima:</strong> Ukupni protok koji ulazi u pojedini čvor mreže mora biti jednak zbroju protoka koji iz njega izlaze, uvećanom za potrošnju (i gubitke) u tom čvoru:
+
+$
+\sum Q_{\text{ulaz}} - \sum Q_{\text{izlaz}} = d_i
+$</li>
+  <li><strong>Zakon očuvanja energije u dionicama:</strong> Razlika pijezometarskih visina između dvaju čvorova jednaka je zbroju linijskih gubitaka uslijed trenja ($\Delta H_{\text{lin}}$) i lokalnih gubitaka na fazonima i armaturama ($\Delta H_{\text{lok}}$) duž dionice. Linijski gubici računaju se prema poznatom Darcy-Weisbachovom izrazu:
+
+$
+\Delta H_{\text{lin}} = \lambda \frac{L}{D} \frac{v^2}{2g}
+$
+
+ ili pomoću iskustvene Hazen-Williamsove formule.</li>
+</ol>
+<p>Prednost ovakvog fizikalnog (determinističkog) pristupa je u tome što se oslanja na neupitne zakone mehanike fluida. Ako se u modelu zatvori glavni opskrbni cjevovod, fizikalni model će točno izračunati kako će se voda preraspodijeliti kroz okolne ulice, čak i ako se takva situacija nikada prije nije dogodila u praksi.</p>
+<p>Međutim, klasični hidraulički izračun u radu s podacima u stvarnom vremenu nailazi na dvije velike prepreke:</p>
+<ul>
+  <li><strong>Nepoznati ulazni parametri:</strong> Da bi gornje jednadžbe dale točan tlak, model mora u svakoj minuti znati točnu hrapavost svake cijevi (koja se godinama mijenja zbog taloženja kamenca ili korozije) i točnu potrošnju u svakom pojedinom čvoru $d_i$. Budući da to nije moguće izravno izmjeriti na tisućama mjesta u gradu, klasični model uvijek radi s određenom dozom aproksimacije.</li>
+  <li><strong>Sporost kod složenih optimizacija:</strong> Jedan hidraulički izračun za srednje veliki grad traje svega nekoliko sekundi. No, kada digitalni blizanac u stvarnom vremenu traži točnu lokaciju novonastalog puknuća ili računa najjeftiniji raspored rada crpki za iduća $24$ sata, on mora u pozadini izvrtjeti desetke tisuća različitih kombinacija. Tada klasični proračun postaje prespor za trenutnu reakciju u dispečerskom centru.</li>
+</ul>
+
+<h3 id="zamka-čistog-strojnog-učenja-crna-kutija">Zamka čistog strojnog učenja („Crna kutija”)</h3>
+<p>Kako bi izbjegli dugotrajnu izradu i kalibraciju hidrauličkih modela, pojedini proizvođači softvera nude rješenja temeljena isključivo na strojnom učenju (engl. <em>data-driven</em> ili <em>black-box</em> modeli). Takvi algoritmi uzimaju povijesne podatke sa SCADA senzora u proteklih nekoliko godina i iz njih „uče” obrasce ponašanja mreže, bez ikakvog znanja o promjerima cijevi, nadmorskim visinama ili zakonima hidraulike.</p>
+<p>Iako su čisti algoritmi strojnog učenja izvrsni za predviđanje sutrašnje potrošnje vode (jer lako povezuju potrošnju s temperaturom zraka, danom u tjednu ili turističkom sezonom), oslanjanje samo na njih pri vođenju mreže nosi ozbiljne rizike:</p>
+<ul>
+  <li><strong>Fizikalno nemogući rezultati:</strong> Budući da algoritam poznaje samo statistiku, a ne i fiziku, u nekom rubnom slučaju može predvidjeti da voda teče iz područja nižeg tlaka prema području višeg tlaka bez crpke ili da se u nekom čvoru voda „stvara ni iz čega” jer mu se tako najbolje poklapaju krivulje.</li>
+  <li><strong>Sljepoća na promjene u mreži:</strong> Algoritam strojnog učenja vrijedi samo dok mreža radi u uvjetima kakve je vidio u povijesnim podacima. Onog trenutka kada ekipa na terenu zatvori sekcijski zasun radi popravka, priključi novo naselje ili promijeni zadanu vrijednost na PRV ventilu, povijesni obrasci više ne vrijede i čisti AI model postaje neupotrebljiv dok ponovno ne prikupi mjesece novih podataka.</li>
+</ul>
+
+<h3 id="hibridni-pristup-umjetna-inteligencija-koja-poštuje-zakone-hidraulike">Hibridni pristup: Umjetna inteligencija koja poštuje zakone hidraulike</h3>
+<p>Kako bi se iskoristilo najbolje iz oba svijeta – brzina i prilagodljivost umjetne inteligencije te pouzdanost klasične hidraulike – suvremeni digitalni blizanci koriste <strong>hibridne modele</strong>. U inženjerskoj praksi danas se najviše primjenjuju tri rješenja:</p>
+<ol>
+  <li><strong>Grafovske neuronske mreže (GNN – <em>Graph Neural Networks</em>):</strong> Vodoopskrbna mreža je po svojoj prirodi matematički graf koji se sastoji od čvorova i grana (cijevi). Grafovske neuronske mreže preuzimaju stvarnu strukturu cjevovoda iz GIS-a i uče kako se promjena tlaka i protoka širi kroz povezane dionice. U digitalnom blizancu one često služe kao brzi „surogat” klasičnog modela: nakon što se istreniraju na tisućama izračuna iz EPANET-a i mjerenjima s terena, mogu procijeniti tlakove u cijelom gradu tisuću puta brže od klasičnog hidrauličkog solvera. To omogućuje dispečeru da u nekoliko sekundi provjeri stotine scenarija u slučaju havarije.</li>
+  <li><strong>Fizikalno informirane neuronske mreže (PINN – <em>Physics-Informed Neural Networks</em>):</strong> Kod ovog pristupa zakoni očuvanja mase i energije izravno su ugrađeni u sam algoritam učenja. Jednostavno rečeno, algoritam dobiva „kaznene bodove” svaki put kada njegovo predviđanje tlaka ili protoka prekrši osnovne hidrauličke jednadžbe. Zahvaljujući tome, model ne može izbaciti fizikalno nemoguć rezultat, a istovremeno može vrlo točno procijeniti tlakove u dijelovima grada u kojima imamo vrlo malo ugrađenih senzora.</li>
+  <li><strong>Kontinuirana automatska kalibracija (Estimacija stanja):</strong> Umjesto da inženjer jednom u pet godina ručno namješta hrapavosti i potrošnje u modelu, blizanac to radi samostalno u svakom vremenskom koraku (npr. svakih $5$ ili $15$ minuta). Sustav neprekidno uspoređuje tlak i protok izmjeren na senzorima u mreži s vrijednostima koje je izračunao hidraulički model. Čim se pojavi odstupanje (rezidual):
+
+$
+r_i(t) = z_i(t) - h_i\big(\mathbf{x}(t)\big)
+$
+
+ hibridni algoritam automatski korigira procijenjenu potrošnju po čvorovima ili otpore u cijevima dok se model ne poklopi sa stvarnim stanjem na terenu. Ako se u nekoj zoni iznenada pojavi veliko odstupanje koje se ne može objasniti normalnom dnevnom potrošnjom, sustav to ne tretira kao pogrešku modela, već podiže alarm za <strong>novonastalo puknuće ili neovlašteno uzimanje vode</strong>.</li>
+</ol>
+
+<hr>
+
+<h2 id="operativna-primjena-i-mjerljivi-učinci-u-pogonu">Operativna primjena i mjerljivi učinci u pogonu</h2>
+<p>Vrijednost digitalnog blizanca u konačnici se ne mjeri složenošću njegovih algoritama, već konkretnim uštedama vode, električne energije i vremena koje donosi inženjerima u svakodnevnom radu. Kada analitička jezgra proradi u stvarnom vremenu, njezina se primjena u operativnom vođenju sustava najjasnije vidi u četiri područja.</p>
+
+<h3 id="smanjenje-neprihodovane-vode-nrw-i-brza-lokalizacija-skrivenih-kvarova">Smanjenje neprihodovane vode (NRW) i brza lokalizacija skrivenih kvarova</h3>
+<p>U klasičnom pristupu traženju gubitaka, praćenjem minimalnog noćnog protoka (MNF – <em>Minimum Night Flow</em>) između $2\text{:}00$ i $4\text{:}00$ sata ujutro inženjeri mogu uočiti da je u nekoj DMA zoni porastao protok, što ukazuje na novo puknuće. Međutim, unutar te zone često se nalazi $15$ do $30\text{ km}$ cjevovoda, pa terenske ekipe s akustičnim korelatorima i geofonom moraju danima ili tjednima obilaziti teren kako bi pronašle točno mjesto kvara.</p>
+<p>Digitalni blizanac taj proces skraćuje na nekoliko sati. Budući da svako veće curenje uzrokuje dodatni protok kroz cijevi, ono na putu od ulaza u DMA zonu do mjesta kvara stvara specifičan pad tlaka (dodatne linijske gubitke $\Delta H_{\text{lin}}$). Analitička jezgra modela uspoređuje stvarna očitanja s nekoliko senzora tlaka u zoni s izračunatim vrijednostima te u pozadini provjerava u kojem čvoru mreže hipotetsko istjecanje vode:</p>
+$
+q_{\text{curenja}} = C \cdot p^{\gamma}
+$
+<p>(gdje je $C$ koeficijent otvora, a $\gamma$ eksponent istjecanja koji ovisi o materijalu cijevi i vrsti oštećenja, najčešće između $0{,}5$ i $1{,}5$) daje točno onakav raspored pada tlaka kakav trenutno bilježe senzori na terenu. Umjesto pretraživanja cijelog naselja, interventna ekipa dobiva na karti osjenčano područje od svega jedne ili dvije ulice u kojima treba tražiti kvar. Time se vrijeme trajanja skrivenog curenja smanjuje s nekoliko tjedana na svega nekoliko sati ili dana.</p>
+
+<h3 id="dinamičko-upravljanje-tlakom-i-energetska-optimizacija-crpnih-stanica">Dinamičko upravljanje tlakom i energetska optimizacija crpnih stanica</h3>
+<p>Upravljanje tlakom najbrži je način za smanjenje gubitaka i učestalosti novih puknuća. Većina vodovoda danas koristi regulatore tlaka (PRV) s fiksnim izlaznim tlakom ili jednostavnim dvostupanjskim režimom (viši tlak danju, niži noću). Takav je pristup uvijek oprezan jer se izlazni tlak na ventilu mora podesiti prema najnepovoljnijem trenutku u godini, pa je mreža većinu vremena pod nepotrebno visokim tlakom.</p>
+<p>Digitalni blizanac omogućuje napredno upravljanje prema <strong>kritičnom čvoru</strong> (najvišoj ili hidraulički najnepovoljnijoj točki u zoni):</p>
+<ul>
+  <li>U svakom vremenskom koraku model izračunava trenutne linijske gubitke kroz mrežu i šalje nalog PRV ventilu (ili frekvencijskom pretvaraču na crpnoj stanici) da spusti izlazni tlak točno onoliko koliko je moguće, a da u kritičnom čvoru tlak ne padne ispod zakonski propisanog minimuma.</li>
+  <li>Rezultat je mirnija mreža s manjim dnevnim oscilacijama tlaka, što izravno produljuje životni vijek starijih cjevovoda i smanjuje volumen postojećih curenja.</li>
+</ul>
+<p>Drugi veliki financijski učinak ostvaruje se na <strong>crpnim stanicama</strong>. Crpljenje vode u mnogim komunalnim društvima čini najveći pojedinačni trošak poslovanja. Blizanac spaja prognozu potrošnje vode za idućih $24$ do $48$ sati s radnim karakteristikama crpnih agregata – krivuljama dobave $Q\text{–}H$ i stupnja djelotvornosti $\eta(Q)$ – te tarifnim modelima električne energije. Na temelju toga sustav izrađuje optimalni plan rada crpki i punjenja vodosprema:</p>
+<ul>
+  <li>Vodospreme se intenzivnije pune u razdobljima niže tarife električne energije (ili u trenucima kada je cijena na burzi najpovoljnija, odnosno kada vlastita sunčana elektrana na objektu proizvodi najviše struje), dok se u satima najskuplje struje crpke gase, a grad se opskrbljuje gravitacijski iz akumulirane zalihe.</li>
+  <li>Pritom blizanac vodi računa da crpni agregati uvijek rade u blizini svoje optimalne radne točke (BEP – <em>Best Efficiency Point</em>), čime se smanjuje specifična potrošnja energije ($\text{kWh/m}^3$ isporučene vode) i trošenje mehaničkih dijelova.</li>
+</ul>
+
+<h3 id="praćenje-kvalitete-vode-i-hidrauličke-starosti-u-mreži">Praćenje kvalitete vode i hidrauličke starosti u mreži</h3>
+<p>Osim tlakova i protoka, digitalni blizanac u stvarnom vremenu rješava i jednadžbe prijenosa tvari u cjevovodima. U praksi je čest problem prevelika <strong>hidraulička starost vode</strong> (vrijeme zadržavanja vode u sustavu od izvorišta do krajnjeg potrošača), osobito u predimenzioniranim prigradskim mrežama ili turističkim naseljima izvan ljetne sezone.</p>
+<p>Dugotrajno zadržavanje vode u cijevima i vodospremama dovodi do zagrijavanja vode i razgradnje rezidualnog klora, koja se u modelu obično opisuje jednadžbom prvog reda:</p>
+$
+C(t) = C_0 \cdot e^{-k \cdot t}
+$
+<p>gdje je $C_0$ početna koncentracija dezinficijensa, a $k$ ukupni koeficijent razgradnje u samoj vodi i na stijenci cijevi. Digitalni blizanac kontinuirano prati gdje u mreži koncentracija klora pada ispod dopuštene granice te omogućuje operaterima da:</p>
+<ul>
+  <li>precizno podese doziranje na stanicama za dokloriranje u mreži bez prekomjernog trošenja kemikalija,</li>
+  <li>optimiziraju razine uključenja i isključenja crpki kako bi se potaknula brža izmjena vode u vodospremama i izbjegle „mrtve zone”,</li>
+  <li>u slučaju izvanrednog onečišćenja ili pojave mutnoće, u nekoliko sekundi simuliraju kretanje onečišćenog vala kroz cjevovode, odrede koje zasune treba hitno zatvoriti i na kojim hidrantima provesti ispiranje mreže.</li>
+</ul>
+
+<h3 id="brze-operativne-simulacije-što-ako-scenariji-u-dispečerskom-centru">Brze operativne simulacije („Što ako” scenariji) u dispečerskom centru</h3>
+<p>U svakodnevnom pogonu dispečeri i voditelji održavanja često moraju donositi brze odluke pod pritiskom. Kada dođe do puknuća na magistralnom cjevovodu ili kvara na glavnoj crpnoj stanici, ključno je znati što će se dogoditi s ostatkom sustava prije nego što se pošalje ekipa da zatvori zasune.</p>
+<p>Budući da je digitalni blizanac već usklađen s trenutnim stanjem u mreži (zna točne trenutne razine u svim vodospremama i trenutnu potrošnju u gradu), operater na ekranu može jednim klikom simulirati planirani zahvat i odmah dobiti odgovore na operativna pitanja:</p>
+<ul>
+  <li>Ako sada zatvorimo ovu dionicu radi popravka, za koliko će sati razina vode u pripadajućoj vodospremi pasti na minimum i koja će visinska zona ostati bez vode?</li>
+  <li>Možemo li otvaranjem sekcijskog zasuna između dviju susjednih zona privremeno preusmjeriti vodu iz drugog opskrbnog pravca a da pritom ne izazovemo prevelike brzine u starim cijevima (što bi podiglo talog sa stijenki i zamutilo vodu potrošačima)?</li>
+  <li>Postoji li u pogođenom dijelu mreže u svakom trenutku dovoljan tlak i protok na hidrantima za potrebe gašenja požara?</li>
+</ul>
+<p>Ovakve simulacije više ne zahtijevaju da se problem šalje projektantskom uredu na nekoliko dana analize, već postaju standardni alat kojeg operater u kontrolnoj sobi koristi u roku od nekoliko minuta.</p>
+
+<hr>
+
+<h2 id="stvarnost-na-terenu-zašto-projekti-digitalnih-blizanaca-propadaju">Stvarnost na terenu - Zašto projekti digitalnih blizanaca propadaju?</h2>
+<p>Iako su prednosti digitalnih blizanaca na papiru neupitne, u praksi značajan dio takvih projekata nikada ne zaživi u punom opsegu ili nakon završetka pilot-faze ostane neiskorišten. Razlog tome rijetko su loši algoritmi ili nedostatak računalne snage; projekti najčešće zapinju na osnovnim inženjerskim i organizacijskim problemima stvarnih vodoopskrbnih mreža.</p>
+
+<h3 id="problem-opservabilnosti-gdje-i-koliko-senzora-postaviti">Problem opservabilnosti: Gdje i koliko senzora postaviti?</h3>
+<p>Vodoopskrbni sustavi su gotovo u cijelosti zakopani pod zemljom, a budžeti komunalnih društava ne dopuštaju ugradnju mjerača tlaka i protoka u svako okno. U praksi se senzori često postavljaju tamo gdje je to građevinski najlakše izvesti (npr. gdje već postoji napajanje ili komunalno okno), a ne tamo gdje će dati najviše informacija o ponašanju mreže.</p>
+<p>Ako su senzori loše raspoređeni, sustav postaje <strong>neopservabilan</strong> – dva potpuno različita kvara na različitim krajevima mreže mogu izazvati gotovo identičan pad tlaka na mjernom mjestu, pa blizanac ne može sa sigurnošću odrediti u kojoj je ulici nastalo puknuće. Zato se prije same nabave opreme mora provesti matematička optimizacija rasporeda senzora pomoću hidrauličkog modela. Analizom osjetljivosti (ispitivanjem na kojim čvorovima promjena otpora ili curenje u mreži izaziva najveću promjenu tlaka) moguće je s minimalnim brojem logera tlaka – često svega $3$ do $5$ dodatnih mjernih mjesta po DMA zoni – postići visoku razinu vidljivosti cijelog sustava.</p>
+
+<h3 id="brownfield-nasljeđe-i-nepouzdan-katastar">„Brownfield” nasljeđe i nepouzdan katastar</h3>
+<p>Za razliku od novih industrijskih postrojenja koja se od prvog dana projektiraju u 3D okruženju, vodovodi su sustavi koji su se gradili i nadograđivali desetljećima (tzv. <em>brownfield</em> sustavi). Inženjeri na terenu redovito se susreću s dobro poznatim problemima:</p>
+<ul>
+  <li><strong>Nepotpuni podaci u GIS-u:</strong> Za starije dionice često se ne zna točan unutarnji promjer (zbog višegodišnjih naslaga kamenca i korozije stvarni svijetli otvor cijevi od $\text{DN } 150$ može pasti na manje od $100\text{ mm}$), stvarni materijal ili postojanje starih, zaboravljenih spojnih vodova između cjevovoda.</li>
+  <li><strong>Nepoznat status zasuna:</strong> Ovo je najveći neprijatelj svakog modeliranja. Zasuni koji su na karti ucrtani kao otvoreni, a u stvarnosti su ostali zatvoreni nakon nekog davnog popravka (ili im je puklo vreteno u zatvorenom položaju), potpuno mijenjaju sliku tečenja. Nikakva umjetna inteligencija ne može kompenzirati pogrešnu topologiju mreže dok se na terenu fizički ne provjere granice zona i položaji glavnih zasuna.</li>
+  <li><strong>Organizacijski silosi:</strong> U mnogim tvrtkama GIS odjel, služba održavanja mreže i dispečerski centar (SCADA) rade u odvojenim sustavima. Ako voditelj terenske ekipe ne upiše promjenu stanja na mreži, digitalni blizanac u kontrolnoj sobi unutar nekoliko dana postaje neupotrebljiv.</li>
+</ul>
+
+<h3 id="kibernetička-sigurnost-i-povjerenje-operatera">Kibernetička sigurnost i povjerenje operatera</h3>
+<p>Otvaranje SCADA sustava prema vanjskim analitičkim platformama i servisima u oblaku (engl. <em>cloud</em>) otvara ozbiljna sigurnosna pitanja. Vodoopskrba pripada kritičnoj infrastrukturi te podliježe strogim zakonskim propisima o kibernetičkoj sigurnosti (poput europske NIS2 direktive). Zbog toga se arhitektura digitalnog blizanca u praksi najčešće rješava tako da SCADA ostaje u potpuno zaštićenoj lokalnoj mreži, dok se podaci prema digitalnom blizancu šalju jednosmjerno ili preko strogo nadziranih sigurnosnih pristupnika (DMZ zona). Čak i kod najnaprednijih sustava, rijetko se dopušta da algoritam izravno bez nadzora gasi crpke, već blizanac šalje preporuku ili zadaje parametre unutar uskih sigurnosnih granica koje nadzire lokalni PLC uređaj na samom objektu.</p>
+<p>Jednako je važan i <strong>ljudski faktor</strong>. Iskusni dispečeri koji desetljećima vode sustav „po osjećaju” opravdano su nepovjerljivi prema softveru koji im samo izbaci naredbu bez objašnjenja. Kako bi sustav bio prihvaćen u kontrolnoj sobi, digitalni blizanac mora biti transparentan: uz svaku preporuku ili alarm mora jasno prikazati <em>zašto</em> je donio takav zaključak (npr. „Sumnja na puknuće u zoni B: izmjereni noćni protok veći je za $8\text{ l/s}$ od očekivanog, uz pad tlaka od $0{,}4\text{ bara}$ na senzoru P3”).</p>
+
+<hr>
+
+<h2 id="zaključak-razvojni-put-prema-autonomnim-sustavima">Zaključak: Razvojni put prema autonomnim sustavima</h2>
+<p>Izgradnja digitalnog blizanca vodoopskrbnog sustava nije jednokratan projekt koji završava instalacijom softvera, već postupan inženjerski proces koji prati uređenje same fizičke mreže. Komunalno društvo ne može preskočiti stepenice i uvesti naprednu optimizaciju pomoću umjetne inteligencije ako prethodno nije uredilo katastar u GIS-u, uspostavilo mjerne zone (DMA) i osiguralo pouzdan prijenos podataka sa senzora.</p>
+<p>Taj razvojni put najbolje se može prikazati kroz pet razina zrelosti, pri čemu većina domaćih i europskih vodovoda trenutno prelazi s prve na drugu ili treću razinu:</p>
+<div class="table-container">
+  <table class="article-table">
+    <thead>
+      <tr>
+        <th>Razina</th>
+        <th>Naziv faze</th>
+        <th>Povezanost podataka</th>
+        <th>Analitička jezgra</th>
+        <th>Uloga inženjera / dispečera</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Razina 1</strong></td>
+        <td><strong>Statički model</strong></td>
+        <td>Ručni unos podataka (povremeni izvoz iz GIS-a i SCADA-e)</td>
+        <td>Klasični hidraulički proračun (povremena ručna kalibracija)</td>
+        <td>Dugoročno planiranje, projektiranje i dimenzioniranje mreže</td>
+      </tr>
+      <tr>
+        <td><strong>Razina 2</strong></td>
+        <td><strong>Povezani model (Deskriptivni)</strong></td>
+        <td>Jednosmjerni automatski tok iz SCADA-e u model</td>
+        <td>Hidraulički izračun trenutnog stanja u nemjerenim točkama</td>
+        <td>Nadzor stanja mreže u stvarnom vremenu i pregled povijesti</td>
+      </tr>
+      <tr>
+        <td><strong>Razina 3</strong></td>
+        <td><strong>Prediktivni blizanac</strong></td>
+        <td>Kontinuirano spajanje podataka (SCADA + AMI + IoT logeri)</td>
+        <td>Hibridni model (hidraulika + strojno učenje za prognozu i anomalije)</td>
+        <td>Brza lokalizacija curenja i „Što ako” simulacije u pogonu</td>
+      </tr>
+      <tr>
+        <td><strong>Razina 4</strong></td>
+        <td><strong>Preskriptivni blizanac</strong></td>
+        <td>Dvosmjerna komunikacija uz automatsku provjeru podataka</td>
+        <td>Višekriterijska optimizacija i brzi surogat modeli (GNN/PINN)</td>
+        <td>Sustav samostalno nudi optimalne odluke (crpke, PRV), operater odobrava</td>
+      </tr>
+      <tr>
+        <td><strong>Razina 5</strong></td>
+        <td><strong>Autonomni sustav</strong></td>
+        <td>Potpuno zatvorena povratna veza (engl. <em>closed-loop</em>)</td>
+        <td>Autonomni upravljački algoritmi uz stroga fizikalna ograničenja</td>
+        <td>Nadzor nad radom sustava i rješavanje izvanrednih situacija</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>U konačnici, digitalni blizanac ne zamjenjuje hidrotehničkog inženjera, već ga oslobađa dugotrajnog ručnog prikupljanja podataka i nagađanja što se događa u podzemnoj mreži. Spojem klasičnih zakona hidraulike i suvremenih metoda obrade podataka u stvarnom vremenu, inženjeri napokon dobivaju alat koji im omogućuje da vodoopskrbnim sustavom upravljaju proaktivno, energetski učinkovito i s minimalnim gubicima vode.</p>
+    </article>
+
+    <!-- Donji Share Blok -->
+    <div class="reader-share-box">
+      <div class="reader-share-info">
+        <span class="reader-share-label">Podijeli ovaj rad:</span>
+      </div>
+      <div class="reader-share-actions">
+        <button type="button" class="btn-copy-link btn-trigger-copy" aria-label="Kopiraj poveznicu na rad">
+          <span class="copy-tooltip">Poveznica kopirana!</span>
+          <svg class="icon-link" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none; color: #10b981;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="copy-btn-text">Kopiraj poveznicu</span>
+        </button>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fdigitalni-blizanci-vodoopskrbnih-sustava.html&text=Arhitektura%20i%20primjena%20digitalnih%20blizanaca%20u%20vodoopskrbnim%20sustavima" target="_blank" rel="noopener noreferrer" class="share-btn share-x" aria-label="Podijeli na X-u (Twitter)" title="Podijeli na X-u (Twitter)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fdigitalni-blizanci-vodoopskrbnih-sustava.html" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Podijeli na LinkedInu" title="Podijeli na LinkedInu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.13.72-1.8 1.63-1.8.84 0 1.33.56 1.33 1.8v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkeeping-up-singularity.web.app%2Farticles%2Fdigitalni-blizanci-vodoopskrbnih-sustava.html&quote=Arhitektura%20i%20primjena%20digitalnih%20blizanaca%20u%20vodoopskrbnim%20sustavima" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Podijeli na Facebooku" title="Podijeli na Facebooku">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Povezani članci sekcija -->
+    
+    <section class="related-articles-section" aria-labelledby="related-heading">
+      <div class="related-header">
+        <span class="related-overline">PREPORUČENO ČITANJE</span>
+        <h3 id="related-heading" class="related-title">Povezani radovi i publikacije</h3>
+      </div>
+      <div class="related-grid">
+        
+      <a href="humanoidna-robotika.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/robotika.webp" alt="Robotika – New Frontier" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 23 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Robotika – New Frontier</h4>
+          <p class="related-card-excerpt">Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="navier-stokes.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/Navier Stokes.webp" alt="Navier–Stokes" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 31 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Navier–Stokes</h4>
+          <p class="related-card-excerpt">Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      <a href="koliko-vode-trose-podatkovni-centri.html" class="related-card">
+        
+      <div class="related-card-media">
+        <img src="../img/voda_data_centri.webp" alt="Koliko vode zapravo troše podatkovni centri?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
+      </div>
+    
+        <div class="related-card-content">
+          <div class="related-card-meta">
+            <span class="related-category">AI i tehnologija</span>
+            <span class="related-read-time">⏱ 11 min čitanja</span>
+          </div>
+          <h4 class="related-card-title">Koliko vode zapravo troše podatkovni centri?</h4>
+          <p class="related-card-excerpt">Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.</p>
+          <div class="related-card-footer">
+            <span>Pročitaj rad &rarr;</span>
+          </div>
+        </div>
+      </a>
+      </div>
+    </section>
+
+    <!-- Fusnota i povratak -->
+    <footer class="reader-footer">
+      <a href="../index.html" class="btn-read-article">&larr; Povratak na popis sažetaka</a>
+    </footer>
+    </div>
+    <!-- Sekcija komentara (Article Comments & Discussion) -->
+    <section id="comments-section" class="comments-section" aria-labelledby="comments-title">
+      <!-- Sadržaj komentara renderira js/comments.js -->
+    </section>
+
+    <!-- Newsletter Subscription Section -->
+    <section class="newsletter-section" aria-labelledby="newsletter-title">
+      <div class="newsletter-card">
+        <div class="newsletter-content">
+          <div class="newsletter-info">
+            <span class="newsletter-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              Newsletter
+            </span>
+            <h2 id="newsletter-title" class="newsletter-title" data-i18n="newsletter.section_title">Budite u tijeku sa singularnošću</h2>
+            <p class="newsletter-desc" data-i18n="newsletter.section_desc">
+              Prijavite se na newsletter i primite obavijest sa sažetkom i poveznicom izravno u inbox čim objavimo novu analizu.
+            </p>
+          </div>
+          <div class="newsletter-form-wrapper">
+            <form class="newsletter-form" id="newsletter-form" novalidate>
+              <div class="newsletter-input-wrap">
+                <svg class="newsletter-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <input type="email" class="newsletter-input" placeholder="Upišite vašu e-mail adresu..." data-i18n-placeholder="newsletter.input_placeholder" aria-label="E-mail adresa" required autocomplete="email">
+              </div>
+              <button type="submit" class="newsletter-submit-btn" data-i18n="newsletter.btn_subscribe">Pretplati se</button>
+            </form>
+            <div class="newsletter-feedback" aria-live="polite"></div>
+            <p class="newsletter-privacy">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span data-i18n="newsletter.privacy_note">Bez spama. Možete se odjaviti u bilo kojem trenutku.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating Reader Quick Navigation Toolbar -->
+    <div id="reader-floating-toolbar" class="reader-floating-toolbar" aria-label="Brza navigacija">
+      <!-- Brzi skok na Sadržaj (TOC) -->
+      <button type="button" id="floating-toc-btn" class="floating-btn" aria-label="Sadržaj rada">
+        <span class="floating-tooltip" id="floating-toc-tooltip">Sadržaj rada</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="8" y1="6" x2="21" y2="6"></line>
+          <line x1="8" y1="12" x2="21" y2="12"></line>
+          <line x1="8" y1="18" x2="21" y2="18"></line>
+          <line x1="3" y1="6" x2="3.01" y2="6"></line>
+          <line x1="3" y1="12" x2="3.01" y2="12"></line>
+          <line x1="3" y1="18" x2="3.01" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Promjena veličine teksta -->
+      <button type="button" id="floating-font-btn" class="floating-btn floating-btn-font" aria-label="Veličina teksta">
+        <span class="floating-tooltip" id="floating-font-tooltip">Veličina teksta</span>
+        <span id="floating-font-indicator">Aa</span>
+      </button>
+
+      <!-- Povratak na vrh -->
+      <button type="button" id="floating-top-btn" class="floating-btn" aria-label="Vrh stranice">
+        <span class="floating-tooltip" id="floating-top-tooltip">Vrh stranice</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
+    </div>
+  </main>
+
+  <!-- PODNOŽJE (FOOTER) -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">Keeping up with the singularity</div>
+        <p class="footer-desc" data-i18n="footer.desc">
+          Platforma inspirirana tehnološkim napretkom i eksponencijalnim tehnologijama, u pokušaju držanja koraka za istim
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3 class="footer-heading" data-i18n="footer.podcasts">Podcasti &amp; Mediji</h3>
+        <ul class="footer-links">
+          <li><a href="https://www.youtube.com/results?search_query=moonshots+with+peter+diamandis" target="_blank" rel="noopener noreferrer" id="link-moonshot" data-i18n="footer.podcast_moonshot">Moonshot Podcast</a></li>
+          <li><a href="https://allin.com/" target="_blank" rel="noopener noreferrer" id="link-allin" data-i18n="footer.podcast_allin">All-In Podcast</a></li>
+          <li><a href="https://www.youtube.com/@TwoMinutePapers" target="_blank" rel="noopener noreferrer" id="link-twominute" data-i18n="footer.podcast_twominute">Two Minute Papers</a></li>
+          <li><a href="https://www.youtube.com/@Alex.kantrowitz" target="_blank" rel="noopener noreferrer" id="link-kantrowitz" data-i18n="footer.podcast_kantrowitz">Alex Kantrowitz</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3 class="footer-heading" data-i18n="footer.newsletters">NEWSLETTERI</h3>
+        <ul class="footer-links">
+          <li><a href="https://theinnermostloop.substack.com/" target="_blank" rel="noopener noreferrer" id="link-innermostloop" data-i18n="footer.newsletter_innermostloop">The Innermost Loop</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">&copy; 2026 Keeping up with the singularity. Sva prava pridržana.</span>
+      <span data-i18n="footer.arch">Arhitektura: Vanilla HTML5 / CSS3 / Vanilla JS</span>
+    </div>
+  </footer>
+
+  <script>window.PRELOADED_ARTICLE_ID = "digitalni-blizanci-vodoopskrbnih-sustava";window.PRELOADED_ARTICLE_DATA = {"id":"digitalni-blizanci-vodoopskrbnih-sustava","title":"Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima","title_en":"Architecture and Application of Digital Twins in Water Supply Systems","date":"15. studenoga 2026.","category":"AI i tehnologija","categorySlug":"ai-tehnologija","category_en":"AI & Tech","image":"img/digitalni_blizanci.webp","readTime":"16 min čitanja","readTime_en":"16 min read","summary":"Zašto spajanje GIS-a s klasičnim EPANET modelom ne čini digitalni blizanac, kako hibridni fizikalno informirani modeli (PINN i grafovske neuronske mreže) rješavaju problem estimacije stanja u stvarnom vremenu te gdje u praksi zapinju projekti na stvarnim vodovodnim mrežama.","summary_en":"Why linking GIS with a traditional EPANET model does not constitute a digital twin, how hybrid physics-informed models (PINNs and Graph Neural Networks) solve real-time state estimation, and why real-world brownfield deployments often stall.","excerpt":"Zašto spajanje GIS-a s klasičnim EPANET modelom ne čini digitalni blizanac, kako hibridni fizikalno informirani modeli (PINN i grafovske neuronske mreže) rješavaju problem estimacije stanja u stvarnom vremenu te gdje u praksi zapinju projekti na stvarnim vodovodnim mrežama.","excerpt_en":"Why linking GIS with a traditional EPANET model does not constitute a digital twin, how hybrid physics-informed models (PINNs and Graph Neural Networks) solve real-time state estimation, and why real-world brownfield deployments often stall.","wordCount":4454,"wordCount_en":4129};window.PRELOADED_ARTICLES_INDEX = [{"id":"humanoidna-robotika","title":"Robotika – New Frontier","title_en":"Humanoid Robotics – The New Frontier","category":"AI i tehnologija","category_en":"AI & Tech","date":"4. listopada 2026.","readTime":"⏱ 23 min čitanja","readTime_en":"⏱ 23 min read","wordCount":4460,"wordCount_en":4498,"image":"img/robotika.webp","excerpt":"Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.","excerpt_en":"Why Moravec's paradox is the defining challenge of our era, how VLA models and massive parallel simulation are emancipating AI into the physical world, and who leads the global race between Tesla, Figure, Boston Dynamics, and China."},{"id":"navier-stokes","title":"Navier–Stokes","title_en":"Navier–Stokes","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"17. rujna 2026.","readTime":"⏱ 31 min čitanja","readTime_en":"⏱ 32 min read","wordCount":6011,"wordCount_en":6211,"image":"img/Navier Stokes.webp","excerpt":"Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.","excerpt_en":"From Hilbert's 23 problems to the Clay Mathematics Institute's million-dollar prize: What the Navier–Stokes equations actually describe, what finite-time singularity means, and how OpenAI's agent swarm and Lean formal verification shook mathematics to its core."},{"id":"koliko-vode-trose-podatkovni-centri","title":"Koliko vode zapravo troše podatkovni centri?","title_en":"How Much Water Do Data Centers Actually Consume?","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tech","date":"23. kolovoza 2026.","readTime":"⏱ 11 min čitanja","readTime_en":"⏱ 12 min read","wordCount":2169,"wordCount_en":2202,"image":"img/voda_data_centri.webp","excerpt":"Termodinamička i fizikalna analiza potrošnje vode u podatkovnim centrima – od direktnog i indirektnog otiska, WUE i PUE metrika do tekućeg hlađenja i usporedbe s drugim industrijama.","excerpt_en":"A thermodynamic and physical analysis of data center water consumption – covering direct and indirect footprints, WUE and PUE metrics, liquid cooling, and comparisons with other industries."}];</script>
+  <script src="../js/article.js?v=20261108"></script>
+  <script src="../js/comments.js?v=20261108"></script>
+  <script src="../js/newsletter.js?v=20261108"></script>
+</body>
+</html>

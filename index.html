@@ -92,11 +92,11 @@
     <section id="featured-article-section" class="featured-article-section" aria-label="Istaknuti rad">
       <div id="featured-article-container" class="featured-article-container">
         <!-- Istaknuti Hero rad pred-renderiran putem SSG-a (scripts/generate-static-pages.js) -->
-        <article class="featured-hero-card" id="featured-card-humanoidna-robotika">
+        <article class="featured-hero-card" id="featured-card-digitalni-blizanci-vodoopskrbnih-sustava">
           
           <div class="featured-hero-media">
-            <a href="articles/humanoidna-robotika.html" tabindex="-1" aria-hidden="true">
-              <img src="img/robotika.webp" alt="Robotika – New Frontier" class="featured-hero-img" fetchpriority="high" decoding="async" onerror="this.closest('.featured-hero-media').style.display='none'">
+            <a href="articles/digitalni-blizanci-vodoopskrbnih-sustava.html" tabindex="-1" aria-hidden="true">
+              <img src="img/digitalni_blizanci.webp" alt="Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima" class="featured-hero-img" fetchpriority="high" decoding="async" onerror="this.closest('.featured-hero-media').style.display='none'">
             </a>
           </div>
           <div class="featured-hero-content">
@@ -107,12 +107,12 @@
                   <span>NAJNOVIJI RAD</span>
                 </span>
                 <span class="card-category">AI i tehnologija</span>
-                <time class="card-date" datetime="4. listopada 2026.">4. listopada 2026.</time>
+                <time class="card-date" datetime="15. studenoga 2026.">15. studenoga 2026.</time>
               </div>
               <h2 class="featured-hero-title">
-                <a href="articles/humanoidna-robotika.html">Robotika – New Frontier</a>
+                <a href="articles/digitalni-blizanci-vodoopskrbnih-sustava.html">Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima</a>
               </h2>
-              <p class="featured-hero-excerpt">Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.</p>
+              <p class="featured-hero-excerpt">Zašto spajanje GIS-a s klasičnim EPANET modelom ne čini digitalni blizanac, kako hibridni fizikalno informirani modeli (PINN i grafovske neuronske mreže) rješavaju problem estimacije stanja u stvarnom vremenu te gdje u praksi zapinju projekti na stvarnim vodovodnim mrežama.</p>
             </div>
             <div class="featured-hero-footer">
               <div class="card-info">
@@ -125,7 +125,7 @@
                 </span>
                 
               </div>
-              <a href="articles/humanoidna-robotika.html" class="btn-featured-read" aria-label="Pročitaj istaknuti rad: Robotika – New Frontier">
+              <a href="articles/digitalni-blizanci-vodoopskrbnih-sustava.html" class="btn-featured-read" aria-label="Pročitaj istaknuti rad: Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima">
                 Pročitaj istaknuti rad &rarr;
               </a>
             </div>
@@ -139,18 +139,18 @@
       <div class="articles-section-header">
         <div class="section-title-wrap">
           <h2 id="section-heading" class="section-label" data-i18n="section.short_texts">Kratki tekstovi</h2>
-          <span id="articles-count" class="articles-count">13 Sažetka</span>
+          <span id="articles-count" class="articles-count">14 Sažetka</span>
         </div>
 
         <!-- Instant Category Filter Pills -->
         <div class="filter-pills-group" id="category-filter-pills" role="group" aria-label="Filtriraj po kategoriji">
           <button type="button" class="filter-pill active" data-filter="all">
             <span data-i18n="filter.all">Sve</span>
-            <span class="filter-pill-count" id="count-filter-all">13</span>
+            <span class="filter-pill-count" id="count-filter-all">14</span>
           </button>
           <button type="button" class="filter-pill" data-filter="ai-tehnologija">
             <span data-i18n="filter.ai">AI i tehnologija</span>
-            <span class="filter-pill-count" id="count-filter-ai">9</span>
+            <span class="filter-pill-count" id="count-filter-ai">10</span>
           </button>
           <button type="button" class="filter-pill" data-filter="longevity">
             <span data-i18n="filter.longevity">Longevity</span>
@@ -192,6 +192,44 @@
       <!-- CSS Grid spremnik za dinamički prikaz kartica -->
       <div id="articles-grid" class="articles-grid" role="region" aria-live="polite">
         <!-- Kartice članaka pred-renderirane putem SSG-a (scripts/generate-static-pages.js) -->
+        <article class="article-card" id="card-humanoidna-robotika">
+          
+    <div class="article-card-media">
+      <a href="articles/humanoidna-robotika.html" tabindex="-1" aria-hidden="true">
+        <img src="img/robotika.webp" alt="Robotika – New Frontier" class="article-card-thumb" decoding="async" onerror="this.closest('.article-card-media').style.display='none'">
+      </a>
+    </div>
+          <div class="article-card-content">
+            <div class="card-body">
+              <div class="card-header">
+                <div class="card-meta">
+                  <span class="card-category">AI i tehnologija</span>
+                  <time class="card-date" datetime="4. listopada 2026.">4. listopada 2026.</time>
+                </div>
+                <h3 class="card-title">
+                  <a href="articles/humanoidna-robotika.html">Robotika – New Frontier</a>
+                </h3>
+              </div>
+              <p class="card-excerpt">Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.</p>
+            </div>
+            <div class="card-footer">
+              <div class="card-info">
+                <span class="card-read-time">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  ⏱ 23 min čitanja
+                </span>
+                
+              </div>
+              <a href="articles/humanoidna-robotika.html" class="btn-read-article" aria-label="Pročitaj rad: Robotika – New Frontier">
+                Pročitaj rad &rarr;
+              </a>
+            </div>
+          </div>
+        </article>
+
         <article class="article-card" id="card-navier-stokes">
           
     <div class="article-card-media">
@@ -234,7 +272,7 @@
           
     <div class="article-card-media">
       <a href="articles/jesmo-li-vec-vidjeli-prve-longevity-lijekove.html" tabindex="-1" aria-hidden="true">
-        <img src="img/GLP_lijekovi.webp" alt="Jesmo li već vidjeli prve Longevity lijekove?" class="article-card-thumb" decoding="async" onerror="this.closest('.article-card-media').style.display='none'">
+        <img src="img/GLP_lijekovi.webp" alt="Jesmo li već vidjeli prve Longevity lijekove?" class="article-card-thumb" loading="lazy" decoding="async" onerror="this.closest('.article-card-media').style.display='none'">
       </a>
     </div>
           <div class="article-card-content">
@@ -376,44 +414,6 @@
                 
               </div>
               <a href="articles/peptidi-bolski-signalni-sustavi.html" class="btn-read-article" aria-label="Pročitaj rad: Peptidi: Biološki signalni molekularni sustavi">
-                Pročitaj rad &rarr;
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="article-card" id="card-alphafold-nobel-nagrada">
-          
-    <div class="article-card-media">
-      <a href="articles/alphafold-nobel-nagrada.html" tabindex="-1" aria-hidden="true">
-        <img src="img/Alphafold.webp" alt="AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?" class="article-card-thumb" loading="lazy" decoding="async" onerror="this.closest('.article-card-media').style.display='none'">
-      </a>
-    </div>
-          <div class="article-card-content">
-            <div class="card-body">
-              <div class="card-header">
-                <div class="card-meta">
-                  <span class="card-category">Longevity</span>
-                  <time class="card-date" datetime="24. srpnja 2026.">24. srpnja 2026.</time>
-                </div>
-                <h3 class="card-title">
-                  <a href="articles/alphafold-nobel-nagrada.html">AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?</a>
-                </h3>
-              </div>
-              <p class="card-excerpt">Kratki pregled kako je DeepMindov AlphaFold riješio 50 godina star problem savijanja proteina, osvojio Nobelovu nagradu i otvorio novu eru u dizajniranju sintetičkih enzima za pomlađivanje tkiva.</p>
-            </div>
-            <div class="card-footer">
-              <div class="card-info">
-                <span class="card-read-time">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                  </svg>
-                  ⏱ 10 min čitanja
-                </span>
-                <span class="card-doi">doi:10.1038/s41586-026-09855-3</span>
-              </div>
-              <a href="articles/alphafold-nobel-nagrada.html" class="btn-read-article" aria-label="Pročitaj rad: AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?">
                 Pročitaj rad &rarr;
               </a>
             </div>
