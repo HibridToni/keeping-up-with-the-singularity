@@ -1,9 +1,9 @@
 /**
  * Service Worker for "Keeping up with the singularity"
- * Provides offline reading, background caching, and fast asset delivery.
+ * Provides offline reading, background caching, and fresh asset delivery when online.
  */
 
-const CACHE_NAME = 'singularity-pwa-v5';
+const CACHE_NAME = 'singularity-pwa-v6';
 
 // Static core assets to pre-cache immediately on install
 const PRECACHE_ASSETS = [
@@ -55,7 +55,7 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch event: Apply intelligent caching strategies
+// Fetch event: Network-First for HTML/CSS/JS/JSON, Cache-First for media assets
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   const url = new URL(request.url);
@@ -68,7 +68,7 @@ self.addEventListener('fetch', (event) => {
   // 1. Navigation requests (HTML pages): Network-First with Cache Fallback
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request)
+      fetch(request.url, { cache: 'no-cache' })
         .then((networkResponse) => {
           if (networkResponse && networkResponse.status === 200) {
             const responseToCache = networkResponse.clone();
@@ -79,7 +79,6 @@ self.addEventListener('fetch', (event) => {
           return networkResponse;
         })
         .catch(async () => {
-          // If offline, attempt exact URL match in cache, or fallback to matching HTML shell
           const cachedResponse = await caches.match(request);
           if (cachedResponse) return cachedResponse;
 
@@ -95,32 +94,35 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 2. Data requests (articles-index.json, articles/*.json, articles.json): Stale-While-Revalidate
-  if (url.pathname.endsWith('.json') && !url.pathname.endsWith('manifest.json')) {
-    event.respondWith(
-      caches.open(CACHE_NAME).then((cache) => {
-        return cache.match(request).then((cachedResponse) => {
-          const fetchPromise = fetch(request)
-            .then((networkResponse) => {
-              if (networkResponse && networkResponse.status === 200) {
-                cache.put(request, networkResponse.clone());
-              }
-              return networkResponse;
-            })
-            .catch(() => cachedResponse);
+  // 2. Code, styles, and data requests (CSS, JS, JSON except manifest): Network-First with Cache Fallback
+  const isCodeOrData =
+    url.pathname.endsWith('.css') ||
+    url.pathname.endsWith('.js') ||
+    (url.pathname.endsWith('.json') && !url.pathname.endsWith('manifest.json'));
 
-          return cachedResponse || fetchPromise;
-        });
-      })
+  if (isCodeOrData) {
+    event.respondWith(
+      fetch(request.url, { cache: 'no-cache' })
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseToCache = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(request, responseToCache);
+            });
+          }
+          return networkResponse;
+        })
+        .catch(async () => {
+          return (await caches.match(request)) || Response.error();
+        })
     );
     return;
   }
 
-  // 3. Static assets (CSS, JS, Images, SVG): Cache-First with Network Fallback
+  // 3. Media & image assets: Cache-First with background update
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
       if (cachedResponse) {
-        // Fetch in background to update cache for next time
         fetch(request)
           .then((networkResponse) => {
             if (networkResponse && networkResponse.status === 200) {

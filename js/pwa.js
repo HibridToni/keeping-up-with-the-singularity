@@ -3,13 +3,23 @@
  */
 
 (function () {
-  // Register Service Worker
+  // Register Service Worker with immediate update checks
   if ('serviceWorker' in navigator) {
+    const hadController = Boolean(navigator.serviceWorker.controller);
+    let hasReloadedOnControllerChange = false;
+
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!hadController || hasReloadedOnControllerChange) return;
+      hasReloadedOnControllerChange = true;
+      window.location.reload();
+    });
+
     window.addEventListener('load', () => {
       navigator.serviceWorker
-        .register('/sw.js')
+        .register('/sw.js', { updateViaCache: 'none' })
         .then((registration) => {
           console.log('[PWA] Service Worker registered with scope:', registration.scope);
+          registration.update().catch(() => {});
         })
         .catch((error) => {
           console.error('[PWA] Service Worker registration failed:', error);
