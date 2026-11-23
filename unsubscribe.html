@@ -11,16 +11,18 @@
   <title>Odjava s newslettera - Keeping up with the singularity</title>
 
   <!-- PWA & Mobile Web App Meta -->
-  <meta name="theme-color" content="#030712">
+  <meta name="theme-color" content="#070a10">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Singularity">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="img/logo.png">
 
-  <link rel="stylesheet" href="style.css?v=20260831_1">
-  <script src="js/theme.js?v=20260822_3"></script>
-  <script src="js/lang.js?v=20260822_3"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css?v=20261123">
+  <script src="js/theme.js?v=20261123"></script>
+  <script src="js/lang.js?v=20261123"></script>
   <script src="js/pwa.js"></script>
 </head>
 <body>
@@ -30,7 +32,7 @@
     <nav class="navbar" aria-label="Glavna navigacija">
       <div class="nav-container">
         <a href="index.html" class="nav-brand">
-          <img src="img/logo.png" alt="Horizont Događaja Logo" class="site-logo">
+          <img src="img/logo.webp" alt="Horizont Događaja Logo" class="site-logo" width="36" height="36" decoding="async">
           <span class="brand-title">Keeping up with the singularity</span>
           <span class="brand-subtitle">PHYSICS &amp; TECH JOURNAL</span>
         </a>
@@ -48,14 +50,31 @@
           <li><a href="category.html?cat=ai-tehnologija" class="nav-link" id="nav-ai" data-i18n="nav.ai">AI i tehnologija</a></li>
           <li><a href="category.html?cat=longevity" class="nav-link" id="nav-longevity" data-i18n="nav.longevity">Longevity</a></li>
           <li><button id="lang-toggle" class="lang-btn" aria-label="Promijeni jezik">ENG</button></li>
-          <li><button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">🌓</button></li>
+          <li>
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">
+              <svg class="theme-icon theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+              <svg class="theme-icon theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </button>
+          </li>
         </ul>
       </div>
     </nav>
   </header>
 
   <!-- GLAVNI SPREMNIK -->
-  <main class="main-container" style="max-width: 680px; margin: 48px auto 64px; padding: 0 20px;">
+  <main class="main-container unsubscribe-container">
     
     <div class="newsletter-card" style="text-align: center; padding: 48px 32px;">
       
@@ -127,6 +146,6 @@
     </div>
   </footer>
 
-  <script src="js/unsubscribe.js?v=20260831_1"></script>
+  <script src="js/unsubscribe.js?v=20261123"></script>
 </body>
 </html>

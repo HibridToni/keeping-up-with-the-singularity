@@ -35,10 +35,20 @@ function countWords(html) {
   return plainText ? plainText.split(/\s+/).length : 0;
 }
 
+function getCategoryThemeKey(article) {
+  const slug = ((article && article.categorySlug) || '').toLowerCase().trim();
+  const catHR = ((article && article.category) || '').toLowerCase().trim();
+  const catEN = ((article && article.category_en) || '').toLowerCase().trim();
+  if (slug === 'longevity' || catHR.includes('longevity') || catEN.includes('longevity')) {
+    return 'longevity';
+  }
+  return 'ai';
+}
+
 function calculateReadingTime(content, lang = 'hr') {
   const wordCount = countWords(content);
   const minutes = Math.max(1, Math.ceil(wordCount / 200));
-  return lang === 'en' ? `⏱ ${minutes} min read` : `⏱ ${minutes} min čitanja`;
+  return lang === 'en' ? `${minutes} min read` : `${minutes} min čitanja`;
 }
 
 function extractHeadingsText(html) {
@@ -182,8 +192,9 @@ function buildRelatedArticlesHTML(currentArticle, allArticlesIndex) {
   const cardsHTML = relatedList.map(item => {
     const title = item.title || 'Naslov';
     const category = item.category || 'Općenito';
+    const relCatTheme = getCategoryThemeKey(item);
     const excerpt = item.excerpt || item.summary || '';
-    const readTime = item.readTime || '⏱ 3 min čitanja';
+    const readTime = String(item.readTime || '3 min čitanja').replace(/^⏱\s*/, '').trim();
     const itemUrl = `${encodeURIComponent(item.id)}.html`;
     let relatedImage = item.image || '';
     if (relatedImage && !relatedImage.startsWith('http') && !relatedImage.startsWith('/') && !relatedImage.startsWith('../')) {
@@ -197,12 +208,18 @@ function buildRelatedArticlesHTML(currentArticle, allArticlesIndex) {
     ` : '';
 
     return `
-      <a href="${itemUrl}" class="related-card">
+      <a href="${itemUrl}" class="related-card" data-category="${relCatTheme}">
         ${mediaHTML}
         <div class="related-card-content">
           <div class="related-card-meta">
-            <span class="related-category">${escapeHTML(category)}</span>
-            <span class="related-read-time">${escapeHTML(readTime)}</span>
+            <span class="related-category" data-category="${relCatTheme}">${escapeHTML(category)}</span>
+            <span class="related-read-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              ${escapeHTML(readTime)}
+            </span>
           </div>
           <h4 class="related-card-title">${escapeHTML(title)}</h4>
           <p class="related-card-excerpt">${escapeHTML(excerpt)}</p>
@@ -286,15 +303,16 @@ function buildStaticArticleBodyHTML(article, allArticlesIndex) {
   ` : '';
 
   const relatedArticlesHTML = buildRelatedArticlesHTML(article, allArticlesIndex);
+  const catTheme = getCategoryThemeKey(article);
 
   return `
     <!-- Link za povratak -->
     <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
 
     <!-- Zaglavlje rada -->
-    <header class="reader-header">
+    <header class="reader-header" data-category="${catTheme}">
       <div class="reader-meta">
-        <span class="card-category">${escapeHTML(category)}</span>
+        <span class="card-category" data-category="${catTheme}">${escapeHTML(category)}</span>
       </div>
 
       <h1 class="reader-title">${escapeHTML(title)}</h1>
@@ -452,11 +470,12 @@ function buildStaticArticleBodyHTML(article, allArticlesIndex) {
  */
 function buildFeaturedHeroCardHTML(article) {
   if (!article) return '';
+  const catTheme = getCategoryThemeKey(article);
   const title = article.title || 'Naslov rada nedostupan';
   const category = article.category || 'Općenito';
   const excerpt = article.excerpt || article.summary || 'Kratki uvod i sažetak rada trenutačno nisu dostupni.';
   const date = article.date || 'Nepoznat datum';
-  const readTime = article.readTime || '⏱ 3 min čitanja';
+  const readTime = String(article.readTime || '3 min čitanja').replace(/^⏱\s*/, '').trim();
   const doi = article.doi || '';
   const articleUrl = `articles/${encodeURIComponent(article.id)}.html`;
   const image = article.image || '';
@@ -470,7 +489,7 @@ function buildFeaturedHeroCardHTML(article) {
           </div>` : '';
 
   return `
-        <article class="featured-hero-card" id="featured-card-${escapeHTML(String(article.id))}">
+        <article class="featured-hero-card" id="featured-card-${escapeHTML(String(article.id))}" data-category="${catTheme}">
           ${mediaHTML}
           <div class="featured-hero-content">
             <div class="featured-hero-top">
@@ -479,7 +498,7 @@ function buildFeaturedHeroCardHTML(article) {
                   <span class="featured-pulse-dot"></span>
                   <span>NAJNOVIJI RAD</span>
                 </span>
-                <span class="card-category">${escapeHTML(category)}</span>
+                <span class="card-category" data-category="${catTheme}">${escapeHTML(category)}</span>
                 <time class="card-date" datetime="${escapeHTML(date)}">${escapeHTML(date)}</time>
               </div>
               <h2 class="featured-hero-title">
@@ -510,11 +529,12 @@ function buildFeaturedHeroCardHTML(article) {
  * Generates HTML card for index.html pre-rendering
  */
 function buildHomeArticleCardHTML(article, index) {
+  const catTheme = getCategoryThemeKey(article);
   const title = article.title || 'Naslov rada nedostupan';
   const category = article.category || 'Općenito';
   const excerpt = article.excerpt || article.summary || 'Kratki uvod i sažetak rada trenutačno nisu dostupni.';
   const date = article.date || 'Nepoznat datum';
-  const readTime = article.readTime || '⏱ 3 min čitanja';
+  const readTime = String(article.readTime || '3 min čitanja').replace(/^⏱\s*/, '').trim();
   const doi = article.doi || '';
   const articleUrl = `articles/${encodeURIComponent(article.id)}.html`;
   const image = article.image || '';
@@ -531,13 +551,13 @@ function buildHomeArticleCardHTML(article, index) {
     </div>` : '';
 
   return `
-        <article class="article-card" id="card-${escapeHTML(String(article.id))}">
+        <article class="article-card" id="card-${escapeHTML(String(article.id))}" data-category="${catTheme}">
           ${mediaHTML}
           <div class="article-card-content">
             <div class="card-body">
               <div class="card-header">
                 <div class="card-meta">
-                  <span class="card-category">${escapeHTML(category)}</span>
+                  <span class="card-category" data-category="${catTheme}">${escapeHTML(category)}</span>
                   <time class="card-date" datetime="${escapeHTML(date)}">${escapeHTML(date)}</time>
                 </div>
                 <h3 class="card-title">

@@ -32,16 +32,18 @@
   <link rel="canonical" href="https://keeping-up-singularity.web.app/">
 
   <!-- PWA & Mobile Web App Meta -->
-  <meta name="theme-color" content="#030712">
+  <meta name="theme-color" content="#070a10">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Singularity">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="img/logo.png">
 
-  <link rel="stylesheet" href="style.css?v=20261108">
-  <script src="js/theme.js?v=20261108"></script>
-  <script src="js/lang.js?v=20261108"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css?v=20261123">
+  <script src="js/theme.js?v=20261123"></script>
+  <script src="js/lang.js?v=20261123"></script>
   <script src="js/pwa.js"></script>
 </head>
 <body>
@@ -70,7 +72,24 @@
           <li><a href="category.html?cat=longevity" class="nav-link" id="nav-longevity" data-i18n="nav.longevity">Longevity</a></li>
           <!-- <li><a href="o-autoru.html" class="nav-link" id="nav-autor" data-i18n="nav.author">O autoru</a></li> -->
           <li><button id="lang-toggle" class="lang-btn" aria-label="Promijeni jezik">ENG</button></li>
-          <li><button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">🌓</button></li>
+          <li>
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">
+              <svg class="theme-icon theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+              <svg class="theme-icon theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </button>
+          </li>
         </ul>
       </div>
     </nav>
@@ -92,7 +111,7 @@
     <section id="featured-article-section" class="featured-article-section" aria-label="Istaknuti rad">
       <div id="featured-article-container" class="featured-article-container">
         <!-- Istaknuti Hero rad pred-renderiran putem SSG-a (scripts/generate-static-pages.js) -->
-        <article class="featured-hero-card" id="featured-card-digitalni-blizanci-vodoopskrbnih-sustava">
+        <article class="featured-hero-card" id="featured-card-digitalni-blizanci-vodoopskrbnih-sustava" data-category="ai">
           
           <div class="featured-hero-media">
             <a href="articles/digitalni-blizanci-vodoopskrbnih-sustava.html" tabindex="-1" aria-hidden="true">
@@ -106,7 +125,7 @@
                   <span class="featured-pulse-dot"></span>
                   <span>NAJNOVIJI RAD</span>
                 </span>
-                <span class="card-category">AI i tehnologija</span>
+                <span class="card-category" data-category="ai">AI i tehnologija</span>
                 <time class="card-date" datetime="15. studenoga 2026.">15. studenoga 2026.</time>
               </div>
               <h2 class="featured-hero-title">
@@ -121,7 +140,7 @@
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
-                  ⏱ 23 min čitanja
+                  23 min čitanja
                 </span>
                 
               </div>
@@ -192,7 +211,7 @@
       <!-- CSS Grid spremnik za dinamički prikaz kartica -->
       <div id="articles-grid" class="articles-grid" role="region" aria-live="polite">
         <!-- Kartice članaka pred-renderirane putem SSG-a (scripts/generate-static-pages.js) -->
-        <article class="article-card" id="card-humanoidna-robotika">
+        <article class="article-card" id="card-humanoidna-robotika" data-category="ai">
           
     <div class="article-card-media">
       <a href="articles/humanoidna-robotika.html" tabindex="-1" aria-hidden="true">
@@ -203,7 +222,7 @@
             <div class="card-body">
               <div class="card-header">
                 <div class="card-meta">
-                  <span class="card-category">AI i tehnologija</span>
+                  <span class="card-category" data-category="ai">AI i tehnologija</span>
                   <time class="card-date" datetime="4. listopada 2026.">4. listopada 2026.</time>
                 </div>
                 <h3 class="card-title">
@@ -219,7 +238,7 @@
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
-                  ⏱ 23 min čitanja
+                  23 min čitanja
                 </span>
                 
               </div>
@@ -230,7 +249,7 @@
           </div>
         </article>
 
-        <article class="article-card" id="card-navier-stokes">
+        <article class="article-card" id="card-navier-stokes" data-category="ai">
           
     <div class="article-card-media">
       <a href="articles/navier-stokes.html" tabindex="-1" aria-hidden="true">
@@ -241,7 +260,7 @@
             <div class="card-body">
               <div class="card-header">
                 <div class="card-meta">
-                  <span class="card-category">AI i tehnologija</span>
+                  <span class="card-category" data-category="ai">AI i tehnologija</span>
                   <time class="card-date" datetime="17. rujna 2026.">17. rujna 2026.</time>
                 </div>
                 <h3 class="card-title">
@@ -257,7 +276,7 @@
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
-                  ⏱ 31 min čitanja
+                  31 min čitanja
                 </span>
                 
               </div>
@@ -268,7 +287,7 @@
           </div>
         </article>
 
-        <article class="article-card" id="card-jesmo-li-vec-vidjeli-prve-longevity-lijekove">
+        <article class="article-card" id="card-jesmo-li-vec-vidjeli-prve-longevity-lijekove" data-category="longevity">
           
     <div class="article-card-media">
       <a href="articles/jesmo-li-vec-vidjeli-prve-longevity-lijekove.html" tabindex="-1" aria-hidden="true">
@@ -279,7 +298,7 @@
             <div class="card-body">
               <div class="card-header">
                 <div class="card-meta">
-                  <span class="card-category">Longevity</span>
+                  <span class="card-category" data-category="longevity">Longevity</span>
                   <time class="card-date" datetime="2. rujna 2026.">2. rujna 2026.</time>
                 </div>
                 <h3 class="card-title">
@@ -295,7 +314,7 @@
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
-                  ⏱ 19 min čitanja
+                  19 min čitanja
                 </span>
                 
               </div>
@@ -306,7 +325,7 @@
           </div>
         </article>
 
-        <article class="article-card" id="card-koliko-vode-trose-podatkovni-centri">
+        <article class="article-card" id="card-koliko-vode-trose-podatkovni-centri" data-category="ai">
           
     <div class="article-card-media">
       <a href="articles/koliko-vode-trose-podatkovni-centri.html" tabindex="-1" aria-hidden="true">
@@ -317,7 +336,7 @@
             <div class="card-body">
               <div class="card-header">
                 <div class="card-meta">
-                  <span class="card-category">AI i tehnologija</span>
+                  <span class="card-category" data-category="ai">AI i tehnologija</span>
                   <time class="card-date" datetime="23. kolovoza 2026.">23. kolovoza 2026.</time>
                 </div>
                 <h3 class="card-title">
@@ -333,7 +352,7 @@
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
-                  ⏱ 11 min čitanja
+                  11 min čitanja
                 </span>
                 
               </div>
@@ -344,7 +363,7 @@
           </div>
         </article>
 
-        <article class="article-card" id="card-yamanaka-faktori-resetiranje-bioloskog-sata">
+        <article class="article-card" id="card-yamanaka-faktori-resetiranje-bioloskog-sata" data-category="longevity">
           
     <div class="article-card-media">
       <a href="articles/yamanaka-faktori-resetiranje-bioloskog-sata.html" tabindex="-1" aria-hidden="true">
@@ -355,7 +374,7 @@
             <div class="card-body">
               <div class="card-header">
                 <div class="card-meta">
-                  <span class="card-category">Longevity</span>
+                  <span class="card-category" data-category="longevity">Longevity</span>
                   <time class="card-date" datetime="2. kolovoza 2026.">2. kolovoza 2026.</time>
                 </div>
                 <h3 class="card-title">
@@ -371,7 +390,7 @@
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
-                  ⏱ 7 min čitanja
+                  7 min čitanja
                 </span>
                 
               </div>
@@ -382,7 +401,7 @@
           </div>
         </article>
 
-        <article class="article-card" id="card-peptidi-bolski-signalni-sustavi">
+        <article class="article-card" id="card-peptidi-bolski-signalni-sustavi" data-category="longevity">
           
     <div class="article-card-media">
       <a href="articles/peptidi-bolski-signalni-sustavi.html" tabindex="-1" aria-hidden="true">
@@ -393,7 +412,7 @@
             <div class="card-body">
               <div class="card-header">
                 <div class="card-meta">
-                  <span class="card-category">Longevity</span>
+                  <span class="card-category" data-category="longevity">Longevity</span>
                   <time class="card-date" datetime="27. srpnja 2026.">27. srpnja 2026.</time>
                 </div>
                 <h3 class="card-title">
@@ -409,7 +428,7 @@
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
-                  ⏱ 6 min čitanja
+                  6 min čitanja
                 </span>
                 
               </div>
@@ -516,7 +535,7 @@
   </footer>
 
   <!-- Vanilla JavaScript Logic -->
-  <script src="js/main.js?v=20261108"></script>
-  <script src="js/newsletter.js?v=20261108"></script>
+  <script src="js/main.js?v=20261123"></script>
+  <script src="js/newsletter.js?v=20261123"></script>
 </body>
 </html>

@@ -78,20 +78,22 @@
   </script>
 
   <!-- PWA & Mobile Web App Meta -->
-  <meta name="theme-color" content="#030712">
+  <meta name="theme-color" content="#070a10">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Singularity">
   <link rel="manifest" href="../manifest.json">
   <link rel="apple-touch-icon" href="../img/logo.png">
 
-  <link rel="stylesheet" href="../style.css?v=20261108">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../style.css?v=20261123">
   <!-- KaTeX for math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script src="../js/theme.js?v=20261108"></script>
-  <script src="../js/lang.js?v=20261108"></script>
+  <script src="../js/theme.js?v=20261123"></script>
+  <script src="../js/lang.js?v=20261123"></script>
   <script src="../js/pwa.js"></script>
 </head>
 <body>
@@ -119,7 +121,24 @@
           <li><a href="../category.html?cat=longevity" class="nav-link" id="nav-longevity" data-i18n="nav.longevity">Longevity</a></li>
           <!-- <li><a href="../o-autoru.html" class="nav-link" id="nav-autor" data-i18n="nav.author">O autoru</a></li> -->
           <li><button id="lang-toggle" class="lang-btn" aria-label="Promijeni jezik">ENG</button></li>
-          <li><button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">🌓</button></li>
+          <li>
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">
+              <svg class="theme-icon theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+              <svg class="theme-icon theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </button>
+          </li>
         </ul>
       </div>
       <!-- Reading Progress Bar -->
@@ -134,9 +153,9 @@
     <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
 
     <!-- Zaglavlje rada -->
-    <header class="reader-header">
+    <header class="reader-header" data-category="longevity">
       <div class="reader-meta">
-        <span class="card-category">Longevity</span>
+        <span class="card-category" data-category="longevity">Longevity</span>
       </div>
 
       <h1 class="reader-title">Resetiranje biološkog sata: Što su Yamanaka faktori</h1>
@@ -149,7 +168,7 @@
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            ⏱ 7 min čitanja
+            7 min čitanja
           </span>
           
         </div>
@@ -385,7 +404,7 @@
       </div>
       <div class="related-grid">
         
-      <a href="jesmo-li-vec-vidjeli-prve-longevity-lijekove.html" class="related-card">
+      <a href="jesmo-li-vec-vidjeli-prve-longevity-lijekove.html" class="related-card" data-category="longevity">
         
       <div class="related-card-media">
         <img src="../img/GLP_lijekovi.webp" alt="Jesmo li već vidjeli prve Longevity lijekove?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
@@ -393,8 +412,14 @@
     
         <div class="related-card-content">
           <div class="related-card-meta">
-            <span class="related-category">Longevity</span>
-            <span class="related-read-time">⏱ 19 min čitanja</span>
+            <span class="related-category" data-category="longevity">Longevity</span>
+            <span class="related-read-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              19 min čitanja
+            </span>
           </div>
           <h4 class="related-card-title">Jesmo li već vidjeli prve Longevity lijekove?</h4>
           <p class="related-card-excerpt">Analiza inkretinske revolucije – od semaglutida i tirzepatida do retatrutida i orforgliprona: djeluju li GLP-1 agonisti kao stvarni geroprotektori ili metabolički štit protiv modernog načina života?</p>
@@ -403,7 +428,7 @@
           </div>
         </div>
       </a>
-      <a href="peptidi-bolski-signalni-sustavi.html" class="related-card">
+      <a href="peptidi-bolski-signalni-sustavi.html" class="related-card" data-category="longevity">
         
       <div class="related-card-media">
         <img src="../img/peptidi.png.webp" alt="Peptidi: Biološki signalni molekularni sustavi" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
@@ -411,8 +436,14 @@
     
         <div class="related-card-content">
           <div class="related-card-meta">
-            <span class="related-category">Longevity</span>
-            <span class="related-read-time">⏱ 6 min čitanja</span>
+            <span class="related-category" data-category="longevity">Longevity</span>
+            <span class="related-read-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              6 min čitanja
+            </span>
           </div>
           <h4 class="related-card-title">Peptidi: Biološki signalni molekularni sustavi</h4>
           <p class="related-card-excerpt">Pregled uloge peptida u modernoj medicini – od GLP-1 metaboličke revolucije i regenerativnih spojeva BPC-157 i TB-500 do rejuvenacije, GHK-Cu i primjene umjetne inteligencije u dizajnu de novo peptida.</p>
@@ -421,7 +452,7 @@
           </div>
         </div>
       </a>
-      <a href="alphafold-nobel-nagrada.html" class="related-card">
+      <a href="alphafold-nobel-nagrada.html" class="related-card" data-category="longevity">
         
       <div class="related-card-media">
         <img src="../img/Alphafold.webp" alt="AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
@@ -429,8 +460,14 @@
     
         <div class="related-card-content">
           <div class="related-card-meta">
-            <span class="related-category">Longevity</span>
-            <span class="related-read-time">⏱ 10 min čitanja</span>
+            <span class="related-category" data-category="longevity">Longevity</span>
+            <span class="related-read-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              10 min čitanja
+            </span>
           </div>
           <h4 class="related-card-title">AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?</h4>
           <p class="related-card-excerpt">Kratki pregled kako je DeepMindov AlphaFold riješio 50 godina star problem savijanja proteina, osvojio Nobelovu nagradu i otvorio novu eru u dizajniranju sintetičkih enzima za pomlađivanje tkiva.</p>
@@ -558,9 +595,9 @@
     </div>
   </footer>
 
-  <script>window.PRELOADED_ARTICLE_ID = "yamanaka-faktori-resetiranje-bioloskog-sata";window.PRELOADED_ARTICLE_DATA = {"id":"yamanaka-faktori-resetiranje-bioloskog-sata","title":"Resetiranje biološkog sata: Što su Yamanaka faktori","title_en":"Resetting the Biological Clock: What Are Yamanaka Factors","date":"2. kolovoza 2026.","category":"Longevity","categorySlug":"longevity","category_en":"Longevity","readTime":"7 min čitanja","readTime_en":"7 min read","image":"img/yamanaka.webp","summary":"Pregled znanstvenog proboja Shinyje Yamanake i OSKM proteina koji su dokazali da je stanična diferencijacija reverzibilan proces – od iPSC tehnologije i autologne medicine do parcijalnog reprogramiranja za pomlađivanje tkiva.","summary_en":"An overview of Shinya Yamanaka's scientific breakthrough and OSKM proteins that proved cellular differentiation is a reversible process – from iPSC technology and autologous medicine to partial reprogramming for tissue rejuvenation.","excerpt":"Pregled znanstvenog proboja Shinyje Yamanake i OSKM proteina koji su dokazali da je stanična diferencijacija reverzibilan proces – od iPSC tehnologije i autologne medicine do parcijalnog reprogramiranja za pomlađivanje tkiva.","excerpt_en":"An overview of Shinya Yamanaka's scientific breakthrough and OSKM proteins that proved cellular differentiation is a reversible process – from iPSC technology and autologous medicine to partial reprogramming for tissue rejuvenation.","wordCount":1290,"wordCount_en":1427};window.PRELOADED_ARTICLES_INDEX = [{"id":"jesmo-li-vec-vidjeli-prve-longevity-lijekove","title":"Jesmo li već vidjeli prve Longevity lijekove?","title_en":"Have We Already Seen the First Longevity Drugs?","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"2. rujna 2026.","readTime":"⏱ 19 min čitanja","readTime_en":"⏱ 17 min read","wordCount":3614,"wordCount_en":3230,"image":"img/GLP_lijekovi.webp","excerpt":"Analiza inkretinske revolucije – od semaglutida i tirzepatida do retatrutida i orforgliprona: djeluju li GLP-1 agonisti kao stvarni geroprotektori ili metabolički štit protiv modernog načina života?","excerpt_en":"An analysis of the incretin revolution – from semaglutide and tirzepatide to retatrutide and orforglipron: do GLP-1 agonists act as true geroprotectors or as a metabolic shield against modern lifestyles?"},{"id":"peptidi-bolski-signalni-sustavi","title":"Peptidi: Biološki signalni molekularni sustavi","title_en":"Peptides: Biological Signaling Molecular Systems","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"27. srpnja 2026.","readTime":"⏱ 6 min čitanja","readTime_en":"⏱ 6 min read","wordCount":1009,"wordCount_en":1174,"image":"img/peptidi.png.webp","video":"video/peptidi.mp4","excerpt":"Pregled uloge peptida u modernoj medicini – od GLP-1 metaboličke revolucije i regenerativnih spojeva BPC-157 i TB-500 do rejuvenacije, GHK-Cu i primjene umjetne inteligencije u dizajnu de novo peptida.","excerpt_en":"An overview of the role of peptides in modern medicine – from the GLP-1 metabolic revolution and regenerative compounds BPC-157 and TB-500 to rejuvenation, GHK-Cu, and the application of artificial intelligence in de novo peptide design."},{"id":"alphafold-nobel-nagrada","title":"AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?","title_en":"AlphaFold – The First Nobel Prize Not Won by a Human?","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"24. srpnja 2026.","readTime":"⏱ 10 min čitanja","readTime_en":"⏱ 9 min read","wordCount":1816,"wordCount_en":1758,"image":"img/Alphafold.webp","doi":"doi:10.1038/s41586-026-09855-3","excerpt":"Kratki pregled kako je DeepMindov AlphaFold riješio 50 godina star problem savijanja proteina, osvojio Nobelovu nagradu i otvorio novu eru u dizajniranju sintetičkih enzima za pomlađivanje tkiva.","excerpt_en":"A brief overview of how DeepMind's AlphaFold solved the 50-year-old protein folding problem, won a Nobel Prize, and opened a new era in designing synthetic enzymes for tissue rejuvenation."}];</script>
-  <script src="../js/article.js?v=20261108"></script>
-  <script src="../js/comments.js?v=20261108"></script>
-  <script src="../js/newsletter.js?v=20261108"></script>
+  <script>window.PRELOADED_ARTICLE_ID = "yamanaka-faktori-resetiranje-bioloskog-sata";window.PRELOADED_ARTICLE_DATA = {"id":"yamanaka-faktori-resetiranje-bioloskog-sata","title":"Resetiranje biološkog sata: Što su Yamanaka faktori","title_en":"Resetting the Biological Clock: What Are Yamanaka Factors","date":"2. kolovoza 2026.","category":"Longevity","categorySlug":"longevity","category_en":"Longevity","readTime":"7 min čitanja","readTime_en":"7 min read","image":"img/yamanaka.webp","summary":"Pregled znanstvenog proboja Shinyje Yamanake i OSKM proteina koji su dokazali da je stanična diferencijacija reverzibilan proces – od iPSC tehnologije i autologne medicine do parcijalnog reprogramiranja za pomlađivanje tkiva.","summary_en":"An overview of Shinya Yamanaka's scientific breakthrough and OSKM proteins that proved cellular differentiation is a reversible process – from iPSC technology and autologous medicine to partial reprogramming for tissue rejuvenation.","excerpt":"Pregled znanstvenog proboja Shinyje Yamanake i OSKM proteina koji su dokazali da je stanična diferencijacija reverzibilan proces – od iPSC tehnologije i autologne medicine do parcijalnog reprogramiranja za pomlađivanje tkiva.","excerpt_en":"An overview of Shinya Yamanaka's scientific breakthrough and OSKM proteins that proved cellular differentiation is a reversible process – from iPSC technology and autologous medicine to partial reprogramming for tissue rejuvenation.","wordCount":1290,"wordCount_en":1427};window.PRELOADED_ARTICLES_INDEX = [{"id":"jesmo-li-vec-vidjeli-prve-longevity-lijekove","title":"Jesmo li već vidjeli prve Longevity lijekove?","title_en":"Have We Already Seen the First Longevity Drugs?","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"2. rujna 2026.","readTime":"19 min čitanja","readTime_en":"17 min read","wordCount":3614,"wordCount_en":3230,"image":"img/GLP_lijekovi.webp","excerpt":"Analiza inkretinske revolucije – od semaglutida i tirzepatida do retatrutida i orforgliprona: djeluju li GLP-1 agonisti kao stvarni geroprotektori ili metabolički štit protiv modernog načina života?","excerpt_en":"An analysis of the incretin revolution – from semaglutide and tirzepatide to retatrutide and orforglipron: do GLP-1 agonists act as true geroprotectors or as a metabolic shield against modern lifestyles?"},{"id":"peptidi-bolski-signalni-sustavi","title":"Peptidi: Biološki signalni molekularni sustavi","title_en":"Peptides: Biological Signaling Molecular Systems","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"27. srpnja 2026.","readTime":"6 min čitanja","readTime_en":"6 min read","wordCount":1009,"wordCount_en":1174,"image":"img/peptidi.png.webp","video":"video/peptidi.mp4","excerpt":"Pregled uloge peptida u modernoj medicini – od GLP-1 metaboličke revolucije i regenerativnih spojeva BPC-157 i TB-500 do rejuvenacije, GHK-Cu i primjene umjetne inteligencije u dizajnu de novo peptida.","excerpt_en":"An overview of the role of peptides in modern medicine – from the GLP-1 metabolic revolution and regenerative compounds BPC-157 and TB-500 to rejuvenation, GHK-Cu, and the application of artificial intelligence in de novo peptide design."},{"id":"alphafold-nobel-nagrada","title":"AlphaFold – prva Nobelova nagrada koju nije dobio čovjek?","title_en":"AlphaFold – The First Nobel Prize Not Won by a Human?","category":"Longevity","category_en":"Longevity","categorySlug":"longevity","date":"24. srpnja 2026.","readTime":"10 min čitanja","readTime_en":"9 min read","wordCount":1816,"wordCount_en":1758,"image":"img/Alphafold.webp","doi":"doi:10.1038/s41586-026-09855-3","excerpt":"Kratki pregled kako je DeepMindov AlphaFold riješio 50 godina star problem savijanja proteina, osvojio Nobelovu nagradu i otvorio novu eru u dizajniranju sintetičkih enzima za pomlađivanje tkiva.","excerpt_en":"A brief overview of how DeepMind's AlphaFold solved the 50-year-old protein folding problem, won a Nobel Prize, and opened a new era in designing synthetic enzymes for tissue rejuvenation."}];</script>
+  <script src="../js/article.js?v=20261123"></script>
+  <script src="../js/comments.js?v=20261123"></script>
+  <script src="../js/newsletter.js?v=20261123"></script>
 </body>
 </html>

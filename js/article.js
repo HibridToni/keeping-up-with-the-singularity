@@ -74,36 +74,53 @@ async function ensureEnglishContentLoaded(article) {
  * @param {Object} [article=null]
  * @returns {string} Formatted reading time string
  */
+/**
+ * Returns semantic theme key ('ai' | 'longevity') for category-aware styling
+ * @param {Object} article
+ * @returns {string}
+ */
+function getCategoryThemeKey(article) {
+  const slug = ((article && article.categorySlug) || '').toLowerCase().trim();
+  const catHR = ((article && article.category) || '').toLowerCase().trim();
+  const catEN = ((article && article.category_en) || '').toLowerCase().trim();
+  if (slug === 'longevity' || catHR.includes('longevity') || catEN.includes('longevity')) {
+    return 'longevity';
+  }
+  return 'ai';
+}
+
 function calculateReadingTime(content, lang = 'hr', article = null) {
+  const stripClockEmoji = (val) => String(val || '').replace(/^⏱\s*/, '').trim();
+
   if (article) {
     if (lang === 'en') {
       if (article.content_en && typeof article.content_en === 'string') {
         content = article.content_en;
       } else if (typeof article.wordCount_en === 'number' && article.wordCount_en > 0) {
         const mins = Math.max(1, Math.ceil(article.wordCount_en / 200));
-        return `⏱ ${mins} min read`;
+        return `${mins} min read`;
       } else if (article.readTime_en) {
-        return article.readTime_en.startsWith('⏱') ? article.readTime_en : `⏱ ${article.readTime_en}`;
+        return stripClockEmoji(article.readTime_en);
       }
     } else {
       if (article.content && typeof article.content === 'string') {
         content = article.content;
       } else if (typeof article.wordCount === 'number' && article.wordCount > 0) {
         const mins = Math.max(1, Math.ceil(article.wordCount / 200));
-        return `⏱ ${mins} min čitanja`;
+        return `${mins} min čitanja`;
       } else if (article.readTime) {
-        return article.readTime.startsWith('⏱') ? article.readTime : `⏱ ${article.readTime}`;
+        return stripClockEmoji(article.readTime);
       }
     }
   }
 
   if (!content || typeof content !== 'string') {
-    return lang === 'en' ? '⏱ 3 min read' : '⏱ 3 min čitanja';
+    return lang === 'en' ? '3 min read' : '3 min čitanja';
   }
   const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   const wordCount = plainText ? plainText.split(/\s+/).length : 0;
   const minutes = Math.max(1, Math.ceil(wordCount / 200));
-  return lang === 'en' ? `⏱ ${minutes} min read` : `⏱ ${minutes} min čitanja`;
+  return lang === 'en' ? `${minutes} min read` : `${minutes} min čitanja`;
 }
 
 /**
@@ -310,15 +327,17 @@ function renderArticleContent(container, article, allArticles = []) {
   // Related articles section HTML
   const relatedArticlesHTML = renderRelatedArticles(article, allArticles.length > 0 ? allArticles : cachedAllArticles, currentLang);
 
+  const catTheme = getCategoryThemeKey(article);
+
   container.setAttribute('data-ssg-lang', currentLang);
   container.innerHTML = `
     <!-- Link za povratak -->
     <a href="${homeUrl}" class="back-link">${backLinkText}</a>
 
     <!-- Zaglavlje rada -->
-    <header class="reader-header">
+    <header class="reader-header" data-category="${catTheme}">
       <div class="reader-meta">
-        <span class="card-category">${escapeHTML(category)}</span>
+        <span class="card-category" data-category="${catTheme}">${escapeHTML(category)}</span>
       </div>
 
       <h1 class="reader-title">${escapeHTML(title)}</h1>
@@ -552,6 +571,7 @@ function renderRelatedArticles(currentArticle, allArticles, currentLang) {
       relatedImage = `../${relatedImage}`;
     }
 
+    const relCatTheme = getCategoryThemeKey(item);
     const mediaHTML = relatedImage ? `
       <div class="related-card-media">
         <img src="${escapeHTML(relatedImage)}" alt="${escapeHTML(title)}" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
@@ -559,12 +579,18 @@ function renderRelatedArticles(currentArticle, allArticles, currentLang) {
     ` : '';
 
     return `
-      <a href="${itemUrl}" class="related-card">
+      <a href="${itemUrl}" class="related-card" data-category="${relCatTheme}">
         ${mediaHTML}
         <div class="related-card-content">
           <div class="related-card-meta">
-            <span class="related-category">${escapeHTML(category)}</span>
-            <span class="related-read-time">${escapeHTML(readTime)}</span>
+            <span class="related-category" data-category="${relCatTheme}">${escapeHTML(category)}</span>
+            <span class="related-read-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              ${escapeHTML(readTime)}
+            </span>
           </div>
           <h4 class="related-card-title">${escapeHTML(title)}</h4>
           <p class="related-card-excerpt">${escapeHTML(excerpt)}</p>

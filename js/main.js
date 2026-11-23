@@ -63,6 +63,21 @@ async function fetchArticles(url, fallbackUrl = 'articles.json') {
 }
 
 /**
+ * Returns semantic theme key ('ai' | 'longevity') for category-aware styling
+ * @param {Object} article
+ * @returns {string}
+ */
+function getCategoryThemeKey(article) {
+  const slug = ((article && article.categorySlug) || '').toLowerCase().trim();
+  const catHR = ((article && article.category) || '').toLowerCase().trim();
+  const catEN = ((article && article.category_en) || '').toLowerCase().trim();
+  if (slug === 'longevity' || catHR.includes('longevity') || catEN.includes('longevity')) {
+    return 'longevity';
+  }
+  return 'ai';
+}
+
+/**
  * Checks whether an article belongs to the selected category filter slug
  * @param {Object} article
  * @param {string} filterSlug - 'all' | 'ai-tehnologija' | 'longevity'
@@ -190,6 +205,7 @@ function renderFeaturedArticle(article, visible = true) {
   const badgeLabel = currentLang === 'en' ? 'LATEST PAPER' : 'NAJNOVIJI RAD';
   const ctaText = currentLang === 'en' ? 'Read featured analysis &rarr;' : 'Pročitaj istaknuti rad &rarr;';
   const ctaAria = currentLang === 'en' ? `Read featured article: ${title}` : `Pročitaj istaknuti rad: ${title}`;
+  const catTheme = getCategoryThemeKey(article);
 
   const mediaHTML = image ? `
     <div class="featured-hero-media">
@@ -200,7 +216,7 @@ function renderFeaturedArticle(article, visible = true) {
   ` : '';
 
   container.innerHTML = `
-    <article class="featured-hero-card" id="featured-card-${escapeHTML(String(article.id))}">
+    <article class="featured-hero-card" id="featured-card-${escapeHTML(String(article.id))}" data-category="${catTheme}">
       ${mediaHTML}
       <div class="featured-hero-content">
         <div class="featured-hero-top">
@@ -209,7 +225,7 @@ function renderFeaturedArticle(article, visible = true) {
               <span class="featured-pulse-dot"></span>
               <span>${escapeHTML(badgeLabel)}</span>
             </span>
-            <span class="card-category">${escapeHTML(category)}</span>
+            <span class="card-category" data-category="${catTheme}">${escapeHTML(category)}</span>
             <time class="card-date" datetime="${escapeHTML(date)}">${escapeHTML(date)}</time>
           </div>
           <h2 class="featured-hero-title">
@@ -448,35 +464,37 @@ function setupPagination() {
  * @returns {string} Formatted reading time string
  */
 function calculateReadingTime(content, lang = 'hr', article = null) {
+  const stripClockEmoji = (val) => String(val || '').replace(/^⏱\s*/, '').trim();
+
   if (article) {
     if (lang === 'en') {
       if (article.content_en && typeof article.content_en === 'string') {
         content = article.content_en;
       } else if (typeof article.wordCount_en === 'number' && article.wordCount_en > 0) {
         const mins = Math.max(1, Math.ceil(article.wordCount_en / 200));
-        return `⏱ ${mins} min read`;
+        return `${mins} min read`;
       } else if (article.readTime_en) {
-        return article.readTime_en.startsWith('⏱') ? article.readTime_en : `⏱ ${article.readTime_en}`;
+        return stripClockEmoji(article.readTime_en);
       }
     } else {
       if (article.content && typeof article.content === 'string') {
         content = article.content;
       } else if (typeof article.wordCount === 'number' && article.wordCount > 0) {
         const mins = Math.max(1, Math.ceil(article.wordCount / 200));
-        return `⏱ ${mins} min čitanja`;
+        return `${mins} min čitanja`;
       } else if (article.readTime) {
-        return article.readTime.startsWith('⏱') ? article.readTime : `⏱ ${article.readTime}`;
+        return stripClockEmoji(article.readTime);
       }
     }
   }
 
   if (!content || typeof content !== 'string') {
-    return lang === 'en' ? '⏱ 3 min read' : '⏱ 3 min čitanja';
+    return lang === 'en' ? '3 min read' : '3 min čitanja';
   }
   const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   const wordCount = plainText ? plainText.split(/\s+/).length : 0;
   const minutes = Math.max(1, Math.ceil(wordCount / 200));
-  return lang === 'en' ? `⏱ ${minutes} min read` : `⏱ ${minutes} min čitanja`;
+  return lang === 'en' ? `${minutes} min read` : `${minutes} min čitanja`;
 }
 
 /**
@@ -485,9 +503,11 @@ function calculateReadingTime(content, lang = 'hr', article = null) {
  * @returns {HTMLElement} Article DOM node
  */
 function createArticleCard(article) {
+  const catTheme = getCategoryThemeKey(article);
   const card = document.createElement('article');
   card.className = 'article-card';
   card.id = `card-${article.id}`;
+  card.setAttribute('data-category', catTheme);
 
   const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'hr';
 
@@ -523,7 +543,7 @@ function createArticleCard(article) {
       <div class="card-body">
         <div class="card-header">
           <div class="card-meta">
-            <span class="card-category">${escapeHTML(category)}</span>
+            <span class="card-category" data-category="${catTheme}">${escapeHTML(category)}</span>
             <time class="card-date" datetime="${escapeHTML(date)}">${escapeHTML(date)}</time>
           </div>
           <h3 class="card-title">

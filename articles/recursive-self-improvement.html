@@ -78,20 +78,22 @@
   </script>
 
   <!-- PWA & Mobile Web App Meta -->
-  <meta name="theme-color" content="#030712">
+  <meta name="theme-color" content="#070a10">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Singularity">
   <link rel="manifest" href="../manifest.json">
   <link rel="apple-touch-icon" href="../img/logo.png">
 
-  <link rel="stylesheet" href="../style.css?v=20261108">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../style.css?v=20261123">
   <!-- KaTeX for math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script src="../js/theme.js?v=20261108"></script>
-  <script src="../js/lang.js?v=20261108"></script>
+  <script src="../js/theme.js?v=20261123"></script>
+  <script src="../js/lang.js?v=20261123"></script>
   <script src="../js/pwa.js"></script>
 </head>
 <body>
@@ -119,7 +121,24 @@
           <li><a href="../category.html?cat=longevity" class="nav-link" id="nav-longevity" data-i18n="nav.longevity">Longevity</a></li>
           <!-- <li><a href="../o-autoru.html" class="nav-link" id="nav-autor" data-i18n="nav.author">O autoru</a></li> -->
           <li><button id="lang-toggle" class="lang-btn" aria-label="Promijeni jezik">ENG</button></li>
-          <li><button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">🌓</button></li>
+          <li>
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Promijeni temu">
+              <svg class="theme-icon theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+              <svg class="theme-icon theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </button>
+          </li>
         </ul>
       </div>
       <!-- Reading Progress Bar -->
@@ -134,9 +153,9 @@
     <a href="../index.html" class="back-link">&larr; Natrag na sve radove</a>
 
     <!-- Zaglavlje rada -->
-    <header class="reader-header">
+    <header class="reader-header" data-category="ai">
       <div class="reader-meta">
-        <span class="card-category">AI i tehnologija</span>
+        <span class="card-category" data-category="ai">AI i tehnologija</span>
       </div>
 
       <h1 class="reader-title">Algoritmi koji grade algoritme: Što je Recursive Self-Improvement AI modela?</h1>
@@ -149,7 +168,7 @@
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            ⏱ 10 min čitanja
+            10 min čitanja
           </span>
           <span class="card-doi">doi:10.1038/s41586-026-09633-9</span>
         </div>
@@ -375,7 +394,7 @@
       </div>
       <div class="related-grid">
         
-      <a href="digitalni-blizanci-vodoopskrbnih-sustava.html" class="related-card">
+      <a href="digitalni-blizanci-vodoopskrbnih-sustava.html" class="related-card" data-category="ai">
         
       <div class="related-card-media">
         <img src="../img/digitalni_blizanci.webp" alt="Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
@@ -383,8 +402,14 @@
     
         <div class="related-card-content">
           <div class="related-card-meta">
-            <span class="related-category">AI i tehnologija</span>
-            <span class="related-read-time">⏱ 23 min čitanja</span>
+            <span class="related-category" data-category="ai">AI i tehnologija</span>
+            <span class="related-read-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              23 min čitanja
+            </span>
           </div>
           <h4 class="related-card-title">Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima</h4>
           <p class="related-card-excerpt">Zašto spajanje GIS-a s klasičnim EPANET modelom ne čini digitalni blizanac, kako hibridni fizikalno informirani modeli (PINN i grafovske neuronske mreže) rješavaju problem estimacije stanja u stvarnom vremenu te gdje u praksi zapinju projekti na stvarnim vodovodnim mrežama.</p>
@@ -393,7 +418,7 @@
           </div>
         </div>
       </a>
-      <a href="humanoidna-robotika.html" class="related-card">
+      <a href="humanoidna-robotika.html" class="related-card" data-category="ai">
         
       <div class="related-card-media">
         <img src="../img/robotika.webp" alt="Robotika – New Frontier" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
@@ -401,8 +426,14 @@
     
         <div class="related-card-content">
           <div class="related-card-meta">
-            <span class="related-category">AI i tehnologija</span>
-            <span class="related-read-time">⏱ 23 min čitanja</span>
+            <span class="related-category" data-category="ai">AI i tehnologija</span>
+            <span class="related-read-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              23 min čitanja
+            </span>
           </div>
           <h4 class="related-card-title">Robotika – New Frontier</h4>
           <p class="related-card-excerpt">Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.</p>
@@ -411,7 +442,7 @@
           </div>
         </div>
       </a>
-      <a href="navier-stokes.html" class="related-card">
+      <a href="navier-stokes.html" class="related-card" data-category="ai">
         
       <div class="related-card-media">
         <img src="../img/Navier Stokes.webp" alt="Navier–Stokes" class="related-card-thumb" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
@@ -419,8 +450,14 @@
     
         <div class="related-card-content">
           <div class="related-card-meta">
-            <span class="related-category">AI i tehnologija</span>
-            <span class="related-read-time">⏱ 31 min čitanja</span>
+            <span class="related-category" data-category="ai">AI i tehnologija</span>
+            <span class="related-read-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              31 min čitanja
+            </span>
           </div>
           <h4 class="related-card-title">Navier–Stokes</h4>
           <p class="related-card-excerpt">Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.</p>
@@ -548,9 +585,9 @@
     </div>
   </footer>
 
-  <script>window.PRELOADED_ARTICLE_ID = "recursive-self-improvement";window.PRELOADED_ARTICLE_DATA = {"id":"recursive-self-improvement","title":"Algoritmi koji grade algoritme: Što je Recursive Self-Improvement AI modela?","date":"20. lipnja 2026.","category":"AI i tehnologija","readTime":"12 min čitanja","doi":"doi:10.1038/s41586-026-09633-9","excerpt":"Rekurzivno samopoboljšanje (RSI) proces je u kojem AI sustav samostalno optimizira vlastiti kod i arhitekturu. Ovaj članak analizira mehanizme poput agencijskih sustava, pretraživanja neuronskih mreža te tehnička i sigurnosna ograničenja na putu prema singularnosti.","image":"img/Algoritmi koji grade algoritme.webp","categorySlug":"ai-tehnologija","title_en":"Algorithms Building Algorithms: What is Recursive Self-Improvement in AI Models?","category_en":"AI & Tech","summary_en":"Recursive Self-Improvement (RSI) is the process where an AI system autonomously optimizes its own code and architecture. This article analyzes mechanisms like agentic workflows, neural architecture search, and technical/safety boundaries on the path to the singularity.","excerpt_en":"Recursive Self-Improvement (RSI) is the process where an AI system autonomously optimizes its own code and architecture. This article analyzes mechanisms like agentic workflows, neural architecture search, and technical/safety boundaries on the path to the singularity.","wordCount":1992,"wordCount_en":1139};window.PRELOADED_ARTICLES_INDEX = [{"id":"digitalni-blizanci-vodoopskrbnih-sustava","title":"Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima","title_en":"Architecture and Application of Digital Twins in Water Supply Systems","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"15. studenoga 2026.","readTime":"⏱ 23 min čitanja","readTime_en":"⏱ 21 min read","wordCount":4454,"wordCount_en":4129,"image":"img/digitalni_blizanci.webp","excerpt":"Zašto spajanje GIS-a s klasičnim EPANET modelom ne čini digitalni blizanac, kako hibridni fizikalno informirani modeli (PINN i grafovske neuronske mreže) rješavaju problem estimacije stanja u stvarnom vremenu te gdje u praksi zapinju projekti na stvarnim vodovodnim mrežama.","excerpt_en":"Why linking GIS with a traditional EPANET model does not constitute a digital twin, how hybrid physics-informed models (PINNs and Graph Neural Networks) solve real-time state estimation, and why real-world brownfield deployments often stall."},{"id":"humanoidna-robotika","title":"Robotika – New Frontier","title_en":"Humanoid Robotics – The New Frontier","category":"AI i tehnologija","category_en":"AI & Tech","date":"4. listopada 2026.","readTime":"⏱ 23 min čitanja","readTime_en":"⏱ 23 min read","wordCount":4460,"wordCount_en":4498,"image":"img/robotika.webp","excerpt":"Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.","excerpt_en":"Why Moravec's paradox is the defining challenge of our era, how VLA models and massive parallel simulation are emancipating AI into the physical world, and who leads the global race between Tesla, Figure, Boston Dynamics, and China."},{"id":"navier-stokes","title":"Navier–Stokes","title_en":"Navier–Stokes","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"17. rujna 2026.","readTime":"⏱ 31 min čitanja","readTime_en":"⏱ 32 min read","wordCount":6011,"wordCount_en":6211,"image":"img/Navier Stokes.webp","excerpt":"Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.","excerpt_en":"From Hilbert's 23 problems to the Clay Mathematics Institute's million-dollar prize: What the Navier–Stokes equations actually describe, what finite-time singularity means, and how OpenAI's agent swarm and Lean formal verification shook mathematics to its core."}];</script>
-  <script src="../js/article.js?v=20261108"></script>
-  <script src="../js/comments.js?v=20261108"></script>
-  <script src="../js/newsletter.js?v=20261108"></script>
+  <script>window.PRELOADED_ARTICLE_ID = "recursive-self-improvement";window.PRELOADED_ARTICLE_DATA = {"id":"recursive-self-improvement","title":"Algoritmi koji grade algoritme: Što je Recursive Self-Improvement AI modela?","date":"20. lipnja 2026.","category":"AI i tehnologija","readTime":"12 min čitanja","doi":"doi:10.1038/s41586-026-09633-9","excerpt":"Rekurzivno samopoboljšanje (RSI) proces je u kojem AI sustav samostalno optimizira vlastiti kod i arhitekturu. Ovaj članak analizira mehanizme poput agencijskih sustava, pretraživanja neuronskih mreža te tehnička i sigurnosna ograničenja na putu prema singularnosti.","image":"img/Algoritmi koji grade algoritme.webp","categorySlug":"ai-tehnologija","title_en":"Algorithms Building Algorithms: What is Recursive Self-Improvement in AI Models?","category_en":"AI & Tech","summary_en":"Recursive Self-Improvement (RSI) is the process where an AI system autonomously optimizes its own code and architecture. This article analyzes mechanisms like agentic workflows, neural architecture search, and technical/safety boundaries on the path to the singularity.","excerpt_en":"Recursive Self-Improvement (RSI) is the process where an AI system autonomously optimizes its own code and architecture. This article analyzes mechanisms like agentic workflows, neural architecture search, and technical/safety boundaries on the path to the singularity.","wordCount":1992,"wordCount_en":1139};window.PRELOADED_ARTICLES_INDEX = [{"id":"digitalni-blizanci-vodoopskrbnih-sustava","title":"Arhitektura i primjena digitalnih blizanaca u vodoopskrbnim sustavima","title_en":"Architecture and Application of Digital Twins in Water Supply Systems","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"15. studenoga 2026.","readTime":"23 min čitanja","readTime_en":"21 min read","wordCount":4454,"wordCount_en":4129,"image":"img/digitalni_blizanci.webp","excerpt":"Zašto spajanje GIS-a s klasičnim EPANET modelom ne čini digitalni blizanac, kako hibridni fizikalno informirani modeli (PINN i grafovske neuronske mreže) rješavaju problem estimacije stanja u stvarnom vremenu te gdje u praksi zapinju projekti na stvarnim vodovodnim mrežama.","excerpt_en":"Why linking GIS with a traditional EPANET model does not constitute a digital twin, how hybrid physics-informed models (PINNs and Graph Neural Networks) solve real-time state estimation, and why real-world brownfield deployments often stall."},{"id":"humanoidna-robotika","title":"Robotika – New Frontier","title_en":"Humanoid Robotics – The New Frontier","category":"AI i tehnologija","category_en":"AI & Tech","date":"4. listopada 2026.","readTime":"23 min čitanja","readTime_en":"23 min read","wordCount":4460,"wordCount_en":4498,"image":"img/robotika.webp","excerpt":"Zašto je Moravecov paradoks najveći izazov današnjice, kako VLA modeli i masivna paralelna simulacija izvode AI iz zaslona u fizički svijet te tko vodi u globalnoj utrci između Tesle, Figurea, Boston Dynamicsa i Kine.","excerpt_en":"Why Moravec's paradox is the defining challenge of our era, how VLA models and massive parallel simulation are emancipating AI into the physical world, and who leads the global race between Tesla, Figure, Boston Dynamics, and China."},{"id":"navier-stokes","title":"Navier–Stokes","title_en":"Navier–Stokes","category":"AI i tehnologija","category_en":"AI & Tech","categorySlug":"ai-tehnologija","date":"17. rujna 2026.","readTime":"31 min čitanja","readTime_en":"32 min read","wordCount":6011,"wordCount_en":6211,"image":"img/Navier Stokes.webp","excerpt":"Od Hilbertovih 23 problema do nagrade od milijun dolara Clay Mathematics Instituta: Što zapravo opisuju Navier–Stokesove jednadžbe, što znači singularnost u konačnom vremenu i kako je OpenAI-jev agentski roj uz Lean formalnu verifikaciju uzdrmao temelje matematike.","excerpt_en":"From Hilbert's 23 problems to the Clay Mathematics Institute's million-dollar prize: What the Navier–Stokes equations actually describe, what finite-time singularity means, and how OpenAI's agent swarm and Lean formal verification shook mathematics to its core."}];</script>
+  <script src="../js/article.js?v=20261123"></script>
+  <script src="../js/comments.js?v=20261123"></script>
+  <script src="../js/newsletter.js?v=20261123"></script>
 </body>
 </html>
